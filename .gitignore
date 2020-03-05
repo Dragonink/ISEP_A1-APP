@@ -1,0 +1,21 @@
+## Visual Studio Code
+.vscode/
+## Dreamweaver
+configs/
+_notes
+_compareTemp
+dw_php_codehinting.config
+dwsync.xml
+*.mno
+## PHP Storm
+.idea/
+.idea_modules/
+## Sublime Text
+GitHub.sublime-settings
+
+## MACOS
+._*
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
