@@ -1,0 +1,71 @@
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: rgb(180, 218, 240, 0.61);
+}
+
+#navHeader {
+    height: auto;
+    width: 100%;
+    background-color: rgb(24, 55, 94, 0.86);
+    display: flex;
+    justify-content: space-between;
+}
+
+.menuLogo {
+    margin:10px;
+}
+
+.menuUtilisateur {
+    padding: 0px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.menuUtilisateur li {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 8px;
+}
+
+li {
+    color : white;
+    list-style-type: none;
+}
+
+img {
+    border-radius: 100%;
+}
+
+#contenuAdmin {
+    height: 100%;
+}
+
+#menuAdmin {
+    height: 100%;
+    float: left;
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    background-color: #18375E;
+}
+
+#menuAdmin button{
+    display: block;
+    background-color: inherit;
+    color: white;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+#affichageAdmin {
+    height: 100%;
+    float: right;
+    width: 90%;
+}

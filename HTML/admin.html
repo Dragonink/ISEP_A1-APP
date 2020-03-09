@@ -1,38 +1,40 @@
 <!DOCTYPE html>
+<meta charset="UTF-8">
 <html>
     <head>
 
         <!-- JS -->
-        <script src="/JavaScript/code.js"></script>
+        <script src="../JavaScript/code.js"></script>
 
         <!-- CSS -->
+        <link href="../CSS/style.css" rel="stylesheet" type="text/css">
+
     </head>
 
     <body>
         <section id="navHeader">
-            <div class='menulogo'><a href='accueil.html'><img src='../images/Infinite_measures.gif'/></a></div>
-            <ul class='menuutilisateur'>
-                <li><!--notifications-->Notifiactions</li>
+            <div class='menuLogo'><a href='accueil.html'><img src='../images/Infinite_measures.jpg' height="50px"/></a></div>
+            <ul class='menuUtilisateur'>
+                <li><!--notifications-->Notifications</li>
                 <li><!-- Prénom-->Prénom</li>
                 <li><!-- Nom-->Nom</li>
-                <li><!-- Photo--><img src='../images/profil.jpg'/></li>
+                <li><!-- Photo--><img src='../images/profil.jpg' height="50px"/></li>
             </ul>
         </section>
-        
-        <section id="navFooter">
-            <ul class='footerpage'>
-                <li><a href='CGU.html'> CGU </a></li>
-                <li><a href='FAQ.html'> FAQ </a></li>
-                <li><a href='contact.html'> CONTACT </a></li>
-            </ul>
-            <div class='logofooter'><img SRC='../images/logo.png'/></div>
-            <ul class='networks'>
-                <li><a href='https://www.facebook.com/'><img src='../images/facebook.png'/></a></li>
-                <li><a href='https://www.instagram.com/'><img src='../images/instagram.png'/></a></li> <!-- rajouter l'image-->
-                <li><a href='https://www.linkedin.com/'><img src='../images/linkedin.png'/></a></li>
-                <li><a href='https://www.twitter.com/'><img src='../images/twitter.png'/></a></li>
-                <li> Réseaux </li>
-            </ul>
+        <section id="contenuAdmin">
+            <div id="menuAdmin">
+                <button class= "chapitre actif" onclick="openchapitre(0)"> Dashboard </button>
+                <button class= "chapitre" onclick="openchapitre(1)"> Dispositifs </button>
+                <button class= "chapitre" onclick="openchapitre(2)"> Utilisateurs </button>
+                <button class= "chapitre" onclick="openchapitre(3)"> FAQ </button>
+            </div>
+            <div id="affichageAdmin">
+                <div id="0" class="choix" style="display: block;"></div>
+                <div id="1" class="choix" style="display: none;"></div>
+                <div id="2" class="choix" style="display: none;"></div>
+                <div id="4" class="choix" style="display: none;"></div>
+            </div>
         </section>
+
     </body>
 </html>
