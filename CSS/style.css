@@ -125,17 +125,21 @@ li {
     padding: 10px;
 }
 
+/* accueil */
+
 /* admin */
 
 #contenuAdmin {
     background-color: var(--colorAdmin);
-    height: 100%;
+    min-height: 89.5%;
+    display: flex;
+    flex-direction: row;
 }
 
 #menuAdmin {
-    height: 100%;
-    float: left;
-    width: 10%;
+    min-height: 100%;
+    width: auto;
+    min-width: 120px;
     display: flex;
     flex-direction: column;
     background-color: var(--colorFooter);
@@ -162,7 +166,39 @@ li {
 }
 
 #affichageAdmin {
-    height: 100%;
-    float: right;
-    width: 90%;
+    min-height: 100%;
+    width: 100%;
+    padding:0px;
+}
+
+#affichageAdmin .choix {
+    height: 89.5%;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: var(--colorFooter);
+}
+
+#choixChapitre {
+    display: flex;
+    justify-content: space-between;
+}
+
+.ajouterQuestion{
+    background-color: var(--colorFooter);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.listeQuestionsAdmin {
+    width:auto;
+    height: auto;
+    margin: 1% 2%;
+    background-color: white;
+    color:var(--colorFooter);
+    border-radius: 10px;
 }
