@@ -15,26 +15,42 @@
         <section id="navHeader">
             <div class='menuLogo'><a href='accueil.html'><img src='../images/Infinite_measures.jpg' height="50px"/></a></div>
             <ul class='menuUtilisateur'>
-                <li><!--notifications-->Notifications</li>
+                <li><!--notifications--><img src="../images/iconSansNotification.png" /></li>
                 <li><!-- Prénom-->Prénom</li>
                 <li><!-- Nom-->Nom</li>
-                <li><!-- Photo--><img src='../images/profil.jpg' height="50px"/></li>
+                <li class="photo"><!-- Photo--><img src='../images/iconProfil.jpg' height="50px"/></li>
             </ul>
         </section>
         <section id="contenuAdmin">
             <div id="menuAdmin">
-                <button class= "chapitre actif" onclick="openchapitre(0)"> Dashboard </button>
-                <button class= "chapitre" onclick="openchapitre(1)"> Dispositifs </button>
-                <button class= "chapitre" onclick="openchapitre(2)"> Utilisateurs </button>
-                <button class= "chapitre" onclick="openchapitre(3)"> FAQ </button>
+                <button class= "chapitre actif" onclick="openChapitre(0)"><img src="../images/iconDashboard.png"/> Dashboard </button>
+                <button class= "chapitre" onclick="openChapitre(1)"><img src="../images/iconDispositif.png"> Dispositifs </button>
+                <button class= "chapitre" onclick="openChapitre(2)"><img src="../images/iconUtilisateur.png"> Utilisateurs </button>
+                <button class= "chapitre" onclick="openChapitre(3)"><img src="../images/iconFAQ.png"> FAQ </button>
             </div>
             <div id="affichageAdmin">
-                <div id="0" class="choix" style="display: block;"></div>
-                <div id="1" class="choix" style="display: none;"></div>
-                <div id="2" class="choix" style="display: none;"></div>
-                <div id="4" class="choix" style="display: none;"></div>
+                <div id="0" class="choix" style="display: block;"> </div>
+                <div id="1" class="choix" style="display: none;"> </div>
+                <div id="2" class="choix" style="display: none;"> </div>
+                <div id="4" class="choix" style="display: none;"> </div>
             </div>
         </section>
-
     </body>
+    <script LANGUAGE='JavaScript'>
+
+        function openChapitre(number) {
+            var i, chapitre, choix;
+            choix = document.getElementsByClassName("choix");
+            for (i=0; i<choix.length;i++) {
+                choix[i].style.display="none";
+            }
+            chapitre = document.getElementsByClassName("chapitre");
+		    for (i = 0; i < chapitre.length; i++) {
+    		    chapitre[i].className = chapitre[i].className.replace(" actif", "");
+    	    }
+            choix[number].style.display = "block";
+            chapitre[number].className += " actif";
+        }
+
+    </script>
 </html>

@@ -1,20 +1,66 @@
+:root {
+    --colorHeader: rgb(24, 55, 94, 0.86);
+    --colorFooter: rgb(24, 55, 94);
+    --colorAdmin: rgb(180, 218, 240, 0.61);
+    --colorChoixAdmin:  rgb(34, 37, 41, 0.4);
+    --colorFAQ: rgb(100, 162, 186);
+}
+
+/* général */
+
 body, html {
     height: 100%;
     width: 100%;
     margin: 0;
-    background-color: rgb(180, 218, 240, 0.61);
+    background-color: none;
 }
 
 #navHeader {
     height: auto;
     width: 100%;
-    background-color: rgb(24, 55, 94, 0.86);
+    background-color: var(--colorHeader);
     display: flex;
     justify-content: space-between;
 }
 
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: inherit;
+    padding-right: 5px;
+}
+
+a {
+    color: white;
+    text-decoration-line: none;
+}
+
+.header {
+    margin: inherit;
+}
+
+.header .menutitle {
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+.header .inscriptionConnexion {
+    padding-top: 2%;
+    padding-bottom: 1%;
+    padding-right: 5px;
+}
+
 .menuLogo {
     margin:10px;
+}
+
+.menuLogo img {
+    border-radius: 100%;
+}
+
+.photo img {
+    border-radius: 100%;
 }
 
 .menuUtilisateur {
@@ -35,11 +81,54 @@ li {
     list-style-type: none;
 }
 
-img {
+#navFooter {
+    bottom: 0px;
+    height: auto;
+    width: 100%;
+    background-color: var(--colorFooter);
+    display: flex;
+    justify-content: space-between;
+}
+
+#navFooter ul{
+    width: 20%;
+}
+
+#navFooter div{
+    width: 10%;
+}
+
+.footerpage {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerpage li {
+    padding: 20px;
+}
+
+.logofooter {
+    text-align: center;
+}
+
+.logofooter img {
+    padding: 20px;
     border-radius: 100%;
 }
 
+.networks {
+    display: flex;
+    justify-content: row;
+}
+
+.networks li {
+    padding: 10px;
+}
+
+/* admin */
+
 #contenuAdmin {
+    background-color: var(--colorAdmin);
     height: 100%;
 }
 
@@ -49,7 +138,7 @@ img {
     width: 10%;
     display: flex;
     flex-direction: column;
-    background-color: #18375E;
+    background-color: var(--colorFooter);
 }
 
 #menuAdmin button{
@@ -62,6 +151,14 @@ img {
     outline: none;
     text-align: left;
     cursor: pointer;
+}
+
+#menuAdmin button img{
+    height: 12px;
+}
+
+#menuAdmin button.actif{
+    background-color:var(--colorChoixAdmin);
 }
 
 #affichageAdmin {
