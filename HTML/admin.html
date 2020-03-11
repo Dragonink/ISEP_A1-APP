@@ -43,7 +43,86 @@
                         <h1> FAQ </h1>
                         <button class="ajouterQuestion"> Ajouter question </button>
                     </div>
-                    <div class="listeQuestionsAdmin"> TOTO </div>
+                    <table class="listeQuestionsAdmin">
+                        <tr class="question" id="1" style="display:table-row;">
+                            <td style="width: 5%;"> 1. </td>
+                            <td style="width: 15%;"> Question 1 </td>
+                            <td style="width: 5%;"> <img src="../images/iconeDroite.png" class='symboleDroite actif' onclick="openReponse(1)"/> </td>
+                            <td class="vide"> </td>
+                            <td style="width: 5%;">
+                                <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
+                                <img src="../images/iconCroix.png"/>
+                            </td>
+                        </tr>
+                        <tr class="affichage" id="1" style='display:none;'>
+                            <td style="width: 5%;"> 1. </td>
+                            <td style="width: 15%;"> Question 1 </td>
+                            <td style="width: 5%;"> <img src="../images/iconeBas.png" class='symboleBas' onclick="closeReponse(1)"/> </td>
+                            <td class="vide"> </td>
+                            <td style="width: 5%;">
+                                <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
+                                <img src="../images/iconCroix.png"/>
+                            </td>
+                        </tr>
+                        <tr class="reponse" id="1" style='display:none;'>
+                            <td> </td>
+                            <td colspan="3" id="reponse"> Blablabla </td>
+                        </tr>
+                        <tr class="modifier" id="1" style='display:none;'>
+                            <td style="width: 5%;"> 1. </td>
+                            <td style="width: 15%;"> <textarea id="answer" name="question 1" cols="20" rows="1" style="resize: none;"> Question 1 </textarea> </td>
+                            <td class="vide" colspan="2"> </td>
+                            <td style="width: 5%;">
+                                <img src="../images/iconValider.png"/>
+                                <img src="../images/iconAnnuler.png" class='symboleAnnuler' onclick="openReponse(1)"/>
+                            </td>
+                        </tr>
+                        <tr class="reponseModifiable" id="1" style='display:none;'>
+                            <td> </td>
+                            <td colspan="3" id="reponse">
+                                <textarea id="answer" name="question 1" cols="140" rows="8" style="resize: none;"> Blablabla </textarea>
+                            </td>
+                        </tr>
+                        <tr class="question" id="2" style="display:table-row;">
+                            <td style="width: 5%;"> 2. </td>
+                            <td style="width: 15%;"> Question 2 </td>
+                            <td style="width: 5%;"> <img src="../images/iconeDroite.png" class='symboleDroite actif' onclick="openReponse(2)"/> </td>
+                            <td class="vide"> </td>
+                            <td style="width: 5%;">
+                                <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
+                                <img src="../images/iconCroix.png"/>
+                            </td>
+                        </tr>
+                        <tr class="affichage" id="2" style='display:none;'>
+                            <td style="width: 5%;"> 2. </td>
+                            <td style="width: 15%;"> Question 2 </td>
+                            <td style="width: 5%;"> <img src="../images/iconeBas.png" class='symboleBas' onclick="closeReponse(2)"/> </td>
+                            <td class="vide"> </td>
+                            <td style="width: 5%;">
+                                <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
+                                <img src="../images/iconCroix.png"/>
+                            </td>
+                        </tr>
+                        <tr class="reponse" id="2" style='display:none;'>
+                            <td> </td>
+                            <td colspan="3" id="reponse"> Blablabla </td>
+                        </tr>
+                        <tr class="modifier" id="2" style='display:none;'>
+                            <td style="width: 5%;"> 2. </td>
+                            <td style="width: 15%;"> <textarea id="answer" name="question 2" cols="20" rows="1" style="resize: none;"> Question 2 </textarea> </td>
+                            <td class="vide" colspan="2"> </td>
+                            <td style="width: 5%;">
+                                <img src="../images/iconValider.png"/>
+                                <img src="../images/iconAnnuler.png" class='symboleAnnuler' onclick="openReponse(2)"/>
+                            </td>
+                        </tr>
+                        <tr class="reponseModifiable" id="2" style='display:none;'>
+                            <td> </td>
+                            <td colspan="3" id="reponse">
+                                <textarea id="answer" name="question 2" cols="140" rows="8" style="resize: none;"> Blablabla </textarea>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </section>
@@ -62,6 +141,30 @@
     	    }
             choix[number].style.display = "block";
             chapitre[number].className += " actif";
+        }
+
+        function openReponse(number) {
+            document.getElementsByClassName("question")[number-1].style.display="none";
+            document.getElementsByClassName("affichage")[number-1].style.display="table-row";
+            document.getElementsByClassName("reponse")[number-1].style.display="table-row";
+            document.getElementsByClassName("modifier")[number-1].style.display="none";
+            document.getElementsByClassName("reponseModifiable")[number-1].style.display="none";
+        }
+
+        function openModification(number) {
+            document.getElementsByClassName("question")[number-1].style.display="none";
+            document.getElementsByClassName("affichage")[number-1].style.display="none";
+            document.getElementsByClassName("reponse")[number-1].style.display="none";
+            document.getElementsByClassName("modifier")[number-1].style.display="table-row";
+            document.getElementsByClassName("reponseModifiable")[number-1].style.display="table-row";
+        }
+
+        function closeReponse(number) {
+            document.getElementsByClassName("question")[number-1].style.display="table-row";
+            document.getElementsByClassName("affichage")[number-1].style.display="none";
+            document.getElementsByClassName("reponse")[number-1].style.display="none";
+            document.getElementsByClassName("modifier")[number-1].style.display="none";
+            document.getElementsByClassName("reponseModifiable")[number-1].style.display="none";
         }
 
     </script>

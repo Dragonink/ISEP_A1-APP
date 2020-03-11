@@ -166,8 +166,7 @@ li {
 }
 
 #affichageAdmin {
-    min-height: 100%;
-    width: 100%;
+    width: 90%;
     padding:0px;
 }
 
@@ -183,6 +182,8 @@ li {
     justify-content: space-between;
 }
 
+/* admin FAQ*/
+
 .ajouterQuestion{
     background-color: var(--colorFooter);
     color: white;
@@ -195,10 +196,37 @@ li {
 }
 
 .listeQuestionsAdmin {
-    width:auto;
+    width: 95%;
     height: auto;
     margin: 1% 2%;
+    padding: 2% 2%;
     background-color: white;
     color:var(--colorFooter);
     border-radius: 10px;
+    border-collapse : separate;
+    border-spacing : 10px;
+}
+
+.listeQuestionsAdmin img {
+    height: 25px;
+}
+.listeQuestionsAdmin .question td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .affichage td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .modifier td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .vide {
+    width : 60%
+}
+
+.listeQuestionsAdmin .reponse #reponse{
+    border: 1px groove var(--colorFooter);
+    max-width: 75%;
 }
