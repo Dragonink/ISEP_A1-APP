@@ -30,16 +30,79 @@
             </div>
             <div id="affichageAdmin">
                 <div id="0" class="choix" style="display: block;">
-                    <div id="choixChapitre"><h1> Dashboard </h1></div>
+                    <div id="adminDashboard"><h1> Dashboard </h1></div>
                 </div>
                 <div id="1" class="choix" style="display: none;">
-                    <div id="choixChapitre"><h1> Dispositifs </h1></div>
+                    <div id="adminDispositif"><h1> Dispositifs </h1></div>
                 </div>
                 <div id="2" class="choix" style="display: none;">
-                    <div id="choixChapitre"><h1> Utilisateurs </h1></div>
+                    <table id="adminUtilisateur">
+                        <tr>
+                            <td style="width: 40%;"> <h1> Utilisateurs </h1> </td>
+                            <td style="width: 60%;"> <input type="search" id="admin-search-utilisateur" name="adminSearchUtilisateur" aria-label="Search through site content" placeholder="Recherche" style="width: 100%;"> </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 40%;"> <img src="../images/iconAjouterUser.png" style="width: 15px;"/> Ajouter un utilisateur &nbsp; Requêtes en attentes <img src="../images/iconOuvrir.png" style="width: 15px;"/> </td>
+                            <td style="width: 60%;"> <select size="1">
+                                <option value disabled selected > Trier par: </option>
+                                <option value="1"> Option 1 </option>
+                                <option value="2"> Option 2 </option>
+                            </select> </td>
+                        </tr>
+                    </table>
+                    <table style="width: 100%; padding: 2%; border-collapse : separate; border-spacing : 10px;">
+                        <tr>
+                            <td style="width:25%;"><table class="utilisateur" style="background-color: white; border-radius: 15px; width: 100%;">
+                                <tr> 
+                                    <td rowspan="4" style="width: 110px;" > <img src="../images/iconProfil.jpg" style="border-radius: 100%; width: 100px;"/></td>
+                                    <td> Prénom Nom </td>
+                                    <td style="text-align: right;">
+                                        <img src="../images/iconModifier.png" style="width: 15px; height: 15px;"/>
+                                        <img src="../images/iconCroix.png" style="width: 15px; height: 15px;"/>
+                                    </td>
+                                </tr>
+                                <tr> <td> Info 1 </td> </tr>
+                                <tr> <td> Info 2 </td> </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/iconVoirProfil.png" style="width: 20px; height: 20px;"/>
+                                        <img src="../images/iconContacter.png" style="width: 20px; height: 20px;"/>
+                                        <img src="../images/iconBannir.png" style="width: 20px; height: 20px;"/>
+                                    </td> 
+                                </tr>
+                            </table></td>
+                            <td style="width:25%;"><table class="utilisateur" style="background-color: white; border-radius: 15px; width: 100%;">
+                                <tr> 
+                                    <td rowspan="4" style="width: 110px;" > <img src="../images/iconProfil.jpg" style="border-radius: 100%; width: 100px;"/></td>
+                                    <td> Prénom Nom </td>
+                                    <td style="text-align: right;">
+                                        <img src="../images/iconModifier.png" style="width: 15px; height: 15px;"/>
+                                        <img src="../images/iconCroix.png" style="width: 15px; height: 15px;"/>
+                                    </td>
+                                </tr>
+                                <tr> <td> Info 1 </td> </tr>
+                                <tr> <td> Info 2 </td> </tr>
+                                <tr>
+                                    <td>
+                                        <img src="../images/iconVoirProfil.png" style="width: 20px; height: 20px;" />
+                                        <img src="../images/iconContacter.png" style="width: 20px; height: 20px;"/>
+                                        <img src="../images/iconBannir.png" style="width: 20px; height: 20px;"/>
+                                    </td> 
+                                </tr>
+                            </table></td>
+                            <td style="width:25%"></td>
+                            <td style="width:25%"></td>
+                        </tr>
+                    </table>
+                    <div class="pagination">
+                        <button class="pageBefore" onclick="openBefore()"> <img src="../images/flecheGauche.png" /> </button>
+                        <button class="page actif" onclick="openPage(0)"> 1 </button>
+                        <button class="page" onclick="openPage(1)"> 2 </button>
+                        <button class="pageAfter" onclick="openAfter()"> <img src="../images/flecheDroite.png" /> </button>
+                    </div>
                 </div>
                 <div id="4" class="choix" style="display: none;">
-                    <div id="choixChapitre">
+                    <div id="adminFAQ">
                         <h1> FAQ </h1>
                         <button class="ajouterQuestion"> Ajouter question </button>
                     </div>
@@ -47,7 +110,7 @@
                         <tr class="question" id="1" style="display:table-row;">
                             <td style="width: 5%;"> 1. </td>
                             <td style="width: 15%;"> Question 1 </td>
-                            <td style="width: 5%;"> <img src="../images/iconeDroite.png" class='symboleDroite actif' onclick="openReponse(1)"/> </td>
+                            <td style="width: 5%;"> <img src="../images/iconDroite.png" class='symboleDroite actif' onclick="openReponse(1)"/> </td>
                             <td class="vide"> </td>
                             <td style="width: 5%;">
                                 <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
@@ -57,7 +120,7 @@
                         <tr class="affichage" id="1" style='display:none;'>
                             <td style="width: 5%;"> 1. </td>
                             <td style="width: 15%;"> Question 1 </td>
-                            <td style="width: 5%;"> <img src="../images/iconeBas.png" class='symboleBas' onclick="closeReponse(1)"/> </td>
+                            <td style="width: 5%;"> <img src="../images/iconBas.png" class='symboleBas' onclick="closeReponse(1)"/> </td>
                             <td class="vide"> </td>
                             <td style="width: 5%;">
                                 <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
@@ -86,7 +149,7 @@
                         <tr class="question" id="2" style="display:table-row;">
                             <td style="width: 5%;"> 2. </td>
                             <td style="width: 15%;"> Question 2 </td>
-                            <td style="width: 5%;"> <img src="../images/iconeDroite.png" class='symboleDroite actif' onclick="openReponse(2)"/> </td>
+                            <td style="width: 5%;"> <img src="../images/iconDroite.png" class='symboleDroite actif' onclick="openReponse(2)"/> </td>
                             <td class="vide"> </td>
                             <td style="width: 5%;">
                                 <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
@@ -96,7 +159,7 @@
                         <tr class="affichage" id="2" style='display:none;'>
                             <td style="width: 5%;"> 2. </td>
                             <td style="width: 15%;"> Question 2 </td>
-                            <td style="width: 5%;"> <img src="../images/iconeBas.png" class='symboleBas' onclick="closeReponse(2)"/> </td>
+                            <td style="width: 5%;"> <img src="../images/iconBas.png" class='symboleBas' onclick="closeReponse(2)"/> </td>
                             <td class="vide"> </td>
                             <td style="width: 5%;">
                                 <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>

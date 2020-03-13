@@ -177,12 +177,25 @@ li {
     color: var(--colorFooter);
 }
 
-#choixChapitre {
-    display: flex;
-    justify-content: space-between;
+/* admin utilisateur */ 
+
+#adminUtilisateur {
+    width: 95%;
 }
 
-/* admin FAQ*/
+#admin-search-utilisateur {
+    margin: auto 0px;
+    width: 50%;
+    font-size: 20px;
+}
+
+/* admin FAQ */
+
+#adminFAQ {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
 .ajouterQuestion{
     background-color: var(--colorFooter);
@@ -209,6 +222,7 @@ li {
 
 .listeQuestionsAdmin img {
     height: 25px;
+    width: 25px;
 }
 .listeQuestionsAdmin .question td {
     font-size: 25px;
