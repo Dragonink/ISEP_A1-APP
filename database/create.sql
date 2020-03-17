@@ -6,6 +6,7 @@ create table if not exists Administrator (
     pass text not null,
     is_active boolean default false not null
 );
+
 create table if not exists Manager (
     id integer primary key,
     firstname text not null,
@@ -17,3 +18,18 @@ create table if not exists Manager (
     picture mediumblob,
     is_active boolean default false not null
 );
+
+create table if not exists User{
+    NSS integer primary key,
+    firstname text not null,
+    lastname text not null,
+    email text not null,
+    pass text not null,
+    doctor integer references Manager(id), 
+    phone text,
+    picture mediumblob,
+}
+
+create table if not exists Banned {
+    NSS integer references User(NSS)
+}
