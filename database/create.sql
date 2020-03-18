@@ -19,7 +19,7 @@ create table if not exists Manager (
     is_active boolean default false not null
 );
 
-create table if not exists User{
+create table if not exists User (
     NSS integer primary key,
     firstname text not null,
     lastname text not null,
@@ -28,18 +28,20 @@ create table if not exists User{
     doctor integer references Manager(id), 
     phone text,
     picture mediumblob,
-};
+);
 
-create table if not exists Banned {
+create table if not exists Banned (
     NSS integer references User(NSS)
-};
-create table if not exists Exam {
+);
+
+create table if not exists Exam (
     id integer primary key,
     doctor integer references Manager(id),
     patient integer references User(NSS),
-};
-create table if not exists Contain {
+);
+
+create table if not exists Contain (
     idTest text not null,
     type text not null,
     exam integer references Exam(id),
-};
+);
