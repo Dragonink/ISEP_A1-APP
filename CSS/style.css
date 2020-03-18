@@ -177,6 +177,18 @@ li {
     color: var(--colorFooter);
 }
 
+/* admin Dispositif */ 
+
+#adminDispositif {
+    width: 95%;
+}
+
+#admin-search-dispositif {
+    margin: auto 0px;
+    width: 50%;
+    font-size: 20px;
+}
+
 /* admin utilisateur */ 
 
 #adminUtilisateur {
