@@ -33,3 +33,13 @@ create table if not exists User{
 create table if not exists Banned {
     NSS integer references User(NSS)
 }
+create table if not exists Exam {
+    idExam integer primary key,
+    idDoctor integer not null,
+    NSS integer not null,
+}
+create table if not exists Contain {
+    idTest text not null,
+    type text not null,
+    idExam integer not null,
+}
