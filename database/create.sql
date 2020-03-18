@@ -28,18 +28,18 @@ create table if not exists User{
     doctor integer references Manager(id), 
     phone text,
     picture mediumblob,
-}
+};
 
 create table if not exists Banned {
     NSS integer references User(NSS)
-}
+};
 create table if not exists Exam {
     id integer primary key,
     doctor integer references Manager(id),
     patient integer references User(NSS),
-}
+};
 create table if not exists Contain {
     idTest text not null,
     type text not null,
     exam integer references Exam(id),
-}
+};
