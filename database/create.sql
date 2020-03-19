@@ -45,3 +45,11 @@ create table if not exists Contain (
     type text not null,
     exam integer references Exam(id),
 );
+
+create table if not exists Testuser (
+    id integer primary key,
+    firstname text not null,
+    lastname text not null,
+    NSS integer primary key,
+    Date text not null
+    )
