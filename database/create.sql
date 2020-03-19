@@ -52,4 +52,11 @@ create table if not exists Testuser (
     lastname text not null,
     NSS integer primary key,
     Date text not null
-    )
+);
+
+create table if not exists console (
+    id integer primary key
+);
+
+
+
