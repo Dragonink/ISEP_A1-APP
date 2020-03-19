@@ -4,7 +4,7 @@ create table if not exists Administrator (
     lastname text not null,
     email text not null,
     pass text not null,
-    is_active boolean default false not null
+    is_active boolean default false not null,
 );
 
 create table if not exists Manager (
@@ -16,7 +16,7 @@ create table if not exists Manager (
     work_address text,
     phone text,
     picture mediumblob,
-    is_active boolean default false not null
+    is_active boolean default false not null,
 );
 
 create table if not exists User (
