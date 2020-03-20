@@ -38,6 +38,7 @@ create table if not exists Exam (
     id integer primary key,
     doctor integer references Manager(id),
     patient integer references User(NSS),
+    console integer references ConsoleG(id),
 );
 
 create table if not exists Contain (
@@ -59,13 +60,13 @@ create table if not exists consoleG (
 );
 
 create table if not exists consoleE (
-    id exam integer primary key,
-    id exam text not null,
+    exam integer primary key,
+    numberExam not null integer references Exam(id),
 );
 
 create table if not exists FAQ (
-    id question integer primary key,
-    id administrator text not null,
+    question integer primary key,
+    administrator text not null integer references Administrator(id),
     question text not null,
     answer text not null,
 );
