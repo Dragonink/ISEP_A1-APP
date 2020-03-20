@@ -31,7 +31,7 @@ create table if not exists User (
 );
 
 create table if not exists Banned (
-    NSS integer references User(NSS)
+    NSS integer references User(NSS),
 );
 
 create table if not exists Exam (
@@ -51,12 +51,21 @@ create table if not exists Testuser (
     firstname text not null,
     lastname text not null,
     NSS integer primary key,
-    Date text not null
+    Date text not null,
 );
 
-create table if not exists console (
-    id integer primary key
+create table if not exists consoleG (
+    id integer primary key,
 );
 
+create table if not exists consoleE (
+    id exam integer primary key,
+    id exam text not null,
+);
 
-
+create table if not exists FAQ (
+    id question integer primary key,
+    id administrator text not null,
+    question text not null,
+    answer text not null,
+);
