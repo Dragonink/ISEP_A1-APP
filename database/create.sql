@@ -4,7 +4,7 @@ create table if not exists Administrator (
     lastname text not null,
     email text not null,
     pass text not null,
-    is_active boolean default false not null,
+    is_active boolean default false not null
 );
 
 create table if not exists Manager (
@@ -13,10 +13,10 @@ create table if not exists Manager (
     lastname text not null,
     email text not null,
     pass text not null,
-    work_address text,
+    work_address text not null,
     phone text,
     picture mediumblob,
-    is_active boolean default false not null,
+    is_active boolean default false not null
 );
 
 create table if not exists User (
@@ -25,48 +25,38 @@ create table if not exists User (
     lastname text not null,
     email text not null,
     pass text not null,
-    doctor integer references Manager(id), 
+    doctor integer not null references Manager(id),
     phone text,
-    picture mediumblob,
+    picture mediumblob
 );
 
 create table if not exists Banned (
-    NSS integer references User(NSS),
+    NSS integer unique references User(NSS)
 );
 
 create table if not exists Exam (
     id integer primary key,
-    doctor integer references Manager(id),
-    patient integer references User(NSS),
-    console integer references ConsoleG(id),
+    doctor integer not null references Manager(id),
+    patient integer not null references User(NSS),
+    console integer references Console(id)
 );
 
-create table if not exists Contain (
-    idTest text not null,
-    type text not null,
-    exam integer references Exam(id),
-);
-
-create table if not exists Testuser (
+create table if not exists Test (
     id integer primary key,
-    firstname text not null,
-    lastname text not null,
-    NSS integer primary key,
-    Date text not null,
+    nameType text not null,
+    result float,
+    start_time timestamp,
+    exam integer references Exam(id)
 );
 
-create table if not exists consoleG (
+create table if not exists Console (
     id integer primary key,
-);
-
-create table if not exists consoleE (
-    exam integer primary key,
-    numberExam not null integer references Exam(id),
+    manager integer not null references Manager(id)
 );
 
 create table if not exists FAQ (
-    question integer primary key,
-    administrator text not null integer references Administrator(id),
+    num integer primary key,
+    administrator integer not null references Administrator(id),
     question text not null,
-    answer text not null,
+    answer text not null
 );
