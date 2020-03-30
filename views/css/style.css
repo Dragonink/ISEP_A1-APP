@@ -1,0 +1,258 @@
+:root {
+    --colorHeader: rgba(24, 55, 94, 0.86);
+    --colorFooter: rgb(24, 55, 94);
+    --colorAdmin: rgba(180, 218, 240, 0.61);
+    --colorChoixAdmin:  rgba(34, 37, 41, 0.4);
+    --colorFAQ: rgb(100, 162, 186);
+}
+
+/* général */
+
+body, html {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: none;
+}
+
+#navHeader {
+    height: auto;
+    width: 100%;
+    background-color: rgba(24, 55, 94, 0.86);
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: inherit;
+    padding-right: 5px;
+}
+
+a {
+    color: white;
+    text-decoration-line: none;
+}
+
+.header {
+    margin: inherit;
+}
+
+.header .menutitle {
+    padding-top: 2%;
+    padding-bottom: 1%;
+}
+
+.header .inscriptionConnexion {
+    padding-top: 2%;
+    padding-bottom: 1%;
+    padding-right: 5px;
+}
+
+.menuLogo {
+    margin:10px;
+}
+
+.menuLogo img {
+    border-radius: 100%;
+}
+
+.photo img {
+    border-radius: 100%;
+}
+
+.menuUtilisateur {
+    padding: 0px;
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.menuUtilisateur li {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 8px;
+}
+
+li {
+    color : white;
+    list-style-type: none;
+}
+
+#navFooter {
+    bottom: 0px;
+    height: auto;
+    width: 100%;
+    background-color: var(--colorFooter);
+    display: flex;
+    justify-content: space-between;
+}
+
+#navFooter ul{
+    width: 20%;
+}
+
+#navFooter div{
+    width: 10%;
+}
+
+.footerpage {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footerpage li {
+    padding: 20px;
+}
+
+.logofooter {
+    text-align: center;
+}
+
+.logofooter img {
+    padding: 20px;
+    border-radius: 100%;
+}
+
+.networks {
+    display: flex;
+    justify-content: row;
+}
+
+.networks li {
+    padding: 10px;
+}
+
+/* accueil */
+
+/* admin */
+
+#contenuAdmin {
+    background-color: var(--colorAdmin);
+    min-height: 89.5%;
+    display: flex;
+    flex-direction: row;
+}
+
+#menuAdmin {
+    min-height: 100%;
+    width: auto;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--colorFooter);
+}
+
+#menuAdmin button{
+    display: block;
+    background-color: inherit;
+    color: white;
+    padding: 22px 16px;
+    width: 100%;
+    border: none;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+#menuAdmin button img{
+    height: 12px;
+}
+
+#menuAdmin button.actif{
+    background-color:var(--colorChoixAdmin);
+}
+
+#affichageAdmin {
+    width: 90%;
+    padding:0px;
+}
+
+#affichageAdmin .choix {
+    height: 89.5%;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: var(--colorFooter);
+}
+
+/* admin Dispositif */ 
+
+#adminDispositif {
+    width: 95%;
+}
+
+#admin-search-dispositif {
+    margin: auto 0px;
+    width: 50%;
+    font-size: 20px;
+}
+
+/* admin utilisateur */ 
+
+#adminUtilisateur {
+    width: 95%;
+}
+
+#admin-search-utilisateur {
+    margin: auto 0px;
+    width: 50%;
+    font-size: 20px;
+}
+
+/* admin FAQ */
+
+#adminFAQ {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.ajouterQuestion{
+    background-color: var(--colorFooter);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.listeQuestionsAdmin {
+    width: 95%;
+    height: auto;
+    margin: 1% 2%;
+    padding: 2% 2%;
+    background-color: white;
+    color:var(--colorFooter);
+    border-radius: 10px;
+    border-collapse : separate;
+    border-spacing : 10px;
+}
+
+.listeQuestionsAdmin img {
+    height: 25px;
+    width: 25px;
+}
+.listeQuestionsAdmin .question td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .affichage td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .modifier td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .vide {
+    width : 60%
+}
+
+.listeQuestionsAdmin .reponse #reponse{
+    border: 1px groove var(--colorFooter);
+    max-width: 75%;
+}
