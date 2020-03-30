@@ -1,0 +1,252 @@
+:root {
+    --colorHeader: rgb(24, 55, 94, 0.86);
+    --colorFooter: rgb(24, 55, 94);
+    --colorAdmin: rgb(180, 218, 240, 0.61);
+    --colorChoixAdmin:  rgb(34, 37, 41, 0.4);
+    --colorFAQ: rgb(100, 162, 186);
+}
+
+/* admin */
+button {
+    display: block;
+    background-color: inherit;
+    border:none;
+}
+
+#contenuAdmin {
+    background-color: var(--colorAdmin);
+    min-height: 89.5%;
+    display: flex;
+    flex-direction: row;
+}
+
+#menuAdmin {
+    min-height: 100%;
+    width: auto;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--colorFooter);
+}
+
+#menuAdmin button{
+    color: white;
+    padding: 22px 16px;
+    width: 100%;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+#menuAdmin button img{
+    height: 12px;
+}
+
+#menuAdmin button.actif{
+    background-color:var(--colorChoixAdmin);
+}
+
+#affichageAdmin {
+    width: 90%;
+    padding:0px;
+}
+
+#affichageAdmin .choix {
+    height: 89.5%;
+    margin-left: 10px;
+    margin-right: 10px;
+    color: var(--colorFooter);
+}
+
+.titre {
+    width: 40%;
+} 
+
+.recherche {
+    width: 60%
+}
+
+.affichageResultat {
+    width: 100%;
+    padding: 2%;
+    border-collapse : separate;
+    border-spacing : 20px;
+}
+
+.affichageResultat td {
+    width: 25%;
+}
+
+textarea {
+    resize:none;
+}
+
+.pagination {
+    position: fixed;
+    bottom: 20px;
+    right: 10%;
+}
+
+.pagination button {
+    display: table-column;
+    background-color: white;
+}
+
+.pagination button img {
+    width: 10px;
+    height: 10px;
+}
+
+.modifierSupprimer {
+    text-align: right;
+    min-width: 35px;
+    max-width: 40px;
+}
+
+.modifierSupprimer img{
+    width: 15px;
+    height: 15px;
+}
+
+/*admin Dashboard */
+
+/* admin Dispositif */ 
+
+#adminDispositif {
+    width: 95%;
+}
+
+#admin-search-dispositif {
+    margin: auto 0px;
+    width: 50%;
+    font-size: 20px;
+}
+
+.buttonAddDispositif img {
+    height: 19px;
+}
+
+.addDispositif {
+    display: none;
+}
+
+.addDispositif img {
+    height:20px;
+}
+
+.dispositif {
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.imageDispositif {
+    width: 110px;
+    text-align: center;
+}
+
+.imageDispositif img {
+    height: 90px;
+    margin: 5px;
+}
+
+.proprietaireDispositif img {
+    width: 20px;
+    height: 20px;
+}
+
+/* admin utilisateur */ 
+
+#adminUtilisateur {
+    width: 95%;
+}
+
+#adminUtilisateur td img {
+    width: 15px;
+}
+
+#admin-search-utilisateur {
+    margin: auto 0px;
+    width: 50%;
+    font-size: 20px;
+}
+
+.utilisateur {
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.utilisateur td{
+    width: auto;
+}
+
+.photoProfil{
+    width: 110px;
+}
+
+.photoProfil img {
+    border-radius: 100%;
+    width: 100px;
+}
+
+.iconGerer img {
+    width: 20px; 
+    height: 20px;
+}
+
+/* admin FAQ */
+
+#adminFAQ {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.ajouterQuestion{
+    background-color: var(--colorFooter);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    margin: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.listeQuestionsAdmin {
+    width: 95%;
+    height: auto;
+    margin: 1% 2%;
+    padding: 2% 2%;
+    background-color: white;
+    color:var(--colorFooter);
+    border-radius: 10px;
+    border-collapse : separate;
+    border-spacing : 10px;
+}
+
+.listeQuestionsAdmin img {
+    height: 25px;
+    width: 25px;
+}
+.listeQuestionsAdmin .question td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .affichage td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .modifier td {
+    font-size: 25px;
+}
+
+.listeQuestionsAdmin .vide {
+    width : 60%
+}
+
+.listeQuestionsAdmin .reponse #reponse{
+    border: 1px groove var(--colorFooter);
+    max-width: 75%;
+}
