@@ -1,28 +1,23 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
 <html>
-
 <head>
-
-	<!-- JS -->
-	<script src="../js/code.js"></script>
-
-	<!-- CSS -->
-	<link href="../css/style.css" rel="stylesheet" type="text/css">
-
+	<meta charset="UTF-8"/>
 	<title>Connexion</title>
-
 </head>
-
 <body>
-	<h2>INFINITE MEASURES</h2>
-
-	<h5>Heureux de vous revoir ! Veuillez vous connecter </h5>
-	<p>Identifiant</p>
-	<input type="text" name="Identifiant">
-	<placeholder="Identifiant" required="required" />
-	<p>Mot de passe</p>
-	<input type="password" name="Mot de passe">
-	<placeholder="Mot de passe" required="required" />
-	<button type="submit">Connexion</button>
+	<header>
+		<h1>INFINITE MEASURES</h1>
+		<h2>Connexion</h2>
+	</header>
+	<main>
+		<form method="POST">
+			<label for="account">Identifiant</label>
+			<input id="account" name="Identifiant" type="text" required />
+			<label for="password">Mot de passe</label>
+			<input id="password" name="Mot de passe" type="password" required />
+			<button type="submit">Connexion</button>
+		</form>
+	</main>
+	<footer></footer>
 </body>
+</head>
