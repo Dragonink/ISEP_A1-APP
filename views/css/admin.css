@@ -108,7 +108,99 @@ textarea {
     height: 15px;
 }
 
+/*admin requetes*/
+.requetes {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.requetes .content {
+    display: flex;
+    flex-direction: row;
+    margin: 20vh auto; 
+    width: 60%;
+    height: 60%;
+}
+
+#menuRequetes {
+    min-height: 100%;
+    width: auto;
+    min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--colorFooter);
+}
+
+#menuRequetes button{
+    color: white;
+    padding: 22px 16px;
+    width: 100%;
+    outline: none;
+    text-align: left;
+    cursor: pointer;
+}
+
+#menuRequetes button img{
+    height: 12px;
+}
+
+#menuRequetes button.actif{
+    background-color:var(--colorChoixAdmin);
+}
+
+#affichageRequetes {
+    background-color: rgb(180, 218, 240);
+    min-height: 89.5%;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    padding:0px;
+    overflow-y: scroll;
+}
+
+#affichageRequetes .close {
+    text-align: right;
+}
+
+#affichageRequetes .close img {
+    padding: 1%;
+    width: 20px;
+    height: 20px;
+}
+
+.requete {
+    height: 80%;
+    margin-left: 10px;
+    margin-right: 25px;
+    color: var(--colorFooter);
+}
+
+.requete table {
+    background-color: white;
+    border-radius: 15px;
+    margin: 10px;
+    border-spacing: 10px;
+}
+
+.valider button{
+    text-align: center;
+    width: 100%;
+    color: lawngreen;
+}
+
+.rejeter button{
+    text-align: center;
+    width : 100%;
+    color: red;
+}
+
 /*admin Dashboard */
+
+
 
 /* admin Dispositif */ 
 
@@ -118,7 +210,6 @@ textarea {
 
 #admin-search-dispositif {
     margin: auto 0px;
-    width: 50%;
     font-size: 20px;
 }
 
@@ -167,7 +258,7 @@ textarea {
 
 #admin-search-utilisateur {
     margin: auto 0px;
-    width: 50%;
+    width: 100%;
     font-size: 20px;
 }
 
@@ -242,8 +333,11 @@ textarea {
     font-size: 25px;
 }
 
-.listeQuestionsAdmin .vide {
-    width : 60%
+.vide {
+    width : 60%;
+    text-align : right;
+    color: gray;
+    text-decoration: underline;
 }
 
 .listeQuestionsAdmin .reponse #reponse{
