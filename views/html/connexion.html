@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="UTF-8"/>
+	<meta charset="UTF-8" />
 	<title>Connexion</title>
+	<link rel="stylesheet" type="text/css" href="../css/sign.css" />
 </head>
+
 <body>
 	<header>
 		<h1>INFINITE MEASURES</h1>
-		<h2>Connexion</h2>
+		<h2>Heureux de vous revoir !<br />Veuillez vous connecter.</h2>
 	</header>
 	<main>
-		<form method="POST">
+		<form id="signin" method="POST">
 			<label for="account">Identifiant</label>
 			<input id="account" name="Identifiant" type="text" required />
 			<label for="password">Mot de passe</label>
 			<input id="password" name="Mot de passe" type="password" required />
 			<button type="submit">Connexion</button>
 		</form>
+		<div id="signup">
+			<label for="signup">Vous n'avez pas de compte ?</label>
+			<a>S'inscrire</a>
+		</div>
 	</main>
-	<footer></footer>
+	<footer>
+		<a>Conditions Générales d'Utilisation</a>
+	</footer>
 </body>
 </head>
