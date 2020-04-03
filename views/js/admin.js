@@ -68,3 +68,38 @@ function openRequete(number) {
 function closeRequetes() {
     document.getElementsByClassName("requetes")[0].style.display="none";
 }
+
+function graphe(){
+    let ctx= document.getElementById('graphStats').getContext('2d'); 
+    let chart = new Chart(ctx, {
+        type: 'horizontalBar',
+        data: {
+            labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
+            datasets: [{
+                label:'nombre de fois où le test a été réalisé',
+                backgroundColor: 'rgb(24, 55, 94, 0.86)',
+                borderColor: 'rgb(100, 162, 186)',
+                data: [10, 100, 507, 234, 267, ]
+            }]
+        },
+    });
+
+    var options = {
+        maintainAspectRatio: false,
+        responsive : false,
+        scales: {
+            yAxes: [{
+                stacked: true,
+                gridLines: {
+                    display: true,
+                    color: "white"
+                }
+            }],
+            xAxes: [{
+                gridLines: {
+                    display: false
+                }
+            }]
+        }
+    };
+}

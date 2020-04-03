@@ -6,6 +6,7 @@
         <!-- JS -->
         <script src="../js/code.js"></script>
         <script src="../js/admin.js"></script>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
         <!-- CSS -->
         <link href="../css/admin.css" rel="stylesheet" type="text/css">
@@ -14,15 +15,7 @@
     </head>
 
     <body>
-        <header id="navHeader">
-            <div class='menuLogo'><a href='accueil.html'><img src='../images/Infinite_measures.jpg' height="50px"/></a></div>
-            <ul class='menuUtilisateur'>
-                <li><!--notifications--><img src="../images/iconSansNotification.png" /></li>
-                <li><!-- Prénom-->Prénom</li>
-                <li><!-- Nom-->Nom</li>
-                <li class="photo"><!-- Photo--><img src='../images/iconProfil.jpg' height="50px"/></li>
-            </ul>
-        </header>
+        <header id="navHeader"></header>
         <section id="contenuAdmin">
             <div class="requetes" style="display: none;">
                 <div class="content">
@@ -134,10 +127,16 @@
             </div>
             <div id="affichageAdmin">
                 <div id="0" class="choix" style="display: block;">
-                    <div id="adminDashboard"><h1> Dashboard </h1></div>
-                    <p class = "visites"> total des visites </p>
-                    <p class = "tests"> total de test réalisés </p>
-    	            <p class="statistiques">  Statistiques   </p>
+                    <div id="adminDashboard">
+                        <h1> Dashboard </h1> 
+                        <div class="chiffreCle">
+                            <div class = "visites"><h3>Total des utilisateurs:</h3> &nbsp; <h2>XXX</h2></div>
+                            <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2>XXX</h2></div>
+                        </div>
+                        <div class="statistiques"><h3>Statistiques</h3>
+                            <canvas id="graphStats" width="400" height="90"> </canvas>
+                        </div>
+                    </div>
                 </div>
                 <div id="1" class="choix" style="display: none;">
                     <table id="adminDispositif">
@@ -401,4 +400,8 @@
             </div>
         </section>
     </body>
+    <script LANGUAGE='JavaScript'>
+        graphe(); 
+        header();
+    </script>
 </html>
