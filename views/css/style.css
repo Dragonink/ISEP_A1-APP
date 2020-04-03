@@ -124,3 +124,33 @@ li {
 .networks li {
     padding: 10px;
 }
+
+button {
+    display: block;
+    background-color: inherit;
+    border:none;
+}
+
+.menuDeroulant{
+    padding: inherit;
+    position: fixed;
+    top: 76px;
+    right: 0px;
+    background-color: white;
+    text-align: center;
+}
+
+.menuDeroulant li{
+    margin: inherit;
+    border: 1px solid var(--colorFooter);
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    color: var(--colorHeader);
+}
+
+.menuDeroulant li a {
+    padding: 0px 5px;
+    font-size: 20px;
+    color: var(--colorHeader);
+}

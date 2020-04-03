@@ -373,3 +373,42 @@ textarea {
     border: 1px groove var(--colorFooter);
     max-width: 75%;
 }
+
+/* modification admin */
+
+form {
+    background-color: white;
+    width: 30%;
+    border-radius: 15px;
+    position: center;
+    padding: 2%;
+    margin: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+form h2{
+    color: var(--colorFooter);
+}
+
+form p {
+    text-align: justify-all;
+}
+
+form p input{
+    width: 55%;
+}
+
+form div{
+    display: flex;
+    flex-direction: row;
+}
+
+form div button{
+    margin: 1% 5%;
+    padding: 2% 10%;
+    width: 40%;
+    border: 1px solid var(--colorFooter);
+    border-radius: 15px;
+}
