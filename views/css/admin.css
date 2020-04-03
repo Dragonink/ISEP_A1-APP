@@ -200,7 +200,36 @@ textarea {
 
 /*admin Dashboard */
 
+.chiffreCle {
+    display: flex;
+    flex-direction: row;
+    width: 100%
+}
 
+.chiffreCle div{
+    text-align: center;
+    margin: 1%;
+    padding: 1%;
+    background-color: white;
+    border-radius: 15px;
+    width: 50%;
+}
+
+.chiffreCle div h3{
+    margin:inherit;
+}
+
+.chiffreCle div h2{
+    margin:inherit;
+}
+
+.statistiques {
+    margin: 1%;
+    padding: 1%;
+    background-color: white;
+    border-radius: 15px;
+    width: 96%;
+}
 
 /* admin Dispositif */ 
 
