@@ -1,0 +1,62 @@
+:root {
+    --colorHeader: rgb(24, 55, 94, 0.86);
+    --colorFooter: rgb(24, 55, 94);
+    --colorAdmin: rgb(180, 218, 240, 0.61);
+    --colorChoixAdmin:  rgb(34, 37, 41, 0.4);
+    --colorFAQ: rgb(100, 162, 186);
+}
+
+/* utilisateur */
+
+table {
+    width: 96%;
+    margin: 0% 2% 2% 2%;
+    min-height: 66.5%;
+}
+
+table td {
+    width: 50%;
+}
+
+.infoProfil td {
+    max-width: 50%;
+}
+
+.donneesPersonnelles {
+    min-width: 90%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-top: 10%;
+}
+
+.donneesPersonnelles div {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.donneesPersonnelles img {
+    width: 100px;
+    border-radius: 100%;
+}
+
+.resultatDernierTest {
+    text-align: center;
+}
+
+.resultatDernierTest div{
+    margin-top: 10px;
+}
+
+.titre {
+    font-size: 30px;
+}
+
+.choix {
+    text-align: right;
+}
