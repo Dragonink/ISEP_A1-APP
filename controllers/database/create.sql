@@ -24,6 +24,44 @@ CREATE TABLE `administrator` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
+-- Table structure for table `manager`
+--
+
+DROP TABLE IF EXISTS `manager`;
+CREATE TABLE `manager` (
+  `id` int NOT NULL,
+  `first_name` text NOT NULL,
+  `last_name` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  `work_address` text NOT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `picture` mediumblob,
+  `is_active` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `nss` int NOT NULL,
+  `first_name` text NOT NULL,
+  `last_name` text NOT NULL,
+  `email` text NOT NULL,
+  `password` text NOT NULL,
+  `manager` int NOT NULL,
+  `phone` varchar(15) DEFAULT NULL,
+  `picture` mediumblob,
+  PRIMARY KEY (`nss`),
+  KEY `manager` (`manager`),
+  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+--
 -- Table structure for table `banned`
 --
 
@@ -81,24 +119,6 @@ CREATE TABLE `faq` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Table structure for table `manager`
---
-
-DROP TABLE IF EXISTS `manager`;
-CREATE TABLE `manager` (
-  `id` int NOT NULL,
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
-  `email` text NOT NULL,
-  `password` text NOT NULL,
-  `work_address` text NOT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `picture` mediumblob,
-  `is_active` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
 -- Table structure for table `test`
 --
 
@@ -112,23 +132,4 @@ CREATE TABLE `test` (
   PRIMARY KEY (`id`),
   KEY `exam` (`exam`),
   CONSTRAINT `test_ibfk_1` FOREIGN KEY (`exam`) REFERENCES `exam` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Table structure for table `user`
---
-
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `nss` int NOT NULL,
-  `first_name` text NOT NULL,
-  `last_name` text NOT NULL,
-  `email` text NOT NULL,
-  `password` text NOT NULL,
-  `manager` int NOT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `picture` mediumblob,
-  PRIMARY KEY (`nss`),
-  KEY `manager` (`manager`),
-  CONSTRAINT `user_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
