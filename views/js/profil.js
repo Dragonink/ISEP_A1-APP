@@ -3,28 +3,37 @@ var color= ['red','yellow','green','blue','purple'];
 function dernierTest(){
     let ctx= document.getElementById('resultatDernierTestGraph').getContext('2d'); 
     let chart = new Chart(ctx, {
-        type: 'polarArea',
+        type: 'bar',
         data: {
             labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
             datasets: [{
-                label:'résultat lors du dernier test',
+                label:'Résultat lors du dernier test',
                 backgroundColor: color,
                 data: [20, 50, 75, 80, 10]
             }]
         },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
     });
 }
 
 function resultatTest(select){
     var select = document.getElementById("choix").value;
-    console.log(select);
     let ctx= document.getElementById('resultatTestGraph').getContext('2d'); 
     var color= ['red','yellow','green','blue','purple'];
+    var dateRealisation= [new Date(2020, 11, 01), new Date(2020, 11, 02), new Date(2020, 11, 03), new Date(2020, 11, 04), new Date(2020, 11, 07)];
     if (select=='0'){
         let chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [new Date(2020, 12, 04), new Date(2020, 12, 02), new Date(2020, 12, 01), new Date(2020, 12, 04), new Date(2020, 12, 07)],
+                labels: dateRealisation,
                 datasets: [{
                     label: 'Test 1',
                     data: [20, 50 , 75, 80, 10],
@@ -57,7 +66,7 @@ function resultatTest(select){
         let chart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [new Date(2020, 12, 03), new Date(2020, 12, 02), new Date(2020, 12, 01), new Date(2020, 12, 04), new Date(2020, 12, 03)],
+                labels: dateRealisation,
                 datasets: [{
                     label:'Test ' + select,
                     data: [20, 50, 75, 80, 10],
@@ -65,6 +74,15 @@ function resultatTest(select){
                     borderColor: color[select-1],
                 }]
             },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
         });
     }
 }
