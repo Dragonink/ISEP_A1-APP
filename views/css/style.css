@@ -82,9 +82,10 @@ li {
     list-style-type: none;
 }
 
-/*#navFooter {
-    bottom: 0px;
+#navFooter {
+    top: 3000px;
     height: auto;
+	position: relative;
     width: 100%;
     background-color: var(--colorFooter);
     display: flex;
@@ -97,11 +98,10 @@ li {
 
 #navFooter div{
     width: 10%;
-}*/
+}
 
 .footerpage {
     display: flex;
-	position: relative;
     justify-content: space-between;
   	left: 0;
   	bottom: 0px;
@@ -292,10 +292,9 @@ li {
 
 .BG_contact {
 	overflow: visible;
-	position: absolute;
-	width: 1919.5px;
-	height: 907.01px;
-	left: 0.5px;
+	position: relative;
+	width: 1919px;
+	height: 907px;
 	top: 3078.99px;
 	transform: matrix(1,0,0,1,0,0);
 }
