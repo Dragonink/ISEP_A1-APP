@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <title>Inscription</title>
     <link rel="stylesheet" type="text/css" href="css/sign.css" />
-    <script text="text/javascript" src="js/sign.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
+    <script type="text/javascript" src="js/sign.js"></script>
 </head>
 
 <body>
@@ -13,35 +14,41 @@
         <h1>INFINITE MEASURES</h1>
     </header>
     <main>
-        <form id="signup" method="POST" onsubmit="return signupCheck();">
+        <form id="signup" method="POST" onsubmit="return signupCheck();" data-account="user">
             <fieldset>
                 <legend>Type de compte</legend>
                 <div>
-                    <input id="user" type="radio" name="type" value="user" checked />
+                    <input id="user" type="radio" name="type" value="user" onclick="selectType('user');" checked />
                     <label for="user">Patient</label>
                 </div>
                 <div>
-                    <input id="manager" type="radio" name="type" value="manager" />
+                    <input id="manager" type="radio" name="type" value="manager" onclick="selectType('manager');" />
                     <label for="manager">Médecin</label>
                 </div>
                 <div>
-                    <input id="admin" type="radio" name="type" value="admin" />
+                    <input id="admin" type="radio" name="type" value="admin" onclick="selectType('admin');" />
                     <label for="admin">Administrateur</label>
                 </div>
             </fieldset>
             <fieldset>
                 <legend>Détails du compte</legend>
-                <input id="firstname" name="firstname" type="text" placeholder="Prénom" required />
-                <input id="lastname" name="lastname" type="text" placeholder="Nom" required />
-                <input id="email" name="email" type="email" placeholder="Adresse mail" required />
-                <input id="password" name="password" type="password" placeholder="Mot de passe" required />
-                <!-- User -->
-                <input id="nss" name="nss" type="text" placeholder="Numéro de Sécurité Sociale" required disabled />
-                <select id="manager" name="manager" required disabled>
-                    <option value="">Médecin</option>
+                <label for="firstname">Prénom</label>
+                <input id="firstname" name="firstname" type="text" required />
+                <label for="lastname">Nom</label>
+                <input id="lastname" name="lastname" type="text" required />
+                <label for="email">Adresse mail</label>
+                <input id="email" name="email" type="email" required />
+                <label for="password">Mot de passe</label>
+                <input id="password" name="password" type="password" required />
+                <!-- User only -->
+                <label for="nss" class="user">N° Sécurité Sociale</label>
+                <input id="nss" class="user" name="nss" type="text" required />
+                <label for="manager" class="user">Médecin</label>
+                <select id="manager" class="user" name="manager" required>
                 </select>
-                <!-- Manager -->
-                <input id="address" name="address" type="text" required disabled />
+                <!-- Manager only -->
+                <label for="address" class="manager">Adresse de travail</label>
+                <input id="address" class="manager" name="address" type="text" required />
             </fieldset>
             <button type="submit">Inscription</button>
         </form>

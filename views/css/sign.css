@@ -30,13 +30,19 @@ header > h2 {
 form {
     margin: 0 5vw;
 }
-form#signin {
+fieldset {
+    border: 0;
+    border-top: 1px solid #cecece;
+}
+form#signin,
+form#signup > fieldset:last-of-type {
     display: grid;
     grid-template-columns: max-content auto;
     gap: 5%;
     margin: 10vh 0 0 0;
 }
-form#signin > *:nth-child(odd) {
+form#signin > *:nth-child(odd),
+form#signup > fieldset:last-of-type > *:nth-child(even) {
     text-align: right;
 }
 form#signup > fieldset:first-child {
@@ -46,8 +52,19 @@ form#signup > fieldset:first-child > * {
     flex: auto;
     text-align: center;
 }
-form#signup > fieldset:nth-child(1n+2) {
-    margin: 0;
+form#signup > fieldset:last-of-type {
+    min-height: min-content;
+    margin: 1vh 0;
+}
+form#signup[data-account="user"] *.manager {
+    display: none;
+}
+form#signup[data-account="manager"] *.user {
+    display: none;
+}
+form#signup[data-account="admin"] *.user,
+form#signup[data-account="admin"] *.manager {
+    display: none;
 }
 form *:disabled {
     display: none;

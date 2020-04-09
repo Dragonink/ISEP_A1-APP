@@ -1,13 +1,25 @@
+//* SIGN IN
 function signinCheck() {
-    if (!/\S+@\S+\.\S+|[1-2]\d{2}(?:0[1-9]|1[0-2])\d{2}\d{3}\d{3}/i.test(document.getElementById("account").value)) {
+    if (!checkEmail(document.getElementById("account").value) && !checkNSS(document.getElementById("account").value)) {
         alert("Identifiant invalide.");
         return false;
     } else return true;
 }
 
-function disableSignupFields() {
-
+//* SIGN UP
+function selectType(account) {
+    document.getElementById("signup").setAttribute("data-account", account);
+    for (const el of document.getElementsByClassName("user")) el.setAttribute("disabled", "");
+    for (const el of document.getElementsByClassName("manager")) el.setAttribute("disabled", "");
+    if (account === "user") for (const el of document.getElementsByClassName("user")) el.removeAttribute("disabled");
+    else if (account === "manager") for (const el of document.getElementsByClassName("manager")) el.removeAttribute("disabled");
 }
 function signupCheck() {
-
+    if (!checkEmail(document.getElementById("email").value)) {
+        alert("Adresse email invalide.");
+        return false;
+    } else if (!checkNSS(document.getElementById("nss").value)) {
+        alert("Numéro de Sécurité Sociale invalide.");
+        return false;
+    } else return true;
 }
