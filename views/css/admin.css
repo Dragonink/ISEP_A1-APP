@@ -392,12 +392,17 @@ form h2{
     color: var(--colorFooter);
 }
 
-form p {
-    text-align: justify-all;
+form p{
+    width:100%;
+    text-align: right;
 }
 
-form p input{
-    width: 55%;
+form input{
+    width: 100%;
+}
+
+table{
+    width: 90%;
 }
 
 form div{

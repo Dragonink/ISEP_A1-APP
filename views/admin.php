@@ -24,9 +24,9 @@
             <div class="requetes" style="display: none;">
                 <div class="content">
                     <div id="menuRequetes">
-                        <button class= "demande actif" onclick="openRequete(0)"> Toutes les demandes (XXX) </button>
-                        <button class= "demande" onclick="openRequete(1)"><img src="images/iconSecurite.png"> Demandes administrateur (XX) </button>
-                        <button class= "demande" onclick="openRequete(2)"><img src="images/iconDispositif.png"> Demandes médecins (XX) </button>
+                        <button class= "demande actif" onclick="openRequete(0)"> Toutes les demandes (<?php echo nombreRequete($db) ?>) </button>
+                        <button class= "demande" onclick="openRequete(1)"><img src="images/iconSecurite.png"> Demandes administrateur (<?php echo nombreRequeteAdmin($db) ?>) </button>
+                        <button class= "demande" onclick="openRequete(2)"><img src="images/iconDispositif.png"> Demandes médecins (<?php echo nombreRequeteManager($db) ?>) </button>
                     </div>
                     <div id="affichageRequetes">
                         <button class="close" onclick="closeRequetes()"><img src="images/iconCroix.png"></button>
@@ -135,7 +135,7 @@
                         <h1> Dashboard </h1> 
                         <div class="chiffreCle">
                             <div class = "visites"><h3>Total des utilisateurs:</h3> &nbsp; <h2><?php echo nombreUtilisateur($db) ?></h2></div>
-                            <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2>XXX</h2></div>
+                            <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2><?php echo nombreTestsRealises($db)?></h2></div>
                         </div>
                         <div class="statistiques"><h3>Statistiques</h3>
                             <canvas id="graphStats" width="400" height="90"> </canvas>
