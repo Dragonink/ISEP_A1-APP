@@ -1,16 +1,20 @@
+<?php
+    include('../controllers/adminDonnees.php');
+?>
+
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <html>
     <head>
 
         <!-- JS -->
-        <script src="../js/code.js"></script>
-        <script src="../js/admin.js"></script>
+        <script src="js/code.js"></script>
+        <script src="js/admin.js"></script>
         <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
         <!-- CSS -->
-        <link href="../css/admin.css" rel="stylesheet" type="text/css">
-        <link href="../css/style.css" rel="stylesheet" type="text/css">
+        <link href="css/admin.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
 
     </head>
 
@@ -21,11 +25,11 @@
                 <div class="content">
                     <div id="menuRequetes">
                         <button class= "demande actif" onclick="openRequete(0)"> Toutes les demandes (XXX) </button>
-                        <button class= "demande" onclick="openRequete(1)"><img src="../images/iconSecurite.png"> Demandes administrateur (XX) </button>
-                        <button class= "demande" onclick="openRequete(2)"><img src="../images/iconDispositif.png"> Demandes médecins (XX) </button>
+                        <button class= "demande" onclick="openRequete(1)"><img src="images/iconSecurite.png"> Demandes administrateur (XX) </button>
+                        <button class= "demande" onclick="openRequete(2)"><img src="images/iconDispositif.png"> Demandes médecins (XX) </button>
                     </div>
                     <div id="affichageRequetes">
-                        <button class="close" onclick="closeRequetes()"><img src="../images/iconCroix.png"></button>
+                        <button class="close" onclick="closeRequetes()"><img src="images/iconCroix.png"></button>
                         <div id="requete0" class="requete" style="display: block;">
                             <table class="affichageResultat">
                                 <tr>
@@ -120,17 +124,17 @@
                 </div>
             </div>
             <div id="menuAdmin">
-                <button class= "chapitre actif" onclick="openChapitre(0)"><img src="../images/iconDashboard.png"/> Dashboard </button>
-                <button class= "chapitre" onclick="openChapitre(1)"><img src="../images/iconDispositif.png"> Dispositifs </button>
-                <button class= "chapitre" onclick="openChapitre(2)"><img src="../images/iconUtilisateur.png"> Utilisateurs </button>
-                <button class= "chapitre" onclick="openChapitre(3)"><img src="../images/iconFAQ.png"> FAQ </button>
+                <button class= "chapitre actif" onclick="openChapitre(0)"><img src="images/iconDashboard.png"/> Dashboard </button>
+                <button class= "chapitre" onclick="openChapitre(1)"><img src="images/iconDispositif.png"> Dispositifs </button>
+                <button class= "chapitre" onclick="openChapitre(2)"><img src="images/iconUtilisateur.png"> Utilisateurs </button>
+                <button class= "chapitre" onclick="openChapitre(3)"><img src="images/iconFAQ.png"> FAQ </button>
             </div>
             <div id="affichageAdmin">
                 <div id="0" class="choix" style="display: block;">
                     <div id="adminDashboard">
                         <h1> Dashboard </h1> 
                         <div class="chiffreCle">
-                            <div class = "visites"><h3>Total des utilisateurs:</h3> &nbsp; <h2>XXX</h2></div>
+                            <div class = "visites"><h3>Total des utilisateurs:</h3> &nbsp; <h2><?php echo nombreUtilisateur($db) ?></h2></div>
                             <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2>XXX</h2></div>
                         </div>
                         <div class="statistiques"><h3>Statistiques</h3>
@@ -146,13 +150,13 @@
                         </tr>
                         <tr>
                             <td> 
-                                <button class="buttonAddDispositif" onclick="openAddDispositif()"> <img src="../images/iconAddDispositif.png"/> Ajouter un dispositif </button>
+                                <button class="buttonAddDispositif" onclick="openAddDispositif()"> <img src="images/iconAddDispositif.png"/> Ajouter un dispositif </button>
                                 <div class="addDispositif">
-                                    <img src="../images/iconAddDispositif.png" style="height: 16.5pt;"/>
+                                    <img src="images/iconAddDispositif.png" style="height: 16.5pt;"/>
                                     <textarea id="addCode" name="code" cols="15" rows="1" placeholder="Code"></textarea>
                                     <textarea id="addProprietaire" name="proprietaire" cols="15" rows="1" placeholder="Nom propriétaire"></textarea>
-                                    <img src="../images/iconValider.png" onclick="validateAddDispositif()" />
-                                    <img src="../images/iconAnnuler.png" onclick="closeAddDispositif()"/>
+                                    <img src="images/iconValider.png" onclick="validateAddDispositif()" />
+                                    <img src="images/iconAnnuler.png" onclick="closeAddDispositif()"/>
                                 </div>
                             </td>
                             <td> <select size="1">
@@ -166,30 +170,30 @@
                         <tr>
                             <td><table class="dispositif">
                                 <tr> 
-                                    <td rowspan="3" class="imageDispositif" > <img src="../images/iconDispositif.png"/></td>
+                                    <td rowspan="3" class="imageDispositif" > <img src="images/iconDispositif.png"/></td>
                                     <td> Code </td>
                                     <td class="modifierSupprimer">
-                                        <img src="../images/iconModifier.png" />
-                                        <img src="../images/iconCroix.png"/>
+                                        <img src="images/iconModifier.png" />
+                                        <img src="images/iconCroix.png"/>
                                     </td>
                                 </tr>
                                 <tr> <td> Info 1 </td> </tr>
                                 <tr>
-                                    <td colspan="2" class="proprietaireDispositif"> <img src="../images/iconUtilisateur.png"/> Nom propriétaire </td> 
+                                    <td colspan="2" class="proprietaireDispositif"> <img src="images/iconUtilisateur.png"/> Nom propriétaire </td> 
                                 </tr>
                             </table></td>
                             <td><table class="dispositif">
                                 <tr> 
-                                    <td rowspan="3" class="imageDispositif"> <img src="../images/iconDispositif.png"/></td>
+                                    <td rowspan="3" class="imageDispositif"> <img src="images/iconDispositif.png"/></td>
                                     <td> Code </td>
                                     <td class="modifierSupprimer">
-                                        <img src="../images/iconModifier.png" />
-                                        <img src="../images/iconCroix.png"/>
+                                        <img src="images/iconModifier.png" />
+                                        <img src="images/iconCroix.png"/>
                                     </td>
                                 </tr>
                                 <tr> <td> Info 1 </td> </tr>
                                 <tr>
-                                    <td colspan="2" class="proprietaireDispositif"> <img src="../images/iconUtilisateur.png"/> Nom propriétaire </td> 
+                                    <td colspan="2" class="proprietaireDispositif"> <img src="images/iconUtilisateur.png"/> Nom propriétaire </td> 
                                 </tr>
                             </table></td>
                             <td></td>
@@ -197,10 +201,10 @@
                         </tr>
                     </table>
                     <div class="pagination">
-                        <button class="pageBefore" onclick="openBefore()"> <img src="../images/flecheGauche.png" /> </button>
+                        <button class="pageBefore" onclick="openBefore()"> <img src="images/flecheGauche.png" /> </button>
                         <button class="page actif" onclick="openPage(0)"> 1 </button>
                         <button class="page" onclick="openPage(1)"> 2 </button>
-                        <button class="pageAfter" onclick="openAfter()"> <img src="../images/flecheDroite.png"/> </button>
+                        <button class="pageAfter" onclick="openAfter()"> <img src="images/flecheDroite.png"/> </button>
                     </div>
                 </div>
                 <div id="2" class="choix" style="display: none;">
@@ -210,7 +214,7 @@
                             <td class="recherche" > <input type="search" id="admin-search-utilisateur" name="adminSearchUtilisateur" aria-label="Search through site content" placeholder="Recherche" > </td>
                         </tr>
                         <tr>
-                            <td><a href='inscription.html' style="color: black;"><img src="../images/iconAjouterUser.png" /> Ajouter un utilisateur </a> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="../images/iconOuvrir.png"/></button> </td>
+                            <td><a href='inscription.html' style="color: black;"><img src="images/iconAjouterUser.png" /> Ajouter un utilisateur </a> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="images/iconOuvrir.png"/></button> </td>
                             <td> <select size="1">
                                 <option value disabled selected > Trier par: </option>
                                 <option value="1"> Option 1 </option>
@@ -222,39 +226,39 @@
                         <tr>
                             <td><table class="utilisateur">
                                 <tr> 
-                                    <td rowspan="4" class="photoProfil" > <img src="../images/iconProfil.jpg"/></td>
+                                    <td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
                                     <td> Nom Prénom </td>
                                     <td class="modifierSupprimer" >
-                                        <img src="../images/iconModifier.png" />
-                                        <img src="../images/iconCroix.png"/>
+                                        <img src="images/iconModifier.png" />
+                                        <img src="images/iconCroix.png"/>
                                     </td>
                                 </tr>
                                 <tr> <td> Info 1 </td> </tr>
                                 <tr> <td> Info 2 </td> </tr>
                                 <tr>
                                     <td colspan="2" class="iconGerer">
-                                        <img src="../images/iconVoirProfil.png" />
-                                        <img src="../images/iconContacter.png" />
-                                        <img src="../images/iconBannir.png" />
+                                        <img src="images/iconVoirProfil.png" />
+                                        <img src="images/iconContacter.png" />
+                                        <img src="images/iconBannir.png" />
                                     </td> 
                                 </tr>
                             </table></td>
                             <td><table class="utilisateur">
                                 <tr> 
-                                    <td rowspan="4" class="photoProfil" > <img src="../images/iconProfil.jpg"/></td>
+                                    <td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
                                     <td> Nom Prénom </td>
                                     <td class="modifierSupprimer" >
-                                        <img src="../images/iconModifier.png" />
-                                        <img src="../images/iconCroix.png"/>
+                                        <img src="images/iconModifier.png" />
+                                        <img src="images/iconCroix.png"/>
                                     </td>
                                 </tr>
                                 <tr> <td> Info 1 </td> </tr>
                                 <tr> <td> Info 2 </td> </tr>
                                 <tr>
                                     <td colspan="2" class="iconGerer">
-                                        <img src="../images/iconVoirProfil.png" />
-                                        <img src="../images/iconContacter.png" />
-                                        <img src="../images/iconBannir.png" />
+                                        <img src="images/iconVoirProfil.png" />
+                                        <img src="images/iconContacter.png" />
+                                        <img src="images/iconBannir.png" />
                                     </td> 
                                 </tr>
                             </table></td>
@@ -264,20 +268,20 @@
                         <tr>
                             <td><table class="utilisateur">
                                 <tr> 
-                                    <td rowspan="4" class="photoProfil" > <img src="../images/iconProfil.jpg"/></td>
+                                    <td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
                                     <td> Nom Prénom </td>
                                     <td class="modifierSupprimer" >
-                                        <img src="../images/iconModifier.png" />
-                                        <img src="../images/iconCroix.png"/>
+                                        <img src="images/iconModifier.png" />
+                                        <img src="images/iconCroix.png"/>
                                     </td>
                                 </tr>
                                 <tr> <td> Info 1 </td> </tr>
                                 <tr> <td> Info 2 </td> </tr>
                                 <tr>
                                     <td colspan="2" class="iconGerer">
-                                        <img src="../images/iconVoirProfil.png" />
-                                        <img src="../images/iconContacter.png" />
-                                        <img src="../images/iconBannir.png" />
+                                        <img src="images/iconVoirProfil.png" />
+                                        <img src="images/iconContacter.png" />
+                                        <img src="images/iconBannir.png" />
                                     </td> 
                                 </tr>
                             </table></td>
@@ -285,30 +289,30 @@
                         <tr>
                             <td><table class="utilisateur">
                                 <tr> 
-                                    <td rowspan="4" class="photoProfil" > <img src="../images/iconProfil.jpg"/></td>
+                                    <td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
                                     <td> Nom Prénom </td>
                                     <td class="modifierSupprimer" >
-                                        <img src="../images/iconModifier.png" />
-                                        <img src="../images/iconCroix.png"/>
+                                        <img src="images/iconModifier.png" />
+                                        <img src="images/iconCroix.png"/>
                                     </td>
                                 </tr>
                                 <tr> <td> Info 1 </td> </tr>
                                 <tr> <td> Info 2 </td> </tr>
                                 <tr>
                                     <td colspan="2" class="iconGerer">
-                                        <img src="../images/iconVoirProfil.png" />
-                                        <img src="../images/iconContacter.png" />
-                                        <img src="../images/iconBannir.png" />
+                                        <img src="images/iconVoirProfil.png" />
+                                        <img src="images/iconContacter.png" />
+                                        <img src="images/iconBannir.png" />
                                     </td> 
                                 </tr>
                             </table></td>
                         </tr>
                     </table>
                     <div class="pagination" >
-                        <button class="pageBefore" onclick="openBefore()"> <img src="../images/flecheGauche.png" /> </button>
+                        <button class="pageBefore" onclick="openBefore()"> <img src="images/flecheGauche.png" /> </button>
                         <button class="page actif" onclick="openPage(0)"> 1 </button>
                         <button class="page" onclick="openPage(1)"> 2 </button>
-                        <button class="pageAfter" onclick="openAfter()"> <img src="../images/flecheDroite.png" /> </button>
+                        <button class="pageAfter" onclick="openAfter()"> <img src="images/flecheDroite.png" /> </button>
                     </div>
                 </div>
                 <div id="4" class="choix" style="display: none;">
@@ -320,21 +324,21 @@
                         <tr class="question" id="1" style="display:table-row;">
                             <td style="width: 5%;"> 1. </td>
                             <td style="width: 15%;"> Question 1 </td>
-                            <td style="width: 5%;"> <img src="../images/iconDroite.png" class='symboleDroite actif' onclick="openReponse(1)"/> </td>
-                            <td class="vide" style="font-size: 15px;"> Dernière modification le date par Prenom Nom </td>
+                            <td style="width: 5%;"> <img src="images/iconDroite.png" class='symboleDroite actif' onclick="openReponse(1)"/> </td>
+                            <td class="vide" style="font-size: 15px;"> Dernière modification par Prenom Nom </td>
                             <td style="width: 5%;">
-                                <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
-                                <img src="../images/iconCroix.png"/>
+                                <img src="images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
+                                <img src="images/iconCroix.png"/>
                             </td>
                         </tr>
                         <tr class="affichage" id="1" style='display:none;'>
                             <td style="width: 5%;"> 1. </td>
                             <td style="width: 15%;"> Question 1 </td>
-                            <td style="width: 5%;"> <img src="../images/iconBas.png" class='symboleBas' onclick="closeReponse(1)"/> </td>
-                            <td class="vide" style="font-size: 15px;"> Dernière modification le date par Prenom Nom  </td>
+                            <td style="width: 5%;"> <img src="images/iconBas.png" class='symboleBas' onclick="closeReponse(1)"/> </td>
+                            <td class="vide" style="font-size: 15px;"> Dernière modification par Prenom Nom  </td>
                             <td style="width: 5%;">
-                                <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
-                                <img src="../images/iconCroix.png"/>
+                                <img src="images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
+                                <img src="images/iconCroix.png"/>
                             </td>
                         </tr>
                         <tr class="reponse" id="1" style='display:none;'>
@@ -346,8 +350,8 @@
                             <td style="width: 15%;"> <textarea id="answer" name="question 1" cols="20" rows="1" style="resize: none;"> Question 1 </textarea> </td>
                             <td class="vide" colspan="2"> </td>
                             <td style="width: 5%;">
-                                <img src="../images/iconValider.png"/>
-                                <img src="../images/iconAnnuler.png" class='symboleAnnuler' onclick="openReponse(1)"/>
+                                <img src="images/iconValider.png"/>
+                                <img src="images/iconAnnuler.png" class='symboleAnnuler' onclick="openReponse(1)"/>
                             </td>
                         </tr>
                         <tr class="reponseModifiable" id="1" style='display:none;'>
@@ -359,21 +363,21 @@
                         <tr class="question" id="2" style="display:table-row;">
                             <td style="width: 5%;"> 2. </td>
                             <td style="width: 15%;"> Question 2 </td>
-                            <td style="width: 5%;"> <img src="../images/iconDroite.png" class='symboleDroite actif' onclick="openReponse(2)"/> </td>
-                            <td class="vide" style="font-size: 15px;"> Dernière modification le date par Prenom Nom  </td>
+                            <td style="width: 5%;"> <img src="images/iconDroite.png" class='symboleDroite actif' onclick="openReponse(2)"/> </td>
+                            <td class="vide" style="font-size: 15px;"> Dernière modification par Prenom Nom  </td>
                             <td style="width: 5%;">
-                                <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
-                                <img src="../images/iconCroix.png"/>
+                                <img src="images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
+                                <img src="images/iconCroix.png"/>
                             </td>
                         </tr>
                         <tr class="affichage" id="2" style='display:none;'>
                             <td style="width: 5%;"> 2. </td>
                             <td style="width: 15%;"> Question 2 </td>
-                            <td style="width: 5%;"> <img src="../images/iconBas.png" class='symboleBas' onclick="closeReponse(2)"/> </td>
-                            <td class="vide" style="font-size: 15px;"> Dernière modification le date par Prenom Nom  </td>
+                            <td style="width: 5%;"> <img src="images/iconBas.png" class='symboleBas' onclick="closeReponse(2)"/> </td>
+                            <td class="vide" style="font-size: 15px;"> Dernière modification par Prenom Nom  </td>
                             <td style="width: 5%;">
-                                <img src="../images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
-                                <img src="../images/iconCroix.png"/>
+                                <img src="images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
+                                <img src="images/iconCroix.png"/>
                             </td>
                         </tr>
                         <tr class="reponse" id="2" style='display:none;'>
@@ -385,8 +389,8 @@
                             <td style="width: 15%;"> <textarea id="answer" name="question 2" cols="20" rows="1" style="resize: none;"> Question 2 </textarea> </td>
                             <td class="vide" colspan="2"> </td>
                             <td style="width: 5%;">
-                                <img src="../images/iconValider.png"/>
-                                <img src="../images/iconAnnuler.png" class='symboleAnnuler' onclick="openReponse(2)"/>
+                                <img src="images/iconValider.png"/>
+                                <img src="images/iconAnnuler.png" class='symboleAnnuler' onclick="openReponse(2)"/>
                             </td>
                         </tr>
                         <tr class="reponseModifiable" id="2" style='display:none;'>
