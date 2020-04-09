@@ -21,6 +21,7 @@ body, html {
     background-color: rgba(24, 55, 94, 0.86);
     display: flex;
     justify-content: space-between;
+	position: fixed;
 }
 
 .header {
@@ -81,7 +82,7 @@ li {
     list-style-type: none;
 }
 
-#navFooter {
+/*#navFooter {
     bottom: 0px;
     height: auto;
     width: 100%;
@@ -96,10 +97,22 @@ li {
 
 #navFooter div{
     width: 10%;
-}
+}*/
 
 .footerpage {
     display: flex;
+	position: relative;
+    justify-content: space-between;
+  	left: 0;
+  	bottom: 0px;
+  	width: 100%;
+  	background-color: red;
+  	color: white;
+  	text-align: center;
+	bottom: 0px;
+    height: auto;
+    width: 100%;
+    background-color: var(--colorFooter);
     justify-content: space-between;
 }
 
@@ -126,21 +139,204 @@ li {
 }
 
 /* accueil */
-#carre {
-    height: 300px;
-    width: 300px;
-    background-color: aqua;
+#Image {
+	position: absolute;
+	width: 346px;
+	height: 322px;
+	left: 787px;
+	top: 131px;
+	overflow: visible;
 }
-#background{
-	background-color: aqua
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.83;
+.Bg {
+	background-size: cover;
+    position: relative;
+    background: linear-gradient(217deg, rgba(7, 218, 233, 0.8), rgba(0, 132, 255, 0) 70.71%),
+            linear-gradient(127deg, rgba(0, 195, 255, 0.8), rgba(0, 174, 255, 0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+}
+
+.Ellipse_qsn {
+	position: absolute;
+	overflow: visible;
+	width: 422px;
+	height: 434px;
+	left: 1362px;
+	top: 1268px;
+}
+.Trac__7 {
+	overflow: visible;
+	position: absolute;
+	width: 1920px;
+	height: 1005.393px;
+	center: 0px;
+	top: 1081.28px;
+	transform: matrix(1,0,0,1,0,0);
+}
+#qsn_texte {
+	position: absolute;
+	left: 131px;
+	top: 1414px;
+	overflow: visible;
+	width: 957px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 50px;
+	color: rgba(255,255,255,1);
+}
+#qsn_titre{
+	position: absolute;
+	left: 169px;
+	top: 1176px;
+	overflow: visible;
+	width: 470px;
+	height: 92px;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 50px;
+	color: rgba(255,255,255,1);
+}
+#ntp_titre {
+	position: absolute;
+	left: 235px;
+	top: 2125px;
+	overflow: visible;
+	width: 273px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 50px;
+	color: rgba(5,5,5,1);
+}
+.ntp_ellipse {
+	position: absolute;
+	overflow: visible;
+	width: 422px;
+	height: 434px;
+	left: 1362px;
+	top: 2368px;
+}
+#ntp_texte {
+	position: absolute;
+	left: 61px;
+	top: 2377px;
+	overflow: visible;
+	width: 957px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 50px;
+	color: rgba(0,0,0,1);
+}
+#Contact {
+	position: absolute;
+	left: 93px;
+	top: 3134px;
+	overflow: visible;
+	width: 197px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 50px;
+	color: rgba(255,255,255,1);
+}
+#Carte_google {
+	position: absolute;
+	left: 1287px;
+	top: 3327px;
+	overflow: visible;
+	width: 279px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 50px;
+	color: rgba(5,5,5,1);
+}
+.envoyer_rect {
+	position: absolute;
+	overflow: visible;
+	width: 410px;
+	height: 69px;
+	left: 212px;
+	top: 3801px;
+}
+.email_rect {
+	position: absolute;
+	overflow: visible;
+	width: 648px;
+	height: 77px;
+	left: 93px;
+	top: 3210px;
+}
+
+.objet_rect {
+	position: absolute;
+	overflow: visible;
+	width: 648px;
+	height: 77px;
+	left: 93px;
+	top: 3298px;
+}
+
+.BG_contact {
+	overflow: visible;
+	position: absolute;
+	width: 1919.5px;
+	height: 907.01px;
+	left: 0.5px;
+	top: 3078.99px;
+	transform: matrix(1,0,0,1,0,0);
+}
+
+.contact_texte {
+	position: absolute;
+	overflow: visible;
+	width: 648px;
+	height: 370px;
+	left: 93px;
+	top: 3386px;
+}
+
+#Adresse {
+	position: absolute;
+	left: 1066px;
+	top: 3234px;
+	overflow: visible;
+	width: 88px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 25px;
+	color: rgba(255,255,255,1);
+}
+
+#Envoyer {
+	position: absolute;
+	left: 347px;
+	top: 3809px;
+	overflow: visible;
+	width: 141px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 40px;
+	color: rgba(24,55,94,1);
 }
 
 /* admin */
@@ -271,15 +467,4 @@ li {
 .listeQuestionsAdmin .reponse #reponse{
     border: 1px groove var(--colorFooter);
     max-width: 75%;
-}
-#Image {
-    background-size: cover;
-    position: relative;
-    background: linear-gradient(217deg, rgba(7, 218, 233, 0.8), rgba(0, 132, 255, 0) 70.71%),
-            linear-gradient(127deg, rgba(0, 195, 255, 0.8), rgba(0, 174, 255, 0) 70.71%),
-            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
-    
-}
-#qsn {
-	background-color: cornflowerblue
 }
