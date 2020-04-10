@@ -30,96 +30,7 @@
                     </div>
                     <div id="affichageRequetes">
                         <button class="close" onclick="closeRequetes()"><img src="images/iconCroix.png"></button>
-                        <div id="requete0" class="requete" style="display: block;">
-                            <table class="affichageResultat">
-                                <tr>
-                                    <td>Type de demande</td>
-                                    <td>Nom Prénom</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Adresse e-mail</td>
-                                </tr>
-                                <tr>
-                                    <td class="valider"><button> Valider </button></td>
-                                    <td class="rejeter"><button> Rejeter </button></td>
-                                </tr>
-                            </table>
-                            <table class="affichageResultat">
-                                <tr>
-                                    <td>Type de demande</td>
-                                    <td>Nom Prénom</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Adresse e-mail</td>
-                                </tr>
-                                <tr>
-                                    <td class="valider"><button> Valider </button></td>
-                                    <td class="rejeter"><button> Rejeter </button></td>
-                                </tr>
-                            </table>
-                            <table class="affichageResultat">
-                                <tr>
-                                    <td>Type de demande</td>
-                                    <td>Nom Prénom</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Adresse e-mail</td>
-                                </tr>
-                                <tr>
-                                    <td class="valider"><button> Valider </button></td>
-                                    <td class="rejeter"><button> Rejeter </button></td>
-                                </tr>
-                            </table>
-                            <table class="affichageResultat">
-                                <tr>
-                                    <td>Type de demande</td>
-                                    <td>Nom Prénom</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Adresse e-mail</td>
-                                </tr>
-                                <tr>
-                                    <td class="valider"><button> Valider </button></td>
-                                    <td class="rejeter"><button> Rejeter </button></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div id="requete1" class="requete" style="display: none;">
-                            <table class="affichageResultat">
-                                <tr>
-                                    <td> Administrateur </td>
-                                    <td >Nom Prénom</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Adresse e-mail</td>
-                                </tr>
-                                <tr>
-                                    <td class="valider"><button> Valider </button></td>
-                                    <td class="rejeter"><button> Rejeter </button></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div id="requete2" class="requete" style="display: none;">
-                            <table class="affichageResultat">
-                                <tr>
-                                    <td>Médecin</td>
-                                    <td>Nom Prénom</td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>Adresse e-mail</td>
-                                </tr>
-                                <tr>
-                                    <td class="valider"><button> Valider </button></td>
-                                    <td class="rejeter"><button> Rejeter </button></td>
-                                </tr>
-                            </table>
-                        </div>
+                        <div id="requete"><?php echo listeInfoRequete($db, 0) ?></div>
                     </div>
                 </div>
             </div>
@@ -166,46 +77,7 @@
                             </select> </td>
                         </tr>
                     </table>
-                    <table class="affichageResultat">
-                        <tr>
-                            <td><table class="dispositif">
-                                <tr> 
-                                    <td rowspan="3" class="imageDispositif" > <img src="images/iconDispositif.png"/></td>
-                                    <td> Code </td>
-                                    <td class="modifierSupprimer">
-                                        <img src="images/iconModifier.png" />
-                                        <img src="images/iconCroix.png"/>
-                                    </td>
-                                </tr>
-                                <tr> <td> Info 1 </td> </tr>
-                                <tr>
-                                    <td colspan="2" class="proprietaireDispositif"> <img src="images/iconUtilisateur.png"/> Nom propriétaire </td> 
-                                </tr>
-                            </table></td>
-                            <td><table class="dispositif">
-                                <tr> 
-                                    <td rowspan="3" class="imageDispositif"> <img src="images/iconDispositif.png"/></td>
-                                    <td> Code </td>
-                                    <td class="modifierSupprimer">
-                                        <img src="images/iconModifier.png" />
-                                        <img src="images/iconCroix.png"/>
-                                    </td>
-                                </tr>
-                                <tr> <td> Info 1 </td> </tr>
-                                <tr>
-                                    <td colspan="2" class="proprietaireDispositif"> <img src="images/iconUtilisateur.png"/> Nom propriétaire </td> 
-                                </tr>
-                            </table></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                    <div class="pagination">
-                        <button class="pageBefore" onclick="openBefore()"> <img src="images/flecheGauche.png" /> </button>
-                        <button class="page actif" onclick="openPage(0)"> 1 </button>
-                        <button class="page" onclick="openPage(1)"> 2 </button>
-                        <button class="pageAfter" onclick="openAfter()"> <img src="images/flecheDroite.png"/> </button>
-                    </div>
+                    <?php echo listeInfoDispositif($db, 0, '')?>
                 </div>
                 <div id="2" class="choix" style="display: none;">
                     <table id="adminUtilisateur">
@@ -222,98 +94,7 @@
                             </select> </td>
                         </tr>
                     </table>
-                    <table class="affichageResultat">
-                        <tr>
-                            <td><table class="utilisateur">
-                                <tr> 
-                                    <td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
-                                    <td> Nom Prénom </td>
-                                    <td class="modifierSupprimer" >
-                                        <img src="images/iconModifier.png" />
-                                        <img src="images/iconCroix.png"/>
-                                    </td>
-                                </tr>
-                                <tr> <td> Info 1 </td> </tr>
-                                <tr> <td> Info 2 </td> </tr>
-                                <tr>
-                                    <td colspan="2" class="iconGerer">
-                                        <img src="images/iconVoirProfil.png" />
-                                        <img src="images/iconContacter.png" />
-                                        <img src="images/iconBannir.png" />
-                                    </td> 
-                                </tr>
-                            </table></td>
-                            <td><table class="utilisateur">
-                                <tr> 
-                                    <td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
-                                    <td> Nom Prénom </td>
-                                    <td class="modifierSupprimer" >
-                                        <img src="images/iconModifier.png" />
-                                        <img src="images/iconCroix.png"/>
-                                    </td>
-                                </tr>
-                                <tr> <td> Info 1 </td> </tr>
-                                <tr> <td> Info 2 </td> </tr>
-                                <tr>
-                                    <td colspan="2" class="iconGerer">
-                                        <img src="images/iconVoirProfil.png" />
-                                        <img src="images/iconContacter.png" />
-                                        <img src="images/iconBannir.png" />
-                                    </td> 
-                                </tr>
-                            </table></td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td><table class="utilisateur">
-                                <tr> 
-                                    <td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
-                                    <td> Nom Prénom </td>
-                                    <td class="modifierSupprimer" >
-                                        <img src="images/iconModifier.png" />
-                                        <img src="images/iconCroix.png"/>
-                                    </td>
-                                </tr>
-                                <tr> <td> Info 1 </td> </tr>
-                                <tr> <td> Info 2 </td> </tr>
-                                <tr>
-                                    <td colspan="2" class="iconGerer">
-                                        <img src="images/iconVoirProfil.png" />
-                                        <img src="images/iconContacter.png" />
-                                        <img src="images/iconBannir.png" />
-                                    </td> 
-                                </tr>
-                            </table></td>
-                        </tr>
-                        <tr>
-                            <td><table class="utilisateur">
-                                <tr> 
-                                    <td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
-                                    <td> Nom Prénom </td>
-                                    <td class="modifierSupprimer" >
-                                        <img src="images/iconModifier.png" />
-                                        <img src="images/iconCroix.png"/>
-                                    </td>
-                                </tr>
-                                <tr> <td> Info 1 </td> </tr>
-                                <tr> <td> Info 2 </td> </tr>
-                                <tr>
-                                    <td colspan="2" class="iconGerer">
-                                        <img src="images/iconVoirProfil.png" />
-                                        <img src="images/iconContacter.png" />
-                                        <img src="images/iconBannir.png" />
-                                    </td> 
-                                </tr>
-                            </table></td>
-                        </tr>
-                    </table>
-                    <div class="pagination" >
-                        <button class="pageBefore" onclick="openBefore()"> <img src="images/flecheGauche.png" /> </button>
-                        <button class="page actif" onclick="openPage(0)"> 1 </button>
-                        <button class="page" onclick="openPage(1)"> 2 </button>
-                        <button class="pageAfter" onclick="openAfter()"> <img src="images/flecheDroite.png" /> </button>
-                    </div>
+                    <?php echo listeInfoUtilisateur($db, 0, '')?>
                 </div>
                 <div id="4" class="choix" style="display: none;">
                     <div id="adminFAQ">
@@ -405,7 +186,7 @@
         </section>
     </body>
     <script LANGUAGE='JavaScript'>
-        graphe(); 
         header();
+        graphe(); 
     </script>
 </html>

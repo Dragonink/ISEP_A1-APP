@@ -52,16 +52,12 @@ function openRequetes() {
 }
 
 function openRequete(number) {
-    var i, requete, demande;
-    requete = document.getElementsByClassName("requete");
-    for (i=0; i<requete.length;i++) {
-        requete[i].style.display="none";
-    }
+    var i, demande;
+    document.getElementById("requete").innerHTML = "<?php echo listeInfoRequete($db, number) ?>";
     demande = document.getElementsByClassName("demande");
     for (i = 0; i < demande.length; i++) {
         demande[i].className = demande[i].className.replace(" actif", "");
     }
-    requete[number].style.display = "block";
     demande[number].className += " actif";
 }
 
