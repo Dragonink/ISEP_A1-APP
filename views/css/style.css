@@ -1,9 +1,10 @@
 :root {
-    --colorHeader: rgba(24, 55, 94, 0.86);
-    --colorFooter: rgb(24, 55, 94);
+    --colorHeader: rgb(30, 60, 94);
+    --colorFooter: rgb(17, 43, 75);
     --colorAdmin: rgba(180, 218, 240, 0.61);
     --colorChoixAdmin:  rgba(34, 37, 41, 0.4);
     --colorFAQ: rgb(100, 162, 186);
+	--colorHome: rgb(24,55,94);
 }
 
 /* général */
@@ -18,7 +19,7 @@ body, html {
 #navHeader {
     height: auto;
     width: 100%;
-    background-color: rgba(24, 55, 94, 0.86);
+    background-color: var(--colorHeader);
     display: flex;
     justify-content: space-between;
 	position: fixed;
@@ -43,14 +44,16 @@ a {
 }
 
 .header .menutitle {
-    padding-top: 2%;
+    padding-top: 1.25%;
     padding-bottom: 1%;
+	font-family: Segoe UI;
 }
 
 .header .inscriptionConnexion {
-    padding-top: 2%;
+    padding-top: 1.25%;
     padding-bottom: 1%;
     padding-right: 5px;
+	font-family: Segoe UI;
 }
 
 .menuLogo {
@@ -144,27 +147,53 @@ li {
 	position: absolute;
 	width: 346px;
 	height: 322px;
-	left: 787px;
+	left: 760px;
 	top: 131px;
 	overflow: visible;
 }
+.image_bg {
+	overflow: visible;
+	position: absolute;
+	width: 100%;
+	height: 1015px;
+	top: 72px;
+	background: linear-gradient(217deg, rgba(7, 218, 233, 0.8), rgba(0, 132, 255, 0) 70.71%),
+            linear-gradient(127deg, rgba(0, 195, 255, 0.8), rgba(0, 174, 255, 0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+}
 
-.Ellipse_qsn {
+#InfiniteMeasures {
+	position: absolute;
+	left: 500px;
+	top: 564px;
+	overflow: visible;
+	width: 154px;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 120px;
+	color: rgba(5,5,5,1);
+}
+.qsn_ellipse {
 	position: absolute;
 	overflow: visible;
 	width: 422px;
 	height: 434px;
 	left: 1362px;
 	top: 1268px;
+	border-radius: 50%;
+	background: antiquewhite;
 }
-.Trac__7 {
+.qsn_bg {
 	overflow: visible;
 	position: absolute;
-	width: 1920px;
+	width: 100%;
 	height: 1005.393px;
 	center: 0px;
 	top: 1081.28px;
-	transform: matrix(1,0,0,1,0,0);
+	background: var(--colorHome);
 }
 #qsn_texte {
 	position: absolute;
@@ -192,12 +221,12 @@ li {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 50px;
-	color: rgba(255,255,255,1);
+	color: rgb(255,255,255);
 }
 #ntp_titre {
 	position: absolute;
 	left: 235px;
-	top: 2125px;
+	top: 2185px;
 	overflow: visible;
 	width: 273px;
 	white-space: nowrap;
@@ -206,7 +235,15 @@ li {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 50px;
-	color: rgba(5,5,5,1);
+}
+.ntp_bg {
+	position: absolute;
+	overflow: visible;
+	width: 100%;
+	height: 1005.393px;
+	center: 0px;
+	top: 2087px;
+	background-color: rgb(212,212,212);
 }
 .ntp_ellipse {
 	position: absolute;
@@ -215,6 +252,8 @@ li {
 	height: 434px;
 	left: 1362px;
 	top: 2368px;
+	border-radius: 50%;
+	background: antiquewhite;
 }
 #ntp_texte {
 	position: absolute;
@@ -228,7 +267,6 @@ li {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 50px;
-	color: rgba(0,0,0,1);
 }
 #Contact {
 	position: absolute;
@@ -242,12 +280,12 @@ li {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 50px;
-	color: rgba(255,255,255,1);
+	color: rgb(255,255,255);
 }
-#Carte_google {
+#Ou_nous_trouver {
 	position: absolute;
-	left: 1287px;
-	top: 3327px;
+	left: 1050px;
+	top: 3134px;
 	overflow: visible;
 	width: 279px;
 	white-space: nowrap;
@@ -256,7 +294,7 @@ li {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 50px;
-	color: rgba(5,5,5,1);
+	color: rgb(255,255,255);
 }
 .envoyer_rect {
 	position: absolute;
@@ -265,6 +303,8 @@ li {
 	height: 69px;
 	left: 212px;
 	top: 3801px;
+	border-radius: 20px;
+	background: lightskyblue;
 }
 .email_rect {
 	position: absolute;
@@ -273,6 +313,7 @@ li {
 	height: 77px;
 	left: 93px;
 	top: 3210px;
+	background: white;
 }
 
 .objet_rect {
@@ -282,17 +323,8 @@ li {
 	height: 77px;
 	left: 93px;
 	top: 3298px;
+	background: white;
 }
-
-.BG_contact {
-	overflow: visible;
-	position: relative;
-	width: 1919px;
-	height: 907px;
-	top: 3078.99px;
-	transform: matrix(1,0,0,1,0,0);
-}
-
 .contact_texte {
 	position: absolute;
 	overflow: visible;
@@ -300,12 +332,21 @@ li {
 	height: 370px;
 	left: 93px;
 	top: 3386px;
+	background: white;
+}
+.contact_bg {
+	overflow: visible;
+	position: relative;
+	width: 100%;
+	height: 907px;
+	top: 3078.99px;
+	background: var(--colorHome);
 }
 
 #Adresse {
 	position: absolute;
-	left: 1066px;
-	top: 3234px;
+	left: 1050px;
+	top: 3204px;
 	overflow: visible;
 	width: 88px;
 	white-space: nowrap;
@@ -314,7 +355,7 @@ li {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 25px;
-	color: rgba(255,255,255,1);
+	color: rgb(255,255,255);
 }
 
 #Envoyer {
@@ -329,9 +370,19 @@ li {
 	font-style: normal;
 	font-weight: normal;
 	font-size: 40px;
-	color: rgba(24,55,94,1);
+	color: rgb(24,55,94);
 }
 
+#Carte {
+	position: absolute;
+	overflow: visible;
+	top: 3250px;
+	left: 1050px;
+}
+.map {
+	position: absolute;
+	overflow: visible;
+}
 /* admin */
 
 #contenuAdmin {
@@ -460,30 +511,4 @@ li {
 .listeQuestionsAdmin .reponse #reponse{
     border: 1px groove var(--colorFooter);
     max-width: 75%;
-}
-.image_bg {
-	overflow: visible;
-	position: absolute;
-	width: 1920px;
-	height: 1005.5px;
-	top: 75.3px;
-	background: linear-gradient(217deg, rgba(7, 218, 233, 0.8), rgba(0, 132, 255, 0) 70.71%),
-            linear-gradient(127deg, rgba(0, 195, 255, 0.8), rgba(0, 174, 255, 0) 70.71%),
-            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
-	transform: matrix(1,0,0,1,0,0);
-}
-
-#InfiniteMeasures {
-	position: absolute;
-	left: 490px;
-	top: 564px;
-	overflow: visible;
-	width: 154px;
-	white-space: nowrap;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 120px;
-	color: rgba(5,5,5,1);
 }
