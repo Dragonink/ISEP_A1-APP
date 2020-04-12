@@ -1,0 +1,26 @@
+body > header {
+    text-align: center;
+}
+body.cgu header {
+    color: white;
+    background-color: rgb(24, 55, 94);
+    padding: 1px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+body.faq article,
+body.cgu main {
+    background-color: rgb(180, 218, 240);
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+article > header {
+    background-color: rgb(24, 55, 94);
+    padding: 5px;
+    border-radius: 2px;
+}
+article > header > h2 {
+    color: white;
+    margin: 0;
+}
