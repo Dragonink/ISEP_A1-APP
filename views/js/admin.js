@@ -1,3 +1,26 @@
+function PHPCall(url){
+    var request;
+    if (window.XMLHttpRequest){
+        request = new XMLHttpRequest();         
+    } else if (window.ActiveXObject) {
+        request = new ActiveXObject("Msxml2.XMLHTTP");
+        if (!request){
+            request = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+    }
+    if (request){
+        try {
+            var tmpURL = url.split("?");
+            request.open("post", tmpURL[0], false);
+            request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            request.send((tmpURL[1] != null) ? encodeURI(tmpURL[1]) : "");
+            return decodeURI(unescape(request.responseText));
+        } catch (errv) {
+            alert("The system is not working properly, please contact your support." + "\n(" + url + ")");
+        }
+    }
+}
+
 function openChapitre(number) {
     var i, chapitre, choix;
     choix = document.getElementsByClassName("choix");
@@ -53,7 +76,7 @@ function openRequetes() {
 
 function openRequete(number) {
     var i, demande;
-    document.getElementById("requete").innerHTML = "<?php echo listeInfoRequete($db, number) ?>";
+    document.getElementById("requete").innerHTML = PHPCall("/listeInfoRequete.php?value=" + number);
     demande = document.getElementsByClassName("demande");
     for (i = 0; i < demande.length; i++) {
         demande[i].className = demande[i].className.replace(" actif", "");
