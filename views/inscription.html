@@ -15,8 +15,8 @@
     </header>
     <main>
         <form id="signup" method="POST" onsubmit="return signupCheck();" data-account="user">
-            <fieldset>
-                <legend>Type de compte</legend>
+            <div>
+                <label for="type">Type de compte</label>
                 <div>
                     <input id="user" type="radio" name="type" value="user" onclick="selectType('user');" checked />
                     <label for="user">Patient</label>
@@ -29,9 +29,8 @@
                     <input id="admin" type="radio" name="type" value="admin" onclick="selectType('admin');" />
                     <label for="admin">Administrateur</label>
                 </div>
-            </fieldset>
-            <fieldset>
-                <legend>Détails du compte</legend>
+            </div>
+            <div>
                 <label for="firstname">Prénom</label>
                 <input id="firstname" name="firstname" type="text" required />
                 <label for="lastname">Nom</label>
@@ -43,13 +42,13 @@
                 <!-- User only -->
                 <label for="nss" class="user">N° Sécurité Sociale</label>
                 <input id="nss" class="user" name="nss" type="text" required />
-                <label for="manager" class="user">Médecin</label>
-                <select id="manager" class="user" name="manager" required>
+                <label for="linked-manager" class="user">Médecin</label>
+                <select id="linked-manager" class="user" name="manager" required>
                 </select>
                 <!-- Manager only -->
                 <label for="address" class="manager">Adresse de travail</label>
                 <input id="address" class="manager" name="address" type="text" required />
-            </fieldset>
+            </div>
             <input id="cgu" name="cgu" type="checkbox" required />
             <label for="cgu">J'accepte les <a href="cgu.html" target="_blank">Conditions Générales d'Utilisation</a></label>
             <button type="submit">Inscription</button>
