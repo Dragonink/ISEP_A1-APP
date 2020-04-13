@@ -33,3 +33,15 @@ details > summary {
 details > p {
     padding: 0 10px;
 }
+footer {
+    text-align: center;
+    margin: 5vh 0;
+}
+footer a[href] {
+    cursor: pointer;
+    text-decoration: none;
+    background-color: rgb(24, 55, 94);
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+}
