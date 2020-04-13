@@ -1,0 +1,35 @@
+html {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(to left top, rgb(24, 55, 94), rgb(180, 218, 240));
+}
+body {
+    background-color: white;
+    padding: 1vh;
+    border-radius: 5px;
+    margin: 5vh;
+}
+body > header {
+    text-align: center;
+    margin-bottom: 5vh;
+}
+details {
+    background-color: rgb(180, 218, 240);
+    padding: 0;
+    border-radius: 2px;
+    margin-bottom: 5px;
+}
+details[open] {
+    padding: 0 0 5px 0;
+}
+details > summary {
+    cursor: pointer;
+    font-size: 1.25em;
+    color: white;
+    background-color: rgb(24, 55, 94);
+    padding: 5px;
+    border-radius: 2px;
+}
+details > p {
+    padding: 0 10px;
+}
