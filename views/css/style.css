@@ -363,6 +363,11 @@ li {
 .map {
 	position: absolute;
 	overflow: visible;
+	width: 40%;
+	height: 50%;
+	top: 328%;
+	left: 55%;
+	background-image: url(../images/map.png);
 }
 /* admin */
 
