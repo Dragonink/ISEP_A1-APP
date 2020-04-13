@@ -35,27 +35,21 @@ function openChapitre(number) {
     chapitre[number].className += " actif";
 }
 function openReponse(number) {
-    document.getElementsByClassName("question")[number-1].style.display="none";
-    document.getElementsByClassName("affichage")[number-1].style.display="table-row";
-    document.getElementsByClassName("reponse")[number-1].style.display="table-row";
-    document.getElementsByClassName("modifier")[number-1].style.display="none";
-    document.getElementsByClassName("reponseModifiable")[number-1].style.display="none";
+    document.getElementsByClassName("affichageQuestion")[number-1].style.display="none";
+    document.getElementsByClassName("affichageQuestionReponse")[number-1].style.display="block";
+    document.getElementsByClassName("affichageModifier")[number-1].style.display="none";
 }
 
 function openModification(number) {
-    document.getElementsByClassName("question")[number-1].style.display="none";
-    document.getElementsByClassName("affichage")[number-1].style.display="none";
-    document.getElementsByClassName("reponse")[number-1].style.display="none";
-    document.getElementsByClassName("modifier")[number-1].style.display="table-row";
-    document.getElementsByClassName("reponseModifiable")[number-1].style.display="table-row";
+    document.getElementsByClassName("affichageQuestion")[number-1].style.display="none";
+    document.getElementsByClassName("affichageQuestionReponse")[number-1].style.display="none";
+    document.getElementsByClassName("affichageModifier")[number-1].style.display="block";
 }
 
 function closeReponse(number) {
-    document.getElementsByClassName("question")[number-1].style.display="table-row";
-    document.getElementsByClassName("affichage")[number-1].style.display="none";
-    document.getElementsByClassName("reponse")[number-1].style.display="none";
-    document.getElementsByClassName("modifier")[number-1].style.display="none";
-    document.getElementsByClassName("reponseModifiable")[number-1].style.display="none";
+    document.getElementsByClassName("affichageQuestion")[number-1].style.display="block";
+    document.getElementsByClassName("affichageQuestionReponse")[number-1].style.display="none";
+    document.getElementsByClassName("affichageModifier")[number-1].style.display="none";
 }
 
 function openAddDispositif() {
