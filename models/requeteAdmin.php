@@ -32,6 +32,11 @@ function nombreDispositif(PDO $db):int {
     return $db->query($query)->fetchColumn();
 }
 
+function nombreQuestion(PDO $db):int {
+    $query = 'SELECT count(*) from faq';
+    return $db->query($query)->fetchColumn();
+}
+
 function infoDispositif(PDO $db) {
     $dispositif = 'SELECT console.id as code, first_name, last_name, work_adress, picture from manager join console on (console.manager=manager.id)';
     return $db->query($dispositif)->fetchAll();
@@ -39,6 +44,11 @@ function infoDispositif(PDO $db) {
 
 function infoUtilisateur(PDO $db) {
     $dispositif = 'SELECT first_name, last_name, email, picture from administrator,user ,manager  where administrator.is_active=1 and manager.is_active=1';
+    return $db->query($dispositif)->fetchAll();
+}
+
+function infoFaq(PDO $db) {
+    $dispositif = 'SELECT id, question, answer, first_name, last_name from faq join manager where faq.admin=manager.id' ;
     return $db->query($dispositif)->fetchAll();
 }
 

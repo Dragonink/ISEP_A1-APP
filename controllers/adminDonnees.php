@@ -177,11 +177,11 @@ function listeInfoRequete(PDO $db, $value){
                                 ."<tr>";
             }
             $resultat .= "<td>Type de demande</td>"
-                                    ."<td>" .$info[first_name] ." " .$info[last_name] ."</td>"
+                                    ."<td>" .$value[first_name] ." " .$value[last_name] ."</td>"
                                 ."</tr>"
                                 ."<tr>"
                                     ."<td></td>"
-                                    ."<td>" .$info[email] ."</td>"
+                                    ."<td>" .$value[email] ."</td>"
                                 ."</tr>"
                                 ."<tr>"
                                     ."<td class='valider'><button> Valider </button></td>"
@@ -193,5 +193,63 @@ function listeInfoRequete(PDO $db, $value){
     } else {
         $resultat= "<p>Il n'y a pas de demande. </p>";
     }
+    return $resultat;
+}
+
+function listeFAQ(PDO $db){
+    $nombre=nombreQuestion($db);
+    if ($nombre!= 0){
+        $info=infoFaq($db);
+        $resultat="";
+        foreach ($info as $key => $value ){
+            $resultat.="<div class='affichageQuestion' style='display:block;'>"
+                            ."<div class='question' id='" .$value[id] ."'>"
+                                ."<div>" .$value[id] ."</div>"
+                                ."<div>" .$value[question] ."</div>"
+                                ."<div> <img src='images/iconDroite.png' class='symboleDroite actif' onclick='openReponse(" .$value[id] .")'/> </div>"
+                                ."<div class='vide' style='font-size: 15px;'> Dernière modification par " .$first_name ." " .$last_name ."</div>"
+                                ."<div>"
+                                    ."<img src='images/iconModifier.png' class='symboleModifier' onclick='openModification(" .$value[id] .")'/>"
+                                    ."<img src='images/iconCroix.png'/>"
+                                ."</div>"
+                            ."</div>"
+                        ."</div>"
+                        ."<div class='affichageQuestionReponse' style='display:none;'>"
+                            ."<div class='affichage' id='" .$value[id] ."'>"
+                                ."<div>" .$value[id] ."</div>"
+                                ."<div>" .$value[question] ."</div>"
+                                ." <div> <img src='images/iconBas.png' class='symboleBas' onclick='closeReponse(" .$value[id] .")'/> </div>"
+                                ."<div class='vide' style='font-size: 15px;'> Dernière modification par " .$first_name ." " .$last_name ."</div>"
+                                ."<div>"
+                                    ."<img src='images/iconModifier.png' class='symboleModifier' onclick='openModification(" .$value[id] .")'/>"
+                                    ."<img src='images/iconCroix.png'/>"
+                                ."</div>"
+                            ."</div>"
+                            ."<div class='reponse' id='" .$value[id] ."' >"
+                                ."<div id='reponse'>" .$value[answer] ."</div>"
+                            ."</div>"
+                        ."</div>"
+                        ."<form class='affichageModifier' style='display:none;'>"
+                            ."<div class='modifier' id='" .$value[id] ."' >"
+                            ."<div>" .$value[id] ."</div>"
+                                ."<div> <textarea id='answer' name='question " .$value[id] ."' cols=20' rows='1' style='resize: none;'>" .$value[question] ."</textarea> </div>"
+                                ."<div class='vide' > </div>"
+                                ."<div>"
+                                    ."<img src='images/iconValider.png'/>"
+                                    ."<img src='images/iconAnnuler.png' class='symboleAnnuler' onclick='openReponse(" .$value[id] .")'/>"
+                                ."</div>"
+                            ."</div>"
+                            ."<div class='reponseModifiable' id='" .$value[id] ."' >"
+                                ."<div id='reponse'>"
+                                    ."<textarea id='answer' name='question " .$value[id] ."' cols='140' rows='8' style='resize: none;'>" .$value[id] ."</textarea>"
+                                ."</div>"
+                            ."</div>"
+                       ." </form>";
+        }
+
+    } else {
+        $resultat= "<p>Il n'y a pas de question enregistré!</p>";
+    }
+
     return $resultat;
 }

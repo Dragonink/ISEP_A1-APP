@@ -41,7 +41,7 @@
                 <button class= "chapitre" onclick="openChapitre(3)"><img src="images/iconFAQ.png"> FAQ </button>
             </div>
             <div id="affichageAdmin">
-                <div id="0" class="choix" style="display: none;">
+                <div id="0" class="choix" style="display: block;">
                     <div id="adminDashboard">
                         <h1> Dashboard </h1> 
                         <div class="chiffreCle">
@@ -96,101 +96,12 @@
                     </table>
                     <?php echo listeInfoUtilisateur($db, 0, '')?>
                 </div>
-                <div id="4" class="choix" style="display: block;">
+                <div id="4" class="choix" style="display: none;">
                     <div id="adminFAQ">
                         <h1> FAQ </h1>
                         <button class="ajouterQuestion"> Ajouter question </button>
                     </div>
-                    <div class="listeQuestionsAdmin">
-                        <div class="affichageQuestion" style="display:block;">
-                            <div class="question" id="1">
-                                <div> 1. </div>
-                                <div> Question 1 </div>
-                                <div> <img src="images/iconDroite.png" class='symboleDroite actif' onclick="openReponse(1)"/> </div>
-                                <div class="vide" style="font-size: 15px;"> Dernière modification par Prenom Nom </div>
-                                <div>
-                                    <img src="images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
-                                    <img src="images/iconCroix.png"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="affichageQuestionReponse" style='display:none;'>
-                            <div class="affichage" id="1">
-                                <div> 1. </div>
-                                <div> Question 1 </div>
-                                <div> <img src="images/iconBas.png" class='symboleBas' onclick="closeReponse(1)"/> </div>
-                                <div class="vide" style="font-size: 15px;"> Dernière modification par Prenom Nom  </div>
-                                <div>
-                                    <img src="images/iconModifier.png" class='symboleModifier' onclick="openModification(1)"/>
-                                    <img src="images/iconCroix.png"/>
-                                </div>
-                            </div>
-                            <div class="reponse" id="1" >
-                                <div id="reponse"> Blablabla </div>
-                            </div>
-                        </div>
-                        <form class="affichageModifier" style='display:none;'>
-                            <div class="modifier" id="1" >
-                                <div> 1. </div>
-                                <div> <textarea id="answer" name="question 1" cols="20" rows="1" style="resize: none;"> Question 1 </textarea> </div>
-                                <div class="vide" > </div>
-                                <div>
-                                    <img src="images/iconValider.png"/>
-                                    <img src="images/iconAnnuler.png" class='symboleAnnuler' onclick="openReponse(1)"/>
-                                </div>
-                            </div>
-                            <div class="reponseModifiable" id="1" >
-                                <div id="reponse">
-                                    <textarea id="answer" name="question 1" cols="140" rows="8" style="resize: none;"> Blablabla </textarea>
-                                </div>
-                            </div>
-                        </form>
-                        <div class="affichageQuestion" style="display:block;">
-                            <div class="question" id="2">
-                                <div> 2. </div>
-                                <div> Question 2 </div>
-                                <div> <img src="images/iconDroite.png" class='symboleDroite actif' onclick="openReponse(2)"/> </div>
-                                <div class="vide" style="font-size: 15px;"> Dernière modification par Prenom Nom </div>
-                                <div>
-                                    <img src="images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
-                                    <img src="images/iconCroix.png"/>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="affichageQuestionReponse" style='display:none;'>
-                            <div class="affichage" id="2">
-                                <div> 2. </div>
-                                <div> Question 2 </div>
-                                <div> <img src="images/iconBas.png" class='symboleBas' onclick="closeReponse(2)"/> </div>
-                                <div class="vide" style="font-size: 15px;"> Dernière modification par Prenom Nom  </div>
-                                <div>
-                                    <img src="images/iconModifier.png" class='symboleModifier' onclick="openModification(2)"/>
-                                    <img src="images/iconCroix.png"/>
-                                </div>
-                            </div>
-                            <div class="reponse" id="2" >
-                                <div> </div>
-                                <div id="reponse"> Blablabla </div>
-                            </div>
-                        </div>
-                        <div class="affichageModifier" style='display:none;'>
-                            <div class="modifier" id="2" >
-                                <div> 2. </div>
-                                <div> <textarea id="answer" name="question 2" cols="20" rows="1" style="resize: none;"> Question 2 </textarea> </div>
-                                <div class="vide" > </div>
-                                <div>
-                                    <img src="images/iconValider.png"/>
-                                    <img src="images/iconAnnuler.png" class='symboleAnnuler' onclick="openReponse(2)"/>
-                                </div>
-                            </div>
-                            <div class="reponseModifiable" id="2" >
-                                <div> </div>
-                                <div id="reponse">
-                                    <textarea id="answer" name="question 2" cols="140" rows="8" style="resize: none;"> Blablabla </textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="listeQuestionsAdmin"><?php echo listeFAQ($db)?></div>
                 </div>
             </div>
         </section>
