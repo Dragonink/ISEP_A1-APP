@@ -6,6 +6,7 @@
         <script src="../js/code.js"></script>
         <!-- CSS -->
         <link href="../css/style.css" rel="stylesheet" type="text/css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta charset="utf-8" />
         <title>Infinite Measure</title>
 
@@ -23,7 +24,7 @@
         </section>
 	<section id="Page_image">
 		<div class="image_bg"></div>
-		<img id="Image" src="../images/Infinite_measures.png"/>
+		<img id="Image" src="../images/Infinite_measures.png" height="346" width="346"/>
 		<div id="InfiniteMeasures">
 			<span>Infinite Measures</span>
 		</div>
@@ -82,14 +83,8 @@
 		<div id="Adresse">
 			<span>Adresse</span>
 		</div>
-		<img id="Carte" src="../images/map.png"/>
-		<div class="email_rect"></div>
-		<div class="objet_rect"></div>
+		<img id="Carte" src="../images/map.png" height="536" width="777"/>
 		<div class="contact_texte"></div>
-		<div class="envoyer_rect"></div>
-		<div id="Envoyer">
-			<span>Envoyer</span>
-		</div>
 		<form action="" method="get" class="contact">
   			<div class="email_rect">
     			<label for="email_rect">E-mail: </label>
@@ -101,11 +96,9 @@
   			</div>
 			<div class="contact_texte">
     			<label for="contact_texte">Message </label>
-    			<input type="string" name="message" id="message" required>
+    			<textarea type="string" name="message" id="message" required></textarea>
   			</div>
-  			<div class="Envoyer">
-    			<input type="submit" value="Envoyer">
-  			</div>
+    		<input class="Envoyer" type="submit" value="Envoyer">
 		</form>
 	</section>
         

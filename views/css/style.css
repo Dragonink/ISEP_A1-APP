@@ -10,28 +10,27 @@
 /* général */
 
 body, html {
-    height: 100%;
+    height: auto;
     width: 100%;
-    margin: 0;
+	margin: 0;
     background-color: none;
 }
 
 #navHeader {
     height: auto;
+	position: fixed;
+	flex: auto;
     width: 100%;
     background-color: var(--colorHeader);
-    display: flex;
     justify-content: space-between;
-	position: fixed;
 	z-index: 10;
 }
 
 .header {
     width: 100%;
-    display: flex;
+	display: flex;
     justify-content: space-between;
     padding: inherit;
-    padding-right: 5px;
 }
 
 a {
@@ -87,9 +86,9 @@ li {
 }
 
 #navFooter {
-    top: 3000px;
+	top: 400%;
     height: auto;
-	position: relative;
+	position: absolute;
     width: 100%;
     background-color: var(--colorFooter);
     display: flex;
@@ -106,14 +105,8 @@ li {
 
 .footerpage {
     display: flex;
-    justify-content: space-between;
-  	left: 0;
-  	bottom: 0px;
-  	width: 100%;
-  	background-color: red;
-  	color: white;
+  	top: 100%;
   	text-align: center;
-	bottom: 0px;
     height: auto;
     width: 100%;
     background-color: var(--colorFooter);
@@ -145,9 +138,9 @@ li {
 /* accueil */
 #Image {
 	position: absolute;
-	width: 346px;
-	height: 322px;
-	left: 760px;
+	max-width: 100%;
+	height: auto;
+	left: 40%;
 	top: 131px;
 	overflow: visible;
 }
@@ -155,7 +148,7 @@ li {
 	overflow: visible;
 	position: absolute;
 	width: 100%;
-	height: 1015px;
+	height: 100%;
 	top: 72px;
 	background: linear-gradient(217deg, rgba(7, 218, 233, 0.8), rgba(0, 132, 255, 0) 70.71%),
             linear-gradient(127deg, rgba(0, 195, 255, 0.8), rgba(0, 174, 255, 0) 70.71%),
@@ -164,25 +157,24 @@ li {
 
 #InfiniteMeasures {
 	position: absolute;
-	left: 500px;
-	top: 564px;
+	left: 20%;
+	top: 550px;
 	overflow: visible;
-	width: 154px;
 	white-space: nowrap;
 	text-align: left;
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 120px;
-	color: rgba(5,5,5,1);
+	font-size: 8vw;
+	color: rgb(5,5,5);
 }
 .qsn_ellipse {
 	position: absolute;
 	overflow: visible;
-	width: 422px;
-	height: 434px;
-	left: 1362px;
-	top: 1268px;
+	width: 20em;
+	height: 20em;
+	left: 70%;
+	top: 130%;
 	border-radius: 50%;
 	background: antiquewhite;
 }
@@ -190,111 +182,108 @@ li {
 	overflow: visible;
 	position: absolute;
 	width: 100%;
-	height: 1005.393px;
-	center: 0px;
-	top: 1081.28px;
+	height: 100%;
+	top: 100%;
 	background: var(--colorHome);
-}
-#qsn_texte {
-	position: absolute;
-	left: 131px;
-	top: 1300px;
-	overflow: visible;
-	width: 957px;
-	white-space: nowrap;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 45px;
-	color: rgba(255,255,255,1);
 }
 #qsn_titre{
 	position: absolute;
-	left: 169px;
-	top: 1176px;
+	left: 7%;
+	top: 110%;
 	overflow: visible;
-	width: 470px;
-	height: 92px;
 	text-align: left;
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 50px;
+	font-size: 3vw;
 	color: rgb(255,255,255);
 }
-#ntp_titre {
+#qsn_texte {
 	position: absolute;
-	left: 235px;
-	top: 2185px;
+	left: 7%;
+	top: 125%;
 	overflow: visible;
-	width: 273px;
-	white-space: nowrap;
 	text-align: left;
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 50px;
+	font-size: 2vw;
+	color: rgb(255,255,255);
 }
 .ntp_bg {
 	position: absolute;
 	overflow: visible;
 	width: 100%;
-	height: 1005.393px;
-	center: 0px;
-	top: 2087px;
+	height: 100%;
+	top: 200%;
 	background-color: rgb(212,212,212);
 }
 .ntp_ellipse {
 	position: absolute;
 	overflow: visible;
-	width: 422px;
-	height: 434px;
-	left: 1362px;
-	top: 2368px;
+	width: 20em;
+	height: 20em;
+	left: 70%;
+	top: 230%;
 	border-radius: 50%;
 	background: antiquewhite;
 }
+#ntp_titre {
+	position: absolute;
+	left: 7%;
+	top: 210%;
+	overflow: visible;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 3vw;
+}
 #ntp_texte {
 	position: absolute;
-	left: 61px;
-	top: 2309px;
+	left: 7%;
+	top: 225%;
 	overflow: visible;
-	width: 957px;
 	white-space: nowrap;
 	text-align: left;
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 45px;
+	font-size: 2vw;
 }
 #Contact {
 	position: absolute;
-	left: 93px;
-	top: 3134px;
+	left: 5%;
+	top: 310%;
 	overflow: visible;
-	width: 197px;
 	white-space: nowrap;
 	text-align: left;
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 50px;
+	font-size: 3vw;
 	color: rgb(255,255,255);
 }
 #Ou_nous_trouver {
 	position: absolute;
-	left: 1050px;
-	top: 3134px;
+	left: 55%;
+	top: 310%;
 	overflow: visible;
-	width: 279px;
 	white-space: nowrap;
 	text-align: left;
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 50px;
+	font-size: 3vw;
 	color: rgb(255,255,255);
+}
+.contact_bg {
+	overflow: visible;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 300%;
+	background: var(--colorHome);
 }
 .envoyer_rect {
 	position: absolute;
@@ -309,52 +298,43 @@ li {
 .email_rect {
 	position: absolute;
 	overflow: visible;
-	width: 648px;
-	height: 77px;
-	left: 93px;
-	top: 3210px;
+	width: 34%;
+	height: 7%;
+	left: 5%;
+	top: 325%;
 	background: white;
 }
 
 .objet_rect {
 	position: absolute;
 	overflow: visible;
-	width: 648px;
-	height: 77px;
-	left: 93px;
-	top: 3298px;
+	width: 34%;
+	height: 7%;
+	left: 5%;
+	top: 334%;
 	background: white;
 }
 .contact_texte {
 	position: absolute;
 	overflow: visible;
-	width: 648px;
-	height: 370px;
-	left: 93px;
-	top: 3386px;
+	width: 34%;
+	height: 37%;
+	left: 5%;
+	top: 343%;
 	background: white;
-}
-.contact_bg {
-	overflow: visible;
-	position: relative;
-	width: 100%;
-	height: 907px;
-	top: 3078.99px;
-	background: var(--colorHome);
 }
 
 #Adresse {
 	position: absolute;
-	left: 1050px;
-	top: 3204px;
+	left: 55%;
+	top: 320%;
 	overflow: visible;
-	width: 88px;
 	white-space: nowrap;
 	text-align: left;
 	font-family: Segoe UI;
 	font-style: normal;
 	font-weight: normal;
-	font-size: 25px;
+	font-size: 1.8vw;
 	color: rgb(255,255,255);
 }
 
@@ -376,8 +356,9 @@ li {
 #Carte {
 	position: absolute;
 	overflow: visible;
-	top: 3250px;
-	left: 1050px;
+	max-width: 100%;
+	top: 328%;
+	left: 55%;
 }
 .map {
 	position: absolute;
@@ -511,4 +492,17 @@ li {
 .listeQuestionsAdmin .reponse #reponse{
     border: 1px groove var(--colorFooter);
     max-width: 75%;
+}
+
+
+
+.Envoyer {
+	position: absolute;
+	overflow: visible;
+	width: 20%;
+	height: 8%;
+	left: 12%;
+	top: 382%;
+	border-radius: 20px;
+	background: lightskyblue;
 }
