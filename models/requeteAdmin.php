@@ -3,68 +3,87 @@
 include("requeteGenerique.php"); 
 
 function nombreUtilisateur(PDO $db):int {
-    $query = 'SELECT count(*) from administrator,user ,manager  where administrator.is_active=1 and manager.is_active=1';
-    return $db->query($query)->fetchColumn();
+    $query = 'SELECT count(*) from administrator, user ,manager  where administrator.is_active=1 and manager.is_active=1';
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
 }
 
 function nombreTestsRealises(PDO $db):int {
     $query = 'SELECT count(*) from test';
-    return $db->query($query)->fetchColumn();
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
 }
 
 function nombreRequete(PDO $db):int {
     $query = 'SELECT count(*) from administrator, manager  where administrator.is_active=0 and manager.is_active=0';
-    return $db->query($query)->fetchColumn();
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
 }
 
 function nombreRequeteAdmin(PDO $db):int {
     $query = 'SELECT count(*) from administrator where administrator.is_active=0';
-    return $db->query($query)->fetchColumn();
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
 }
 
 function nombreRequeteManager(PDO $db):int {
     $query = 'SELECT count(*) from manager where manager.is_active=0';
-    return $db->query($query)->fetchColumn();
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
 }
 
 function nombreDispositif(PDO $db):int {
     $query = 'SELECT count(*) from console';
-    return $db->query($query)->fetchColumn();
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
 }
 
 function nombreQuestion(PDO $db):int {
     $query = 'SELECT count(*) from faq';
-    return $db->query($query)->fetchColumn();
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
 }
 
 function infoDispositif(PDO $db) {
     $dispositif = 'SELECT console.id as code, first_name, last_name, work_adress, picture from manager join console on (console.manager=manager.id)';
-    return $db->query($dispositif)->fetchAll();
+    $prepare = $db->prepare($dispositif);
+    $prepare->execute();
+    return $prepare->fetchAll();
 }
 
 function infoUtilisateur(PDO $db) {
     $utilisateur = "SELECT first_name, last_name, email, picture, 'administrator' as origine from administrator union all SELECT first_name, last_name, email, picture, 'user' as origine from user, union all SELECT first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 ";
-    return $db->query($utilisateur)->fetchAll();
+    $prepare = $db->prepare($utilisateur);
+    $prepare->execute();
+    return $prepare->fetchAll();
 }
 
 function infoRequete(PDO $db) {
     $requete = "SELECT first_name, last_name, email, id, 'administrateur' as origine from administrator union all SELECT first_name, last_name, email, id, 'médecin' as origine from manager  where is_active=0 ";
-    return $db->query($requete)->fetchAll();
+    $prepare = $db->prepare($requete);
+    $prepare->execute();
+    return $prepare->fetchAll();
 }
 
 function infoRequeteAdmin(PDO $db) {
     $requete = "SELECT first_name, last_name, email, id, 'administrateur' as origine from administrator where is_active=0";
-    return $db->query($requete)->fetchAll();
+    $prepare = $db->prepare($requete);
+    $prepare->execute();
+    return $prepare->fetchAll();
 }
 
 function infoRequeteManager(PDO $db) {
     $requete = "SELECT first_name, last_name, email, id, 'médecin' as origine from manager where is_active=0";
-    return $db->query($requete)->fetchAll();
+    $prepare = $db->prepare($requete);
+    $prepare->execute();
+    return $prepare->fetchAll();
 }
 
 function infoFaq(PDO $db) {
-    $FAQ = 'SELECT id, question, answer, first_name, last_name from faq join manager where faq.admin=manager.id' ;
-    return $db->query($FAQ)->fetchAll();
+    $FAQ = "SELECT faq.id as id, question, answer, first_name, last_name from faq LEFT JOIN administrator ON faq.admin=administrator.id" ;
+    $prepare = $db->prepare($FAQ);
+    $prepare->execute();
+    return $prepare->fetchAll();
 }
 
 function rejeter(PDO $db, $id, $origine) {
@@ -74,17 +93,36 @@ function rejeter(PDO $db, $id, $origine) {
         $origine='manager';
     }
     $rejeter = "DELETE FROM :origine WHERE id=:id ";
-    $db->prepare($rejeter)->execute(array('origine' => $origine, 'id' => $id ));
+    $prepare = $db->prepare($rejeter);
+    $prepare->execute(array('origine' => $origine, 'id' => $id ));
 }
 
 function ajoutQuestion(PDO $db, $question, $answer) {
-    $question = 'INSERT INTO faq(question, answer, admin) VALUES(:question, :answer, :admin');
-
-    $db->prepare($question)->execute(array(
+    $ajout = 'INSERT INTO faq(question, answer, admin) VALUES(:question, :answer, :admin)';
+    $prepare = $db->prepare($ajout);
+    $prepare->execute(array(
         'question' => $question,
         'answer' => $answer,
-        'admin' => $_SESSION['id'],
-	));
+        'admin' => 1,
+    ));
+}
+
+function supQuestion(PDO $db, $id) {
+    $sup = "DELETE FROM faq WHERE id= :id";
+    $prepare = $db->prepare($sup);
+    $prepare->bindParam(':id', $id, PDO::PARAM_INT);
+    $prepare->execute();
+}
+
+function modifQuestion(PDO $db, $id, $question, $answer) {
+    $modif = 'UPDATE faq SET question = :question, answer = :answer, admin = :admin WHERE id = :id';
+    $prepare = $db->prepare($modif);
+    $prepare->execute(array(
+        'question' => $question,
+        'answer' => $answer,
+        'admin' => 1,
+        'id' => $id,
+    ));
 }
 
 ?>

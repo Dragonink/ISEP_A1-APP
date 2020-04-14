@@ -1,7 +1,6 @@
 <?php
 
 include('../controllers/adminDonnees.php');
-
 if (isset($_GET["fonction"])){
     if (($_GET["fonction"]=='dispositif') && (isset($_GET["value"]) && isset($_GET["recherche"]))){
         echo listeInfoDispositif($db, $_GET["value"], $_GET["recherche"]);
@@ -21,6 +20,14 @@ if (isset($_GET["fonction"])){
     } elseif (($_GET["fonction"]=='validAjoutQuestion') && (isset($_GET["question"]) && isset($_GET["answer"]))){
         ajoutQuestion($db, $_GET["question"], $_GET["answer"]);
         echo listeFAQ($db);
+    } elseif (($_GET["fonction"]=='modifQuestion') && (isset($_GET["id"]) && isset($_GET["question"]) && isset($_GET["answer"]))){
+        modifQuestion($db, $_GET["id"], $_GET["question"], $_GET["answer"]);
+        echo listeFAQ($db);
+    } elseif (($_GET["fonction"]=='supQuestion') && (isset($_GET["id"]))){
+        supQuestion($db, $_GET["id"]);
+        echo listeFAQ($db);
+    } else {
+        echo "erreur";
     }
 } 
 

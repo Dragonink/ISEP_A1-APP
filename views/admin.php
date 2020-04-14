@@ -1,5 +1,6 @@
 <?php
     include('../controllers/adminDonnees.php');
+
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +102,7 @@
                         <h1> FAQ </h1>
                         <button class="ajouterQuestion" onclick="ajouterQuestion()"> Ajouter question </button>
                     </div>
-                    <div class="listeQuestionsAdmin"><?php echo listeFAQ($db)?><div id="questionSup"></div></div>
+                    <div class="listeQuestionsAdmin"><?php echo listeFAQ($db)?></div>
                 </div>
             </div>
         </section>

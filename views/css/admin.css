@@ -351,16 +351,23 @@ textarea {
     margin: 2% 0%;
 }
 
-.listeQuestionsAdmin > div > div {
+.listeQuestionsAdmin > div , #questionSup > div{
     width: 100%;
     display: flex;
     flex-direction: column;
 }
 
-.listeQuestionsAdmin > div > div > div{
-    margin: 0% 1%;
+.listeQuestionsAdmin > div > div , #questionSup > div > div{
     display: flex;
     flex-direction: row;
+}
+
+.listeQuestionsAdmin > div > div > div , #questionSup  > div > div > div {
+    margin: 0% 1%;
+}
+
+#questionSup > div > div{
+    margin: 0%;
 }
 
 .listeQuestionsAdmin img{
@@ -380,16 +387,19 @@ textarea {
 }
 
 .vide {
-    width : 73%;
+    flex: 1;
     text-align : right;
     color: gray;
     text-decoration: underline;
 }
 
+.listeQuestionsAdmin .reponse #reponse, .affichageModifier #reponse {
+    margin: 0px 5%;
+    width: 100%;
+}
+
 .listeQuestionsAdmin .reponse #reponse{
     border: 1px groove var(--colorFooter);
-    margin: 0px 5%;
-    width: 90%;
 }
 
 /* modification admin */

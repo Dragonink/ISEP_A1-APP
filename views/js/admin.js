@@ -86,6 +86,16 @@ function ajouterQuestion() {
     document.getElementById("questionSup").innerHTML = PHPCall("/adminRefresh.php?fonction=ajoutQuestion");
 }
 
+function supQuestion(id) {
+    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=supQuestion&id=" + id);
+}
+
+function modifQuestion(id, number) {
+    var question=document.getElementsByClassName('question')[number-1].value;
+    var answer=document.getElementsByClassName('answer')[number-1].value;
+    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=modifQuestion&id=" + id +"&question=" + question + "&answer=" + answer);
+}
+
 function closeAddQuestion() {
     document.getElementById("questionSup").innerHTML = "";
 }
@@ -94,9 +104,10 @@ function rejeter(page, value, recherche, id, origine){
     document.getElementById("questionSup").innerHTML = PHPCall("/adminRefresh.php?fonction=rejeter&page=" + page + "&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
 }
 
-function validAjoutQuestion(question, answer){
-    document.getElementByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=validAjoutQuestion&question" + question + "&answer=" + answer);
-    closeAddQuestion();
+function validAjoutQuestion(){
+    var question=document.getElementById('newQuestion').value;
+    var answer=document.getElementById('newAnswer').value;
+    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=validAjoutQuestion&question=" + question + "&answer=" + answer);
 }
 
 function graphe(){
