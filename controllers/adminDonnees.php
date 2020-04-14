@@ -1,5 +1,5 @@
 <?php
 
-include('../model/requeteAdmin.php');
+include('../models/requeteAdmin.php');
 
 ?>
