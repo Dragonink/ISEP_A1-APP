@@ -141,7 +141,7 @@ li {
 	max-width: 100%;
 	height: auto;
 	left: 40%;
-	top: 131px;
+	top: 13%;
 	overflow: visible;
 }
 .image_bg {
@@ -157,8 +157,8 @@ li {
 
 #InfiniteMeasures {
 	position: absolute;
-	left: 20%;
-	top: 550px;
+	left: 19%;
+	top: 55%;
 	overflow: visible;
 	white-space: nowrap;
 	text-align: left;
