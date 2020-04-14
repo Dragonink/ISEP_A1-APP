@@ -26,7 +26,7 @@ function initTests() {
                 clone.querySelector("th").textContent = "Mémorisation de couleurs";
                 break;
             case "stim":
-                clone.querySelector("th").textContent = "Réaction à des stimuli";
+                clone.querySelector("th").textContent = "Réaction à des stimuli visuels";
                 break;
         }
         tbody.appendChild(clone);
@@ -61,7 +61,7 @@ function nextTest() {
             break;
         case "stim":
             document.getElementById("test-icon").src = "images/test_visuel.png";
-            document.getElementById("test-title").innerHTML = "Réaction à des stimuli";
+            document.getElementById("test-title").innerHTML = "Réaction à des stimuli visuels";
             document.getElementById("test-desc").innerHTML = "Ce test consiste à déterminer votre temps de réaction à un stimulus visuel.\nPour ce faire, la LED colorée, située sur votre appareil, va s’allumer. Votre objectif est d’appuyer de plus rapidement possible sur un bouton.";
             break;
     }
