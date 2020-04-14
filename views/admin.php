@@ -96,12 +96,12 @@
                     </table>
                     <?php echo listeInfoUtilisateur($db, 0, '')?>
                 </div>
-                <div id="4" class="choix" style="display: none;">
+                <div id="3" class="choix" style="display: none;">
                     <div id="adminFAQ">
                         <h1> FAQ </h1>
-                        <button class="ajouterQuestion"> Ajouter question </button>
+                        <button class="ajouterQuestion" onclick="ajouterQuestion()"> Ajouter question </button>
                     </div>
-                    <div class="listeQuestionsAdmin"><?php echo listeFAQ($db)?></div>
+                    <div class="listeQuestionsAdmin"><?php echo listeFAQ($db)?><div id="questionSup"></div></div>
                 </div>
             </div>
         </section>

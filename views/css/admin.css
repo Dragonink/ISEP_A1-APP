@@ -351,21 +351,23 @@ textarea {
     margin: 2% 0%;
 }
 
-.listeQuestionsAdmin > div > div, .listeQuestionsAdmin > form > div {
+.listeQuestionsAdmin > div > div {
     width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.listeQuestionsAdmin > div > div > div{
+    margin: 0% 1%;
     display: flex;
     flex-direction: row;
 }
 
-.listeQuestionsAdmin > div > div > div, .listeQuestionsAdmin > form > div >div{
-    margin: 0% 1%;
-}
-
-.listeQuestionsAdmin img {
+.listeQuestionsAdmin img{
     height: 25px;
     width: 25px;
 }
-.listeQuestionsAdmin .question div {
+.listeQuestionsAdmin .titreQuestion div {
     font-size: 25px;
 }
 

@@ -43,13 +43,48 @@ function infoDispositif(PDO $db) {
 }
 
 function infoUtilisateur(PDO $db) {
-    $dispositif = 'SELECT first_name, last_name, email, picture from administrator,user ,manager  where administrator.is_active=1 and manager.is_active=1';
-    return $db->query($dispositif)->fetchAll();
+    $utilisateur = "SELECT first_name, last_name, email, picture, 'administrator' as origine from administrator union all SELECT first_name, last_name, email, picture, 'user' as origine from user, union all SELECT first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 ";
+    return $db->query($utilisateur)->fetchAll();
+}
+
+function infoRequete(PDO $db) {
+    $requete = "SELECT first_name, last_name, email, id, 'administrateur' as origine from administrator union all SELECT first_name, last_name, email, id, 'médecin' as origine from manager  where is_active=0 ";
+    return $db->query($requete)->fetchAll();
+}
+
+function infoRequeteAdmin(PDO $db) {
+    $requete = "SELECT first_name, last_name, email, id, 'administrateur' as origine from administrator where is_active=0";
+    return $db->query($requete)->fetchAll();
+}
+
+function infoRequeteManager(PDO $db) {
+    $requete = "SELECT first_name, last_name, email, id, 'médecin' as origine from manager where is_active=0";
+    return $db->query($requete)->fetchAll();
 }
 
 function infoFaq(PDO $db) {
-    $dispositif = 'SELECT id, question, answer, first_name, last_name from faq join manager where faq.admin=manager.id' ;
-    return $db->query($dispositif)->fetchAll();
+    $FAQ = 'SELECT id, question, answer, first_name, last_name from faq join manager where faq.admin=manager.id' ;
+    return $db->query($FAQ)->fetchAll();
+}
+
+function rejeter(PDO $db, $id, $origine) {
+    if ($origine == 'administrateur') {
+        $origine='administrator';
+    } elseif ($origine == 'médecin') {
+        $origine='manager';
+    }
+    $rejeter = "DELETE FROM :origine WHERE id=:id ";
+    $db->prepare($rejeter)->execute(array('origine' => $origine, 'id' => $id ));
+}
+
+function ajoutQuestion(PDO $db, $question, $answer) {
+    $question = 'INSERT INTO faq(question, answer, admin) VALUES(:question, :answer, :admin');
+
+    $db->prepare($question)->execute(array(
+        'question' => $question,
+        'answer' => $answer,
+        'admin' => $_SESSION['id'],
+	));
 }
 
 ?>

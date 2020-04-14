@@ -10,10 +10,10 @@ function PHPCall(url){
     }
     if (request){
         try {
-            var tmpURL = url.split("?");
-            request.open("post", tmpURL[0], false);
+            var tmpURL = url;
+            request.open("post", tmpURL, false);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            request.send((tmpURL[1] != null) ? encodeURI(tmpURL[1]) : "");
+            request.send((tmpURL != null) ? encodeURI(tmpURL) : "");
             return decodeURI(unescape(request.responseText));
         } catch (errv) {
             alert("The system is not working properly, please contact your support." + "\n(" + url + ")");
@@ -70,7 +70,7 @@ function openRequetes() {
 
 function openRequete(number) {
     var i, demande;
-    document.getElementById("requete").innerHTML = PHPCall("/listeInfoRequete.php?value=" + number);
+    document.getElementById("requete").innerHTML = PHPCall("/adminRefresh.php?fonction=requete&value=" + number);
     demande = document.getElementsByClassName("demande");
     for (i = 0; i < demande.length; i++) {
         demande[i].className = demande[i].className.replace(" actif", "");
@@ -80,6 +80,23 @@ function openRequete(number) {
 
 function closeRequetes() {
     document.getElementsByClassName("requetes")[0].style.display="none";
+}
+
+function ajouterQuestion() {
+    document.getElementById("questionSup").innerHTML = PHPCall("/adminRefresh.php?fonction=ajoutQuestion");
+}
+
+function closeAddQuestion() {
+    document.getElementById("questionSup").innerHTML = "";
+}
+
+function rejeter(page, value, recherche, id, origine){
+    document.getElementById("questionSup").innerHTML = PHPCall("/adminRefresh.php?fonction=rejeter&page=" + page + "&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
+}
+
+function validAjoutQuestion(question, answer){
+    document.getElementByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=validAjoutQuestion&question" + question + "&answer=" + answer);
+    closeAddQuestion();
 }
 
 function graphe(){
