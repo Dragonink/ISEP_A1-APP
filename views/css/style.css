@@ -141,7 +141,7 @@ li {
 	max-width: 100%;
 	height: auto;
 	left: 39%;
-	top: 13%;
+	top: 20%;
 	overflow: visible;
 }
 .image_bg {
@@ -155,10 +155,45 @@ li {
             linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
 }
 
+#Image1 {
+	position: absolute;
+	max-width: 100%;
+	height: auto;
+	left: 70%;
+	top: 130%;
+	overflow: visible;
+	border-radius: 100%;
+}
+.image_qsn {
+	position: absolute;
+	overflow: visible;
+	width: 20em;
+	height: 20em;
+	left: 80%;
+	top: 130%;
+}
+
+#Image2 {
+	position: absolute;
+	max-width: 100%;
+	height: auto;
+	left: 60%;
+	top: 215%;
+	overflow: visible;
+}
+.image_ntp {
+	position: absolute;
+	overflow: visible;
+	width: 20em;
+	height: 20em;
+	left: 80%;
+	top: 145%;
+}
+
 #InfiniteMeasures {
 	position: absolute;
 	left: 19%;
-	top: 55%;
+	top: 70%;
 	overflow: visible;
 	white-space: nowrap;
 	text-align: left;
@@ -168,16 +203,7 @@ li {
 	font-size: 8vw;
 	color: rgb(5,5,5);
 }
-.qsn_ellipse {
-	position: absolute;
-	overflow: visible;
-	width: 20em;
-	height: 20em;
-	left: 70%;
-	top: 130%;
-	border-radius: 50%;
-	background: antiquewhite;
-}
+
 .qsn_bg {
 	overflow: visible;
 	position: absolute;
@@ -189,7 +215,7 @@ li {
 #qsn_titre{
 	position: absolute;
 	left: 7%;
-	top: 110%;
+	top: 105%;
 	overflow: visible;
 	text-align: left;
 	font-family: Segoe UI;
@@ -201,7 +227,7 @@ li {
 #qsn_texte {
 	position: absolute;
 	left: 7%;
-	top: 125%;
+	top: 120%;
 	overflow: visible;
 	text-align: left;
 	font-family: Segoe UI;
@@ -231,7 +257,7 @@ li {
 #ntp_titre {
 	position: absolute;
 	left: 7%;
-	top: 210%;
+	top: 215%;
 	overflow: visible;
 	text-align: left;
 	font-family: Segoe UI;
@@ -242,7 +268,7 @@ li {
 #ntp_texte {
 	position: absolute;
 	left: 7%;
-	top: 225%;
+	top: 230%;
 	overflow: visible;
 	white-space: nowrap;
 	text-align: left;
@@ -498,8 +524,6 @@ li {
     border: 1px groove var(--colorFooter);
     max-width: 75%;
 }
-
-
 
 .Envoyer {
 	position: absolute;
