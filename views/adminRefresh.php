@@ -15,8 +15,14 @@ if (isset($_GET["fonction"])){
         if ($_GET["page"]=='requete') {
             echo listeInfoRequete($db, $_GET["value"]);
         } elseif ($_GET["page"]=='utilisateur') {
-             echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
+            echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
         }
+    } else if (($_GET["fonction"]=='validerRequete') && (isset($_GET["value"]) && isset($_GET["id"]) && isset($_GET["origine"]))){
+        validerRequete($db, $_GET["id"], $_GET["origine"]);
+        echo listeInfoRequete($db, $_GET["value"]);
+    } else if (($_GET["fonction"]=='bannir') && (isset($_GET["value"]) && isset($_GET["recherche"]) && isset($_GET["id"]) && isset($_GET["origine"]))){
+        bannir($db, $_GET["id"], $_GET["origine"]);
+        echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
     } elseif (($_GET["fonction"]=='validAjoutQuestion') && (isset($_GET["question"]) && isset($_GET["answer"]))){
         ajoutQuestion($db, $_GET["question"], $_GET["answer"]);
         echo listeFAQ($db);
@@ -26,6 +32,19 @@ if (isset($_GET["fonction"])){
     } elseif (($_GET["fonction"]=='supQuestion') && (isset($_GET["id"]))){
         supQuestion($db, $_GET["id"]);
         echo listeFAQ($db);
+    } elseif($_GET["fonction"]=='ajout') { //a enlever par la suite
+        ajout($db);
+        echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
+    } elseif ($_GET["fonction"]=='nbRequete'){
+        echo nombreRequete($db);
+    } elseif ($_GET["fonction"]=='nbRequeteAdmin'){
+        echo nombreRequeteAdmin($db);
+    } elseif ($_GET["fonction"]=='nbRequeteManager'){
+        echo nombreRequeteManager($db);
+    } elseif ($_GET["fonction"]=='nbUtilisateur'){
+        echo nombreUtilisateur($db);
+    } elseif ($_GET["fonction"]=='nbTest'){
+        echo nombreTestsRealises($db);
     } else {
         echo "erreur";
     }

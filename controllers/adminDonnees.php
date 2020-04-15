@@ -111,20 +111,27 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
             $resultat .="<td>" .$value['first_name'] ." " .$value['last_name'] ."</td>"
                                 ."<td class='modifierSupprimer'>"
                                     ."<img src='images/iconModifier.png' />"
-                                    ."<img src='images/iconCroix.png'/>"
+                                    ."<img src='images/iconCroix.png' onclick=\"rejeter('utilisateur', " .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"
                                 ."</td>"
                             ."</tr>"
                             ."<tr> <td>" .$value['email'] ."</td> </tr>"
                             ."<tr>"
                                 ."<td colspan='2' class='iconGerer'>"
                                     ."<img src='images/iconVoirProfil.png' />"
-                                    ."<img src='images/iconContacter.png' />"
-                                    ."<img src='images/iconBannir.png' />"
+                                    ."<a href='mailto:" .$value['email'] ."'><img src='images/iconContacter.png' /></a>"
+                                    ."<img src='images/iconBannir.png' onclick=\"bannir(" .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"
                                 ."</td>"
                             ."</tr>"
                         ."</table></td>";
+            if ($key%12==0 && $key+1==$nombre){
+                $resultat .= "<td></td><td></td><td></td>";
+            } elseif ($key%12==1 && $key+1==$nombre){
+                $resultat .= "<td></td><td></td>";
+            } elseif ($key%12==2 && $key+1==$nombre){
+                $resultat .= "<td></td>";
+            }
 
-            if ($key%12==11){
+            if ($key%12==11 || $key+1==$nombre){
                 $resultat .= "</tr></table>";
             } elseif (($key%12==3) or ($key%12==7)){
                 $resultat .= "</tr>";
@@ -184,8 +191,8 @@ function listeInfoRequete(PDO $db, $valeur){
                                     ."<td>" .$value['email'] ."</td>"
                                 ."</tr>"
                                 ."<tr>"
-                                    ."<td class='valider'><button> Valider </button></td>"
-                                    ."<td class='rejeter'><button onclick=\"rejeter('requete', " .$valeur .", ''," .$value['id'] ." , " .$value['origine'] .")\"> Rejeter </button></td>"
+                                    ."<td class='valider'><button onclick=\"validerRequete(" .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."')\"=> Valider </button></td>"
+                                    ."<td class='rejeter'><button onclick=\"rejeter('requete', " .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."')\"> Rejeter </button></td>"
                                 ."</tr>"
                             ."</table>";
         }

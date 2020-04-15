@@ -25,13 +25,13 @@
             <div class="requetes" style="display: none;">
                 <div class="content">
                     <div id="menuRequetes">
-                        <button class= "demande actif" onclick="openRequete(0)"> Toutes les demandes (<?php echo nombreRequete($db) ?>) </button>
-                        <button class= "demande" onclick="openRequete(1)"><img src="images/iconSecurite.png"> Demandes administrateur (<?php echo nombreRequeteAdmin($db) ?>) </button>
-                        <button class= "demande" onclick="openRequete(2)"><img src="images/iconDispositif.png"> Demandes médecins (<?php echo nombreRequeteManager($db) ?>) </button>
+                        <button class= "demande actif" onclick="openRequete(0)"> Toutes les demandes (<font id='nbRequete'><?php echo nombreRequete($db) ?></font>) </button>
+                        <button class= "demande" onclick="openRequete(1)"><img src="images/iconSecurite.png"> Demandes administrateur (<font id='nbRequeteAdmin'><?php echo nombreRequeteAdmin($db) ?></font>) </button>
+                        <button class= "demande" onclick="openRequete(2)"><img src="images/iconDispositif.png"> Demandes médecins (<font id='nbRequeteManager'><?php echo nombreRequeteManager($db) ?></font>) </button>
                     </div>
                     <div id="affichageRequetes">
                         <button class="close" onclick="closeRequetes()"><img src="images/iconCroix.png"></button>
-                        <div id="requete"><?php echo listeInfoRequete($db, 0) ?></div>
+                        <div id="requete" class="requete"><?php echo listeInfoRequete($db, 0) ?></div>
                     </div>
                 </div>
             </div>
@@ -46,8 +46,8 @@
                     <div id="adminDashboard">
                         <h1> Dashboard </h1> 
                         <div class="chiffreCle">
-                            <div class = "visites"><h3>Total des utilisateurs:</h3> &nbsp; <h2><?php echo nombreUtilisateur($db) ?></h2></div>
-                            <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2><?php echo nombreTestsRealises($db)?></h2></div>
+                            <div class = "visites"><h3>Total des utilisateurs:</h3> &nbsp; <h2 id='nbUtilisateur'><?php echo nombreUtilisateur($db) ?></h2></div>
+                            <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2 id='nbUtilisateur'><?php echo nombreTestsRealises($db)?></h2></div>
                         </div>
                         <div class="statistiques"><h3>Statistiques</h3>
                             <canvas id="graphStats" width="400" height="90"> </canvas>
@@ -87,15 +87,16 @@
                             <td class="recherche" > <input type="search" id="admin-search-utilisateur" name="adminSearchUtilisateur" aria-label="Search through site content" placeholder="Recherche" > </td>
                         </tr>
                         <tr>
-                            <td><a href='inscription.html' style="color: black;"><img src="images/iconAjouterUser.png" /> Ajouter un utilisateur </a> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="images/iconOuvrir.png"/></button> </td>
+                            <!--<td><a href='inscription.html' style="color: black;"><img src="images/iconAjouterUser.png" /> Ajouter un utilisateur </a> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="images/iconOuvrir.png"/></button> </td>-->
+                            <td><button onclick="ajout()"><img src="images/iconAjouterUser.png" /> Ajouter un utilisateur </button> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="images/iconOuvrir.png"/></button> </td>
                             <td> <select size="1">
-                                <option value disabled selected > Trier par: </option>
+                                <option value="0"> Trier par: </option>
                                 <option value="1"> Option 1 </option>
                                 <option value="2"> Option 2 </option>
                             </select> </td>
                         </tr>
                     </table>
-                    <?php echo listeInfoUtilisateur($db, 0, '')?>
+                    <div id="listeInfoUtilisateur"><?php echo listeInfoUtilisateur($db, 0, '')?></div>
                 </div>
                 <div id="3" class="choix" style="display: none;">
                     <div id="adminFAQ">

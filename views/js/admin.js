@@ -68,6 +68,15 @@ function openRequetes() {
     document.getElementsByClassName("requetes")[0].style.display="block";
 }
 
+function supUtilisateur(id, origine) {
+    document.getElementById("listeInfoUtilisateur").inerrHTML = PHPCall("/adminRefresh.php?fonction=supUtilisateur&id=" + id +"&origine=" +origine);
+    document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
+}
+
+function ajout(){
+    document.getElementById("listeInfoUtilisateur").inerrHTML = PHPCall("/adminRefresh.php?fonction=ajout");
+}
+
 function openRequete(number) {
     var i, demande;
     document.getElementById("requete").innerHTML = PHPCall("/adminRefresh.php?fonction=requete&value=" + number);
@@ -101,7 +110,29 @@ function closeAddQuestion() {
 }
 
 function rejeter(page, value, recherche, id, origine){
-    document.getElementById("questionSup").innerHTML = PHPCall("/adminRefresh.php?fonction=rejeter&page=" + page + "&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
+    if (page=='requete'){
+        document.getElementById("requete").innerHTML = PHPCall("/adminRefresh.php?fonction=rejeter&page=" + page + "&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
+        document.getElementById("nbRequete").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequete");
+        document.getElementById("nbRequeteAdmin").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequeteAdmin");
+        document.getElementById("nbRequeteManager").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequeteManager");
+    } else if (page=='utilisateur'){
+        document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=rejeter&page=" + page + "&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
+        document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
+    }
+}
+
+function validerRequete(value, recherche, id, origine){
+    document.getElementById("requete").innerHTML = PHPCall("/adminRefresh.php?fonction=validerRequete&value=" + value + "&id=" + id + "&origine=" + origine);
+    document.getElementById("nbRequete").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequete");
+    document.getElementById("nbRequeteAdmin").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequeteAdmin");
+    document.getElementById("nbRequeteManager").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequeteManager");
+    document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=utilisateur&value=" + value + "&recherche=" + recherche);
+    document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
+}
+
+function bannir(value, recherche, id, origine){
+    document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=bannir&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
+    document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
 }
 
 function validAjoutQuestion(){

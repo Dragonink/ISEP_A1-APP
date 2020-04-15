@@ -3,9 +3,16 @@
 include("requeteGenerique.php"); 
 
 function nombreUtilisateur(PDO $db):int {
-    $query = 'SELECT count(*) from administrator, user ,manager  where administrator.is_active=1 and manager.is_active=1';
-    $prepare = $db->query($query);
-    return $prepare->fetchColumn();
+    $queryAdmin = 'SELECT count(*) from administrator where administrator.is_active=1';
+    $queryUser = 'SELECT count(*) from user';
+    $queryMan = 'SELECT count(*) from manager where manager.is_active=1';
+    $prepareAdmin = $db->query($queryAdmin);
+    $nbAdmin = $prepareAdmin->fetchColumn();
+    $prepareUser = $db->query($queryUser);
+    $nbUser = $prepareUser->fetchColumn();
+    $prepareMan = $db->query($queryMan);
+    $nbMan = $prepareMan->fetchColumn();
+    return ($nbAdmin + $nbUser + $nbMan);
 }
 
 function nombreTestsRealises(PDO $db):int {
@@ -15,9 +22,13 @@ function nombreTestsRealises(PDO $db):int {
 }
 
 function nombreRequete(PDO $db):int {
-    $query = 'SELECT count(*) from administrator, manager  where administrator.is_active=0 and manager.is_active=0';
-    $prepare = $db->query($query);
-    return $prepare->fetchColumn();
+    $queryAdmin = 'SELECT count(*) from administrator where administrator.is_active=0';
+    $queryMan = 'SELECT count(*) from manager where manager.is_active=0';
+    $prepareAdmin = $db->query($queryAdmin);
+    $nbAdmin = $prepareAdmin->fetchColumn();
+    $prepareMan = $db->query($queryMan);
+    $nbMan = $prepareMan->fetchColumn();
+    return ($nbAdmin + $nbMan);
 }
 
 function nombreRequeteAdmin(PDO $db):int {
@@ -52,28 +63,28 @@ function infoDispositif(PDO $db) {
 }
 
 function infoUtilisateur(PDO $db) {
-    $utilisateur = "SELECT first_name, last_name, email, picture, 'administrator' as origine from administrator union all SELECT first_name, last_name, email, picture, 'user' as origine from user, union all SELECT first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 ";
+    $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 ";
     $prepare = $db->prepare($utilisateur);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function infoRequete(PDO $db) {
-    $requete = "SELECT first_name, last_name, email, id, 'administrateur' as origine from administrator union all SELECT first_name, last_name, email, id, 'médecin' as origine from manager  where is_active=0 ";
+    $requete = "SELECT first_name, last_name, email, id, 'Administrateur' as origine from administrator where is_active=0 union all SELECT first_name, last_name, email, id, 'Médecin' as origine from manager  where is_active=0 ";
     $prepare = $db->prepare($requete);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function infoRequeteAdmin(PDO $db) {
-    $requete = "SELECT first_name, last_name, email, id, 'administrateur' as origine from administrator where is_active=0";
+    $requete = "SELECT first_name, last_name, email, id, 'Administrateur' as origine from administrator where is_active=0";
     $prepare = $db->prepare($requete);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function infoRequeteManager(PDO $db) {
-    $requete = "SELECT first_name, last_name, email, id, 'médecin' as origine from manager where is_active=0";
+    $requete = "SELECT first_name, last_name, email, id, 'Médecin' as origine from manager where is_active=0";
     $prepare = $db->prepare($requete);
     $prepare->execute();
     return $prepare->fetchAll();
@@ -86,15 +97,20 @@ function infoFaq(PDO $db) {
     return $prepare->fetchAll();
 }
 
-function rejeter(PDO $db, $id, $origine) {
-    if ($origine == 'administrateur') {
+function rejeter(PDO $db,int $id, $origine) {
+    $nomid='id';
+    if ($origine =='Administrateur') {
         $origine='administrator';
-    } elseif ($origine == 'médecin') {
+    } elseif ($origine =='Médecin') {
         $origine='manager';
     }
-    $rejeter = "DELETE FROM :origine WHERE id=:id ";
+    if ($origine =='user'){
+        $nomid='nss';
+    }
+    $rejeter = "DELETE FROM " .$origine." WHERE " .$nomid ." = :id ";
     $prepare = $db->prepare($rejeter);
-    $prepare->execute(array('origine' => $origine, 'id' => $id ));
+    $prepare->bindParam(':id', $id, PDO::PARAM_INT);
+    $prepare->execute();
 }
 
 function ajoutQuestion(PDO $db, $question, $answer) {
@@ -123,6 +139,34 @@ function modifQuestion(PDO $db, $id, $question, $answer) {
         'admin' => 1,
         'id' => $id,
     ));
+}
+
+function ajout(PDO $db){
+    $modif ="INSERT INTO administrator(id, first_name, last_name, email, password, is_active) VALUES(1, 'Axelle', 'Martin', 'truc@gmail.com', 'truc', 1)";
+    $coucou ="INSERT INTO administrator( first_name, last_name, email, password) VALUES('Axelle', 'Martin', 'axelle.martin@gmail.com', 'truc')";
+    $db->prepare($modif)->execute();
+    $db->prepare($coucou)->execute();
+}
+
+function bannir(PDO $db,int $id, $origine){
+    rejeter($db,$id, $origine);
+    $nomid='id';
+    if ($origine =='user'){
+        $nomid='nss';
+    }
+    $banni ="INSERT INTO banned( user) VALUES(" .$id .")";
+    $db->prepare($banni)->execute();
+}
+
+function validerRequete(PDO $db, int $id, $origine){
+    if ($origine =='Administrateur') {
+        $origine='administrator';
+    } elseif ($origine =='Médecin') {
+        $origine='manager';
+    }
+    $valider = "UPDATE " .$origine ." SET is_active=1 WHERE id =" .$id;
+    $prepare = $db->prepare($valider);
+    $prepare->execute();
 }
 
 ?>
