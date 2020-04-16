@@ -1,0 +1,191 @@
+:root {
+    --colorHeader: rgb(24, 55, 94, 0.86);
+    --colorFooter: rgb(24, 55, 94);
+    --colorAdmin: rgb(180, 218, 240, 0.61);
+    --colorChoixAdmin:  rgb(34, 37, 41, 0.4);
+    --colorFAQ: rgb(100, 162, 186);
+}
+
+/* utilisateur */
+
+table {
+    width: 96%;
+    margin: 0% 2% 2% 2%;
+    min-height: 66.5%;
+}
+
+table td {
+    width: 50%;
+}
+
+.infoProfil td {
+    max-width: 50%;
+}
+
+.donneesPersonnelles {
+    min-width: 90%;
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    margin-top: 10%;
+}
+
+.donneesPersonnelles div {
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.donneesPersonnelles img {
+    width: 100px;
+    border-radius: 100%;
+}
+
+.resultatDernierTest {
+    text-align: center;
+}
+
+.resultatDernierTest div{
+    margin-top: 10px;
+}
+
+.titre {
+    font-size: 30px;
+}
+
+.choix {
+    text-align: right;
+}
+
+/* ModifUtilisateur */
+
+#Validation{
+	float: right;
+	background-color: #18375E;
+	text-align: center;
+	color: white;
+}
+#Annulation{
+	float: right;
+	background-color: grey;
+	text-align: center;
+	color: white;
+}
+#text{
+	border-style:solid;
+	border-width: 0.5px;
+}
+#info{
+	border-style: solid;
+	border-width: 0.5px;
+	padding-top: 20px;
+	padding-right: 130px;
+	padding-left: 130px;
+	padding-bottom: 100px;
+	width: 400px;
+	height: 550px;
+}
+
+/*modifutilisateur */
+h2 {
+	color: #18375E;
+	text-decoration: none;
+}
+#nom {
+	margin-left: 230px;
+	font-size: 30px;
+}
+#prénom {
+	margin-left: 230px;
+}
+#Validation{
+	margin-right: 70px;
+	float: right;
+	padding-top: 15px;
+	background-color: #18375E;
+	background-size: 110px;
+	text-align: center;
+	color: white;
+	height: 50px;
+	width: auto;
+	border-radius: 11px;
+}
+#roundedImage{
+	overflow:hidden;
+    border-radius:50px;
+    border-style: solid;
+    border-width: 0.5px;
+    margin-left: 70px;
+    background-color: white;
+    width:120px;
+    height:120px;
+}
+#Annulation{
+	padding-top: 15px;
+	padding-left: 25px;
+	padding-right: 25px;
+	float: right;
+	background-color: grey;
+	margin-right: 120px;
+	text-align: center;
+	color: white;
+	height: 50px;
+	border-radius: 11px;
+	width: auto;
+}
+#text{
+	margin-top: 100px;
+	border-style:solid;
+	border-width: 0.5px;
+	padding-top: 65px;
+	margin-left: 15px;
+	margin-right: 15px;
+	height: 180px;
+	display: flex;
+	flex-direction: row;
+}
+#info{
+	margin-top: 25px;
+	margin-left: 50px;
+	border-style: solid;
+	border-width: 0.5px;
+	padding-top: 20px;
+	padding-right: 130px;
+	padding-left: 130px;
+	padding-bottom: 100px;
+	width: 400px;
+	height: 400px;
+}
+#infos {
+	float: right;
+	margin-top: 25px;
+	margin-right: 50px;
+	border-style: solid;
+	border-width: 0.5px;
+	padding-top: 68px;
+	padding-right: 130px;
+	padding-left: 130px;
+	padding-bottom: 100px;
+	width: 400px;
+	height: 352px;
+	
+}
+#infors {
+	display: flex;
+	flex-direction: row;
+}
+
+#tête {
+	display: flex;
+    flex-direction: row;
+    padding: 5px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+#data {
+	margin-top: 30px;
+}
