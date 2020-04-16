@@ -17,7 +17,45 @@
 </head>
 
 <body>
-
+	<div class="examen" style="display: none;">
+		<div class="content">
+			<div class="personne">
+				<img src="images/iconProfil.jpg" />
+				<div>Prénom</div> &nbsp; <div> Nom </div>
+			</div>
+			<hr>
+			<p> Liste des tests disponibles</p>
+			<div class="testChoix">
+				<div> Test 1</div>
+				<div> Description</div>
+				<input type="checkbox" class="test" name="test1" unchecked>
+			</div>
+			<div class="testChoix">
+				<div> Test 2</div>
+				<div> Description</div>
+				<input type="checkbox" class="test" name="test2" unchecked>
+			</div>
+			<div class="testChoix">
+				<div> Test 3</div>
+				<div> Description</div>
+				<input type="checkbox" class="test" name="test3" unchecked>
+			</div>
+			<div class="testChoix">
+				<div> Test 4</div>
+				<div> Description</div>
+				<input type="checkbox" class="test" name="test4" unchecked>
+			</div>
+			<div class="testChoix">
+				<div> Test 5</div>
+				<div> Description</div>
+				<input type="checkbox" class="test" name="test5" unchecked>
+			</div>
+			<div class="buttons">
+				<button id="valider"> Valider </button>
+				<button id="annuler" onclick="annulerExamen()"> Annuler </button>
+			</div>
+		</div>
+	</div>
 	<table class="infoProfil">
 		<tr>
 			<td class="donneesPersonnelles">
@@ -32,21 +70,28 @@
 			<td id="stats">
 				<div class="statistiques">
 					<div class="resultatsTests">
-						<h1> Résultats tests</h1>
-						<canvas id="grapheResultat"></canvas>
+						<canvas id="grapheResultat" width='550' height='400'></canvas>
 					</div>
 					<div class="legende">
-						<select id="criteres" name="critères" onChange="charger_graphe()">
+						<select id="criteres" name="critères" onChange="graphe()">
 							<option value="0"> Critères </option>
 							<option value="1"> Sexe</option>
 							<option value="2"> Age </option>
-							</select>
-						<div id="typeDeTest" class="typeDe"></div>
+						</select>
+						<select id= 'type de test' class= 'typedetest' onChange='graphe()'>
+							<option value='0'> Type de test </option>
+							<option value='1'> test1 </option>
+							<option value='2'> test2 </option>
+							<option value='3'> test3 </option>
+							<option value='4'> test4 </option>
+							<option value='5'> test5 </option>
+						</select>
 					</div>
 				</div>
 			</td>
 		</tr>
 	</table>
+	<hr>
 	<div id="patient">
 		<h1> Vos patients </h1>
 		<div class="recherche">
@@ -64,213 +109,104 @@
 				<tr> 
 					<td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
 					<td> Nom Prénom </td>
-					<td class="modifierSupprimer" >
-						<img src="images/iconModifier.png" />
-						<img src="images/iconCroix.png"/>
-					</td>
 				</tr>
 				<tr> <td> Info 1 </td> </tr>
 				<tr> <td> Info 2 </td> </tr>
 				<tr>
-					<td colspan="2" class="iconGerer">
+					<td class="iconGerer">
+						<img src="images/iconCheck.png" onclick="openExamen()"/>
 						<img src="images/iconVoirProfil.png" />
 						<img src="images/iconContacter.png" />
-						<img src="images/iconBannir.png" />
 					</td> 
 				</tr>
 			</table></td>
-			<td><table class="utilisateur">
-				<tr> 
-					<td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
-					<td> Nom Prénom </td>
-					<td class="modifierSupprimer" >
-						<img src="images/iconModifier.png" />
-						<img src="images/iconCroix.png"/>
-					</td>
-				</tr>
-				<tr> <td> Info 1 </td> </tr>
-				<tr> <td> Info 2 </td> </tr>
-				<tr>
-					<td colspan="2" class="iconGerer">
-						<img src="images/iconVoirProfil.png" />
-						<img src="images/iconContacter.png" />
-						<img src="images/iconBannir.png" />
-					</td> 
-				</tr>
-			</table></td>
-			<td></td>
-			<td></td>
-		</tr>
-		<tr>
-			<td><table class="utilisateur">
-				<tr> 
-					<td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
-					<td> Nom Prénom </td>
-					<td class="modifierSupprimer" >
-						<img src="images/iconModifier.png" />
-						<img src="images/iconCroix.png"/>
-					</td>
-				</tr>
-				<tr> <td> Info 1 </td> </tr>
-				<tr> <td> Info 2 </td> </tr>
-				<tr>
-					<td colspan="2" class="iconGerer">
-						<img src="images/iconVoirProfil.png" />
-						<img src="images/iconContacter.png" />
-						<img src="images/iconBannir.png" />
-					</td> 
-				</tr>
-			</table></td>
-		</tr>
-		<tr>
-			<td><table class="utilisateur">
-				<tr> 
-					<td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
-					<td> Nom Prénom </td>
-					<td class="modifierSupprimer" >
-						<img src="images/iconModifier.png" />
-						<img src="images/iconCroix.png"/>
-					</td>
-				</tr>
-				<tr> <td> Info 1 </td> </tr>
-				<tr> <td> Info 2 </td> </tr>
-				<tr>
-					<td colspan="2" class="iconGerer">
-						<img src="images/iconVoirProfil.png" />
-						<img src="images/iconContacter.png" />
-						<img src="images/iconBannir.png" />
-					</td> 
-				</tr>
-			</table></td>
+			<td> </td>
+			<td> </td>
+			<td> </td>
 		</tr>
 	</table>
 </body>
 <script LANGUAGE="JavaScript">
 
-	var randomScalingFactor = function () {
-		return Math.round(Math.random() * 100);
-	};
+	graphe();
 
-	var config = {
-		type: 'doughnut',
-		data: {
-			datasets: [{
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-					randomScalingFactor(),
-				],
-				backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-					window.chartColors.yellow,
-					window.chartColors.green,
-					window.chartColors.blue,
-				],
-				label: 'Dataset 1'
-			}],
-			labels: [
-				'Red',
-				'Orange',
-				'Yellow',
-				'Green',
-				'Blue'
-			]
-		},
-		options: {
-			responsive: true,
-			legend: {
-				position: 'top',
-			},
-			title: {
-				display: true,
-				text: 'Graphes test'
-			},
-			animation: {
-				animateScale: true,
-				animateRotate: true
-			}
-		}
-	};
-
-	var config11 = {
-		type: 'bar',
-		data: {
-			datasets: [{
-				data: [
-					randomScalingFactor(),
-					randomScalingFactor(),
-
-				],
-				backgroundColor: [
-					window.chartColors.red,
-					window.chartColors.orange,
-				],
-				label: 'Dataset 1'
-			}],
-			labels: [
-				'Red',
-				'Orange',
-			]
-		},
-		options: {
-			responsive: true,
-			legend: {
-				position: 'top',
-			},
-			title: {
-				display: true,
-				text: 'Chart.js Doughnut Chart'
-			},
-			animation: {
-				animateScale: true,
-				animateRotate: true
-			}
-		}
-	};
-
-
-	window.onload = function () {
-		var ctx = document.getElementById('grapheResultat').getContext('2d');
-		window.myDoughnut = new Chart(ctx, config);
-	};
-
-
-
-	function charger_graphe() {
-		var choix = document.getElementById('criteres').value;
-		var graph = ""
-
-		if (choix == 1) {
-			graph = "<select id= 'type de test' class= 'typedetest' onChange='tracer_graph()'>";
-			graph += "<option value='0'> Type de test </option>";
-			graph += "<option value='1'> test1 </option>";
-			graph += "<option value= '2'> test2 </option>";
-			graph += "<option value='3'> test3 </option>";
-			graph += "<option value='4'> test4 </option>";
-			graph += "<option value='5'> test5 </option>";
-			graph += "</select>";
-
-
-			typeDeTest.innerHTML = graph;
-
-		}
-		else {
-			alert("veuillez  choisir un critère ");
-
-		}
-	}
-	function tracer_graph() {
+	function graphe() {
+		var color= ['red','yellow','green','blue','purple'];
+		var ctx=document.getElementById('grapheResultat').getContext('2d');
+		var critere = document.getElementById('criteres').value;
 		var type = document.getElementById('type de test').value;
-		if (type == 1) {
-			config.data.datasets.splice(0, 1);
-			window.myDoughnut.update();
-			resultatsTests.innerHTML = new Chart(ctx, config);
+		if (critere=='0'){
+			let chart  = new Chart(ctx, {
+				type: 'doughnut',
+				data: {
+					datasets: [{
+						data: [20, 40, 60, 80, 100],
+						backgroundColor: color,
+						label: 'Dataset 1'
+					}],
+					labels: color,
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+		} else if (critere=='1'){
+			let chart  = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					datasets: [{
+						data: [20,40],
+						backgroundColor: [color[0],color[1]],
+						label: 'Dataset 1'
+					}],
+					labels: [
+						'Red',
+						'Orange',
+					]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
+		} else if (critere=='2'){
+			let chart  = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					datasets: [{
+						data: [20,40,60],
+						backgroundColor: [color[0],color[1],color[2]],
+						label: ''
+					}],
+					labels: [
+						'0-18 ans ',
+						'18-35 ans',
+						'+35 ans',
+					]
+				},
+				options: {
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					}
+				}
+			});
 		}
-
 	}
-</script>
 
+</script>
 </html>

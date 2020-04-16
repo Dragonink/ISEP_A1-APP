@@ -1,5 +1,13 @@
 var color = ['red', 'yellow', 'green', 'blue', 'purple'];
 
+function openExamen() {
+    document.getElementsByClassName("examen")[0].style.display = "block";
+}
+
+function annulerExamen() {
+    document.getElementsByClassName("examen")[0].style.display = "none";
+}
+
 function dernierTest() {
     let ctx = document.getElementById('resultatDernierTestGraph').getContext('2d');
     let chart = new Chart(ctx, {
