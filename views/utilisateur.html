@@ -1,72 +1,74 @@
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <html>
+    <head>
 
-<head>
+        <!-- JS -->
+        <script src="js/code.js"></script>
+        <script src="js/profil.js"></script>
+        <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
-    <!-- JS -->
-    <script src="js/code.js"></script>
-    <script src="js/profil.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <!-- CSS -->
+        <link href="css/profil.css" rel="stylesheet" type="text/css">
+        <link href="css/style.css" rel="stylesheet" type="text/css">
 
-    <!-- CSS -->
-    <link href="css/profil.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    </head>
 
-</head>
+    <body>
+        <header id="navHeader"></header>
 
-<body>
+        <table class="infoProfil">
+            <tr>
+                <td class="donneesPersonnelles">
+                    <div>
+                        <img src="images/iconProfil.jpg"/>
+                        <div>Prénom</div> &nbsp; <div> Nom </div> 
+                    </div>
+                    <div>Sexe: homme/femme</div>
+                    <div> Date de naissance: mm/aaaa </div>
+                    <div> E-mail: truc@bidule.com </div>
+                    <div> Numéro de sécurité sociale: s aa mm dd 1111 1111 11 </div>
+                    <div> Numéro de téléphone: 01 11 11 11 11</div>
+                    <div> Médecin: Prénom Nom </div>
+                </td> 
+                <td class="resultatDernierTest">
+                    <canvas id="resultatDernierTestGraph"> </canvas>
+                    <div class="démarrerTest" style="display: none;">
+                        <form>
+                            id passerelle &nbsp; <input type="text" name="idPasserelle" placeholder="idPasserelle"/>
+                            <input type="button" value="Effetuer Test" onclick="demarrerTest()">
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <table class="resultatTest">
+            <tr>
+                <td class="titre"> Résultats des tests </td>
+                <td class="choix">
+                    <select id="choix" size="1" onchange="resultatTest()">
+                        <option value="0" selected > Tout les test </option>
+                        <option value="1"> Test 1 </option>
+                        <option value="2"> Test 2 </option>
+                        <option value="3"> Test 3 </option>
+                        <option value="4"> Test 4 </option>
+                        <option value="5"> Test 5 </option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" class="test">
+                    <canvas id="resultatTestGraph" width="400" height="180"></canvas>
+                </td>
+            </tr>
+        </table>
 
-    <table class="infoProfil">
-        <tr>
-            <td class="donneesPersonnelles">
-                <div>
-                    <img src="../images/iconProfil.jpg" />
-                    <div>Prénom</div> &nbsp; <div> Nom </div>
-                </div>
-                <div>Sexe: homme/femme</div>
-                <div> Date de naissance: mm/aaaa </div>
-                <div> E-mail: truc@bidule.com </div>
-                <div> Numéro de sécurité sociale: s aa mm dd 1111 1111 11 </div>
-                <div> Numéro de téléphone: 01 11 11 11 11</div>
-                <div> Médecin: Prénom Nom </div>
-            </td>
-            <td class="resultatDernierTest">
-                <canvas id="resultatDernierTestGraph"> </canvas>
-                <div class="démarrerTest" style="display: none;">
-                    <form>
-                        id passerelle &nbsp; <input type="text" name="idPasserelle" placeholder="idPasserelle" />
-                        <input type="button" value="Effetuer Test" onclick="demarrerTest()">
-                    </form>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <table class="resultatTest">
-        <tr>
-            <td class="titre"> Résultats des tests </td>
-            <td class="choix">
-                <select id="choix" size="1" onchange="resultatTest()">
-                    <option value="0" selected> Tout les test </option>
-                    <option value="1"> Test 1 </option>
-                    <option value="2"> Test 2 </option>
-                    <option value="3"> Test 3 </option>
-                    <option value="4"> Test 4 </option>
-                    <option value="5"> Test 5 </option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" class="test">
-                <canvas id="resultatTestGraph" width="400" height="180"></canvas>
-            </td>
-        </tr>
-    </table>
-
-</body>
-<script LANGUAGE='JavaScript'>
-    dernierTest();
-    resultatTest();
-</script>
-
+	    <section id="navFooter"></section>
+    </body>
+    <script LANGUAGE='JavaScript'> 
+        header();
+        dernierTest();
+        resultatTest();
+	    footer();
+    </script>
 </html>

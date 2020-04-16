@@ -6,7 +6,7 @@
     --colorFAQ: rgb(100, 162, 186);
 }
 
-/* utilisateur */
+/* general */
 
 table {
     width: 96%;
@@ -44,6 +44,8 @@ table td {
     width: 100px;
     border-radius: 100%;
 }
+
+/* utilisateur */
 
 .resultatDernierTest {
     text-align: center;
@@ -188,4 +190,62 @@ h2 {
 }
 #data {
 	margin-top: 30px;
+}
+
+/* gestionnaire */
+
+.statistiques {
+    display: flex;
+    flex-direction: row;
+}
+
+#patient {
+    display: flex;
+    margin: 0% 2% 2% 2%;
+    justify-content: space-between ;
+    flex-direction: row;
+}
+
+.recherche{
+    margin-top: auto;
+    width: 50%;
+}
+
+h1 {
+    margin: 0%;
+}
+
+.affichageResultat {
+    width: 100%;
+    padding: 2%;
+    border-collapse : separate;
+    border-spacing : 20px;
+}
+
+.affichageResultat td {
+    width: 25%;
+}
+
+.utilisateur {
+    background-color: white;
+    border-radius: 15px;
+    width: 100%;
+}
+
+.utilisateur td{
+    width: auto;
+}
+
+.photoProfil{
+    width: 110px;
+}
+
+.photoProfil img {
+    border-radius: 100%;
+    width: 100px;
+}
+
+.iconGerer img {
+    width: 20px;
+    height: 20px;
 }
