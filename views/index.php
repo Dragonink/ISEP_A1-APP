@@ -6,6 +6,7 @@
 
     <meta charset="UTF-8"/>
     <title>Infinite Measures</title>
+    <link rel="stylesheet" href="css/header-footer.css"/>
 
 </head>
 
