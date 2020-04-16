@@ -14,7 +14,7 @@ USE `infinite_measures`;
 
 DROP TABLE IF EXISTS `administrator`;
 CREATE TABLE `administrator` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
   `email` text NOT NULL,
@@ -29,7 +29,7 @@ CREATE TABLE `administrator` (
 
 DROP TABLE IF EXISTS `manager`;
 CREATE TABLE `manager` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
   `email` text NOT NULL,
@@ -47,12 +47,12 @@ CREATE TABLE `manager` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `nss` int NOT NULL,
+  `nss` bigint NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
-  `manager` int NOT NULL,
+  `manager` int,
   `phone` varchar(15) DEFAULT NULL,
   `picture` mediumblob,
   PRIMARY KEY (`nss`),
@@ -67,7 +67,7 @@ CREATE TABLE `user` (
 
 DROP TABLE IF EXISTS `banned`;
 CREATE TABLE `banned` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `user` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user` (`user`),
@@ -80,11 +80,11 @@ CREATE TABLE `banned` (
 
 DROP TABLE IF EXISTS `console`;
 CREATE TABLE `console` (
-  `id` int NOT NULL,
+  `id` mediumint NOT NULL,
   `manager` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `manager` (`manager`),
-  CONSTRAINT `console_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`)
+  CONSTRAINT `console_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -93,7 +93,7 @@ CREATE TABLE `console` (
 
 DROP TABLE IF EXISTS `exam`;
 CREATE TABLE `exam` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `user` int NOT NULL,
   `console` int NOT NULL,
   PRIMARY KEY (`id`),
@@ -109,7 +109,7 @@ CREATE TABLE `exam` (
 
 DROP TABLE IF EXISTS `faq`;
 CREATE TABLE `faq` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `admin` int NOT NULL,
   `question` text NOT NULL,
   `answer` text NOT NULL,
@@ -124,7 +124,7 @@ CREATE TABLE `faq` (
 
 DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
-  `id` int NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
   `exam` int NOT NULL,
   `type` varchar(3) NOT NULL,
   `start_time` timestamp NULL DEFAULT NULL,
