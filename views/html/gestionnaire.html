@@ -9,7 +9,7 @@
         <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
         <!-- CSS -->
-        <link href="../css/profil.css" rel="stylesheet" type="text/css">
+        <link href="../css/profilG.css" rel="stylesheet" type="text/css">
         <link href="../css/style.css" rel="stylesheet" type="text/css">
 
     </head>
@@ -27,43 +27,97 @@
                     <div>Sexe: homme/femme</div>
                     <div> Date de naissance: mm/aaaa </div>
                     <div> E-mail: truc@bidule.com </div>
-                    <div> Numéro de téléphone: 01 11 11 11 11</div>
-                </td> 
-                <td class="resultatDernierTest">
-                    <canvas id="resultatDernierTestGraph"> </canvas>
-                    <div class="démarrerTest" style="display: none;">
-                        <form>
-                            id passerelle &nbsp; <input type="text" name="idPasserelle" placeholder="idPasserelle"/>
-                            <input type="button" value="Effetuer Test" onclick="demarrerTest()">
-                        </form>
-                    </div>
+                    <div> Numéro de téléphone: XX XX XX XX XX</div>
+					<div> Adresse du cabinet :</div>
                 </td>
-            </tr>
-        </table>
-        <table class="resultatTest">
-            <tr>
-                <td class="titre"> Résultats des tests </td>
-                <td class="choix">
-                    <select id="choix" size="1" onchange="resultatTest()">
-                        <option value="0" selected > Tout les test </option>
-                        <option value="1"> Test 1 </option>
-                        <option value="2"> Test 2 </option>
-                        <option value="3"> Test 3 </option>
-                        <option value="4"> Test 4 </option>
-                        <option value="5"> Test 5 </option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" class="test">
-                    <canvas id="resultatTestGraph" width="400" height="180"></canvas>
-                </td>
-            </tr>
-        </table>
+			</tr>
+		</table>
+				
+<div id="Stats">				
+         <section id="resultatsTests">
+  				<h1> Résultats tests</h1>
+  		<canvas id = "myChart"></canvas>
+		</section>
 
-	    <section id="navFooter"></section>
+	<div class="legende">
+
+		<div class="filtre">
+
+  			<form class="criteres">
+    		<select name = "critères">
+      		<option value=""> Critères </option>
+			<option value=""> Sexe</option>
+			<option value=""> Age </option>
+
+      		</select>
+      		</form>
+
+      		<form class="typeDeTest">
+        	<select name = "type de test ">
+         	<option value=""> Type de test </option>
+					<option value=""> test1 </option>
+					<option value=""> test2 </option>
+					<option value=""> test3 </option>
+					<option value=""> test4 </option>
+					<option value=""> test5 </option>
+          </select>
+          </form>
+		</div>
+	</div>
+
+  <script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['test1', 'test2', 'test3', 'test4','test5'],
+        datasets: [{
+          label: 'résultats tests',
+          data: [12, 19, 3, 5,6],
+          backgroundColor: [
+          'rgba(255, 99, 132, 0.5)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(255, 206, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(255, 0, 0,0.5)'
+          ],
+          borderColor: [
+          'rgba(255,99,132,1)',
+          'rgba(54, 162, 235, 1)',
+          'rgba(255, 206, 86, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 0, 0,1)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+   	//cutoutPercentage: 40,
+    responsive: false,
+
+  }
+});
+	</script>
+</div>
+	<div id="Liste_des_patients">
+		<span>Liste des patients</span>		 
+    </div>
+	<div id="rectangle"></div>
+	<div id="tri"></div>
+	<div id="search_icon">
+		<img src="../../APP-2/views/images/Icon Search@2x.png" width="45" alt=""/>
+		</div>
+	<div class="wrapper">
+	  	<div id="Un"></div>
+  		<div id="Deux"></div>
+  		<div id="Trois"></div>
+  		<div id="Quatre"></div>
+  		<div id="Cinq"></div>
+	</div>
+	 
+	<section id="navFooter"></section>
     </body>
-    <script LANGUAGE='JavaScript'> 
+    <script LANGUAGE="JavaScript"> 
         header();
         dernierTest();
         resultatTest();
