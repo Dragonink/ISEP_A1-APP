@@ -1,0 +1,261 @@
+body, html {
+	--colorHome: rgb(24,55,94);
+
+    height: auto;
+    width: 100%;
+	margin: 0;
+    background-color: none;
+}
+#Image {
+	position: absolute;
+	max-width: 100%;
+	height: auto;
+	left: 39%;
+	top: 20%;
+	overflow: visible;
+}
+.image_bg {
+	overflow: visible;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 72px;
+	background: linear-gradient(217deg, rgba(7, 218, 233, 0.8), rgba(0, 132, 255, 0) 70.71%),
+            linear-gradient(127deg, rgba(0, 195, 255, 0.8), rgba(0, 174, 255, 0) 70.71%),
+            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+}
+
+#Image1 {
+	position: absolute;
+	max-width: 100%;
+	height: auto;
+	left: 70%;
+	top: 130%;
+	overflow: visible;
+	border-radius: 100%;
+}
+.image_qsn {
+	position: absolute;
+	overflow: visible;
+	width: 20em;
+	height: 20em;
+}
+
+#Image2 {
+	position: absolute;
+	max-width: 100%;
+	height: auto;
+	left: 60%;
+	top: 215%;
+	overflow: visible;
+}
+.image_ntp {
+	position: absolute;
+	overflow: visible;
+	width: 20em;
+	height: 20em;
+}
+
+#InfiniteMeasures {
+	position: absolute;
+	left: 19%;
+	top: 70%;
+	overflow: visible;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 8vw;
+	color: rgb(5,5,5);
+}
+
+.qsn_bg {
+	overflow: visible;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 100%;
+	background: var(--colorHome);
+}
+#qsn_titre{
+	position: absolute;
+	left: 7%;
+	top: 105%;
+	overflow: visible;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 3vw;
+	color: rgb(255,255,255);
+}
+#qsn_texte {
+	position: absolute;
+	left: 7%;
+	top: 120%;
+	overflow: visible;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 2vw;
+	color: rgb(255,255,255);
+}
+.ntp_bg {
+	position: absolute;
+	overflow: visible;
+	width: 100%;
+	height: 100%;
+	top: 200%;
+	background-color: rgb(212,212,212);
+}
+.ntp_ellipse {
+	position: absolute;
+	overflow: visible;
+	width: 20em;
+	height: 20em;
+	left: 70%;
+	top: 230%;
+	border-radius: 50%;
+	background: antiquewhite;
+}
+#ntp_titre {
+	position: absolute;
+	left: 7%;
+	top: 215%;
+	overflow: visible;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 3vw;
+}
+#ntp_texte {
+	position: absolute;
+	left: 7%;
+	top: 230%;
+	overflow: visible;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 2vw;
+}
+#Contact {
+	position: absolute;
+	left: 5%;
+	top: 310%;
+	overflow: visible;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 3vw;
+	color: rgb(255,255,255);
+}
+#Ou_nous_trouver {
+	position: absolute;
+	left: 55%;
+	top: 310%;
+	overflow: visible;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 3vw;
+	color: rgb(255,255,255);
+}
+.contact_bg {
+	overflow: visible;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 300%;
+	background: var(--colorHome);
+}
+.envoyer_rect {
+	position: absolute;
+	overflow: visible;
+	width: 410px;
+	height: 69px;
+	left: 212px;
+	top: 3801px;
+	border-radius: 20px;
+	background: lightskyblue;
+}
+.email_rect {
+	position: absolute;
+	overflow: visible;
+	width: 34%;
+	height: 7%;
+	left: 5%;
+	top: 325%;
+	color : white;
+}
+
+.objet_rect {
+	position: absolute;
+	overflow: visible;
+	width: 34%;
+	height: 7%;
+	left: 5%;
+	top: 334%;
+	color : white;
+}
+.contact_texte {
+	position: absolute;
+	overflow: visible;
+	left: 5%;
+	top: 343%;
+	color : white;
+}
+
+textarea {
+ 	resize: none;
+}
+
+#Adresse {
+	position: absolute;
+	left: 55%;
+	top: 320%;
+	overflow: visible;
+	white-space: nowrap;
+	text-align: left;
+	font-family: Segoe UI;
+	font-style: normal;
+	font-weight: normal;
+	font-size: 1.8vw;
+	color: rgb(255,255,255);
+}
+
+.Envoyer {
+	position: absolute;
+	overflow: visible;
+	width: 20%;
+	height: 8%;
+	left: 12%;
+	top: 382%;
+	border-radius: 20px;
+	background: lightskyblue;
+}
+
+#Carte {
+	position: absolute;
+	overflow: visible;
+	max-width: 100%;
+	top: 328%;
+	left: 55%;
+}
+.map {
+	position: absolute;
+	overflow: visible;
+	width: 40%;
+	height: 50%;
+	top: 328%;
+	left: 55%;
+	background-image: url(../images/map.png);
+}

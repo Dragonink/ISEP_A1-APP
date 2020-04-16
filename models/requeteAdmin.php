@@ -1,6 +1,6 @@
 <?php
 
-include("requeteGenerique.php"); 
+require("connexionSQL.php");
 
 function nombreUtilisateur(PDO $db):int {
     $queryAdmin = 'SELECT count(*) from administrator where administrator.is_active=1';

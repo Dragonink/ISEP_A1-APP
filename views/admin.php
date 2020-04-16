@@ -14,13 +14,13 @@
         <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
         <!-- CSS -->
+        <link rel="stylesheet" href="css/header-footer.css"/>
         <link href="css/admin.css" rel="stylesheet" type="text/css">
-        <link href="css/style.css" rel="stylesheet" type="text/css">
 
     </head>
 
     <body>
-        <header id="navHeader"></header>
+        <?php require "_header.php"; ?>
         <section id="contenuAdmin">
             <div class="requetes" style="display: none;">
                 <div class="content">
@@ -44,7 +44,7 @@
             <div id="affichageAdmin">
                 <div id="0" class="choix" style="display: block;">
                     <div id="adminDashboard">
-                        <h1> Dashboard </h1> 
+                        <h1> Dashboard </h1>
                         <div class="chiffreCle">
                             <div class = "visites"><h3>Total des utilisateurs:</h3> &nbsp; <h2 id='nbUtilisateur'><?php echo nombreUtilisateur($db) ?></h2></div>
                             <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2 id='nbUtilisateur'><?php echo nombreTestsRealises($db)?></h2></div>
@@ -61,7 +61,7 @@
                             <td class="recherche" ><input type="search" id="admin-search-dispositif" name="adminSearchDispositif" aria-label="Search through site content" placeholder="Recherche" style="width: 100%;"> </td>
                         </tr>
                         <tr>
-                            <td> 
+                            <td>
                                 <button class="buttonAddDispositif" onclick="openAddDispositif()"> <img src="images/iconAddDispositif.png"/> Ajouter un dispositif </button>
                                 <div class="addDispositif">
                                     <img src="images/iconAddDispositif.png" style="height: 16.5pt;"/>
@@ -111,7 +111,6 @@
         </section>
     </body>
     <script LANGUAGE='JavaScript'>
-        header();
-        graphe(); 
+        graphe();
     </script>
 </html>
