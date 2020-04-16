@@ -8,6 +8,13 @@
 
 /* admin */
 
+body, html {
+    width: 100vw;
+    height: 100vh;
+	margin: 0;
+    background-color: none;
+}
+
 button {
     display: block;
     background-color: inherit;
@@ -48,8 +55,9 @@ button {
 }
 
 #affichageAdmin {
-    width: 90%;
-    padding:0px;
+    width: 88vw;
+    height:90vh;
+    padding: 0px;
 }
 
 #affichageAdmin .choix {
