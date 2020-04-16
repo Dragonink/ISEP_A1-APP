@@ -7,6 +7,7 @@
 }
 
 /* admin */
+
 button {
     display: block;
     background-color: inherit;
@@ -67,10 +68,10 @@ button {
 }
 
 .affichageResultat {
-    width: 100%;
+    width: 96%;
     padding: 2%;
     border-collapse : separate;
-    border-spacing : 20px;
+    border-spacing : 5px;
 }
 
 .affichageResultat td {
@@ -249,7 +250,6 @@ textarea {
 .addDispositif {
     display: none;
 }
-
 .addDispositif img {
     height:20px;
 }
@@ -276,6 +276,10 @@ textarea {
 }
 
 /* admin utilisateur */ 
+
+#listeInfoUtilisateur{
+    width: 100%;
+}
 
 #adminUtilisateur {
     width: 95%;
@@ -346,37 +350,65 @@ textarea {
     border-spacing : 10px;
 }
 
-.listeQuestionsAdmin img {
+.listeQuestionsAdmin > div{
+    width: 100%;
+    margin: 2% 0%;
+}
+
+.listeQuestionsAdmin > div , #questionSup > div{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.listeQuestionsAdmin > div > div , #questionSup > div > div{
+    display: flex;
+    flex-direction: row;
+}
+
+.listeQuestionsAdmin > div > div > div , #questionSup  > div > div > div {
+    margin: 0% 1%;
+}
+
+#questionSup > div > div{
+    margin: 0%;
+}
+
+.listeQuestionsAdmin img{
     height: 25px;
     width: 25px;
 }
-.listeQuestionsAdmin .question td {
+.listeQuestionsAdmin .titreQuestion div {
     font-size: 25px;
 }
 
-.listeQuestionsAdmin .affichage td {
+.listeQuestionsAdmin .affichage div {
     font-size: 25px;
 }
 
-.listeQuestionsAdmin .modifier td {
+.listeQuestionsAdmin .modifier div {
     font-size: 25px;
 }
 
 .vide {
-    width : 60%;
+    flex: 1;
     text-align : right;
     color: gray;
     text-decoration: underline;
 }
 
+.listeQuestionsAdmin .reponse #reponse, .affichageModifier #reponse {
+    margin: 0px 5%;
+    width: 100%;
+}
+
 .listeQuestionsAdmin .reponse #reponse{
     border: 1px groove var(--colorFooter);
-    max-width: 75%;
 }
 
 /* modification admin */
 
-form {
+.modificationProfil {
     background-color: white;
     width: 30%;
     border-radius: 15px;
@@ -388,16 +420,16 @@ form {
     flex-direction: column;
 }
 
-form h2{
+.modificationProfil h2{
     color: var(--colorFooter);
 }
 
-form p{
+.modificationProfil p{
     width:100%;
     text-align: right;
 }
 
-form input{
+.modificationProfil input{
     width: 100%;
 }
 
@@ -405,12 +437,12 @@ table{
     width: 90%;
 }
 
-form div{
+.modificationProfil div{
     display: flex;
     flex-direction: row;
 }
 
-form div button{
+.modificationProfil div button{
     margin: 1% 5%;
     padding: 2% 10%;
     width: 40%;
