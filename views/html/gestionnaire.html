@@ -34,70 +34,167 @@
 		</table>
 				
 <div id="Stats">				
-         <section id="resultatsTests">
-  				<h1> Résultats tests</h1>
-  		<canvas id = "myChart"></canvas>
-		</section>
+        <div class="resultatsTests">
+  <h1> Résultats tests<h1>
 
-	<div class="legende">
+  <canvas id = "grapheResultat"></canvas>
 
-		<div class="filtre">
+</div>
 
-  			<form class="criteres">
-    		<select name = "critères">
-      		<option value=""> Critères </option>
-			<option value=""> Sexe</option>
-			<option value=""> Age </option>
+<div class="legende">
 
-      		</select>
-      		</form>
+	<div class="filtre">
 
-      		<form class="typeDeTest">
-        	<select name = "type de test ">
-         	<option value=""> Type de test </option>
-					<option value=""> test1 </option>
-					<option value=""> test2 </option>
-					<option value=""> test3 </option>
-					<option value=""> test4 </option>
-					<option value=""> test5 </option>
-          </select>
-          </form>
-		</div>
-	</div>
+  <div class="criteres">
+    <select id="criteres" name = "critères" onChange="charger_graphe()">
+      <option value="0"> Critères </option>
+			<option value="1"> Sexe</option>
+			<option value="2"> Age </option>
+
+      </select>
+      </div>
+
+      <div id ="typeDeTest" class ="typeDe">
+      </div>
+				</div>
+									</div>
+								</div>
+
+
+
+
 
   <script>
-    var ctx = document.getElementById("myChart");
-    var myChart = new Chart(ctx, {
-      type: 'doughnut',
-      data: {
-        labels: ['test1', 'test2', 'test3', 'test4','test5'],
-        datasets: [{
-          label: 'résultats tests',
-          data: [12, 19, 3, 5,6],
-          backgroundColor: [
-          'rgba(255, 99, 132, 0.5)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(255, 0, 0,0.5)'
-          ],
-          borderColor: [
-          'rgba(255,99,132,1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(255, 0, 0,1)'
-          ],
-          borderWidth: 1
-        }]
-      },
-      options: {
-   	//cutoutPercentage: 40,
-    responsive: false,
 
-  }
-});
-	</script>
+    var randomScalingFactor = function() {
+			return Math.round(Math.random() * 100);
+		};
+
+		var config = {
+			type: 'doughnut',
+			data: {
+				datasets: [{
+					data: [
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+						randomScalingFactor(),
+					],
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.orange,
+						window.chartColors.yellow,
+						window.chartColors.green,
+						window.chartColors.blue,
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Red',
+					'Orange',
+					'Yellow',
+					'Green',
+					'Blue'
+				]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: 'Graphes test'
+				},
+				animation: {
+					animateScale: true,
+					animateRotate: true
+				}
+			}
+		};
+
+    var config11 = {
+			type: 'bar',
+			data: {
+				datasets: [{
+					data: [
+						randomScalingFactor(),
+            randomScalingFactor(),
+
+					],
+					backgroundColor: [
+						window.chartColors.red,
+						window.chartColors.orange,
+					],
+					label: 'Dataset 1'
+				}],
+				labels: [
+					'Red',
+					'Orange',
+				]
+			},
+			options: {
+				responsive: true,
+				legend: {
+					position: 'top',
+				},
+				title: {
+					display: true,
+					text: 'Chart.js Doughnut Chart'
+				},
+				animation: {
+					animateScale: true,
+					animateRotate: true
+				}
+			}
+		};
+
+
+    window.onload = function() {
+    			var ctx = document.getElementById('grapheResultat').getContext('2d');
+    			window.myDoughnut = new Chart(ctx, config);
+    		};
+
+
+
+    function charger_graphe()
+    {
+      var choix = document.getElementById('criteres').value;
+      var graph =""
+
+      if (choix ==1)
+      {
+        graph= "<select id= 'type de test' class= 'typedetest' onChange='tracer_graph()'>";
+        graph += "<option value='0'> Type de test </option>";
+        graph+= "<option value='1'> test1 </option>";
+        graph+= "<option value= '2'> test2 </option>";
+        graph+= "<option value='3'> test3 </option>";
+        graph+= "<option value='4'> test4 </option>";
+        graph+= "<option value='5'> test5 </option>";
+//        graph+="</select">;
+
+
+        typeDeTest.innerHTML= graph;
+
+      }
+      else {
+          alert ("veuillez  choisir un critère ");
+
+    }
+    }
+    function tracer_graph(){
+      var type = document.getElementById('type de test').value;
+      if(type ==1){
+        config.data.datasets.splice(0, 1);
+  			window.myDoughnut.update();
+        resultatsTests.innerHTML =new Chart(ctx, config);
+      }
+
+
+    }
+
+    </script>
 </div>
 	<div id="Liste_des_patients">
 		<span>Liste des patients</span>		 
