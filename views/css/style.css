@@ -324,7 +324,7 @@ li {
 	height: 7%;
 	left: 5%;
 	top: 325%;
-	background: white;
+	color : white;
 }
 
 .objet_rect {
@@ -334,16 +334,18 @@ li {
 	height: 7%;
 	left: 5%;
 	top: 334%;
-	background: white;
+	color : white;
 }
 .contact_texte {
 	position: absolute;
 	overflow: visible;
-	width: 34%;
-	height: 37%;
 	left: 5%;
 	top: 343%;
-	background: white;
+	color : white;
+}
+
+textarea {
+ resize: none;
 }
 
 #Adresse {
