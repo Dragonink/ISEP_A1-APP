@@ -47,12 +47,12 @@ CREATE TABLE `manager` (
 
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
-  `nss` int NOT NULL,
+  `nss` bigint NOT NULL,
   `first_name` text NOT NULL,
   `last_name` text NOT NULL,
   `email` text NOT NULL,
   `password` text NOT NULL,
-  `manager` int NOT NULL,
+  `manager` int,
   `phone` varchar(15) DEFAULT NULL,
   `picture` mediumblob,
   PRIMARY KEY (`nss`),
@@ -80,11 +80,11 @@ CREATE TABLE `banned` (
 
 DROP TABLE IF EXISTS `console`;
 CREATE TABLE `console` (
-  `id` int NOT NULL,
+  `id` mediumint NOT NULL,
   `manager` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `manager` (`manager`),
-  CONSTRAINT `console_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`)
+  CONSTRAINT `console_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
