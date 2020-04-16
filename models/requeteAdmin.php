@@ -193,5 +193,3 @@ function validerRequete(PDO $db, int $id, $origine){
     $prepare = $db->prepare($valider);
     $prepare->execute();
 }
-
-?>

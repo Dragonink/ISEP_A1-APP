@@ -15,10 +15,7 @@ function selectType(account) {
     else if (account === "manager") for (const el of document.getElementsByClassName("manager")) el.removeAttribute("disabled");
 }
 function signupCheck() {
-    if (!checkEmail(document.getElementById("email").value)) {
-        alert("Adresse email invalide.");
-        return false;
-    } else if (!checkNSS(document.getElementById("nss").value)) {
+    if (document.getElementById("signup").getAttribute("data-account") === "user" && !checkNSS(document.getElementById("nss").value)) {
         alert("Numéro de Sécurité Sociale invalide.");
         return false;
     } else return true;
