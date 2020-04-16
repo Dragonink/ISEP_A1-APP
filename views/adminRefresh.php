@@ -6,6 +6,8 @@ if (isset($_GET["fonction"])){
         echo listeInfoDispositif($db, $_GET["value"], $_GET["recherche"]);
     } elseif (($_GET["fonction"]=='utilisateur') && (isset($_GET["value"]) && isset($_GET["recherche"]))){
         echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
+    } elseif ($_GET["fonction"]=='listeManager'){
+        echo listeManager($db);
     } elseif (($_GET["fonction"]=='requete') && (isset($_GET["value"]))){
         echo listeInfoRequete($db, $_GET["value"]);
     } elseif ($_GET["fonction"]=='ajoutQuestion'){
@@ -35,6 +37,9 @@ if (isset($_GET["fonction"])){
     } elseif($_GET["fonction"]=='ajout') { //a enlever par la suite
         ajout($db);
         echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
+    } elseif (($_GET["fonction"]=='addDispositif') && (isset($_GET["value"]) && isset($_GET["recherche"]) && isset($_GET["code"]) && isset($_GET["manager"]))){
+        ajoutDispositif($db, $code, $manager);
+        echo listeInfoDispositif($db, $_GET["value"], $_GET["recherche"]);
     } elseif ($_GET["fonction"]=='nbRequete'){
         echo nombreRequete($db);
     } elseif ($_GET["fonction"]=='nbRequeteAdmin'){
@@ -46,7 +51,7 @@ if (isset($_GET["fonction"])){
     } elseif ($_GET["fonction"]=='nbTest'){
         echo nombreTestsRealises($db);
     } else {
-        echo "erreur";
+        echo "</br>Les données rentrées ne sont pas corectes!";
     }
 } 
 

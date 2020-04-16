@@ -66,7 +66,9 @@
                                 <div class="addDispositif">
                                     <img src="images/iconAddDispositif.png" style="height: 16.5pt;"/>
                                     <textarea id="addCode" name="code" cols="15" rows="1" placeholder="Code"></textarea>
-                                    <textarea id="addProprietaire" name="proprietaire" cols="15" rows="1" placeholder="Nom propriétaire"></textarea>
+                                    <select id="addDispositif" size="1">
+                                        <?php echo listeManager($db, 0, '') ?>
+                                    </select>
                                     <img src="images/iconValider.png" onclick="validateAddDispositif()" />
                                     <img src="images/iconAnnuler.png" onclick="closeAddDispositif()"/>
                                 </div>
@@ -78,7 +80,7 @@
                             </select> </td>
                         </tr>
                     </table>
-                    <?php echo listeInfoDispositif($db, 0, '')?>
+                    <div id="listeInfoDispositif"><?php echo listeInfoDispositif($db, 0, '')?></div>
                 </div>
                 <div id="2" class="choix" style="display: none;">
                     <table id="adminUtilisateur">

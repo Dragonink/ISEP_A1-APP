@@ -57,10 +57,16 @@ function openAddDispositif() {
     document.getElementsByClassName("addDispositif")[0].style.display="block";
 }
 
+function validateAddDispositif(value, recherche) {
+    var code=document.getElementById('addCode').value;
+    var manager=document.getElementById('addDispositif').value;
+    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=addDispositif&value=" + value + "&recherche" + recherche + "&code=" + code +"&manager=" + manager);
+    closeAddDispositif();
+}
+
 function closeAddDispositif() {
     document.getElementsByClassName("buttonAddDispositif")[0].style.display="block";
     document.getElementById("addCode").value="";
-    document.getElementById("addProprietaire").value="";
     document.getElementsByClassName("addDispositif")[0].style.display="none";
 }
 
@@ -69,8 +75,9 @@ function openRequetes() {
 }
 
 function supUtilisateur(id, origine) {
-    document.getElementById("listeInfoUtilisateur").inerrHTML = PHPCall("/adminRefresh.php?fonction=supUtilisateur&id=" + id +"&origine=" +origine);
+    document.getElementById("listeInfoUtilisateur").inerrHTML = PHPCall("/adminRefresh.php?fonction=supUtilisateur&id=" + id +"&origine=" + origine);
     document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
+    document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
 }
 
 function ajout(){
@@ -118,6 +125,7 @@ function rejeter(page, value, recherche, id, origine){
     } else if (page=='utilisateur'){
         document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=rejeter&page=" + page + "&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
         document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
+        document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
     }
 }
 
@@ -133,6 +141,7 @@ function validerRequete(value, recherche, id, origine){
 function bannir(value, recherche, id, origine){
     document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=bannir&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
     document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
+    document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
 }
 
 function validAjoutQuestion(){

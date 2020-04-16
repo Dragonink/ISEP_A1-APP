@@ -21,6 +21,12 @@ function nombreTestsRealises(PDO $db):int {
     return $prepare->fetchColumn();
 }
 
+function nombreManager(PDO $db):int {
+    $queryMan = 'SELECT count(*) from manager where manager.is_active=1';
+    $prepareMan = $db->query($queryMan);
+    return $prepareMan->fetchColumn();
+}
+
 function nombreRequete(PDO $db):int {
     $queryAdmin = 'SELECT count(*) from administrator where administrator.is_active=0';
     $queryMan = 'SELECT count(*) from manager where manager.is_active=0';
@@ -69,6 +75,13 @@ function infoUtilisateur(PDO $db) {
     return $prepare->fetchAll();
 }
 
+function infoManager(PDO $db) {
+    $manager = "SELECT id, first_name, last_name from manager where is_active=1 ";
+    $prepare = $db->prepare($manager);
+    $prepare->execute();
+    return $prepare->fetchAll();
+}
+
 function infoRequete(PDO $db) {
     $requete = "SELECT first_name, last_name, email, id, 'Administrateur' as origine from administrator where is_active=0 union all SELECT first_name, last_name, email, id, 'Médecin' as origine from manager  where is_active=0 ";
     $prepare = $db->prepare($requete);
@@ -107,10 +120,15 @@ function rejeter(PDO $db,int $id, $origine) {
     if ($origine =='user'){
         $nomid='nss';
     }
-    $rejeter = "DELETE FROM " .$origine." WHERE " .$nomid ." = :id ";
-    $prepare = $db->prepare($rejeter);
-    $prepare->bindParam(':id', $id, PDO::PARAM_INT);
-    $prepare->execute();
+    if ($origine!='administrator'){
+        $rejeter = "DELETE FROM " .$origine." WHERE " .$nomid ." = :id ";
+        $prepare = $db->prepare($rejeter);
+        $prepare->bindParam(':id', $id, PDO::PARAM_INT);
+        $prepare->execute();
+    } else {
+        $rejeter ="UPDATE " .$origine ." SET is_active=-1 WHERE id =" .$id;
+        $db->prepare($rejeter)->execute();
+    }
 }
 
 function ajoutQuestion(PDO $db, $question, $answer) {
@@ -148,14 +166,21 @@ function ajout(PDO $db){
     $db->prepare($coucou)->execute();
 }
 
+function ajoutDispositif(PDO $db,int $id, $manager){ //rajouter la vérification que le code n'est pas déjà utilisé
+    $ajout ="INSERT INTO console( id, manager) VALUES(" .$id .", " .$manager .")";
+    $db->prepare($ajout)->execute();
+}
+
 function bannir(PDO $db,int $id, $origine){
     rejeter($db,$id, $origine);
-    $nomid='id';
-    if ($origine =='user'){
-        $nomid='nss';
+    if ($origin!='administartor'){
+        $nomid='id';
+        if ($origine =='user'){
+            $nomid='nss';
+        }
+        $banni ="INSERT INTO banned( user) VALUES(" .$id .")";
+        $db->prepare($banni)->execute();
     }
-    $banni ="INSERT INTO banned( user) VALUES(" .$id .")";
-    $db->prepare($banni)->execute();
 }
 
 function validerRequete(PDO $db, int $id, $origine){

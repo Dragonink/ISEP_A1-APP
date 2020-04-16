@@ -1,6 +1,20 @@
 <?php
 include('../models/requeteAdmin.php');
 
+function listeManager(PDO $db){
+    $nombre=nombreManager($db);
+    if ($nombre!= 0){
+        $info=infoManager($db);
+        $resultat = "<option selected disabled> Nom propriétaire </option>";
+        foreach ($info as $key => $value ){
+            $resultat .= "<option value=" .$value[id] ."> " .$value[first_name] ." " .$value[last_name] ." </option>";
+        }
+    } else {
+        $resultat = "<option selected disabled> Pas de propriétaire </option>";
+    }
+    return $resultat;
+}
+
 function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
     if ($valeur==0){
         if($recherche==''){
@@ -102,7 +116,7 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
 
             $resultat .= "<td><table class='utilisateur'>"
                             ."<tr>"
-                                ."<td rowspan='3' class='photoProfil' > ";
+                                ."<td rowspan='4' class='photoProfil' > ";
             if ($value['picture']==NULL){
                 $resultat .=  "<img src='images/iconProfil.jpg'/>";
             } else{
@@ -114,11 +128,22 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
                                     ."<img src='images/iconCroix.png' onclick=\"rejeter('utilisateur', " .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"
                                 ."</td>"
                             ."</tr>"
-                            ."<tr> <td>" .$value['email'] ."</td> </tr>"
-                            ."<tr>"
-                                ."<td colspan='2' class='iconGerer'>"
-                                    ."<img src='images/iconVoirProfil.png' />"
-                                    ."<a href='mailto:" .$value['email'] ."'><img src='images/iconContacter.png' /></a>"
+                            ."<tr> <td>" .$value['email'] ."</td> </tr>";
+            if ($value['origine']=='user' ){
+                $resultat .="<tr> <td> Patient </td> </tr>";
+            } elseif ($value['origine']=='manager' ){
+                $resultat .="<tr> <td> Médecin </td> </tr>";
+            } elseif ($value['origine']=='administrator' ){
+                $resultat .="<tr> <td> Administrateur </td> </tr>";
+            } else {
+                $resultat .="<tr> <td> Inconnu </td> </tr>";
+            }
+                $resultat .="<tr>"
+                                ."<td colspan='2' class='iconGerer'>";
+            if ($value['origine']!='user' || ($value['origine']=='user' && $value['ack_share']==true)){
+                $resultat .="<img src='images/iconVoirProfil.png' />";
+            }
+            $resultat .="<a href='mailto:" .$value['email'] ."'><img src='images/iconContacter.png' /></a>"
                                     ."<img src='images/iconBannir.png' onclick=\"bannir(" .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"
                                 ."</td>"
                             ."</tr>"
@@ -270,7 +295,7 @@ function ajouterQuestion(PDO $db){
     $resultat="<div class='affichageModifier'>"
                     ."<div class='modifier' id='" .($nombre+1) ."' >"
                         ."<div>" .($nombre+1) ."</div>"
-                        ."<div> <textarea id='newQuestion' name='question' cols='20' rows='1' style='resize: none;'>Question</textarea></div>"
+                        ."<div> <textarea id='newQuestion' name='question' cols='20' rows='1' style='resize: none;' placeholder='Question'></textarea></div>"
                         ."<div class='vide' > </div>"
                         ."<div>"
                             ."<img src='images/iconValider.png' onclick='validAjoutQuestion()'/>"
@@ -279,7 +304,7 @@ function ajouterQuestion(PDO $db){
                     ."</div>"
                     ."<div class='reponseModifiable' id='" .($nombre+1) ."' >"
                         ."<div id='reponse'>"
-                            ."<textarea id='newAnswer' name='answer' cols='140' rows='8' style='resize: none;'>Réponse</textarea>"
+                            ."<textarea id='newAnswer' name='answer' cols='140' rows='8' style='resize: none;' placeholder='Réponse'></textarea>"
                         ."</div>"
                     ."</div>"
             ." </div>";
