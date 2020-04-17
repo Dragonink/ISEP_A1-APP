@@ -4,10 +4,9 @@
 ?>
 
 <!DOCTYPE html>
-<meta charset="UTF-8">
 <html>
     <head>
-
+        <meta charset="UTF-8">
         <!-- JS -->
         <script src="js/code.js"></script>
         <script src="js/admin.js"></script>

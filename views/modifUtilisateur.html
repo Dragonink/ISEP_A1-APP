@@ -1,57 +1,61 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Données</title>
+
+	<!-- JS -->
+	<script src="js/code.js"></script>
+	<script src="js/profil.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+
+	<!-- CSS -->
+	<link href="css/profil.css" rel="stylesheet" type="text/css">
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+
 </head>
+
 <body>
+	<div id="text">
+		<div id="roundedImage">
+			<img src="../images/iconProfil.jpg" />
+		</div>
+		<div id="nom">Nom Prénom</div> &nbsp; <div id="prénom"></div>
 
-	<div>
-		<img src="../images/iconProfil.jpg"/>
-		<div>Prénom</div> &nbsp; <div> Nom </div> 
+		<div id="Validation">
+			<button type="submit">Valider les modifications</button>
+		</div>
+		<div id="Annulation">
+			<button type="submit">Annuler</button>
+		</div>
 	</div>
-	<div>
-		<img src="../images/iconProfil.jpg"/>
-		<div>Prénom</div> &nbsp; <div> Nom </div> 
-	</div>
-<div id="Validation"
+	<div id="infors">
+		<div id="info">
+			<h2>Informations personnelles </h2>
+			<p>Nom</p>
+			<input type="text" name="Nom" placeholder="Identifiant" required="required" />
+			<p>Prénom</p>
+			<input type="text" name="Prénom" placeholder="Mot de passe" required="required" />
+			<p>Email</p>
+			<input type="text" name="Email" placeholder="Identifiant" required="required" />
+			<p>Vérifier Email</p>
+			<input type="text" name="Vérifier Email" placeholder="Mot de passe" required="required" />
+		</div>
+		<div id="infos">
+			<p>Numéro de téléphone</p>
+			<input type="text" name="Numéro de téléphone" placeholder="Identifiant" required="required" />
+			<p>Mot de passe</p>
+			<input type="password" name="Mot de passe" placeholder="Mot de passe" required="required" />
+			<p>Confirmation de mot de passe</p>
+			<input type="password" name="Confirmation de mot de passe">
+			<p>Médecin</p>
+			<input type="text" name="Médecin" placeholder="Identifiant" required="required" />
+			<div>
+				<input type="checkbox" id="data" name="scales"
+					unchecked>
+				<label for="scales">J'accepte que mes données soient réutilisées à des fins statiques</label>
 
-		<button type="submit">Valider les modifications</button>
-	</div>
-<div id="Annulation"
-
-		<button type="submit">Annuler</button>
-	</div>
-
-
-	<div id="info">
-
-
-<h2>Informations personnelles </h2>
-		<p>Nom<p>
-		<input type="text" name="Nom">
-<placeholder="Identifiant" required="required"/>
-		<p>Prénom</p>
-		<input type="text" name="Prénom">
-<placeholder="Mot de passe" required="required"/>
-		<p>Email</p>
-		<input type="text" name="Email">
-<placeholder="Identifiant" required="required"/>
-		<p>Vérifier Email</p>
-		<input type="text" name="Vérifier Email">
-<placeholder="Mot de passe" required="required"/>
-		<p>Numéro de téléphone</p>
-		<input type="text" name="Numéro de téléphone">
-<placeholder="Identifiant" required="required"/>
-		<p>Mot de passe</p>
-		<input type="password" name="Mot de passe">
-<placeholder="Mot de passe" required="required"/>
-		<p>Confirmation de mot de passe</p>
-		<input type="text" name="Confirmation de mot de passe">
-		<p>Médecin</p>
-		<input type="text" name="Médecin">
-<placeholder="Identifiant" required="required"/>
-		<p>J'accepte que mes données soient réutilisées à des fins statiques</p>
-    </div>
-    
+			</div>
+		</div>
 </body>
+
 </html>

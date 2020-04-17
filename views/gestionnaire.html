@@ -78,7 +78,7 @@
 							<option value="1"> Sexe</option>
 							<option value="2"> Age </option>
 						</select>
-						<select id= 'type de test' class= 'typedetest' onChange='graphe()'>
+						<select id='type de test' class='typedetest' onChange='graphe()'>
 							<option value='0'> Type de test </option>
 							<option value='1'> test1 </option>
 							<option value='2'> test2 </option>
@@ -96,30 +96,36 @@
 		<h1> Vos patients </h1>
 		<div class="recherche">
 			<select size="1">
-				<option value disabled selected > Trier par: </option>
+				<option value disabled selected> Trier par: </option>
 				<option value="1"> Option 1 </option>
 				<option value="2"> Option 2 </option>
 			</select>
-			<input type="search" id="search-patient" name="searchPatient" aria-label="Search through site content" placeholder="Recherche" > </td>
+			<input type="search" id="search-patient" name="searchPatient" aria-label="Search through site content" placeholder="Recherche"> </td>
 		</div>
 	</div>
 	<table class="affichageResultat">
 		<tr>
-			<td><table class="utilisateur">
-				<tr> 
-					<td rowspan="4" class="photoProfil" > <img src="images/iconProfil.jpg"/></td>
-					<td> Nom Prénom </td>
-				</tr>
-				<tr> <td> Info 1 </td> </tr>
-				<tr> <td> Info 2 </td> </tr>
-				<tr>
-					<td class="iconGerer">
-						<img src="images/iconCheck.png" onclick="openExamen()"/>
-						<img src="images/iconVoirProfil.png" />
-						<img src="images/iconContacter.png" />
-					</td> 
-				</tr>
-			</table></td>
+			<td>
+				<table class="utilisateur">
+					<tr>
+						<td rowspan="4" class="photoProfil"> <img src="images/iconProfil.jpg" /></td>
+						<td> Nom Prénom </td>
+					</tr>
+					<tr>
+						<td> Info 1 </td>
+					</tr>
+					<tr>
+						<td> Info 2 </td>
+					</tr>
+					<tr>
+						<td class="iconGerer">
+							<img src="images/iconCheck.png" onclick="openExamen()" />
+							<img src="images/iconVoirProfil.png" />
+							<img src="images/iconContacter.png" />
+						</td>
+					</tr>
+				</table>
+			</td>
 			<td> </td>
 			<td> </td>
 			<td> </td>
@@ -129,4 +135,5 @@
 <script LANGUAGE="JavaScript">
 	graphe();
 </script>
+
 </html>

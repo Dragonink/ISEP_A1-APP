@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<meta charset="UTF-8">
 <html>
 
 <head>
-
-	<!-- JS -->
-	<script src="../js/code.js"></script>
-
-	<!-- CSS -->
-	<link href="../css/style.css" rel="stylesheet" type="text/css">
-
+	<meta charset="UTF-8" />
 	<title>Connexion</title>
-
+	<link rel="stylesheet" type="text/css" href="css/sign.css" />
+	<script text="text/javascript" src="js/sign.js"></script>
 </head>
 
 <body>
-	<h2>INFINITE MEASURES</h2>
-
-	<h5>Heureux de vous revoir ! Veuillez vous connecter </h5>
-	<p>Identifiant</p>
-	<input type="text" name="Identifiant">
-	<placeholder="Identifiant" required="required" />
-	<p>Mot de passe</p>
-	<input type="password" name="Mot de passe">
-	<placeholder="Mot de passe" required="required" />
-	<button type="submit">Connexion</button>
+	<header>
+		<h1>INFINITE MEASURES</h1>
+		<h2>Heureux de vous revoir !<br />Veuillez vous connecter.</h2>
+	</header>
+	<main>
+		<form id="signin" method="POST" onsubmit="return signinCheck();">
+			<div>
+				<label for="account">Identifiant</label>
+				<input id="account" name="account" type="text" required />
+				<label for="password">Mot de passe</label>
+				<input id="password" name="password" type="password" required />
+			</div>
+			<button type="submit">Connexion</button>
+		</form>
+		<div>
+			<label for="signup">Vous n'avez pas de compte ?</label>
+			<a id="signup" href="inscription.html">S'inscrire</a>
+		</div>
+	</main>
+	<footer>
+		<a>Conditions Générales d'Utilisation</a>
+	</footer>
 </body>
+</head>
