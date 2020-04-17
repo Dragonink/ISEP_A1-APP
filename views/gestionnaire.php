@@ -12,11 +12,12 @@
 
 	<!-- CSS -->
 	<link href="css/profil.css" rel="stylesheet" type="text/css">
-	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/header-footer.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+	<?php require "_header.php"; ?>
 	<div class="examen" style="display: none;">
 		<div class="content">
 			<div class="personne">
@@ -131,6 +132,7 @@
 			<td> </td>
 		</tr>
 	</table>
+	<?php require "_footer.html"; ?>
 </body>
 <script LANGUAGE="JavaScript">
 	graphe();

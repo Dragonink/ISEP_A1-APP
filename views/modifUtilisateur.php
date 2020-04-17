@@ -10,11 +10,12 @@
 
 	<!-- CSS -->
 	<link href="css/profil.css" rel="stylesheet" type="text/css">
-	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/header-footer.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+	<?php require "_header.php"; ?>
 	<div id="text">
 		<div id="roundedImage">
 			<img src="../images/iconProfil.jpg" />

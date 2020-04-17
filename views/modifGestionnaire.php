@@ -6,15 +6,15 @@
 	<script src="js/code.js"></script>
 	<script src="js/profil.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-	<script src="https://www.chartjs.org/samples/latest/utils.js"></script> <!-- genere des valeurs aléatoires-->
 
 	<!-- CSS -->
 	<link href="css/profil.css" rel="stylesheet" type="text/css">
-	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/header-footer.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+	<?php require "_header.php"; ?>
 	<div id="text">
 		<div id="roundedImage">
 			<img src="images/iconProfil.jpg">

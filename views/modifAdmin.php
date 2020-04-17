@@ -4,17 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <!-- JS -->
-    <script src="../js/code.js"></script>
-    <script src="../js/admin.js"></script>
+    <script src="js/code.js"></script>
+    <script src="js/admin.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
     <!-- CSS -->
-    <link href="../css/admin.css" rel="stylesheet" type="text/css">
-    <link href="../css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/admin.css" rel="stylesheet" type="text/css">
+    <link href="css/header-footer.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+    <?php require "_header.php"; ?>
     <section id="contenuAdmin">
         <form class="modificationProfil">
             <h2>Modification profil</h2></br>
@@ -63,8 +64,5 @@
         </form>
     </section>
 </body>
-<script LANGUAGE='JavaScript'>
-    header();
-</script>
 
 </html>

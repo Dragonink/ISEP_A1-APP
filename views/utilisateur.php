@@ -10,12 +10,12 @@
 
     <!-- CSS -->
     <link href="css/profil.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="css/header-footer.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
-    <header id="navHeader"></header>
+    <?php require "_header.php"; ?>
 
     <table class="infoProfil">
         <tr>
@@ -42,6 +42,7 @@
             </td>
         </tr>
     </table>
+    <hr>
     <table class="resultatTest">
         <tr>
             <td class="titre"> Résultats des tests </td>
@@ -63,7 +64,7 @@
         </tr>
     </table>
 
-    <section id="navFooter"></section>
+    <?php require "_footer.html"; ?>
 </body>
 <script LANGUAGE='JavaScript'>
     dernierTest();
