@@ -1,261 +1,50 @@
-body, html {
-	--colorHome: rgb(24,55,94);
-
-    height: auto;
-    width: 100%;
-	margin: 0;
-    background-color: none;
+main {
+    --color: rgb(24,55,94);
 }
-#Image {
-	position: absolute;
-	max-width: 100%;
-	height: auto;
-	left: 39%;
-	top: 20%;
-	overflow: visible;
+main > section {
+    padding: 5vh 5vw;
 }
-.image_bg {
-	overflow: visible;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 72px;
-	background: linear-gradient(217deg, rgba(7, 218, 233, 0.8), rgba(0, 132, 255, 0) 70.71%),
-            linear-gradient(127deg, rgba(0, 195, 255, 0.8), rgba(0, 174, 255, 0) 70.71%),
-            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+main > section:first-of-type {
+    background: linear-gradient(to left top, blue, rgb(7, 218, 233));
+    text-align: center;
+    height: calc(100vh - 77.5px);
 }
-
-#Image1 {
-	position: absolute;
-	max-width: 100%;
-	height: auto;
-	left: 70%;
-	top: 130%;
-	overflow: visible;
-	border-radius: 100%;
+main > section:first-of-type img {
+    width: 20vw;
+    margin: calc((100vh - 77.5px - 20vw - 10vh - 5vh - 2 * 1em) / 4) 0;
 }
-.image_qsn {
-	position: absolute;
-	overflow: visible;
-	width: 20em;
-	height: 20em;
+main > section:first-of-type h1 {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10vh;
+    color:#050505;
+    margin-bottom: 0;
 }
-
-#Image2 {
-	position: absolute;
-	max-width: 100%;
-	height: auto;
-	left: 60%;
-	top: 215%;
-	overflow: visible;
+main > section:not(:first-of-type) {
+    display: grid;
+    grid-template-columns: repeat(2, 47.5%);
+    gap: 5%;
 }
-.image_ntp {
-	position: absolute;
-	overflow: visible;
-	width: 20em;
-	height: 20em;
+main > section:not(:first-of-type) > div,
+main > section:last-of-type > form {
+    margin: auto 0;
 }
-
-#InfiniteMeasures {
-	position: absolute;
-	left: 19%;
-	top: 70%;
-	overflow: visible;
-	white-space: nowrap;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 8vw;
-	color: rgb(5,5,5);
+main > section:not(:first-of-type) img {
+    max-width: 75%;
+    margin: auto;
 }
-
-.qsn_bg {
-	overflow: visible;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 100%;
-	background: var(--colorHome);
+main > section:last-of-type img {
+    max-width: 100%;
 }
-#qsn_titre{
-	position: absolute;
-	left: 7%;
-	top: 105%;
-	overflow: visible;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 3vw;
-	color: rgb(255,255,255);
+main > section#qsn,
+main > section#contact {
+    background-color: var(--color);
+    color: white;
 }
-#qsn_texte {
-	position: absolute;
-	left: 7%;
-	top: 120%;
-	overflow: visible;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 2vw;
-	color: rgb(255,255,255);
+main > section#ntp {
+    background-color: white;
 }
-.ntp_bg {
-	position: absolute;
-	overflow: visible;
-	width: 100%;
-	height: 100%;
-	top: 200%;
-	background-color: rgb(212,212,212);
-}
-.ntp_ellipse {
-	position: absolute;
-	overflow: visible;
-	width: 20em;
-	height: 20em;
-	left: 70%;
-	top: 230%;
-	border-radius: 50%;
-	background: antiquewhite;
-}
-#ntp_titre {
-	position: absolute;
-	left: 7%;
-	top: 215%;
-	overflow: visible;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 3vw;
-}
-#ntp_texte {
-	position: absolute;
-	left: 7%;
-	top: 230%;
-	overflow: visible;
-	white-space: nowrap;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 2vw;
-}
-#Contact {
-	position: absolute;
-	left: 5%;
-	top: 310%;
-	overflow: visible;
-	white-space: nowrap;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 3vw;
-	color: rgb(255,255,255);
-}
-#Ou_nous_trouver {
-	position: absolute;
-	left: 55%;
-	top: 310%;
-	overflow: visible;
-	white-space: nowrap;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 3vw;
-	color: rgb(255,255,255);
-}
-.contact_bg {
-	overflow: visible;
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 300%;
-	background: var(--colorHome);
-}
-.envoyer_rect {
-	position: absolute;
-	overflow: visible;
-	width: 410px;
-	height: 69px;
-	left: 212px;
-	top: 3801px;
-	border-radius: 20px;
-	background: lightskyblue;
-}
-.email_rect {
-	position: absolute;
-	overflow: visible;
-	width: 34%;
-	height: 7%;
-	left: 5%;
-	top: 325%;
-	color : white;
-}
-
-.objet_rect {
-	position: absolute;
-	overflow: visible;
-	width: 34%;
-	height: 7%;
-	left: 5%;
-	top: 334%;
-	color : white;
-}
-.contact_texte {
-	position: absolute;
-	overflow: visible;
-	left: 5%;
-	top: 343%;
-	color : white;
-}
-
-textarea {
- 	resize: none;
-}
-
-#Adresse {
-	position: absolute;
-	left: 55%;
-	top: 320%;
-	overflow: visible;
-	white-space: nowrap;
-	text-align: left;
-	font-family: Segoe UI;
-	font-style: normal;
-	font-weight: normal;
-	font-size: 1.8vw;
-	color: rgb(255,255,255);
-}
-
-.Envoyer {
-	position: absolute;
-	overflow: visible;
-	width: 20%;
-	height: 8%;
-	left: 12%;
-	top: 382%;
-	border-radius: 20px;
-	background: lightskyblue;
-}
-
-#Carte {
-	position: absolute;
-	overflow: visible;
-	max-width: 100%;
-	top: 328%;
-	left: 55%;
-}
-.map {
-	position: absolute;
-	overflow: visible;
-	width: 40%;
-	height: 50%;
-	top: 328%;
-	left: 55%;
-	background-image: url(../images/map.png);
+form > * {
+    display: block;
+    width: 75%;
+    margin: 5px 12.5%;
 }

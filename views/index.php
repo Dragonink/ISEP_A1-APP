@@ -16,87 +16,50 @@
     <?php include "_header.php"; ?>
 
     <main>
-        <section id="Page_image">
-            <div class="image_bg"></div>
-            <img id="Image" src="../images/Infinite_measures.png" width="20%" />
-            <div id="InfiniteMeasures">
-                <span>Infinite Measures</span>
-            </div>
+
+        <section>
+            <img id="logo" src="../images/Infinite_measures.png"/>
+            <h1>Infinite Measures</h1>
         </section>
 
-        <section class="qui_sommes_nous">
-            <div class="qsn_bg" id="qsn"></div>
-            <div class="image_qsn"></div>
-            <img id="Image1" src="../images/Qui_sommes_nous.png" width="20%" />
-            <div id="qsn_titre">
-                <span>Qui sommes-nous ?</span>
+        <section id="qsn">
+            <div>
+                <h2>Qui sommes-nous ?</h2>
+                Vendeur de systèmes de mesures psychotechniques pour la formation et l'évaluation de conducteurs et pilotes.<br/>
+                Pour vous:<ul>
+                    <li>Autoécoles, à destination finale des conducteurs ayant eu leurs permis annulés</li>
+                    <li>Centres de formation de conducteurs de trains ou d'engins de chantiers</li>
+                    <li>Centres médicaux pour les vérifications des pilotes d'engins volants</li>
+                    <li>Centres de recherches scientifiques pour des analyses comportementales</li>
+                </ul>
             </div>
-            <div id="qsn_texte">
-                <span>Vendeur de systèmes de mesure psychotechniques pour la <br />
-                    formation et l’évaluation des compétences de conducteurs <br />
-                    et pilotes <br />
-                    Pour vous : <br />
-                    - Autoécoles, à destination finale des conducteurs ayant <br />
-                    eu leurs permis annulés, <br />
-                    - Centres de formation de conducteurs de trains ou d’engins <br />
-                    de chantier et de grutiers, <br />
-                    - Centres médicaux pour les vérifications des capacités <br />
-                    psychotechniques des pilotes d’engins volants, <br />
-                    - Des centres de recherche scientifique pour des analyses <br />
-                    comportementales statistiques.
-                </span>
-            </div>
-
+            <img src="images/Qui_sommes_nous.png" />
         </section>
 
-        <section id="Notre_Projet">
-            <div class="ntp_bg" id="ntp"></div>
-            <div class="image_ntp"></div>
-            <img id="Image2" src="../images/Projet.png" width="40%" />
-            <div id="ntp_titre">
-                <span>Notre projet</span>
-            </div>
-            <div id="ntp_texte">
-                <span>Vérifications des capacités psychotechniques <br />
-                    Une machine cinq tests <br />
-                    <br />
-                    1. Mesure de la fréquence cardiaque <br />
-                    2. Mesure de la température <br />
-                    3. Mesure de la qualité de reconnaissance de tonalités </br>
-                    4. Mesure de la réaction à des stimulus visuels <br />
-                    5. Evaluation de la capacité de mémorisation de couleurs
-                </span>
+        <section id="ntp">
+            <img src="images/Projet.png" />
+            <div>
+                <h2>Notre projet</h2>
+                Une machine effectuant 5 tests psychotechniques:<ol>
+                    <li>Fréquence cardiaque</li>
+                    <li>Température</li>
+                    <li>Reconnaissance de tonalités</li>
+                    <li>Réaction à des stimuli visuels</li>
+                    <li>Mémorisation de couleurs</li>
+                </ol>
             </div>
         </section>
-        <section id="contact_map">
-            <div class="contact_bg" id="contact"></div>
-            <div id="Contact">
-                <span>Contact</span>
-            </div>
-            <div id="Ou_nous_trouver">
-                <span>Où nous trouver</span>
-            </div>
-            <div id="Adresse">
-                <span>Adresse</span>
-            </div>
-            <!--img id="Carte" src="../images/map.png" height="536" width="777"/-->
-            <div class="map"></div>
-            <div class="contact_texte"></div>
-            <form action="" method="get" class="contact">
-                <div class="email_rect">
-                    <label for="email_rect">E-mail</label>
-                    <input type="text" name="email" id="email" required>
-                </div>
-                <div class="objet_rect">
-                    <label for="objet">Objet</label>
-                    <input type="objet" name="objet" id="objet" required>
-                </div>
-                <div class="contact_texte">
-                    <label for="contact_texte">Message</label>
-                    <textarea type="string" name="message" id="message" cols="40" rows="13" required></textarea>
-                </div>
-                <input class="Envoyer" type="submit" value="Envoyer">
+        <section id="contact">
+            <form>
+                <h2>Contact</h2>
+                <input name="email" type="email" placeholder="Votre adresse Email" required />
+                <input name="subject" placeholder="Objet" required />
+                <textarea name="content" placeholder="Message" required></textarea>
+                <button type="submit">Envoyer</button>
             </form>
+            <div>
+                <h2>Nous trouver</h2>
+                <img src="images/map.png" />
         </section>
     </main>
 
