@@ -131,13 +131,13 @@ function rejeter(PDO $db,int $id, $origine) {
     }
 }
 
-function ajoutQuestion(PDO $db, $question, $answer) {
+function ajoutQuestion(PDO $db, $question, $answer, $admin) {
     $ajout = 'INSERT INTO faq(question, answer, admin) VALUES(:question, :answer, :admin)';
     $prepare = $db->prepare($ajout);
     $prepare->execute(array(
         'question' => $question,
         'answer' => $answer,
-        'admin' => 1,
+        'admin' => $admin,
     ));
 }
 
@@ -148,13 +148,13 @@ function supQuestion(PDO $db, $id) {
     $prepare->execute();
 }
 
-function modifQuestion(PDO $db, $id, $question, $answer) {
+function modifQuestion(PDO $db, $id, $question, $answer, $admin) {
     $modif = 'UPDATE faq SET question = :question, answer = :answer, admin = :admin WHERE id = :id';
     $prepare = $db->prepare($modif);
     $prepare->execute(array(
         'question' => $question,
         'answer' => $answer,
-        'admin' => 1,
+        'admin' => $admin,
         'id' => $id,
     ));
 }

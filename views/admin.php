@@ -1,8 +1,7 @@
 <?php
-    include('../controllers/adminDonnees.php');
-
+session_start();
+require '../controllers/adminDonnees.php';
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>

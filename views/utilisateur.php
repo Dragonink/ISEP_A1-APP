@@ -1,3 +1,13 @@
+<?php
+session_start();
+require "../models/account_info.php";
+$user_info = fetchUser($_SESSION["user_id"]);
+if ($user_info === FALSE) {
+    echo "<script>alert(", "Une erreur est survenue.", ");</script>";
+    exit;
+}
+$manager_info = fetchManager($user_info["manager"]);
+?>
 <!DOCTYPE html>
 <html>
 
@@ -22,14 +32,29 @@
             <td class="donneesPersonnelles">
                 <div>
                     <img src="images/iconProfil.jpg" />
-                    <div>Prénom</div> &nbsp; <div> Nom </div>
+                    <div><?php echo $user_info["first_name"]; ?></div> &nbsp; <div><?php echo $user_info["last_name"]; ?></div>
                 </div>
-                <div>Sexe: homme/femme</div>
-                <div> Date de naissance: mm/aaaa </div>
-                <div> E-mail: truc@bidule.com </div>
-                <div> Numéro de sécurité sociale: s aa mm dd 1111 1111 11 </div>
-                <div> Numéro de téléphone: 01 11 11 11 11</div>
-                <div> Médecin: Prénom Nom </div>
+                <div>Sexe: <?php
+                    switch (substr($_SESSION["user_id"], 0, 1)) {
+                        case "1":
+                            echo "Homme";
+                            break;
+                        case "2":
+                            echo "Femme";
+                            break;
+                    }
+                ?></div>
+                <div> Date de naissance: <?php echo substr($_SESSION["user_id"],3,2), "/", substr($_SESSION["user_id"], 1, 2); ?></div>
+                <div>E-mail: <?php echo $user_info["email"]; ?></div>
+                <div>Numéro de sécurité sociale: <?php echo $_SESSION["user_id"]; ?></div>
+                <div>Numéro de téléphone: <?php
+                    if ($user_info["phone"] === NULL) echo "N/A";
+                    else echo $user_info["phone"];
+                ?></div>
+                <div>Médecin: <?php
+                    if ($manager_info === FALSE) echo "ERREUR";
+                    else echo $manager_info["first_name"], " ", $manager_info["last_name"];
+                ?></div>
             </td>
             <td class="resultatDernierTest">
                 <canvas id="resultatDernierTestGraph"> </canvas>
@@ -66,7 +91,7 @@
 
     <?php require "_footer.html"; ?>
 </body>
-<script LANGUAGE='JavaScript'>
+<script type='text/javascript'>
     dernierTest();
     resultatTest();
 </script>

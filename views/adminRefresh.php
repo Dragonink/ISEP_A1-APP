@@ -26,10 +26,10 @@ if (isset($_GET["fonction"])){
         bannir($db, $_GET["id"], $_GET["origine"]);
         echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
     } elseif (($_GET["fonction"]=='validAjoutQuestion') && (isset($_GET["question"]) && isset($_GET["answer"]))){
-        ajoutQuestion($db, $_GET["question"], $_GET["answer"]);
+        ajoutQuestion($db, $_GET["question"], $_GET["answer"], $_SESSION["user_id"]);
         echo listeFAQ($db);
     } elseif (($_GET["fonction"]=='modifQuestion') && (isset($_GET["id"]) && isset($_GET["question"]) && isset($_GET["answer"]))){
-        modifQuestion($db, $_GET["id"], $_GET["question"], $_GET["answer"]);
+        modifQuestion($db, $_GET["id"], $_GET["question"], $_GET["answer"], $_SESSION["user_id"]);
         echo listeFAQ($db);
     } elseif (($_GET["fonction"]=='supQuestion') && (isset($_GET["id"]))){
         supQuestion($db, $_GET["id"]);
@@ -53,6 +53,6 @@ if (isset($_GET["fonction"])){
     } else {
         echo "</br>Les données rentrées ne sont pas corectes!";
     }
-} 
+}
 
 ?>

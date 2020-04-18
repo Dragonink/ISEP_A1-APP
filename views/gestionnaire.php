@@ -1,3 +1,12 @@
+<?php
+session_start();
+require "../models/account_info.php";
+$manager_info = fetchManager($_SESSION["user_id"]);
+if ($manager_info === FALSE) {
+    echo "<script>alert(", "Une erreur est survenue.", ");</script>";
+    exit;
+}
+?>
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <html>
@@ -25,9 +34,9 @@
 				<div>Prénom</div> &nbsp; <div> Nom </div>
 			</div>
 			<hr>
-			<p> Liste des tests disponibles</p>
+			<p>Liste des tests disponibles</p>
 			<div class="testChoix">
-				<div> Test 1</div>
+				<div> Test 1 </div>
 				<div> Description</div>
 				<input type="checkbox" class="test" name="test1" unchecked>
 			</div>
@@ -62,11 +71,14 @@
 			<td class="donneesPersonnelles">
 				<div>
 					<img src="images/iconProfil.jpg" />
-					<div>Prénom</div> &nbsp; <div> Nom </div>
+					<div><?php echo $manager_info["first_name"]; ?></div> &nbsp; <div><?php echo $manager_info["last_name"]; ?></div>
 				</div>
-				<div> E-mail: truc@bidule.com </div>
-				<div> Numéro de téléphone: XX XX XX XX XX</div>
-				<div> Adresse du cabinet :</div>
+				<div>E-mail <?php echo $manager_info["email"]; ?></div>
+				<div>Numéro de téléphone: <?php
+                    if ($manager_info["phone"] === NULL) echo "N/A";
+                    else echo $manager_info["phone"];
+                ?></div>
+				<div>Adresse du cabinet : <?php echo $manager_info["work_address"]; ?></div>
 			</td>
 			<td id="stats">
 				<div class="statistiques">
