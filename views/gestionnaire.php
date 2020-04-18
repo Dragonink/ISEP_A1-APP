@@ -101,7 +101,10 @@
 				<option value="1"> Option 1 </option>
 				<option value="2"> Option 2 </option>
 			</select>
-			<input type="search" id="search-patient" name="searchPatient" aria-label="Search through site content" placeholder="Recherche"> </td>
+			<form action = "verif-form.php" method = "get">
+ 				<input type = "search" name = "terme" placeholder="Recherche">
+ 				<input type = "submit" name = "s" value = "Rechercher">
+ 			</form>
 		</div>
 	</div>
 	<table class="affichageResultat">
