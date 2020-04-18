@@ -1,2 +1,2 @@
 <?php
-$db = new PDO("mysql:host=localhost;dbname=infinite_measures", "root", "Alola1503!");
+$db = new PDO("mysql:host=localhost;dbname=infinite_measures", "root", require(".SQLpass"));
