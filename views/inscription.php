@@ -1,3 +1,4 @@
+<?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/inscription.php"; ?>
 <!DOCTYPE html>
 <html>
 
@@ -6,7 +7,7 @@
     <title>Inscription</title>
     <link rel="stylesheet" type="text/css" href="css/sign.css" />
     <script type="text/javascript" src="js/code.js"></script>
-    <script type="text/javascript" src="js/sign.js"></script>
+    <script type="text/javascript" src="js/signup.js"></script>
 </head>
 
 <body>
@@ -14,7 +15,7 @@
         <h1>INFINITE MEASURES</h1>
     </header>
     <main>
-        <form id="signup" method="POST" onsubmit="return signupCheck();" data-account="user">
+        <form id="signup" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" data-account="user">
             <div>
                 <label for="type">Type de compte</label>
                 <div>

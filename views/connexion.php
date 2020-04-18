@@ -1,3 +1,4 @@
+<?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/connexion.php"; ?>
 <!DOCTYPE html>
 <html>
 
@@ -5,7 +6,6 @@
 	<meta charset="UTF-8" />
 	<title>Connexion</title>
 	<link rel="stylesheet" type="text/css" href="css/sign.css" />
-	<script text="text/javascript" src="js/sign.js"></script>
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 		<h2>Heureux de vous revoir !<br />Veuillez vous connecter.</h2>
 	</header>
 	<main>
-		<form id="signin" method="POST" onsubmit="return signinCheck();">
+		<form id="signin" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 			<div>
 				<label for="account">Identifiant</label>
 				<input id="account" name="account" type="text" required />
@@ -29,7 +29,7 @@
 		</div>
 	</main>
 	<footer>
-		<a>Conditions Générales d'Utilisation</a>
+		<a href="">Conditions Générales d'Utilisation</a>
 	</footer>
 </body>
 </head>
