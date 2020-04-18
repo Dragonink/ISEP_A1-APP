@@ -73,4 +73,57 @@ if (isset($_POST['modifUtilisateur'])){
     if ($mdperreur=true || $emailerreur=true){
         $url='modifAdmin';
     }
+}elseif (isset($_POST['inscription'])){
+    $url='inscription';
+    if (isset ($_POST['type']) && $_POST['type']=='user'){
+        if (issset($_POST['firstname']) && $_POST['firstname']==''){
+            echo "<script>alert(\"Le prénom n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['lastname']) && $_POST['lastname']==''){
+            echo "<script>alert(\"Le nom n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['email']) && $_POST['email']==''){
+            echo "<script>alert(\"L'e-mail n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['password']) && $_POST['password']==''){
+            echo "<script>alert(\"Le mot de passe n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['nss']) && $_POST['nns']==''){
+            echo "<script>alert(\"Le numéro de sécurité sociale n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['linked-manager']) && $_POST['linked-manager']=='' ){
+            echo "<script>alert(\"Le médecin n'est pas renseigné'\")</script>";
+        } else {
+            $erreur=inscriptionUtilisateur();
+            if ($erreur== false){
+                $url='utilisateur';
+            }
+        }
+    }
+
+    elseif (isset ($_POST['type']) && $_POST['type']=='manager'){
+        if (issset($_POST['firstname']) && $_POST['firstname']==''){
+            echo "<script>alert(\"Le prénom n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['lastname']) && $_POST['lastname']==''){
+            echo "<script>alert(\"Le nom n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['email']) && $_POST['email']==''){
+            echo "<script>alert(\"L'e-mail n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['password']) && $_POST['password']==''){
+            echo "<script>alert(\"Le mot de passe n'est pas renseigné'\")</script>";
+        }
+        elseif (isset($_POST['address']) && $_POST['address']==''){
+            echo "<script>alert(\"Le numéro de sécurité sociale n'est pas renseigné'\")</script>";
+        }
+        else {
+            inscriptionManager();
+        }
+    }
+    
+}    
+
+
+
 include($url .'.php');

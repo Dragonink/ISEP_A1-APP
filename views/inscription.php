@@ -1,4 +1,9 @@
-<?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/inscription.php"; ?>
+
+<?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/inscription.php";
+
+include('../controllers/adminDonnees.php');
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -15,7 +20,10 @@
         <h1>INFINITE MEASURES</h1>
     </header>
     <main>
+
         <form id="signup" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" data-account="user">
+
+        <!--<form id="signup" method="POST" action="routeur.php" onsubmit="return signupCheck();" data-account="user">-->
             <div>
                 <label for="type">Type de compte</label>
                 <div>
@@ -45,6 +53,7 @@
                 <input id="nss" class="user" name="nss" type="text" required />
                 <label for="linked-manager" class="user">Médecin</label>
                 <select id="linked-manager" class="user" name="manager" required>
+                    <?php echo listeManager($db) ?>
                 </select>
                 <!-- Manager only -->
                 <label for="address" class="manager">Adresse de travail</label>
@@ -52,7 +61,7 @@
             </div>
             <input id="cgu" name="cgu" type="checkbox" required />
             <label for="cgu">J'accepte les <a href="cgu.html" target="_blank">Conditions Générales d'Utilisation</a></label>
-            <button type="submit">Inscription</button>
+            <button type="submit" name='inscription'>Inscription</button>
         </form>
         <div>
             <label for="signin">Vous avez déjà un compte ?</label>

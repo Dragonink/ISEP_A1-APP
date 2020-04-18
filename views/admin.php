@@ -65,7 +65,7 @@ require '../controllers/adminDonnees.php';
                                     <img src="images/iconAddDispositif.png" style="height: 16.5pt;"/>
                                     <textarea id="addCode" name="code" cols="15" rows="1" placeholder="Code"></textarea>
                                     <select id="addDispositif" size="1">
-                                        <?php echo listeManager($db, 0, '') ?>
+                                        <?php echo listeManager($db) ?>
                                     </select>
                                     <img src="images/iconValider.png" onclick="validateAddDispositif()" />
                                     <img src="images/iconAnnuler.png" onclick="closeAddDispositif()"/>
