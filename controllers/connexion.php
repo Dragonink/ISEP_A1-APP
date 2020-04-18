@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../models/connexionSQL.php";
+require "../models/account_info.php";
 $account = $passwd = "";
 function trim_input($data) {
 	return htmlspecialchars(stripslashes(trim($data)));
@@ -13,7 +13,7 @@ function invalid_passwd() {
     exit;
 }
 if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
-    $user_info = $db->query("SELECT password FROM user WHERE nss = $account")->fetch(PDO::FETCH_ASSOC);
+    $user_info = fetchUser($account);
     if ($user_info !== FALSE) {
         if (!password_verify($passwd, $user_info["password"])) invalid_passwd();
         $_SESSION["user_type"] = "user";
@@ -21,8 +21,8 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
         header("Location: utilisateur.php", true, 303);
         exit;
     }
-} elseif (preg_match("/^[^@]+@\S+\.\S+$/", $account) === 1){
-    $user_info = $db->query("SELECT nss, password FROM user WHERE email = $account")->fetch(PDO::FETCH_ASSOC);
+} elseif (preg_match("/^[^@]+@\S+\.\S+$/", $account) === 1) {
+    $user_info = fetchUser($account);
     if ($user_info !== FALSE) {
         if (!password_verify($passwd, $user_info["password"])) invalid_passwd();
         $_SESSION["user_type"] = "user";
@@ -30,7 +30,7 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
         header("Location: utilisateur.php", true, 303);
         exit;
     }
-    $user_info = $db->query("SELECT id, password FROM user WHERE email = $account")->fetch(PDO::FETCH_ASSOC);
+    $user_info = fetchManager($account);
     if ($user_info !== FALSE) {
         if (!password_verify($passwd, $user_info["password"])) invalid_passwd();
         $_SESSION["user_type"] = "manager";
@@ -38,7 +38,7 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
         header("Location: manager.php", true, 303);
         exit;
     }
-    $user_info = $db->query("SELECT id, password FROM administrator WHERE email = $account")->fetch(PDO::FETCH_ASSOC);
+    $user_info = fetchAdmin($account);
     if ($user_info !== FALSE) {
         if (!password_verify($passwd, $user_info["password"])) invalid_passwd();
         $_SESSION["user_type"] = "administrator";

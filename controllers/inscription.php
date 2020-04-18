@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../models/connexionSQL.php";
+require "../models/account_info.php";
 $type = $firstname = $lastname = $email = $password = $nss = $linked_manager = $address = "";
 function trim_input($data) {
 	return htmlspecialchars(stripslashes(trim($data)));
@@ -19,7 +19,7 @@ function error() {
 }
 switch ($type) {
     case "user":
-        $status = $db->prepare("INSERT INTO user(nss, first_name, last_name, email, manager) VALUES ($nss, $firstname, $lastname, $email, ?, $linked_manager)")->execute([password_hash($password)]);
+        $status = insertUser($nss, $firstname, $lastname, $email, $password, $linked_manager);
         if ($status) {
             $_SESSION["user_type"] = "user";
             $_SESSION["user_id"] = $nss;
@@ -28,19 +28,19 @@ switch ($type) {
         } else error();
         break;
     case "manager":
-        $status = $db->prepare("INSERT INTO manager(first_name, last_name, email, password, work_address) VALUES ($firstname, $lastname, $email, ?, $address)")->execute([password_hash($password)]);
+        $status = insertManager($firstname, $lastname, $email, $password, $address);
         if ($status) {
             $_SESSION["user_type"] = "manager";
-            $_SESSION["user_id"] = $email;
+            $_SESSION["user_id"] = getManagerId($email);
             header("Location: gestionnaire.php", true, 303);
             exit;
         } else error();
         break;
     case "administrator":
-        $status = $db->prepare("INSERT INTO administrator(first_name, last_name, email, password) VALUES ($firstname, $lastname, $email, ?)")->execute([password_hash($password)]);
+        $status = insertAdmin($firstname, $lastname, $email, $password);
         if ($status) {
             $_SESSION["user_type"] = "administrator";
-            $_SESSION["user_id"] = $email;
+            $_SESSION["user_id"] = getAdminId($email);
             header("Location: admin.php", true, 303);
             exit;
         } else error();
