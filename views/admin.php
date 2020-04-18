@@ -24,9 +24,9 @@
             <div class="requetes" style="display: none;">
                 <div class="content">
                     <div id="menuRequetes">
-                        <button class= "demande actif" onclick="openRequete(0)"> Toutes les demandes (<font id='nbRequete'><?php echo nombreRequete($db) ?></font>) </button>
-                        <button class= "demande" onclick="openRequete(1)"><img src="images/iconSecurite.png"> Demandes administrateur (<font id='nbRequeteAdmin'><?php echo nombreRequeteAdmin($db) ?></font>) </button>
-                        <button class= "demande" onclick="openRequete(2)"><img src="images/iconDispositif.png"> Demandes médecins (<font id='nbRequeteManager'><?php echo nombreRequeteManager($db) ?></font>) </button>
+                        <button class= "demande actif" onclick="openRequete(0)"> Toutes les demandes (<span id='nbRequete'><?php echo nombreRequete($db) ?></span>) </button>
+                        <button class= "demande" onclick="openRequete(1)"><img src="images/iconSecurite.png"> Demandes administrateur (<span id='nbRequeteAdmin'><?php echo nombreRequeteAdmin($db) ?></span>) </button>
+                        <button class= "demande" onclick="openRequete(2)"><img src="images/iconDispositif.png"> Demandes médecins (<span id='nbRequeteManager'><?php echo nombreRequeteManager($db) ?></span>) </button>
                     </div>
                     <div id="affichageRequetes">
                         <button class="close" onclick="closeRequetes()"><img src="images/iconCroix.png"></button>

@@ -16,47 +16,49 @@
 
 <body>
 	<?php require "_header.php"; ?>
-	<div id="text">
-		<div id="roundedImage">
-			<img src="../images/iconProfil.jpg" />
-		</div>
-		<div id="nom">Nom Prénom</div> &nbsp; <div id="prénom"></div>
+	<form method="POST" action ="routeur.php" >
+		<div id="text">
+			<div id="roundedImage">
+				<img src="../images/iconProfil.jpg" />
+			</div>
+			<div id="nom">Nom Prénom</div> &nbsp; <div id="prénom"></div>
 
-		<div id="Validation">
-			<button type="submit">Valider les modifications</button>
-		</div>
-		<div id="Annulation">
-			<button type="submit">Annuler</button>
-		</div>
-	</div>
-	<div id="infors">
-		<div id="info">
-			<h2>Informations personnelles </h2>
-			<p>Nom</p>
-			<input type="text" name="Nom" placeholder="Identifiant" required="required" />
-			<p>Prénom</p>
-			<input type="text" name="Prénom" placeholder="Mot de passe" required="required" />
-			<p>Email</p>
-			<input type="text" name="Email" placeholder="Identifiant" required="required" />
-			<p>Vérifier Email</p>
-			<input type="text" name="Vérifier Email" placeholder="Mot de passe" required="required" />
-		</div>
-		<div id="infos">
-			<p>Numéro de téléphone</p>
-			<input type="text" name="Numéro de téléphone" placeholder="Identifiant" required="required" />
-			<p>Mot de passe</p>
-			<input type="password" name="Mot de passe" placeholder="Mot de passe" required="required" />
-			<p>Confirmation de mot de passe</p>
-			<input type="password" name="Confirmation de mot de passe">
-			<p>Médecin</p>
-			<input type="text" name="Médecin" placeholder="Identifiant" required="required" />
-			<div>
-				<input type="checkbox" id="data" name="scales"
-					unchecked>
-				<label for="scales">J'accepte que mes données soient réutilisées à des fins statiques</label>
-
+			<div id="Validation">
+				<button type="submit" name="modifUtilisateur">Valider les modifications</button>
+			</div>
+			<div id="Annulation">
+				<button type="submit">Annuler</button>
 			</div>
 		</div>
+		<div id="infors">
+			<div id="info">
+				<h2>Informations personnelles </h2>
+				<p>Nom</p>
+				<input type="text" name="nom" placeholder="Identifiant" required="required" />
+				<p>Prénom</p>
+				<input type="text" name="prenom" placeholder="Mot de passe" required="required" />
+				<p>Email</p>
+				<input type="text" name="email" placeholder="Identifiant" required="required" />
+				<p>Vérifier Email</p>
+				<input type="text" name="verifemail" placeholder="Mot de passe" required="required" />
+			</div>
+			<div id="infos">
+				<p>Numéro de téléphone</p>
+				<input type="text" name="telephone" placeholder="Identifiant" required="required" />
+				<p>Mot de passe</p>
+				<input type="password" name="mdp" placeholder="Mot de passe" required="required" />
+				<p>Confirmation de mot de passe</p>
+				<input type="password" name="verifmdp">
+				<p>Médecin</p>
+				<input type="text" name="medecin" placeholder="Identifiant" required="required" />
+				<div>
+					<input type="checkbox" id="data" name="scales"
+						unchecked>
+					<label for="scales">J'accepte que mes données soient réutilisées à des fins statiques</label>
+				</div>
+			</div>
+		</div>
+	</form>
 </body>
 
 </html>
