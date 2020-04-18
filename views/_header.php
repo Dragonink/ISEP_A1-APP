@@ -5,12 +5,21 @@
     <a href="#contact">Contact</a>
     <?php
         if (isset($_SESSION["user_type"]) && isset($_SESSION["user_id"])) {
-            require "models/connexionSQL.php";
-            $user_info = $db->query("SELECT first_name, last_name, picture FROM " . $_SESSION["user_type"] . " WHERE id = " .$_SESSION["user_id"])->fetch(PDO::FETCH_ASSOC);
+            require "../models/account_info.php";
+            switch ($_SESSION["user_type"]) {
+                case "user":
+                    $user_info = fetchUser($_SESSION["user_id"]);
+                    break;
+                case "manager":
+                    $user_info = fetchManager($_SESSION["user_id"]);
+                    break;
+                case "administrator":
+                    $user_info = fetchAdmin($_SESSION["user_id"]);
+                    break;
+            }
             echo "<div>",
                 "<div id='account'>",
                 $user_info["first_name"] . " " . $user_info["last_name"],
-                //"<p>Sample User</p>",
                 "<img src='images/iconProfil.jpg' height='64'/>",
                 "</div>",
                 "<ul id='dropdown'>",
