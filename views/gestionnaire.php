@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "../models/account_info.php";
-$manager_info = fetchManager($_SESSION["user_id"]);
+$manager_info = fetchManager($db,$_SESSION["user_id"]);
 if ($manager_info === FALSE) {
     echo "<script>alert(", "Une erreur est survenue.", ");</script>";
     exit;

@@ -1,27 +1,18 @@
 body {
     width: 100vw;
     min-height: 100vh;
-    background-color: rgb(24, 55, 94);
     overflow-x: hidden;
     margin: 0;
-}
-body > main {
-    margin-top: 77.5px;
 }
 body > header,
 body > footer {
     display: flex;
-    width: calc(100vw - 35px);
     justify-content: space-between;
     background-color: var(--color);
     padding: 5px 10px;
 }
 body > header {
     --color: rgba(24, 55, 94, 0.86);
-
-    position: fixed;
-    top: 0;
-    z-index: 1;
 }
 body > footer {
     --color: rgb(24, 55, 94);

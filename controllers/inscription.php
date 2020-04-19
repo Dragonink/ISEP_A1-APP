@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php session_start(); 
 require "../models/account_info.php";
 $type = $firstname = $lastname = $email = $password = $nss = $linked_manager = $address = "";
 function trim_input($data) {
@@ -14,35 +13,38 @@ $linked_manager = trim_input($_POST["linked-manager"]);
 $address = trim_input($_POST["address"]);
 
 function error() {
-    echo "<script>alert(", "Une erreur est survenue.", ");</script>";
+    echo "<script>alert('Une erreur est survenue.');</script>";
     exit;
 }
 switch ($type) {
     case "user":
-        $status = insertUser($nss, $firstname, $lastname, $email, $password, $linked_manager);
-        if ($status) {
-            $_SESSION["user_type"] = "user";
-            $_SESSION["user_id"] = $nss;
-            header("Location: utilisateur.php", true, 303);
-            exit;
-        } else error();
+        if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $nss) === 1) {
+            $status = insertUser($db, $nss, $firstname, $lastname, $email, $password, $linked_manager);
+            if ($status) {
+                $_SESSION["user_type"] = "user";
+                $_SESSION["user_id"] = $nss;
+                header("Location: utilisateur.php", true, 303);
+            } else {
+                error();
+            }
+        } else {
+            echo "<script>alert('Le numéro de Sécurité Sociale est invalide.');</script>";
+        }
+        exit;
         break;
     case "manager":
-        $status = insertManager($firstname, $lastname, $email, $password, $address);
+        $status = insertManager($db, $firstname, $lastname, $email, $password, $address);
         if ($status) {
-            $_SESSION["user_type"] = "manager";
-            $_SESSION["user_id"] = getManagerId($email);
-            header("Location: gestionnaire.php", true, 303);
+            header("Location: index.php?Validation=true", true, 303);
             exit;
-        } else error();
+        } else { error();}
         break;
     case "administrator":
-        $status = insertAdmin($firstname, $lastname, $email, $password);
+        $status = insertAdmin($db, $firstname, $lastname, $email, $password);
         if ($status) {
-            $_SESSION["user_type"] = "administrator";
-            $_SESSION["user_id"] = getAdminId($email);
-            header("Location: admin.php", true, 303);
+            header("Location: index.php?Validation=true", true, 303);
             exit;
-        } else error();
+        } else {error();}
         break;
 }
+?>

@@ -51,7 +51,4 @@ function adresse($table){
 function checkbox($table){
     modifProfil($db, $table, 'ack_share', $_POST['checkbox'], $_SESSION['id']);
 }
-
-function inscriptionUtilisateur($table){
-    if ($_POST['nss']>=100000000000000 && $_POST['nss']<300000000000000)
-}
+?>

@@ -29,9 +29,9 @@
                 "</ul>",
                 "</div>";
         } else echo "<ul id='sign'>",
-            "<li><a href='connexion.html'>Connexion</a></li>",
+            "<li><a href='connexion.php'>Connexion</a></li>",
             "|",
-            "<li><a href='inscription.html'>Inscription</a></li>",
+            "<li><a href='inscription.php'>Inscription</a></li>",
             "</ul>";
     ?>
 </header>

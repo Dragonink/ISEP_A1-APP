@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start(); 
+if ($_GET['Validation']=='true'){
+    echo "<script>alert(\"Votre demande a été prise en compte et sera traitée dans les meilleurs délais.\")</script>";
+}  
+?>
 <!DOCTYPE html>
 <html>
 

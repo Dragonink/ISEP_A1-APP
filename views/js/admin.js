@@ -14,6 +14,7 @@ function PHPCall(url){
             request.open("post", tmpURL, false);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send((tmpURL != null) ? encodeURI(tmpURL) : "");
+            alert(request.responseText);
             return decodeURI(unescape(request.responseText));
         } catch (errv) {
             alert("The system is not working properly, please contact your support." + "\n(" + url + ")");
@@ -80,10 +81,6 @@ function supUtilisateur(id, origine) {
     document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
 }
 
-function ajout(){
-    document.getElementById("listeInfoUtilisateur").inerrHTML = PHPCall("/adminRefresh.php?fonction=ajout");
-}
-
 function openRequete(number) {
     var i, demande;
     document.getElementById("requete").innerHTML = PHPCall("/adminRefresh.php?fonction=requete&value=" + number);
@@ -136,6 +133,7 @@ function validerRequete(value, recherche, id, origine){
     document.getElementById("nbRequeteManager").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequeteManager");
     document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=utilisateur&value=" + value + "&recherche=" + recherche);
     document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
+    document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
 }
 
 function bannir(value, recherche, id, origine){

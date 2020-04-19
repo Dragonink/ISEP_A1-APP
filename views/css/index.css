@@ -1,11 +1,25 @@
+body {
+    background-color: rgb(24, 55, 94);
+}
+body > header,
+body > footer {
+    width: calc(100vw - 35px);
+}
+body > header {
+    position: fixed;
+    top: 0;
+    z-index: 1;
+}
 main {
     --color: rgb(24,55,94);
+
+    margin-top: 77.5px;
 }
 main > section {
     padding: 5vh 5vw;
 }
 main > section:first-of-type {
-    background: linear-gradient(to left top, blue, rgb(7, 218, 233));
+    background: linear-gradient(to left top, rgb(24, 55, 94), rgb(180,218,240));
     text-align: center;
     height: calc(100vh - 77.5px);
 }

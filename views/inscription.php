@@ -1,10 +1,6 @@
-
 <?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/inscription.php";
-
 include('../controllers/adminDonnees.php');
-
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -15,15 +11,13 @@ include('../controllers/adminDonnees.php');
     <script type="text/javascript" src="js/signup.js"></script>
 </head>
 
-<body>
+<body onload="document.getElementById('signup').reset();">
     <header>
         <h1>INFINITE MEASURES</h1>
     </header>
     <main>
 
         <form id="signup" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" data-account="user">
-
-        <!--<form id="signup" method="POST" action="routeur.php" onsubmit="return signupCheck();" data-account="user">-->
             <div>
                 <label for="type">Type de compte</label>
                 <div>
@@ -53,7 +47,7 @@ include('../controllers/adminDonnees.php');
                 <input id="nss" class="user" name="nss" type="text" required />
                 <label for="linked-manager" class="user">Médecin</label>
                 <select id="linked-manager" class="user" name="manager" required>
-                    <?php echo listeManager($db) ?>
+                    <?php echo listeManager($db); ?>
                 </select>
                 <!-- Manager only -->
                 <label for="address" class="manager">Adresse de travail</label>
@@ -65,7 +59,7 @@ include('../controllers/adminDonnees.php');
         </form>
         <div>
             <label for="signin">Vous avez déjà un compte ?</label>
-            <a id="signin" href="connexion.html">Se connecter</a>
+            <a id="signin" href="connexion.php">Se connecter</a>
         </div>
     </main>
 </body>

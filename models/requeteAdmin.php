@@ -62,7 +62,7 @@ function nombreQuestion(PDO $db):int {
 }
 
 function infoDispositif(PDO $db) {
-    $dispositif = 'SELECT console.id as code, first_name, last_name, work_adress, picture from manager join console on (console.manager=manager.id)';
+    $dispositif = 'SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id)';
     $prepare = $db->prepare($dispositif);
     $prepare->execute();
     return $prepare->fetchAll();
@@ -157,13 +157,6 @@ function modifQuestion(PDO $db, $id, $question, $answer, $admin) {
         'admin' => $admin,
         'id' => $id,
     ));
-}
-
-function ajout(PDO $db){
-    $modif ="INSERT INTO administrator(id, first_name, last_name, email, password, is_active) VALUES(1, 'Axelle', 'Martin', 'truc@gmail.com', 'truc', 1)";
-    $coucou ="INSERT INTO administrator( first_name, last_name, email, password) VALUES('Axelle', 'Martin', 'axelle.martin@gmail.com', 'truc')";
-    $db->prepare($modif)->execute();
-    $db->prepare($coucou)->execute();
 }
 
 function ajoutDispositif(PDO $db,int $id, $manager){ //rajouter la vérification que le code n'est pas déjà utilisé

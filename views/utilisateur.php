@@ -1,14 +1,13 @@
 <?php
 session_start();
 require "../models/account_info.php";
-$user_info = fetchUser($_SESSION["user_id"]);
+$user_info = fetchUser($db, $_SESSION["user_id"]);
 if ($user_info === FALSE) {
     echo "<script>alert(", "Une erreur est survenue.", ");</script>";
     exit;
 }
 $manager_info = fetchManager($user_info["manager"]);
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 
 <head>

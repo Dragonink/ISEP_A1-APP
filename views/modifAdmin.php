@@ -17,7 +17,7 @@
 <body>
     <?php require "_header.php"; ?>
     <section id="contenuAdmin">
-        <form class="modificationProfil" method="POST" action ="routeur.php">
+        <form class="modificationProfil" method="POST" action ="modif.php">
             <h2>Modification profil</h2></br>
             <table>
                 <tr>
@@ -58,8 +58,8 @@
                 </tr>
             </table>
             <div class="boutons">
-                <button id="annuler"> Annuler </button>
-                <button id="valider" name="modifAdmin"> Valider </button>
+                <button type="submit" id="annuler" name="annuler"> Annuler </button>
+                <button type="submit" id="valider" name="modifAdmin"> Valider </button>
             </div>
         </form>
     </section>

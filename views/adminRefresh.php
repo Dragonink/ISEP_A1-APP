@@ -34,11 +34,8 @@ if (isset($_GET["fonction"])){
     } elseif (($_GET["fonction"]=='supQuestion') && (isset($_GET["id"]))){
         supQuestion($db, $_GET["id"]);
         echo listeFAQ($db);
-    } elseif($_GET["fonction"]=='ajout') { //a enlever par la suite
-        ajout($db);
-        echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
     } elseif (($_GET["fonction"]=='addDispositif') && (isset($_GET["value"]) && isset($_GET["recherche"]) && isset($_GET["code"]) && isset($_GET["manager"]))){
-        ajoutDispositif($db, $code, $manager);
+        ajoutDispositif($db, $_GET["code"], $_GET["manager"]);
         echo listeInfoDispositif($db, $_GET["value"], $_GET["recherche"]);
     } elseif ($_GET["fonction"]=='nbRequete'){
         echo nombreRequete($db);
@@ -51,7 +48,7 @@ if (isset($_GET["fonction"])){
     } elseif ($_GET["fonction"]=='nbTest'){
         echo nombreTestsRealises($db);
     } else {
-        echo "</br>Les données rentrées ne sont pas corectes!";
+        echo "</br>Les données rentrées ne sont pas correctes!";
     }
 }
 

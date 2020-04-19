@@ -7,10 +7,10 @@ function listeManager(PDO $db){
         $info=infoManager($db);
         $resultat = "<option selected disabled> Nom propriétaire </option>";
         foreach ($info as $key => $value ){
-            $resultat .= "<option value=" .$value[id] ."> " .$value[first_name] ." " .$value[last_name] ." </option>";
+            $resultat .= "<option value='" .$value[id] ."'> " .$value[first_name] ." " .$value[last_name] ." </option>";
         }
     } else {
-        $resultat = "<option selected disabled> Pas de propriétaire </option>";
+        $resultat = "<option selected disabled> Pas de médecin </option>";
     }
     return $resultat;
 }
@@ -46,10 +46,10 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
                                 ."<td>" .$value['code'] ."</td>"
                                 ."<td class='modifierSupprimer'>"
                                     ."<img src='images/iconModifier.png' />"
-                                    ."<img src='images/iconCroix.png'/>"
+                                    ."<img src='images/iconCroix.png' />"
                                 ."</td>"
                             ."</tr>"
-                            ."<tr> <td>" .$value['work_adress'] ."</td> </tr>"
+                            ."<tr> <td>" .$value['work_address'] ."</td> </tr>"
                             ."<tr>"
                                 ."<td colspan='2' class='proprietaireDispositif'>";
             if ($value['picture']==NULL){
@@ -60,8 +60,15 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
             $resultat .= $value['first_name'] ." " .$value['last_name'] ."</td>"
                             ."</tr>"
                         ."</table></td>";
+            if ($key%12==0 && $key+1==$nombre){
+                $resultat .= "<td></td><td></td><td></td>";
+            } elseif ($key%12==1 && $key+1==$nombre){
+                $resultat .= "<td></td><td></td>";
+            } elseif ($key%12==2 && $key+1==$nombre){
+                $resultat .= "<td></td>";
+            }
 
-            if ($key%12==11){
+            if ($key%12==11 || $key+1==$nombre){
                 $resultat .= "</tr></table>";
             } elseif (($key%12==3) or ($key%12==7)){
                 $resultat .= "</tr>";
@@ -310,3 +317,4 @@ function ajouterQuestion(PDO $db){
             ." </div>";
     return $resultat;
 }
+?>

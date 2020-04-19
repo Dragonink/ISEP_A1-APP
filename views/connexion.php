@@ -1,5 +1,5 @@
-<?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/connexion.php"; ?>
-<!DOCTYPE html>
+<?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/connexion.php";
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -25,7 +25,7 @@
 		</form>
 		<div>
 			<label for="signup">Vous n'avez pas de compte ?</label>
-			<a id="signup" href="inscription.html">S'inscrire</a>
+			<a id="signup" href="inscription.php">S'inscrire</a>
 		</div>
 	</main>
 	<footer>

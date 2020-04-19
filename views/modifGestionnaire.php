@@ -15,7 +15,7 @@
 
 <body>
 	<?php require "_header.php"; ?>
-	<form method="POST" action ="routeur.php">
+	<form method="POST" action ="modif.php">
 		<div id="text">
 			<div id="roundedImage">
 				<img src="../images/iconProfil.jpg">
@@ -25,20 +25,20 @@
 				<button type="submit" name="modifGestionnaire">Valider les modifications</button>
 			</div>
 			<div id="Annulation">
-				<button type="submit">Annuler</button>
+				<button type="submit" name="annuler">Annuler</button>
 			</div>
 		</div>
 		<div id="infors">
 			<div id="info">
 				<h2>Informations personnelles </h2>
 				<p>Nom</p>
-				<input type="text" name="nom" placeholder="Nom" required="required" />
+				<input type="text" name="nom" placeholder="Nom"  />
 				<p>Prénom</p>
-				<input type="text" name="prenom" placeholder="Prénom" required="required" />
+				<input type="text" name="prenom" placeholder="Prénom"  />
 				<p>Email</p>
-				<input type="text" name="email" placeholder="E-mail" required="required" />
+				<input type="text" name="email" placeholder="E-mail" />
 				<p>Vérifier Email</p>
-				<input type="text" name="verifemail" placeholder="E-mail" />
+				<input type="text" name="verifemail" />
 			</div>
 			<div id="infos">
 				<p>Numéro de téléphone</p>
