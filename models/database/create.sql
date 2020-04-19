@@ -69,7 +69,7 @@ CREATE TABLE `user` (
 DROP TABLE IF EXISTS `banned`;
 CREATE TABLE `banned` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user` int NOT NULL,
+  `user` bigint NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `user` (`user`),
   CONSTRAINT `banned_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`nss`)
@@ -95,8 +95,8 @@ CREATE TABLE `console` (
 DROP TABLE IF EXISTS `exam`;
 CREATE TABLE `exam` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `user` int NOT NULL,
-  `console` int NOT NULL,
+  `user` bigint NOT NULL,
+  `console` mediumint NOT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   KEY `console` (`console`),
