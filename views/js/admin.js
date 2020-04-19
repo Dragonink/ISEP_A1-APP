@@ -14,7 +14,6 @@ function PHPCall(url){
             request.open("post", tmpURL, false);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send((tmpURL != null) ? encodeURI(tmpURL) : "");
-            alert(request.responseText);
             return decodeURI(unescape(request.responseText));
         } catch (errv) {
             alert("The system is not working properly, please contact your support." + "\n(" + url + ")");

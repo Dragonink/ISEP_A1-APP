@@ -4,28 +4,25 @@
     <a href="#ntp">Notre projet</a>
     <a href="#contact">Contact</a>
     <?php
+    
         if (isset($_SESSION["user_type"]) && isset($_SESSION["user_id"])) {
-            require "../models/account_info.php";
-            switch ($_SESSION["user_type"]) {
-                case "user":
-                    $user_info = fetchUser($_SESSION["user_id"]);
-                    break;
-                case "manager":
-                    $user_info = fetchManager($_SESSION["user_id"]);
-                    break;
-                case "administrator":
-                    $user_info = fetchAdmin($_SESSION["user_id"]);
-                    break;
-            }
             echo "<div>",
                 "<div id='account'>",
-                $user_info["first_name"] . " " . $user_info["last_name"],
+                $_SESSION["user_prenom"] . " " . $_SESSION["user_nom"],
                 "<img src='images/iconProfil.jpg' height='64'/>",
                 "</div>",
-                "<ul id='dropdown'>",
-                "<li><a href=''>Mon profil</a></li>",
-                "<li><a href=''>Modifier mon profil</a></li>",
-                "<li><a href='deconnexion.php'>Déconnexion</a></li>",
+                "<ul id='dropdown'>";
+            if ($_SESSION["user_type"]=='user'){
+                echo "<li><a href='utilisateur.php'>Mon profil</a></li>",
+                    "<li><a href='modifUtilisateur.php'>Modifier mon profil</a></li>";
+            }elseif ($_SESSION["user_type"]=='manager'){
+                echo "<li><a href='gestionnaire.php'>Mon profil</a></li>",
+                    "<li><a href='modifGestionnaire.php'>Modifier mon profil</a></li>";
+            }elseif ($_SESSION["user_type"]=='administrator'){
+                echo "<li><a href='admin.php'>Mon profil</a></li>",
+                    "<li><a href='modifAdmin.php'>Modifier mon profil</a></li>";
+            }
+            echo "<li><a href='deconnexion.php'>Déconnexion</a></li>",
                 "</ul>",
                 "</div>";
         } else echo "<ul id='sign'>",

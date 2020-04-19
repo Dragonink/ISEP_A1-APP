@@ -1,11 +1,5 @@
 <?php
 session_start();
-require "../models/account_info.php";
-$manager_info = fetchManager($db,$_SESSION["user_id"]);
-if ($manager_info === FALSE) {
-    echo "<script>alert(", "Une erreur est survenue.", ");</script>";
-    exit;
-}
 ?>
 <!DOCTYPE html>
 <meta charset="UTF-8">
@@ -71,9 +65,9 @@ if ($manager_info === FALSE) {
 			<td class="donneesPersonnelles">
 				<div>
 					<img src="images/iconProfil.jpg" />
-					<div><?php echo $manager_info["first_name"]; ?></div> &nbsp; <div><?php echo $manager_info["last_name"]; ?></div>
+					<div><?php echo $_SESSION["user_prenom"]; ?></div> &nbsp; <div><?php echo $_SESSION["user_nom"]; ?></div>
 				</div>
-				<div>E-mail <?php echo $manager_info["email"]; ?></div>
+				<div>E-mail <?php echo $_SESSION["user_email"]; ?></div>
 				<div>Numéro de téléphone: <?php
                     if ($manager_info["phone"] === NULL) echo "N/A";
                     else echo $manager_info["phone"];

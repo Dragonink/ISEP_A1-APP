@@ -23,20 +23,18 @@ function insertAdmin(PDO $db, $firstname, $lastname, $email, $password) {
 }
 
 function fetchUser(PDO $db, $nss) {
-    $req = $db->query("SELECT * FROM user WHERE nss = '$nss'");
-    if ($req !== FALSE) {
-        return $req->fetch(PDO::FETCH_ASSOC);
-    }
+    $req = $db->query("SELECT * FROM user WHERE nss = '$nss' ");
+    return $req->fetchAll();
+}
+function fetchUser2(PDO $db, $email) {
+    $req = $db->query("SELECT * FROM user WHERE email = '$email' ");
+    return $req->fetchAll();
 }
 function fetchManager(PDO $db, $email) {
-    $req = $db->query("SELECT * FROM manager WHERE email = '$email'");
-    if ($req !== FALSE) {
-        return $req->fetch(PDO::FETCH_ASSOC);
-    }
+    $req = $db->query("SELECT * FROM manager WHERE email = '$email' ");
+    return $req -> fetchAll();
 }
 function fetchAdmin(PDO $db, $email) {
-    $req = $db->query("SELECT * FROM administrator WHERE email = '$email'");
-    if ($req !== FALSE) {
-        return $req->fetch(PDO::FETCH_ASSOC);
-    }
+    $req = $db->query("SELECT * FROM administrator WHERE email = '$email' ");
+    return $req->fetchAll();
 }

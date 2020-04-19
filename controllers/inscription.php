@@ -7,6 +7,7 @@ function trim_input($data) {
 $type = trim_input($_POST["type"]);
 $firstname = trim_input($_POST["firstname"]);
 $lastname = trim_input($_POST["lastname"]);
+$password = trim_input($_POST["password"]);
 $email = trim_input($_POST["email"]);
 $nss = trim_input($_POST["nss"]);
 $linked_manager = trim_input($_POST["linked-manager"]);
