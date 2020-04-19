@@ -73,8 +73,4 @@ if (isset($_POST['modifUtilisateur'])){
     if ($mdperreur=true || $emailerreur=true){
         $url='modifAdmin';
     }
-}else{
-
-}
-
-//include();
+include($url .'.php');
