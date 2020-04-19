@@ -15,41 +15,43 @@
 
 <body>
 	<?php require "_header.php"; ?>
-	<div id="text">
-		<div id="roundedImage">
-			<img src="images/iconProfil.jpg">
+	<form method="POST" action ="routeur.php">
+		<div id="text">
+			<div id="roundedImage">
+				<img src="../images/iconProfil.jpg">
+			</div>
+			<div id="nom">Nom Prénom</div> &nbsp; <div id="prénom"></div>
+			<div id="Validation">
+				<button type="submit" name="modifGestionnaire">Valider les modifications</button>
+			</div>
+			<div id="Annulation">
+				<button type="submit">Annuler</button>
+			</div>
 		</div>
-		<div id="nom">Nom Prénom</div> &nbsp; <div id="prénom"></div>
-		<div id="Validation">
-			<button type="submit">Valider les modifications</button>
+		<div id="infors">
+			<div id="info">
+				<h2>Informations personnelles </h2>
+				<p>Nom</p>
+				<input type="text" name="nom" placeholder="Nom" required="required" />
+				<p>Prénom</p>
+				<input type="text" name="prenom" placeholder="Prénom" required="required" />
+				<p>Email</p>
+				<input type="text" name="email" placeholder="E-mail" required="required" />
+				<p>Vérifier Email</p>
+				<input type="text" name="verifemail" placeholder="E-mail" />
+			</div>
+			<div id="infos">
+				<p>Numéro de téléphone</p>
+				<input type="int" name="telephone" placeholder="Numéro de telephone" />
+				<p>Mot de passe</p>
+				<input type="password" name="mdp" placeholder="Mot de passe" />
+				<p>Confirmation de mot de passe</p>
+				<input type="password" name="verifmdp">
+				<p> Adresse de travail</p>
+				<input type="text" name="adresse" placeholder="Adresse" />
+			</div>
 		</div>
-		<div id="Annulation">
-			<button type="submit">Annuler</button>
-		</div>
-	</div>
-	<div id="infors">
-		<div id="info">
-			<h2>Informations personnelles </h2>
-			<p>Nom</p>
-			<input type="text" name="Nom" placeholder="nom" required="required" />
-			<p>Prénom</p>
-			<input type="text" name="Prénom" placeholder="prenom" required="required" />
-			<p>Email</p>
-			<input type="text" name="Email" placeholder="email" required="required" />
-			<p>Vérifier Email</p>
-			<input type="text" name="Vérifier Email" placeholder="email" />
-		</div>
-		<div id="infos">
-			<p>Numéro de téléphone</p>
-			<input type="int" name="Numéro de téléphone" placeholder="numéro de telephone" />
-			<p>Mot de passe</p>
-			<input type="password" name="Mot de passe" placeholder="Mot de passe" />
-			<p>Confirmation de mot de passe</p>
-			<input type="password" name="Confirmation de mot de passe">
-			<p> Adresse de travail</p>
-			<input type="text" name="Addresse de travail" placeholder="adresse" />
-		</div>
-	</div>
+	</form>
 </body>
 
 </html>

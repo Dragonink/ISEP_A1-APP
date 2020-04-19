@@ -17,49 +17,49 @@
 <body>
     <?php require "_header.php"; ?>
     <section id="contenuAdmin">
-        <form class="modificationProfil">
+        <form class="modificationProfil" method="POST" action ="routeur.php">
             <h2>Modification profil</h2></br>
             <table>
                 <tr>
                     <td>
-                        <p>Nom:</p>
+                        <p>Nom</p>
                     </td>
                     <td><input type="text" name="nom" placeholder="Nom" /></td>
                 </tr>
                 <tr>
                     <td>
-                        <p>Prénom:</p>
+                        <p>Prénom</p>
                     </td>
                     <td><input type="text" name="prenom" placeholder="Prénom" /></td>
                 </tr>
                 <tr>
                     <td>
-                        <p>E-mail:</p>
+                        <p>E-mail</p>
                     </td>
                     <td><input type="email" name="email" placeholder="prenom.nom@infinitesMeasures.com" /></td>
                 </tr>
                 <tr>
                     <td>
-                        <p>Vérification e-mail:</p>
+                        <p>Vérification e-mail</p>
                     </td>
-                    <td><input type="email" name="emailVerification" /></td>
+                    <td><input type="email" name="verifemail" /></td>
                 </tr>
                 <tr>
                     <td>
-                        <p>Mot de passe:</p>
+                        <p>Mot de passe</p>
                     </td>
                     <td><input type="text" name="mdp" /></td>
                 </tr>
                 <tr>
                     <td>
-                        <p>Vérification mot de passe:</p>
+                        <p>Vérification mot de passe</p>
                     </td>
-                    <td><input type="text" name="verifMdp" /></td>
+                    <td><input type="text" name="verifmdp" /></td>
                 </tr>
             </table>
             <div class="boutons">
                 <button id="annuler"> Annuler </button>
-                <button id="valider"> Valider </button>
+                <button id="valider" name="modifAdmin"> Valider </button>
             </div>
         </form>
     </section>

@@ -55,6 +55,7 @@ CREATE TABLE `user` (
   `manager` int,
   `phone` varchar(15) DEFAULT NULL,
   `picture` mediumblob,
+  `ack_share` boolean NOT NULL DEFAULT TRUE,
   PRIMARY KEY (`nss`),
   KEY `manager` (`manager`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`)
