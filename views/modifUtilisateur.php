@@ -27,19 +27,13 @@ $manager_info = $manager_info[0];
 			<div id="roundedImage">
 				<img src="../images/iconProfil.jpg" />
 			</div>
-			<div>
-				<div id="prénom"><?php echo $_SESSION["user_prenom"]?></div> &nbsp; <div id="nom"><?php echo $_SESSION["user_nom"]?></div>
-			</div>
-			<div id="Validation">
-				<button type="submit" name="modifUtilisateur">Valider les modifications</button>
-			</div>
-			<div id="Annulation">
-				<button type="submit" name="annuler">Annuler</button>
-			</div>
+			<div id="nom"><?php echo $_SESSION["user_prenom"]?> &nbsp; <?php echo $_SESSION["user_nom"]?></div>
+			<button type="submit" id="Validation" name="modifUtilisateur">Valider les modifications</button>
+			<button type="submit" id="Annulation" name="annuler">Annuler</button>
 		</div>
+		<h2>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Informations personnelles </h2>
 		<div id="infors">
 			<div id="info">
-				<h2>Informations personnelles </h2>
 				<p>Nom</p>
 				<input type="text" name="nom" placeholder="<?php echo $_SESSION["user_nom"]?> " />
 				<p>Prénom</p>
