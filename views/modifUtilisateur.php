@@ -1,5 +1,8 @@
 <?php
 session_start(); 
+require "../models/account_info.php";
+$manager_info = fetchManager2($db, $_SESSION["user_medecin"]);
+$manager_info = $manager_info[0];
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,7 +10,6 @@ session_start();
 <head>
 
 	<!-- JS -->
-	<script src="js/code.js"></script>
 	<script src="js/profil.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
@@ -19,13 +21,15 @@ session_start();
 
 <body>
 	<?php require "_header.php"; ?>
+	<main>
 	<form method="POST" action ="modif.php" >
 		<div id="text">
 			<div id="roundedImage">
 				<img src="../images/iconProfil.jpg" />
 			</div>
-			<div id="nom">Nom Prénom</div> &nbsp; <div id="prénom"></div>
-
+			<div>
+				<div id="prénom"><?php echo $_SESSION["user_prenom"]?></div> &nbsp; <div id="nom"><?php echo $_SESSION["user_nom"]?></div>
+			</div>
 			<div id="Validation">
 				<button type="submit" name="modifUtilisateur">Valider les modifications</button>
 			</div>
@@ -37,23 +41,23 @@ session_start();
 			<div id="info">
 				<h2>Informations personnelles </h2>
 				<p>Nom</p>
-				<input type="text" name="nom" placeholder="Nom" />
+				<input type="text" name="nom" placeholder="<?php echo $_SESSION["user_nom"]?> " />
 				<p>Prénom</p>
-				<input type="text" name="prenom" placeholder="Prénom" />
+				<input type="text" name="prenom" placeholder="<?php echo $_SESSION["user_prenom"]?>" />
 				<p>Email</p>
-				<input type="text" name="email" placeholder="E-mail" />
+				<input type="text" name="email" placeholder="<?php echo $_SESSION["user_email"]?>" />
 				<p>Vérifier Email</p>
 				<input type="text" name="verifemail" />
 			</div>
 			<div id="infos">
 				<p>Numéro de téléphone</p>
-				<input type="text" name="telephone" placeholder="Téléphone" />
+				<input type="text" name="telephone" placeholder="<?php echo $_SESSION["user_tel"]?>" />
 				<p>Mot de passe</p>
 				<input type="password" name="mdp" placeholder="Mot de passe" />
 				<p>Confirmation de mot de passe</p>
 				<input type="password" name="verifmdp">
 				<p>Médecin</p>
-				<input type="text" name="medecin" placeholder="Médecin" />
+				<input type="text" name="medecin" placeholder="<?php echo $manager_info['first_name'], " ", $manager_info['last_name']?>" />
 				<div>
 					<input type="checkbox" id="data" name="scales"
 						unchecked>
@@ -62,6 +66,7 @@ session_start();
 			</div>
 		</div>
 	</form>
+	</main>
 </body>
 
 </html>

@@ -8,7 +8,6 @@ session_start();
 <head>
 
 	<!-- JS -->
-	<script src="js/code.js"></script>
 	<script src="js/profil.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 	<script src="https://www.chartjs.org/samples/latest/utils.js"></script> <!-- genere des valeurs aléatoires-->
@@ -69,10 +68,10 @@ session_start();
 				</div>
 				<div>E-mail <?php echo $_SESSION["user_email"]; ?></div>
 				<div>Numéro de téléphone: <?php
-                    if ($manager_info["phone"] === NULL) echo "N/A";
-                    else echo $manager_info["phone"];
+                    if ($_SESSION["user_tel"] === NULL) echo "N/A";
+                    else echo $_SESSION["user_tel"];
                 ?></div>
-				<div>Adresse du cabinet : <?php echo $manager_info["work_address"]; ?></div>
+				<div>Adresse du cabinet : <?php echo $_SESSION["user_adresse"]; ?></div>
 			</td>
 			<td id="stats">
 				<div class="statistiques">

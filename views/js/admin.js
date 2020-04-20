@@ -70,6 +70,10 @@ function closeAddDispositif() {
     document.getElementsByClassName("addDispositif")[0].style.display="none";
 }
 
+function supDispositif(id, value, recherche){
+    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=supDispositif&value=" + value + "&recherche" + recherche + "&id=" + id );
+}
+
 function openRequetes() {
     document.getElementsByClassName("requetes")[0].style.display="block";
 }
@@ -102,10 +106,10 @@ function supQuestion(id) {
     document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=supQuestion&id=" + id);
 }
 
-function modifQuestion(id, number) {
+function modifQuestion(id, number, admin) {
     var question=document.getElementsByClassName('question')[number-1].value;
     var answer=document.getElementsByClassName('answer')[number-1].value;
-    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=modifQuestion&id=" + id +"&question=" + question + "&answer=" + answer);
+    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=modifQuestion&id=" + id +"&question=" + question + "&answer=" + answer +"&admin=" + admin);
 }
 
 function closeAddQuestion() {
@@ -141,10 +145,10 @@ function bannir(value, recherche, id, origine){
     document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
 }
 
-function validAjoutQuestion(){
+function validAjoutQuestion(id){
     var question=document.getElementById('newQuestion').value;
     var answer=document.getElementById('newAnswer').value;
-    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=validAjoutQuestion&question=" + question + "&answer=" + answer);
+    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=validAjoutQuestion&question=" + question + "&answer=" + answer +"&id=" + id);
 }
 
 function graphe(){

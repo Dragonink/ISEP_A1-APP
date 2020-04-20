@@ -164,6 +164,13 @@ function ajoutDispositif(PDO $db,int $id, $manager){ //rajouter la vérification
     $db->prepare($ajout)->execute();
 }
 
+function supDispositif(PDO $db,int $id){ //rajouter la vérification que le code n'est pas déjà utilisé
+    $sup = "DELETE FROM console  WHERE id= :id";
+    $prepare = $db->prepare($sup);
+    $prepare->bindParam(':id', $id, PDO::PARAM_INT);
+    $prepare->execute();
+}
+
 function bannir(PDO $db,int $id, $origine){
     rejeter($db,$id, $origine);
     if ($origin!='administartor'){

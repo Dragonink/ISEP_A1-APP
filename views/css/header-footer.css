@@ -4,6 +4,9 @@ body {
     overflow-x: hidden;
     margin: 0;
 }
+body > main {
+    min-height: calc(100vh - 78.444px - 74px);
+}
 body > header,
 body > footer {
     display: flex;
@@ -51,8 +54,11 @@ body > header > div {
 body > header > div > div#account {
     display: flex;
 }
+body > header > div > div#account > p {
+    margin: auto 0;
+}
 body > header > div img {
-    border-radius: 0;
+    border-radius: 50%;
 }
 body > header > div > ul#dropdown {
     display: none;

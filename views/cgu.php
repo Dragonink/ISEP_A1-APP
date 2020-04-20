@@ -9,6 +9,9 @@
         #titre {
             text-align: center;
         }
+        main{
+            margin: 0% 1%;
+        }
     </style>
 </head>
 

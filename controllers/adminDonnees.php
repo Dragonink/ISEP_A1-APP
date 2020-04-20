@@ -1,11 +1,12 @@
 <?php
+session_start();
 include('../models/requeteAdmin.php');
 
 function listeManager(PDO $db){
     $nombre=nombreManager($db);
     if ($nombre!= 0){
         $info=infoManager($db);
-        $resultat = "<option selected disabled> Nom propriétaire </option>";
+        $resultat = "<option selected disabled> Nom médecin </option>";
         foreach ($info as $key => $value ){
             $resultat .= "<option value='" .$value[id] ."'> " .$value[first_name] ." " .$value[last_name] ." </option>";
         }
@@ -46,7 +47,7 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
                                 ."<td>" .$value['code'] ."</td>"
                                 ."<td class='modifierSupprimer'>"
                                     ."<img src='images/iconModifier.png' />"
-                                    ."<img src='images/iconCroix.png' />"
+                                    ."<img src='images/iconCroix.png' onclick=\"supDispositif(".$value['code'] ." , " .$valeur ." , '" .$recherche ."')\"/>"
                                 ."</td>"
                             ."</tr>"
                             ."<tr> <td>" .$value['work_address'] ."</td> </tr>"
@@ -275,7 +276,7 @@ function listeFAQ(PDO $db){
                                 ."<div> <textarea class='question' id='question" .$value['id'] ."' name='question " .$value['id'] ."' cols=20' rows='1' style='resize: none;'>" .$value['question'] ."</textarea> </div>"
                                 ."<div class='vide' > </div>"
                                 ."<div>"
-                                    ."<img src='images/iconValider.png' onclick='modifQuestion(" .$value['id'] ." , " .$i .")'/>"
+                                    ."<img src='images/iconValider.png' onclick='modifQuestion(" .$value['id'] ." , " .$i ." , " .$_SESSION["user_id"] .")'/>"
                                     ."<img src='images/iconAnnuler.png' class='symboleAnnuler' onclick='openReponse(" .$i .")'/>"
                                 ."</div>"
                             ."</div>"
@@ -305,7 +306,7 @@ function ajouterQuestion(PDO $db){
                         ."<div> <textarea id='newQuestion' name='question' cols='20' rows='1' style='resize: none;' placeholder='Question'></textarea></div>"
                         ."<div class='vide' > </div>"
                         ."<div>"
-                            ."<img src='images/iconValider.png' onclick='validAjoutQuestion()'/>"
+                            ."<img src='images/iconValider.png' onclick='validAjoutQuestion(" .$_SESSION["user_id"] .")'/>"
                             ."<img src='images/iconAnnuler.png' class='symboleAnnuler' onclick='closeAddQuestion()'/>"
                         ."</div>"
                     ."</div>"

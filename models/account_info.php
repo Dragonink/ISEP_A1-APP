@@ -2,7 +2,7 @@
 require "connexionSQL.php";
 function insertUser(PDO $db, $nss, $firstname, $lastname, $email, $password, $linked_manager) {
     $password = password_hash($password, PASSWORD_DEFAULT);
-    $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
+    $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
     if ($req !== FALSE) {
         return $req->execute();
     }
@@ -32,6 +32,10 @@ function fetchUser2(PDO $db, $email) {
 }
 function fetchManager(PDO $db, $email) {
     $req = $db->query("SELECT * FROM manager WHERE email = '$email' ");
+    return $req -> fetchAll();
+}
+function fetchManager2(PDO $db, $id) {
+    $req = $db->query("SELECT * FROM manager WHERE id = '$id' ");
     return $req -> fetchAll();
 }
 function fetchAdmin(PDO $db, $email) {

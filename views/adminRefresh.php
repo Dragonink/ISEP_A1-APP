@@ -25,17 +25,20 @@ if (isset($_GET["fonction"])){
     } else if (($_GET["fonction"]=='bannir') && (isset($_GET["value"]) && isset($_GET["recherche"]) && isset($_GET["id"]) && isset($_GET["origine"]))){
         bannir($db, $_GET["id"], $_GET["origine"]);
         echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
-    } elseif (($_GET["fonction"]=='validAjoutQuestion') && (isset($_GET["question"]) && isset($_GET["answer"]))){
-        ajoutQuestion($db, $_GET["question"], $_GET["answer"], $_SESSION["user_id"]);
+    } elseif (($_GET["fonction"]=='validAjoutQuestion') && (isset($_GET["question"]) && isset($_GET["answer"]) && isset($_GET["id"]))){
+        ajoutQuestion($db, $_GET["question"], $_GET["answer"], $_GET["id"]);
         echo listeFAQ($db);
-    } elseif (($_GET["fonction"]=='modifQuestion') && (isset($_GET["id"]) && isset($_GET["question"]) && isset($_GET["answer"]))){
-        modifQuestion($db, $_GET["id"], $_GET["question"], $_GET["answer"], $_SESSION["user_id"]);
+    } elseif (($_GET["fonction"]=='modifQuestion') && (isset($_GET["id"]) && isset($_GET["question"]) && isset($_GET["answer"]) && isset($_GET["admin"]))){
+        modifQuestion($db, $_GET["id"], $_GET["question"], $_GET["answer"], $_GET["admin"]);
         echo listeFAQ($db);
     } elseif (($_GET["fonction"]=='supQuestion') && (isset($_GET["id"]))){
         supQuestion($db, $_GET["id"]);
         echo listeFAQ($db);
     } elseif (($_GET["fonction"]=='addDispositif') && (isset($_GET["value"]) && isset($_GET["recherche"]) && isset($_GET["code"]) && isset($_GET["manager"]))){
         ajoutDispositif($db, $_GET["code"], $_GET["manager"]);
+        echo listeInfoDispositif($db, $_GET["value"], $_GET["recherche"]);
+    } elseif (($_GET["fonction"]=='supDispositif') && (isset($_GET["value"]) && isset($_GET["recherche"]) && isset($_GET["id"]))){
+        supDispositif($db, $_GET["id"]);
         echo listeInfoDispositif($db, $_GET["value"], $_GET["recherche"]);
     } elseif ($_GET["fonction"]=='nbRequete'){
         echo nombreRequete($db);

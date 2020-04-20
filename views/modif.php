@@ -1,6 +1,6 @@
 <?php
 
-include("controllers/profil.php");
+include("../controllers/profil.php");
 function trim_input($data) {
 	return htmlspecialchars(stripslashes(trim($data)));
 }
@@ -15,30 +15,30 @@ if (isset($_POST['modifUtilisateur'])){
     $medecin=trim_input($_POST['medecin']);
     $url='utilisateur';
     if (isset($nom) && $nom!=''){
-        nom('user');
+        nom($db, 'user');
     }
     if (isset($prenom) && $prenom!=''){
-        prenom('user');
+        prenom($db, 'user');
     }
     if (isset($mdp) && $mdp!=''){
-        $mdperreur=mdp('user');
+        $mdperreur=mdp($db, 'user');
     }
     if (isset ($email) && $email!=''){
-        $emailerreur=email('user');
+        $emailerreur=email($db, 'user');
     }
     //if (isset ($_POST['photo']) && $_POST['photo']!=''){
     //    photo('user');
     //}
     if (isset($telephone) && $telephone!=''){
-        telephone('user');
+        telephone($db, 'user');
     }
     if (isset($medecin) && $medecin!=''){
-        medecin('user');
+        medecin($db, 'user');
     }   
     if ($mdperreur=true || $emailerreur=true){
-        $url='modifUtilisateur';
+        $url="modifUtilisateur";
     }
-    checkbox('user');
+    checkbox($db, 'user');
     
 }elseif (isset($_POST['modifGestionnaire'])){
     $nom = $prenom = $mdp = $email = $telephone = $medecin = "";
@@ -50,28 +50,28 @@ if (isset($_POST['modifUtilisateur'])){
     $adresse=trim_input($_POST['adresse']);
     $url='gestionnaire';
     if (isset($nom) && $nom!=''){
-        nom('manager');
+        nom($db, 'manager');
     }
     if (isset($prenom) && $prenom!=''){
-        prenom('manager');
+        prenom($db,'manager');
     }
     if (isset($mdp) && $mdp!=''){
-        $mdperreur=mdp('manager');
+        $mdperreur=mdp($db, 'manager');
     }
     if (isset ($email) && $email!=''){
-        $emailerreur=email('manager');
+        $emailerreur=email($db, 'manager');
     }
     //if (isset ($_POST['photo']) && $_POST['photo']!=''){
     //    photo('user');
     //}
     if (isset($telephone) && $telephone!=''){
-        telephone('manager');
+        telephone($db, 'manager');
     }
     if (isset($adresse) && $adresse!=''){
-        telephone('manager');
+        telephone($db, 'manager');
     }
     if ($mdperreur=true || $emailerreur=true){
-        $url='modifGestionnaire';
+        $url="modifGestionnaire";
     }
 }elseif (isset($_POST['modifAdmin'])){
     $nom = $prenom = $mdp = $email = $telephone = $medecin = "";
@@ -81,19 +81,19 @@ if (isset($_POST['modifUtilisateur'])){
     $email=trim_input($_POST['email']);
     $url='admin';
     if (isset($nom) && $nom!=''){
-        nom('admin');
+        nom($db, 'admin');
     }
     if (isset($prenom) && $prenom!=''){
-        prenom('admin');
+        prenom($db,'admin');
     }
     if (isset($mdp) && $mdp!=''){
-        $mdperreur=mdp('admin');
+        $mdperreur=mdp($db, 'admin');
     }
     if (isset ($email) && $email!=''){
-        $emailerreur=email('admin');
+        $emailerreur=email($db, 'admin');
     }
     if ($mdperreur=true || $emailerreur=true){
-        $url='modifAdmin';
+        $url="modifAdmin";
     }
 }elseif (isset($_POST['annuler'])) {
     if ($_SESSION["user_type"]=="user"){

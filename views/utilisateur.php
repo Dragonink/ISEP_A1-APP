@@ -1,12 +1,14 @@
 <?php
 session_start();
+require "../models/account_info.php";
+$manager_info = fetchManager2($db, $_SESSION["user_medecin"]);
+$manager_info = $manager_info[0];
 ?><!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="UTF-8" />
     <!-- JS -->
-    <script src="js/code.js"></script>
     <script src="js/profil.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
@@ -24,7 +26,7 @@ session_start();
             <td class="donneesPersonnelles">
                 <div>
                     <img src="images/iconProfil.jpg" />
-                    <div><?php echo $user_info["first_name"]; ?></div> &nbsp; <div><?php echo $user_info["last_name"]; ?></div>
+                    <div><?php echo $_SESSION["user_prenom"] ?></div> &nbsp; <div><?php echo $_SESSION["user_nom"] ?></div>
                 </div>
                 <div>Sexe: <?php
                     switch (substr($_SESSION["user_id"], 0, 1)) {
@@ -37,15 +39,21 @@ session_start();
                     }
                 ?></div>
                 <div> Date de naissance: <?php echo substr($_SESSION["user_id"],3,2), "/", substr($_SESSION["user_id"], 1, 2); ?></div>
-                <div>E-mail: <?php echo $user_info["email"]; ?></div>
+                <div>E-mail: <?php echo $_SESSION["user_email"] ?></div>
                 <div>Numéro de sécurité sociale: <?php echo $_SESSION["user_id"]; ?></div>
                 <div>Numéro de téléphone: <?php
-                    if ($user_info["phone"] === NULL) echo "N/A";
-                    else echo $user_info["phone"];
+                    if ($_SESSION["user_tel"] === NULL){
+                        echo "N/A";
+                    } else {
+                        echo $_SESSION["user_prenom"] ;
+                    }
                 ?></div>
                 <div>Médecin: <?php
-                    if ($manager_info === FALSE) echo "ERREUR";
-                    else echo $manager_info["first_name"], " ", $manager_info["last_name"];
+                    if ($_SESSION["user_medecin"] === NULL) {
+                        echo "ERREUR";
+                    } else {
+                        echo $manager_info["first_name"], " ", $manager_info["last_name"];
+                    }
                 ?></div>
             </td>
             <td class="resultatDernierTest">

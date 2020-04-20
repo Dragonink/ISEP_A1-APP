@@ -7,11 +7,10 @@ include('../controllers/adminDonnees.php');
     <meta charset="UTF-8" />
     <title>Inscription</title>
     <link rel="stylesheet" type="text/css" href="css/sign.css" />
-    <script type="text/javascript" src="js/code.js"></script>
     <script type="text/javascript" src="js/signup.js"></script>
 </head>
 
-<body onload="document.getElementById('signup').reset();">
+<body onload="selectType('user');">
     <header>
         <h1>INFINITE MEASURES</h1>
     </header>
@@ -45,8 +44,8 @@ include('../controllers/adminDonnees.php');
                 <!-- User only -->
                 <label for="nss" class="user">N° Sécurité Sociale</label>
                 <input id="nss" class="user" name="nss" type="text" required />
-                <label for="linked-manager" class="user">Médecin</label>
-                <select id="linked-manager" class="user" name="manager" required>
+                <label for="manager" class="user">Médecin</label>
+                <select id="manager" class="user" name="manager" required>
                     <?php echo listeManager($db); ?>
                 </select>
                 <!-- Manager only -->

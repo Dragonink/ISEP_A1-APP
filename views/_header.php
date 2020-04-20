@@ -1,14 +1,15 @@
 <header>
-    <a href="index.php"><img src="images/infinite_measures.jpg" height="64"/></a>
-    <a href="#qsn">Qui sommes-nous ?</a>
-    <a href="#ntp">Notre projet</a>
-    <a href="#contact">Contact</a>
+    <a href='index.php'><img src='images/infinite_measures.jpg' height='64'/></a>
     <?php
-    
+        if ($_SERVER["REQUEST_URI"] === "/index.php") {
+            echo "<a href='#qsn'>Qui sommes-nous ?</a>",
+                "<a href='#ntp'>Notre projet</a>",
+                "<a href='#contact'>Contact</a>";
+        }
         if (isset($_SESSION["user_type"]) && isset($_SESSION["user_id"])) {
             echo "<div>",
                 "<div id='account'>",
-                $_SESSION["user_prenom"] . " " . $_SESSION["user_nom"],
+                "<p>" . $_SESSION["user_prenom"] . " " . $_SESSION["user_nom"] . "</p>",
                 "<img src='images/iconProfil.jpg' height='64'/>",
                 "</div>",
                 "<ul id='dropdown'>";

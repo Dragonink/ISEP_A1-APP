@@ -4,12 +4,17 @@ html {
     background: linear-gradient(to left top, rgb(24, 55, 94), rgb(180, 218, 240));
 }
 body {
+    overflow: hidden;
+}
+main {
+    min-height: calc(100vh - 2 * 5vh - 78.444px - 84px) !important;
     background-color: white;
+    overflow-y: auto;
     padding: 1vh;
     border-radius: 5px;
     margin: 5vh;
 }
-body > header {
+main > header {
     text-align: center;
     margin-bottom: 5vh;
 }
@@ -33,11 +38,11 @@ details > summary {
 details > p {
     padding: 0 10px;
 }
-footer {
+main > footer {
     text-align: center;
     margin: 5vh 0;
 }
-footer a[href] {
+main > footer a[href] {
     cursor: pointer;
     text-decoration: none;
     background-color: rgb(24, 55, 94);

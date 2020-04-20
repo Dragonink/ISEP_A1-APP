@@ -7,7 +7,6 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <!-- JS -->
-    <script src="js/code.js"></script>
     <script src="js/admin.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
 
@@ -27,19 +26,19 @@ session_start();
                     <td>
                         <p>Nom</p>
                     </td>
-                    <td><input type="text" name="nom" placeholder="Nom" /></td>
+                    <td><input type="text" name="nom" placeholder="<?php echo $_SESSION["user_nom"]?>" /></td>
                 </tr>
                 <tr>
                     <td>
                         <p>Prénom</p>
                     </td>
-                    <td><input type="text" name="prenom" placeholder="Prénom" /></td>
+                    <td><input type="text" name="prenom" placeholder="<?php echo $_SESSION["user_prenom"]?>" /></td>
                 </tr>
                 <tr>
                     <td>
                         <p>E-mail</p>
                     </td>
-                    <td><input type="email" name="email" placeholder="prenom.nom@infinitesMeasures.com" /></td>
+                    <td><input type="email" name="email" placeholder="<?php echo $_SESSION["user_email"]?>" /></td>
                 </tr>
                 <tr>
                     <td>
