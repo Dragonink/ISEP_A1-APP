@@ -42,7 +42,7 @@ switch ($type) {
     case "manager":
         $status = insertManager($db, $firstname, $lastname, $email, $password, $address);
         if ($status) {
-            header("Location: index.php?validation=médecin", true, 303);
+            header("Location: index.php?validation=medecin", true, 303);
             exit;
         } else { error();}
         break;
