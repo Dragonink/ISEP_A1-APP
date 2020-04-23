@@ -9,7 +9,6 @@
 </head>
 
 <body onload="initTests();" class="freq temp tona stim colo">
-    <!-- Input body classes from PHP -->
     <main>
         <div>
             <img id="test-icon" />
@@ -29,12 +28,17 @@
                     <template id="template-result">
                         <tr>
                             <th scope="row">Test</th>
-                            <td></td>
+                            <td>&nbsp;</td>
                         </tr>
                     </template>
                 </tbody>
             </table>
+            <form id="input">
+                <input type="number" placeholder="Entrer une valeur manuelle" required />
+                <button type="submit">Enregistrer</button>
+            </form>
         </div>
     </main>
 </body>
+
 </html>
