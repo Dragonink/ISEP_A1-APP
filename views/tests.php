@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+session_start();
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -8,7 +10,7 @@
     <script type="text/javascript" src="js/tests.js"></script>
 </head>
 
-<body onload="initTests();" class="freq temp tona stim colo">
+<body onload="initTests();" class="<?php echo $_POST["tests"]; ?>">
     <main>
         <div>
             <img id="test-icon" />
@@ -25,20 +27,21 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <template id="template-result">
-                        <tr>
-                            <th scope="row">Test</th>
-                            <td>&nbsp;</td>
-                        </tr>
-                    </template>
+
                 </tbody>
             </table>
             <form id="input">
-                <input type="number" placeholder="Entrer une valeur manuelle" required />
-                <button type="submit">Enregistrer</button>
+                <input name="value" type="number" placeholder="Entrer une valeur manuelle" required />
+                <button type="submit" onclick="enterValue();">Enregistrer</button>
             </form>
         </div>
     </main>
+    <template id="template-result">
+        <tr>
+            <th scope="row">Test</th>
+            <td>&nbsp;</td>
+        </tr>
+    </template>
 </body>
 
 </html>
