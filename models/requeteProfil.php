@@ -1,5 +1,4 @@
 <?php
-
 require("connexionSQL.php");
 
 function modifProfil(PDO $db, $table, $param, $valeur, $id){
