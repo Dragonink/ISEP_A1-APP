@@ -61,6 +61,5 @@ function listeInfoPatient(PDO $db, $valeur, $recherche){
     } else {
         $resultat= "<p>Il n'y a pas de patient enregistré.</p>";
     }
-
     return $resultat;
 }
