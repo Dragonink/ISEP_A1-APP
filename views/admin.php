@@ -84,6 +84,11 @@ require '../controllers/adminDonnees.php';
                             <tr>
                                 <td class="titre" > <h1> Utilisateurs </h1> </td>
                                 <td class="recherche" > <input type="search" id="admin-search-utilisateur" name="adminSearchUtilisateur" aria-label="Search through site content" placeholder="Recherche" > </td>
+                                
+                                <form action = "verif-form_admin.php" method = "get">
+                                    <input type="search" name="recherche" placeholder="Recherche..." />
+                                    <input type="submit" value="Rechercher" />
+                                </form>
                             </tr>
                             <tr>
                                 <td><a href='inscription.php' style="color: black;"><img src="images/iconAjouterUser.png" /> Ajouter un utilisateur </a> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="images/iconOuvrir.png"/></button> </td>

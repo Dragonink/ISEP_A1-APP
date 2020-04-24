@@ -1,5 +1,6 @@
 <?php
 session_start();
+require '../controllers/gestionnaire.php';
 ?>
 <!DOCTYPE html>
 <meta charset="UTF-8">
@@ -106,37 +107,13 @@ session_start();
 				<option value="1"> Option 1 </option>
 				<option value="2"> Option 2 </option>
 			</select>
-			<input type="search" id="search-patient" name="searchPatient" aria-label="Search through site content" placeholder="Recherche"> </td>
+			<form action = "verif-form.php" method = "get">
+				<input type="search" name="q" placeholder="Recherche..." />
+   				<input type="submit" value="Rechercher" />
+ 			</form>
 		</div>
 	</div>
-	<table class="affichageResultat">
-		<tr>
-			<td>
-				<table class="utilisateur">
-					<tr>
-						<td rowspan="4" class="photoProfil"> <img src="images/iconProfil.jpg" /></td>
-						<td> Nom Prénom </td>
-					</tr>
-					<tr>
-						<td> Info 1 </td>
-					</tr>
-					<tr>
-						<td> Info 2 </td>
-					</tr>
-					<tr>
-						<td class="iconGerer">
-							<img src="images/iconCheck.png" onclick="openExamen()" />
-							<img src="images/iconVoirProfil.png" />
-							<img src="images/iconContacter.png" />
-						</td>
-					</tr>
-				</table>
-			</td>
-			<td> </td>
-			<td> </td>
-			<td> </td>
-		</tr>
-	</table>
+	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, 0, '')?></div>
 	<?php require "_footer.html"; ?>
 </body>
 <script LANGUAGE="JavaScript">
