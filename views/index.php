@@ -9,7 +9,6 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
 <html>
 
 <head>
-
     <meta charset="UTF-8"/>
     <title>Infinite Measures</title>
     <link rel="stylesheet" href="css/header-footer.css"/>
