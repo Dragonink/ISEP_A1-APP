@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 require "../models/account_info.php";
 $manager_info = fetchManager2($db, $_SESSION["user_medecin"]);
 $manager_info = $manager_info[0];
@@ -45,7 +45,7 @@ $manager_info = $manager_info[0];
 			</div>
 			<div id="infos">
 				<p>Numéro de téléphone</p>
-				<input type="text" name="telephone" placeholder="<?php echo $_SESSION["user_tel"]?>" />
+				<input type="tel" name="telephone" placeholder="<?php echo $_SESSION["user_tel"]?>" />
 				<p>Mot de passe</p>
 				<input type="password" name="mdp" placeholder="Mot de passe" />
 				<p>Confirmation de mot de passe</p>

@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +41,7 @@ session_start();
 			</div>
 			<div id="infos">
 				<p>Numéro de téléphone</p>
-				<input type="int" name="telephone" placeholder="<?php echo $_SESSION["user_tel"] ?>" />
+				<input type="tel" name="telephone" placeholder="<?php echo $_SESSION["user_tel"] ?>" />
 				<p>Mot de passe</p>
 				<input type="password" name="mdp" placeholder="Mot de passe" />
 				<p>Confirmation de mot de passe</p>
