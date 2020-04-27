@@ -10,7 +10,7 @@ function modifProfil(PDO $db, $table, $param, $valeur, $id){
 function nombrePatient(PDO $db, $id){
     $queryPatient = "SELECT count(*) from user where manager=" .$id;
     $preparePatient = $db->query($queryPatient);
-    return $prepareMan->fetchColumn();
+    return $preparePatient->fetchColumn();
 }
 
 function infoPatient(PDO $db, $id) {
