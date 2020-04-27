@@ -216,6 +216,10 @@ h1 {
     width: 110px;
 }
 
+.modifierSupprimer img {
+    width: 20px;
+}
+
 .photoProfil img {
     border-radius: 100%;
     width: 100px;
