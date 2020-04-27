@@ -1,5 +1,5 @@
 ## PHP
-models/.SQLpass
+models/sqlPass.php
 
 ## Visual Studio Code
 .vscode/
