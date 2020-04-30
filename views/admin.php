@@ -69,8 +69,8 @@ require '../controllers/adminDonnees.php';
                                         <img src="images/iconAnnuler.png" onclick="closeAddDispositif(0, '')"/>
                                     </div>
                                 </td>
-                                <td> <select size="1">
-                                    <option value disabled selected > Trier par: </option>
+                                <td> <select id="selectDispositif" size="1">
+                                    <option value="0" > Trier par: </option>
                                     <option value="1"> Option 1 </option>
                                     <option value="2"> Option 2 </option>
                                 </select> </td>
@@ -82,16 +82,11 @@ require '../controllers/adminDonnees.php';
                         <table id="adminUtilisateur">
                             <tr>
                                 <td class="titre" > <h1> Utilisateurs </h1> </td>
-                                <td class="recherche" > <input type="search" id="admin-search-utilisateur" name="adminSearchUtilisateur" aria-label="Search through site content" placeholder="Recherche" > </td>
-                                
-                                <form action = "verif-form_admin.php" method = "get">
-                                    <input type="search" name="recherche" placeholder="Recherche..." />
-                                    <input type="submit" value="Rechercher" />
-                                </form>
+                                <td class="recherche" > <input type="search" id="admin-search-utilisateur" name="adminSearchUtilisateur" aria-label="Search through site content" placeholder="Recherche" ><button class="adminSearchUtilisateur" onclick="rechercheUtilisateur()"> Rechercher </button>  </td>
                             </tr>
                             <tr>
                                 <td><a href='inscription.php' style="color: black;"><img src="images/iconAjouterUser.png" /> Ajouter un utilisateur </a> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="images/iconOuvrir.png"/></button> </td>
-                                <td> <select size="1">
+                                <td> <select id="selectUtilisateur" size="1">
                                     <option value="0"> Trier par: </option>
                                     <option value="1"> Option 1 </option>
                                     <option value="2"> Option 2 </option>

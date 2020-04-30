@@ -17,15 +17,18 @@ function listeManager(PDO $db){
 }
 
 function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
-    if ($valeur==0){
-        if($recherche==''){
-            $nombre=nombreDispositif($db);
-        }
+    if($recherche==''){
+        $nombre=nombreDispositif($db);
+    } else {
+        $nombre=nombreDispositif($db, $recherche);
     }
+
     if ($nombre!= 0){
         if ($valeur==0){
             if($recherche==''){
                 $info=infoDispositif($db);
+            } else {
+            $info=infoDipositifRecherche($db, $valeur, $recherche);
             }
         }
         foreach ($info as $key => $value ){
@@ -98,15 +101,23 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
 }
 
 function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
-    if ($valeur==0){
-        if($recherche==''){
-            $nombre=nombreUtilisateur($db);
-        }
-    }
+    if($recherche==''){
+        $nombre=nombreUtilisateur($db);
+    } else {
+        $nombre=nombreUtilisateurRecherche($db, $recherche);
+    } 
     if ($nombre!= 0){
         if ($valeur==0){
             if($recherche==''){
-                $info=infoUtilisateur($db);
+                $info=infoUtilisateur($db, $valeur);
+            } else {
+                $info=infoUtilisateurRecherche($db, $valeur, $recherche);
+            }
+        } elseif ($valeur==1){
+            if($recherche==''){
+                $info=infoUtilisateur($db, $valeur);
+            } else {
+                $info=infoUtilisateurRecherche($db, $valeur, $recherche);
             }
         }
         foreach ($info as $key => $value ){

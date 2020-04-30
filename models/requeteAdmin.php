@@ -15,6 +15,19 @@ function nombreUtilisateur(PDO $db):int {
     return ($nbAdmin + $nbUser + $nbMan);
 }
 
+function nombreUtilisateurRecherche(PDO $db, $recherche) {
+    $queryAdmin = "SELECT count(*) from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%')";
+    $queryUser = "SELECT count(*) from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%'";
+    $queryMan = "SELECT count(*) from manager where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%')";
+    $prepareAdmin = $db->query($queryAdmin);
+    $nbAdmin = $prepareAdmin->fetchColumn();
+    $prepareUser = $db->query($queryUser);
+    $nbUser = $prepareUser->fetchColumn();
+    $prepareMan = $db->query($queryMan);
+    $nbMan = $prepareMan->fetchColumn();
+    return ($nbAdmin + $nbUser + $nbMan);
+}
+
 function nombreTestsRealises(PDO $db):int {
     $query = 'SELECT count(*) from test';
     $prepare = $db->query($query);
@@ -55,25 +68,75 @@ function nombreDispositif(PDO $db):int {
     return $prepare->fetchColumn();
 }
 
+function nombreDispositifRecherche(PDO $db, $recherche){
+    $query = "SELECT count(*) from console where id like '%".$recherche."%'";
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
+}
+
 function nombreQuestion(PDO $db):int {
     $query = 'SELECT count(*) from faq';
     $prepare = $db->query($query);
     return $prepare->fetchColumn();
 }
 
-function infoDispositif(PDO $db) {
+function infoDispositif(PDO $db, $value) {
+    switch ($value){
+        case 0:
+        break;
+
+        case 1:
+        break;
+
+        case 2:
+        break;
+
     $dispositif = 'SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id)';
+    
     $prepare = $db->prepare($dispositif);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
-function infoUtilisateur(PDO $db) {
-    $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 ";
+function infoDispositifRecherche(PDO $db, $value, $recherche) {
+    switch ($value){
+        case 0:
+        break;
+
+        case 1:
+        break;
+
+        case 2:
+        break;
+    }
+
+    $prepare = $db->prepare($utilisateur);
+    $prepare->execute();
+    return $prepare->fetchAll();
+
+}
+function infoUtilisateur(PDO $db, $value) {
+    if ($value == 0){
+        $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 ";
+    } elseif ($value == 1) {
+        $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 order by first_name";
+    }
     $prepare = $db->prepare($utilisateur);
     $prepare->execute();
     return $prepare->fetchAll();
 }
+
+function infoUtilisateurRecherche(PDO $db, $value, $recherche) {
+    if ($value == 0){
+        $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%')";
+    } elseif ($value == 1) {
+        $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by first_name";
+    }
+    $prepare = $db->prepare($utilisateur);
+    $prepare->execute();
+    return $prepare->fetchAll();
+}
+
 
 function infoManager(PDO $db) {
     $manager = "SELECT id, first_name, last_name from manager where is_active=1 ";

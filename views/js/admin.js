@@ -14,6 +14,7 @@ function PHPCall(url){
             request.open("post", tmpURL, false);
             request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             request.send((tmpURL != null) ? encodeURI(tmpURL) : "");
+            alert(url);
             return decodeURI(unescape(request.responseText));
         } catch (errv) {
             alert("The system is not working properly, please contact your support." + "\n(" + url + ")");
@@ -74,6 +75,13 @@ function supDispositif(id, value, recherche){
     document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=supDispositif&value=" + value + "&recherche" + recherche + "&id=" + id );
 }
 
+function rechercheDispositif(){
+    var value=document.getElementById('selectDispositif').value;
+    var recherche=document.getElementById('admin-search-dispositif').value;
+    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=dispositif &value=" + value + "&recherche=" + recherche);
+}
+
+
 function openRequetes() {
     document.getElementsByClassName("requetes")[0].style.display="block";
 }
@@ -82,6 +90,12 @@ function supUtilisateur(id, origine) {
     document.getElementById("listeInfoUtilisateur").inerrHTML = PHPCall("/adminRefresh.php?fonction=supUtilisateur&id=" + id +"&origine=" + origine);
     document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
     document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
+}
+
+function rechercheUtilisateur() {
+    var value=document.getElementById('selectUtilisateur').value;
+    var recherche=document.getElementById('admin-search-utilisateur').value;
+    document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=utilisateur&value=" + value + "&recherche=" + recherche);
 }
 
 function openRequete(number) {

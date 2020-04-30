@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_GET['q'])){
+	$_GET['q']='';
+}
 require '../controllers/gestionnaire.php';
 ?>
 <!DOCTYPE html>
@@ -31,27 +34,27 @@ require '../controllers/gestionnaire.php';
 			<div class="testChoix">
 				<div> Test 1 </div>
 				<div> Description</div>
-				<input type="checkbox" class="test" name="test1" unchecked>
+				<input type="checkbox" class="test" name="test1" unchecked/>
 			</div>
 			<div class="testChoix">
 				<div> Test 2</div>
 				<div> Description</div>
-				<input type="checkbox" class="test" name="test2" unchecked>
+				<input type="checkbox" class="test" name="test2" unchecked/>
 			</div>
 			<div class="testChoix">
 				<div> Test 3</div>
 				<div> Description</div>
-				<input type="checkbox" class="test" name="test3" unchecked>
+				<input type="checkbox" class="test" name="test3" unchecked/>
 			</div>
 			<div class="testChoix">
 				<div> Test 4</div>
 				<div> Description</div>
-				<input type="checkbox" class="test" name="test4" unchecked>
+				<input type="checkbox" class="test" name="test4" unchecked/>
 			</div>
 			<div class="testChoix">
 				<div> Test 5</div>
 				<div> Description</div>
-				<input type="checkbox" class="test" name="test5" unchecked>
+				<input type="checkbox" class="test" name="test5" unchecked/>
 			</div>
 			<div class="buttons">
 				<button id="valider"> Valider </button>
@@ -100,19 +103,17 @@ require '../controllers/gestionnaire.php';
 	<hr>
 	<div id="patient">
 		<h1> Vos patients </h1>
-		<div class="recherche">
+		<form class="recherche" action = "gestionnaire.php" method = "get">
 			<select size="1">
-				<option value disabled selected> Trier par: </option>
+				<option value="0" select> Trier par: </option>
 				<option value="1"> Option 1 </option>
 				<option value="2"> Option 2 </option>
 			</select>
-			<form action = "verif-form.php" method = "get">
 				<input type="search" name="q" placeholder="Recherche..." />
    				<input type="submit" value="Rechercher" />
- 			</form>
-		</div>
+ 		</form>
 	</div>
-	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, 0, '')?></div>
+	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, 0, $_GET['q'])?></div>
 	<?php require "_footer.html"; ?>
 </body>
 <script LANGUAGE="JavaScript">
