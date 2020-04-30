@@ -39,35 +39,33 @@ require '../controllers/gestionnaire.php';
 			</div>
 			<hr>
 			<p>Liste des tests disponibles</p>
-			<div class="testChoix">
-				<div> Test 1 </div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test1" unchecked/>
-			</div>
-			<div class="testChoix">
-				<div> Test 2</div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test2" unchecked/>
-			</div>
-			<div class="testChoix">
-				<div> Test 3</div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test3" unchecked/>
-			</div>
-			<div class="testChoix">
-				<div> Test 4</div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test4" unchecked/>
-			</div>
-			<div class="testChoix">
-				<div> Test 5</div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test5" unchecked/>
-			</div>
-			<div class="buttons">
-				<button id="valider"> Valider </button>
-				<button id="annuler" onclick="annulerExamen()"> Annuler </button>
-			</div>
+			<form method="POST" action="../controllers/declare_exam.php">
+				<!--TODO User ID -->
+				<div class="testChoix">
+					<div>Fréquence cardiaque</div>
+					<input type="checkbox" class="test" name="tests[]" value="freq" unchecked>
+				</div>
+				<div class="testChoix">
+					<div>Température</div>
+					<input type="checkbox" class="test" name="tests[]" value="temp" unchecked>
+				</div>
+				<div class="testChoix">
+					<div>Reconnaissance de tonalités</div>
+					<input type="checkbox" class="test" name="tests[]" value="tona" unchecked>
+				</div>
+				<div class="testChoix">
+					<div>Réaction à des stimuli visuels</div>
+					<input type="checkbox" class="test" name="tests[]" value="stim" unchecked>
+				</div>
+				<div class="testChoix">
+					<div>Mémorisation de couleurs</div>
+					<input type="checkbox" class="test" name="tests[]" value="colo" unchecked>
+				</div>
+				<div class="buttons">
+					<button type="submit" id="valider">Valider</button>
+					<button id="annuler" onclick="annulerExamen()">Annuler</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	<table class="infoProfil">
