@@ -10,7 +10,7 @@ session_start();
     <script type="text/javascript" src="js/tests.js"></script>
 </head>
 
-<body onload="initTests();" class="<?php echo $_POST["tests"]; ?>">
+<body onload="initTests();" class="<?php echo $_SESSION["exam_tests"]; ?>">
     <main>
         <div>
             <img id="test-icon" />

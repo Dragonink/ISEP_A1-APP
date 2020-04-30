@@ -3,6 +3,11 @@ session_start();
 require "../models/account_info.php";
 $manager_info = fetchManager2($db, $_SESSION["user_medecin"]);
 $manager_info = $manager_info[0];
+require "../models/requeteTests.php";
+$exam = getExamId($db, $_SESSION["user_id"]);
+if (count($exam) > 0) {
+    $tests = getTests($db, $exam);
+}
 ?><!DOCTYPE html>
 <html>
 
@@ -58,12 +63,14 @@ $manager_info = $manager_info[0];
             </td>
             <td class="resultatDernierTest">
                 <canvas id="resultatDernierTestGraph"> </canvas>
-                <div class="démarrerTest" style="display: none;">
-                    <form>
-                        id passerelle &nbsp; <input type="text" name="idPasserelle" placeholder="idPasserelle" />
-                        <input type="button" value="Effetuer Test" onclick="demarrerTest()">
-                    </form>
-                </div>
+                <?php if (sizeof($tests) > 0) {
+                    echo "<form method='POST' action='../controllers/exam.php'>",
+                        "<input type='number' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
+                        "<label for='console'>ID console</label>",
+                        "<input type='text' name='console' placeholder='ID console' required />",
+                        "<button type='submit'>Effectuer Test</button>",
+                        "</form>";
+                } ?>
             </td>
         </tr>
     </table>
