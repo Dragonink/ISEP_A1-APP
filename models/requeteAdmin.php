@@ -96,6 +96,7 @@ function infoDispositif(PDO $db, $value) {
     $prepare = $db->prepare($dispositif);
     $prepare->execute();
     return $prepare->fetchAll();
+    }
 }
 
 function infoDispositifRecherche(PDO $db, $value, $recherche) {
