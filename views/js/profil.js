@@ -1,6 +1,7 @@
 var color = ['red', 'yellow', 'green', 'blue', 'purple'];
 
-function openExamen() {
+function openExamen(userId) {
+    document.querySelector("div.examen form input[name='user']").value = userId;
     document.getElementsByClassName("examen")[0].style.display = "block";
 }
 
@@ -96,12 +97,12 @@ function resultatTest(select) {
 }
 
 function graphe() {
-    var color= ['red','yellow','green','blue','purple'];
-    var ctx=document.getElementById('grapheResultat').getContext('2d');
+    var color = ['red', 'yellow', 'green', 'blue', 'purple'];
+    var ctx = document.getElementById('grapheResultat').getContext('2d');
     var critere = document.getElementById('criteres').value;
     var type = document.getElementById('type de test').value;
-    if (critere=='0'){
-        let chart  = new Chart(ctx, {
+    if (critere == '0') {
+        let chart = new Chart(ctx, {
             type: 'doughnut',
             data: {
                 datasets: [{
@@ -121,13 +122,13 @@ function graphe() {
                 }
             }
         });
-    } else if (critere=='1'){
-        let chart  = new Chart(ctx, {
+    } else if (critere == '1') {
+        let chart = new Chart(ctx, {
             type: 'bar',
             data: {
                 datasets: [{
-                    data: [20,40],
-                    backgroundColor: [color[0],color[1]],
+                    data: [20, 40],
+                    backgroundColor: [color[0], color[1]],
                     label: 'Dataset 1'
                 }],
                 labels: [
@@ -145,13 +146,13 @@ function graphe() {
                 }
             }
         });
-    } else if (critere=='2'){
-        let chart  = new Chart(ctx, {
+    } else if (critere == '2') {
+        let chart = new Chart(ctx, {
             type: 'bar',
             data: {
                 datasets: [{
-                    data: [20,40,60],
-                    backgroundColor: [color[0],color[1],color[2]],
+                    data: [20, 40, 60],
+                    backgroundColor: [color[0], color[1], color[2]],
                     label: ''
                 }],
                 labels: [

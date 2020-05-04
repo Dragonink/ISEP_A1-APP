@@ -65,7 +65,7 @@ if (count($exam) > 0) {
                 <canvas id="resultatDernierTestGraph"> </canvas>
                 <?php if (sizeof($tests) > 0) {
                     echo "<form method='POST' action='../controllers/start_exam.php'>",
-                        "<input type='number' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
+                        "<input type='text' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
                         "<label for='console'>ID console</label>",
                         "<input type='text' name='console' placeholder='ID console' required />",
                         "<button type='submit'>Effectuer Test</button>",

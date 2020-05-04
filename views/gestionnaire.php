@@ -40,7 +40,7 @@ require '../controllers/gestionnaire.php';
 			<hr>
 			<p>Liste des tests disponibles</p>
 			<form method="POST" action="../controllers/declare_exam.php">
-				<!--TODO User ID -->
+				<input type="text" name="user" hidden />
 				<div class="testChoix">
 					<div>Fréquence cardiaque</div>
 					<input type="checkbox" class="test" name="tests[]" value="freq" unchecked>
@@ -119,7 +119,7 @@ require '../controllers/gestionnaire.php';
    				<input type="submit" value="Rechercher" />
  		</form>
 	</div>
-	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, $_GET['tri'], $_GET['q'])?></div>
+	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, 0, ''); ?></div>
 	<?php require "_footer.html"; ?>
 </body>
 <script LANGUAGE="JavaScript">
