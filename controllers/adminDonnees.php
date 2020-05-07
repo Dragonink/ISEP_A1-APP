@@ -117,6 +117,12 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
             } else {
                 $info=infoUtilisateurRecherche($db, $valeur, $recherche);
             }
+        } elseif ($valeur==2){
+            if($recherche==''){
+                $info=infoUtilisateur($db, $valeur);
+            } else {
+                $info=infoUtilisateurRecherche($db, $valeur, $recherche);
+            }
         }
         foreach ($info as $key => $value ){
             if ($key%12==0){

@@ -1,7 +1,10 @@
 <?php
 session_start();
 if (!isset($_GET['q'])){
-	$_GET['q']='';
+	htmlspecialchars($_GET['q']='');
+}
+if (!isset($_GET['tri'])){
+	htmlspecialchars($_GET['tri']=0);
 }
 require '../controllers/gestionnaire.php';
 ?>
@@ -104,16 +107,16 @@ require '../controllers/gestionnaire.php';
 	<div id="patient">
 		<h1> Vos patients </h1>
 		<form class="recherche" action = "gestionnaire.php" method = "get">
-			<select size="1">
-				<option value="0" select> Trier par: </option>
-				<option value="1"> Option 1 </option>
-				<option value="2"> Option 2 </option>
+			<select size="1" name="tri">
+				<option value="0" select> Tri par NSS </option>
+				<option value="1"> Prénom </option>
+				<option value="2"> Nom </option>
 			</select>
 				<input type="search" name="q" placeholder="Recherche..." />
    				<input type="submit" value="Rechercher" />
  		</form>
 	</div>
-	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, 0, $_GET['q'])?></div>
+	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, $_GET['tri'], $_GET['q'])?></div>
 	<?php require "_footer.html"; ?>
 </body>
 <script LANGUAGE="JavaScript">
