@@ -83,39 +83,52 @@ function nombreQuestion(PDO $db):int {
 function infoDispositif(PDO $db, $value) {
     switch ($value){
         case 0:
+            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) order by console.id desc';
         break;
 
         case 1:
+            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) order by manager.last_name  ' ;
         break;
 
         case 2:
+            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) order by manager.work_address  ' ;
         break;
 
-    $dispositif = 'SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id)';
-    
+        case 3:
+            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) order by console.id ' ;
+        break;
+    }
     $prepare = $db->prepare($dispositif);
     $prepare->execute();
     return $prepare->fetchAll();
-    }
 }
 
 function infoDispositifRecherche(PDO $db, $value, $recherche) {
     switch ($value){
         case 0:
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by console.id desc" ;
         break;
 
         case 1:
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by manager.last_name " ;
+
         break;
 
         case 2:
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by manager.work_address " ;
         break;
+
+        case 3:
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by console.id  ";
+
     }
 
-    $prepare = $db->prepare($utilisateur);
+    $prepare = $db->prepare($dispositif);
     $prepare->execute();
     return $prepare->fetchAll();
 
 }
+
 function infoUtilisateur(PDO $db, $value) {
     if ($value == 0){
         $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 ";
