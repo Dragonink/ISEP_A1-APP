@@ -20,15 +20,21 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
     if($recherche==''){
         $nombre=nombreDispositif($db);
     } else {
-        $nombre=nombreDispositif($db, $recherche);
+        $nombre=nombreDispositifRecherche($db, $recherche);
     }
 
     if ($nombre!= 0){
         if ($valeur==0){
             if($recherche==''){
-                $info=infoDispositif($db);
+                $info=infoDispositif($db,$valeur);
             } else {
             $info=infoDipositifRecherche($db, $valeur, $recherche);
+            }
+        }   else {
+            if($recherche==''){
+                $info=infoDispositif($db, $valeur);
+            } else {
+                $info=infoDispositifRecherche($db, $valeur, $recherche);
             }
         }
         foreach ($info as $key => $value ){
