@@ -1,11 +1,10 @@
 <?php
-
 require("connexionSQL.php");
 
-function verifMail($db, $mail){
-    $queryAdmin = "SELECT count(*) from administrator where email=" .$mail;
-    $queryUser = "SELECT count(*) from user where email=" .$mail;
-    $queryMan = "SELECT count(*) from manager where email=" .$mail;
+function verifMail(PDO $db, $mail){
+    $queryAdmin = "SELECT count(*) from administrator where email='" .$mail ."'";
+    $queryUser = "SELECT count(*) from user where email='" .$mail ."'";
+    $queryMan = "SELECT count(*) from manager where email='" .$mail ."'";
     $prepareAdmin = $db->query($queryAdmin);
     $nbAdmin = $prepareAdmin->fetchColumn();
     $prepareUser = $db->query($queryUser);
@@ -15,8 +14,8 @@ function verifMail($db, $mail){
     return ($nbAdmin + $nbUser + $nbMan);
 }
 
-function origineMail(){
-    $utilisateur = "SELECT 'administrator' as origine from administrator where email=" .$mail ."UNION SELECT 'manager' as origine from manager where email=" .$mail;
+function origineMail(PDO $db, $mail){
+    $utilisateur = "SELECT 'administrator' as origine from administrator where email='" .$mail ."' UNION SELECT 'user' as origine from user where email='" .$mail ."' UNION SELECT 'manager' as origine from manager where email='" .$mail ."'";
     $prepare = $db->prepare($utilisateur);
     $prepare->execute();
     return $prepare->fetchAll();
