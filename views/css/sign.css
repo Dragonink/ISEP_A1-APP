@@ -30,7 +30,7 @@ header > h2 {
 form {
     margin: 0 5vw;
 }
-form *:disabled {
+form *[disabled] {
     display: none;
 }
 form > div:last-of-type {

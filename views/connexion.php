@@ -1,8 +1,4 @@
-<?php 
-	if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['email']) and $_POST['email']!='')){
-		$recup_mail=$_POST['email'];
-		require "../controllers/forget.php";
-	} elseif ($_SERVER["REQUEST_METHOD"] === "POST" ) require "../controllers/connexion.php";
+<?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/connexion.php";
 ?><!DOCTYPE html>
 <html>
 
@@ -46,36 +42,34 @@
 		<a href="cgu.php">Conditions Générales d'Utilisation</a>
 	</footer>
 </body>
+</head>
 
-<?php 
-	if (isset($recup_mail)){
-		$recup_code = "";
-		for($i=0; $i < 8; $i++) { 
-			$recup_code .= mt_rand(0,9);
-		}
-		if (compte($recup_mail, $recup_code)){
-			$to = $recup_mail;
-			$subject = 'Réinitialisation mot de passe';
-			$message = '<html>'
-					.'<head>'
-						.'<title>Réinitialisation de votre mot de passe</title>'
-					.'</head>'
-					.'<body>'
-						.'<h1>Bonjour, voici votre nouveau mot de passe :' .$recup_code .'</h1>'
-						.'<h2>Ce mot de passe est strictement confidentielle.</h2>'
-					.'</body>'
-				.'</html>';
-			$headers = 'From: infinitymesure@gmail.com';
-			
-			if (mail($to, $subject, $message, $headers))
-			{
-				echo "<script>alert(\"Un mail vous a été envoyé.\")</script>";
-			}
-			else
-			{
-				echo "<script>alert(\"Echec d'envoie du mail.\")</script>";
-			}
-		} else {
-			echo "<script>alert(\"Il y a pas de compte associé à cet mail.\")</script>";
-		}
+<!--$_SESSION['recup_mail'] = $recup_mail;
+    $recup_code = "";
+    for($i=0; $i < 8; $i++) {
+        $recup_code .= mt_rand(0,9);
+    }
+
+     $to = 'personne@example.com';
+     $subject = 'Réinitialisation mot de passe';
+	 $message = '
+	 <html>
+		<head>
+			<title>Réinitialisation de votre mot de passe</title>
+		</head>
+		<body>
+			<h1>Bonjour, voici votre nouveau mot de passe : + $recup_code </h1>
+			<h2>Ce mot de passe est strictement confidentielle.</h2>
+		</body>
+		</html>
+		';
+     $headers = 'From: infinitymesure@gmail.com';
+
+	if (mail($to, $subject, $message, $headers))
+	{
+		echo 'Un mail vous a été envoyé';
 	}
+	else
+	{
+		echo 'Echec d'envoie du mail';
+	}-->
