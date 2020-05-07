@@ -54,7 +54,7 @@ require '../controllers/adminDonnees.php';
                         <table id="adminDispositif">
                             <tr >
                                 <td class="titre"> <h1> Dispositifs </h1> </td>
-                                <td class="recherche" ><input type="search" id="admin-search-dispositif" name="adminSearchDispositif" aria-label="Search through site content" placeholder="Recherche" style="width: 100%;"> </td>
+                                <td class="recherche" > <input type="search" id="admin-search-utilisateur" name="adminSearchUtilisateur" aria-label="Search through site content" placeholder="Recherche" ><button class="adminSearchUtilisateur" onclick="rechercheDispositif()"> Rechercher </button>  </td>
                             </tr>
                             <tr>
                                 <td>
@@ -70,10 +70,10 @@ require '../controllers/adminDonnees.php';
                                     </div>
                                 </td>
                                 <td> <select id="selectDispositif" size="1">
-                                    <option value="0" > Trier par: </option>
-                                    <option value="1"> Managers</option>
-                                    <option value="2"> Adresse </option>
-                                    <option value="3"> ID</option>
+                                    <option value="0" > Croissant </option>
+                                    <option value="1"> Decroissant</option>
+                                    <option value="2"> Managers</option>
+                                    <option value="3"> Adresse </option>
                                 </select> </td>
                             </tr>
                         </table>
