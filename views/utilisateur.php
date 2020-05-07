@@ -1,11 +1,15 @@
 <?php
 session_start();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	require "../controllers/start_exam.php";
+}
 require "../models/account_info.php";
 $manager_info = fetchManager2($db, $_SESSION["user_medecin"]);
 $manager_info = $manager_info[0];
 require "../models/requeteTests.php";
 $exam = getExamId($db, $_SESSION["user_id"]);
 if (count($exam) > 0) {
+    $exam = $exam[0]["id"];
     $tests = getTests($db, $exam);
 }
 ?><!DOCTYPE html>
@@ -64,11 +68,11 @@ if (count($exam) > 0) {
             <td class="resultatDernierTest">
                 <canvas id="resultatDernierTestGraph"> </canvas>
                 <?php if (sizeof($tests) > 0) {
-                    echo "<form method='POST' action='../controllers/start_exam.php'>",
+                    echo "<form method='POST' action='".htmlspecialchars($_SERVER["PHP_SELF"])."'>",
+                        "<header>Effectuer un test</header>",
                         "<input type='text' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
-                        "<label for='console'>ID console</label>",
-                        "<input type='text' name='console' placeholder='ID console' required />",
-                        "<button type='submit'>Effectuer Test</button>",
+                        "<input type='text' name='console' placeholder='ID console' />",
+                        "<button type='submit'>Démarrer</button>",
                         "</form>";
                 } ?>
             </td>

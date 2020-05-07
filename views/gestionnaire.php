@@ -11,6 +11,9 @@ if (isset($_GET["fonction"])){
 		echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
 	}
 }
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	require "../controllers/declare_exam.php";
+}
 require '../controllers/gestionnaire.php';
 ?>
 <!DOCTYPE html>
@@ -39,7 +42,7 @@ require '../controllers/gestionnaire.php';
 			</div>
 			<hr>
 			<p>Liste des tests disponibles</p>
-			<form method="POST" action="../controllers/declare_exam.php">
+			<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
 				<input type="text" name="user" hidden />
 				<div class="testChoix">
 					<div>Fréquence cardiaque</div>
@@ -63,7 +66,7 @@ require '../controllers/gestionnaire.php';
 				</div>
 				<div class="buttons">
 					<button type="submit" id="valider">Valider</button>
-					<button id="annuler" onclick="annulerExamen()">Annuler</button>
+					<button type="button" id="annuler" onclick="annulerExamen()">Annuler</button>
 				</div>
 			</form>
 		</div>

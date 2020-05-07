@@ -78,7 +78,7 @@ table td {
 }
 
 /* modif */
-button {
+button:not([type="submit"]) {
     display: block;
     background-color: inherit;
     border:none;
