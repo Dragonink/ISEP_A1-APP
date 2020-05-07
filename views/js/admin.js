@@ -78,7 +78,7 @@ function supDispositif(id, value, recherche){
 function rechercheDispositif(){
     var value=document.getElementById('selectDispositif').value;
     var recherche=document.getElementById('admin-search-dispositif').value;
-    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=dispositif &value=" + value + "&recherche=" + recherche);
+    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=dispositif&value=" + value + "&recherche=" + recherche);
 }
 
 

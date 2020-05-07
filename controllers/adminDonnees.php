@@ -28,7 +28,7 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
             if($recherche==''){
                 $info=infoDispositif($db,$valeur);
             } else {
-            $info=infoDipositifRecherche($db, $valeur, $recherche);
+                $info=infoDispositifRecherche($db, $valeur, $recherche);
             }
         }   else {
             if($recherche==''){

@@ -54,7 +54,7 @@ require '../controllers/adminDonnees.php';
                         <table id="adminDispositif">
                             <tr >
                                 <td class="titre"> <h1> Dispositifs </h1> </td>
-                                <td class="recherche" > <input type="search" id="admin-search-utilisateur" name="adminSearchUtilisateur" aria-label="Search through site content" placeholder="Recherche" ><button class="adminSearchUtilisateur" onclick="rechercheDispositif()"> Rechercher </button>  </td>
+                                <td class="recherche" > <input type="search" id="admin-search-dispositif" name="adminSearchDispositif" aria-label="Search through site content" placeholder="Recherche" ><button class="adminSearchDispositif" onclick="rechercheDispositif()"> Rechercher </button>  </td>
                             </tr>
                             <tr>
                                 <td>
