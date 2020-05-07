@@ -62,3 +62,10 @@ form > * {
     width: 75%;
     margin: 5px 12.5%;
 }
+main > section#qsn {
+    font-size:large; 
+}
+
+main > section#ntp {
+    font-size:large; 
+}
