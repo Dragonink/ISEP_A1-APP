@@ -71,8 +71,9 @@ require '../controllers/adminDonnees.php';
                                 </td>
                                 <td> <select id="selectDispositif" size="1">
                                     <option value="0" > Trier par: </option>
-                                    <option value="1"> Option 1 </option>
-                                    <option value="2"> Option 2 </option>
+                                    <option value="1"> Managers</option>
+                                    <option value="2"> Adresse </option>
+                                    <option value="3"> ID</option>
                                 </select> </td>
                             </tr>
                         </table>
