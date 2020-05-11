@@ -38,7 +38,7 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
                     <li>Centres de recherches scientifiques pour des analyses comportementales</li>
                 </ul>
             </div>
-            <img src="images/Qui_sommes_nous.png" />
+            <img id="qsn_img" src="images/Qui_sommes_nous.png" />
         </section>
 
         <section id="ntp">
