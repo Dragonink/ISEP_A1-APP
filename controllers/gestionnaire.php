@@ -21,7 +21,7 @@ function listeInfoPatient(PDO $db, $valeur, $recherche){
             } else {
                 $info=infoPatientRecherche($db, $_SESSION['user_id'], $valeur, $recherche);
             } 
-        }elseif ($valeur == 2){
+        } elseif ($valeur == 2){
             if ($recherche==''){
                 $info=infoPatient($db, $_SESSION['user_id']);
             } else {

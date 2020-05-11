@@ -6,6 +6,11 @@ if (!isset($_GET['q'])){
 if (!isset($_GET['tri'])){
 	htmlspecialchars($_GET['tri']=0);
 }
+if (isset($_GET["fonction"])){
+    if (($_GET["fonction"]=='utilisateur') && (isset($_GET["value"]) && isset($_GET["recherche"]))){
+		echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
+	}
+}
 require '../controllers/gestionnaire.php';
 ?>
 <!DOCTYPE html>
@@ -108,11 +113,11 @@ require '../controllers/gestionnaire.php';
 		<h1> Vos patients </h1>
 		<form class="recherche" action = "gestionnaire.php" method = "get">
 			<select size="1" name="tri">
-				<option value="0" select> Tri par NSS </option>
+				<option value="0"> Tri par NSS </option>
 				<option value="1"> Prénom </option>
 				<option value="2"> Nom </option>
 			</select>
-				<input type="search" name="q" placeholder="Recherche..." />
+				<input type="search" name="q" placeholder="Recherche..."/>
    				<input type="submit" value="Rechercher" />
  		</form>
 	</div>
