@@ -56,6 +56,7 @@
 		echo "<script>alert(".$recup_code .")</script>";
 		if (compte($db, $recup_mail, $recup_code)){
 			$to = $recup_mail;
+			$from = 'infinite.measures@yopmail.com';
 			$subject = 'Réinitialisation mot de passe';
 			$message = '<html>'
 					.'<head>'
@@ -66,7 +67,7 @@
 						.'<h2>Ce mot de passe est strictement confidentielle.</h2>'
 					.'</body>'
 				.'</html>';
-			$headers = 'From: infinitymesure@gmail.com';
+			$headers = 'From:' .$from;
 			
 			if (mail($to, $subject, $message, $headers))
 			{

@@ -1,10 +1,13 @@
-html {
+html 
+{
     width: 100vw;
     height: 100vh;
     background: linear-gradient(to left top, rgb(24, 55, 94), rgb(180, 218, 240));
     margin: 0;
 }
-body {
+
+body 
+{
     width: calc(50vw - 2 * 8px);
     height: calc(100vh - 2 * 16px);
     background-color: white;
@@ -12,58 +15,88 @@ body {
     padding: 16px 8px;
     margin: 0 0 0 50vw;
 }
-a[href] {
+
+a[href] 
+{
     text-decoration: none;
     color: rgb(24, 55, 94);
 }
-header {
+
+header 
+{
     margin: 10vh 0;
 }
-header > h1 {
+
+header > h1 
+{
     margin: 0 0 10vh 0;
 }
-header > h2 {
+
+header > h2 
+{
     color: grey;
     font-size: 1em;
     margin: 10vh 0 0 0;
 }
-form {
+
+form 
+{
     margin: 0 5vw;
 }
-form *[disabled] {
+
+form *[disabled] 
+{
     display: none;
 }
-form > div:last-of-type {
+
+form > div:last-of-type 
+{
     display: grid;
     grid-template-columns: max-content auto;
     gap: 5%;
     margin: 5vh 0 10vh 0;
 }
-form > div:last-of-type > *:nth-child(odd) {
+
+form > div:last-of-type > *:nth-child(odd) 
+{
     text-align: right;
 }
-form#signup > div:first-child {
+
+form#signup > div:first-child 
+{
     display: flex;
 }
-form#signup > div:first-child > * {
+
+form#signup > div:first-child > * 
+{
     flex: auto;
     text-align: center;
 }
-form#signup[data-account="user"] *.manager {
+
+form#signup[data-account="user"] *.manager 
+{
     display: none;
 }
-form#signup[data-account="manager"] *.user {
+
+form#signup[data-account="manager"] *.user 
+{
     display: none;
 }
+
 form#signup[data-account="admin"] *.user,
-form#signup[data-account="admin"] *.manager {
+form#signup[data-account="admin"] *.manager 
+{
     display: none;
 }
-button {
+
+button 
+{
     cursor: pointer;
     text-align: center !important;
 }
-form > button[type="submit"] {
+
+form > button[type="submit"] 
+{
     color: white;
     background-color: #18375E;
     font-size: 1em;
@@ -72,13 +105,49 @@ form > button[type="submit"] {
     border-radius: 3px;
     margin: 2vh 0;
 }
-form > button[type="submit"] {
+
+form > button[type="submit"]
+{
     width: calc(50vw - 2 * (5vw + 8px));
 }
-footer {
+
+footer 
+{
     position: absolute;
     bottom: 0;
     width: calc(50vw - 2 * 8px);
     font-size: 11px;
     margin: 2vh 0;
+}
+
+button[type="mdp"]
+{
+    color: white;
+    background-color: #18375E;
+    font-size: 1em;
+    padding: .5em 0;
+    border: 0;
+    border-radius: 3px;
+    margin: 2vh 0;
+}
+
+button[type="mdp"]
+{
+    width: calc(50vw - 2 * (5vw + 8px));
+}
+
+form > button[type="send"] 
+{
+    color: white;
+    background-color: #18375E;
+    font-size: 1em;
+    padding: .5em 0;
+    border: 0;
+    border-radius: 3px;
+    margin: 2vh 0;
+}
+
+form > button[type="send"]
+{
+    width: calc(50vw - 2 * (5vw + 8px));
 }
