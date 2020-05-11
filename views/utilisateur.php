@@ -9,8 +9,8 @@ $manager_info = $manager_info[0];
 require "../models/requeteTests.php";
 $exam = getExamId($db, $_SESSION["user_id"]);
 if (count($exam) > 0) {
-    $exam = $exam[0]["id"];
-    $tests = getTests($db, $exam);
+    $_SESSION["exam_id"] = $exam[0]["id"];
+    $tests = getTests($db, $_SESSION["exam_id"]);
 }
 ?><!DOCTYPE html>
 <html>
@@ -71,7 +71,7 @@ if (count($exam) > 0) {
                     echo "<form method='POST' action='".htmlspecialchars($_SERVER["PHP_SELF"])."'>",
                         "<header>Effectuer un test</header>",
                         "<input type='text' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
-                        "<input type='text' name='console' placeholder='ID console' />",
+                        "<input type='text' name='console' placeholder='ID console' required />",
                         "<button type='submit'>Démarrer</button>",
                         "</form>";
                 } ?>

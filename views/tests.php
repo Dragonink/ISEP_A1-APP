@@ -1,5 +1,8 @@
 <?php
 session_start();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	require "../controllers/end_exam.php";
+}
 ?><!DOCTYPE html>
 <html>
 
@@ -27,21 +30,26 @@ session_start();
                     </tr>
                 </thead>
                 <tbody>
-
+                    <template id="template-result">
+                        <tr>
+                            <th scope="row">Test</th>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </template>
                 </tbody>
             </table>
             <form id="input">
                 <input name="value" type="number" placeholder="Entrer une valeur manuelle" required />
                 <button type="submit" onclick="enterValue();">Enregistrer</button>
             </form>
+            <form id="submit" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" hidden>
+                <template id="template-submit">
+                    <input type="number" hidden />
+                </template>
+                <button type="submit">Terminer</button>
+            </form>
         </div>
     </main>
-    <template id="template-result">
-        <tr>
-            <th scope="row">Test</th>
-            <td>&nbsp;</td>
-        </tr>
-    </template>
 </body>
 
 </html>

@@ -22,3 +22,18 @@ function declareTests(PDO $db, $user, $tests) {
         }
     }
 }
+function saveConsole(PDO $db, $exam, $console) {
+    $req = $db->prepare("UPDATE exam SET console = '$console' WHERE id = '$exam'");
+    if ($req !== FALSE) {
+        $req->execute();
+    }
+}
+
+function saveTests(PDO $db, $exam, $tests) {
+    foreach ($tests as $test => $value) {
+        $req = $db->prepare("UPDATE test SET result = '$value' WHERE exam = '$exam' AND result = '$test'");
+        if ($req !== FALSE) {
+            $req->execute();
+        }
+    }
+}

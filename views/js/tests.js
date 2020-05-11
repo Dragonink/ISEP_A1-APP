@@ -94,7 +94,16 @@ const manualValues = {
     colo: null
 };
 function enterValue() {
-    manualValues[document.body.classList.item(0)] = Number(document.querySelector("form#input > input[name='value']").value);
+    const value = Number(document.querySelector("form#input > input[name='value']").value);
+    manualValues[document.body.classList.item(0)] = value;
+    /** @type {HTMLFormElement} */
+    const form = document.querySelector("form#submit");
+    /** @type {HTMLTemplateElement} */
+    const template = document.querySelector("#template-submit");
+    const clone = template.content.cloneNode(true);
+    clone.querySelector("input").name = document.body.classList.item(0);
+    clone.querySelector("input").value = value;
+    form.appendChild(clone);
     document.querySelector("#input").reset();
     nextTest();
 }
