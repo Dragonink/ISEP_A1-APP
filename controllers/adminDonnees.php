@@ -119,7 +119,7 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
             } else {
                 $info=infoUtilisateurRecherche($db, $valeur, $recherche);
             }
-        } elseif ($valeur==1){
+        } else {
             if($recherche==''){
                 $info=infoUtilisateur($db, $valeur);
             } else {
