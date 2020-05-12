@@ -53,12 +53,8 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
                             ."</tr>"
                             ."<tr> <td>" .$value['work_address'] ."</td> </tr>"
                             ."<tr>"
-                                ."<td colspan='2' class='proprietaireDispositif'>";
-            if ($value['picture']==NULL){
-                $resultat .=  "<img src='images/iconProfil.jpg'/>";
-            } else {
-                $resultat .=  "<img src='" .$value['picture'] ."'/>";
-            }
+                                ."<td colspan='2' class='proprietaireDispositif'>"
+                                    ."<img src='images/iconProfil.jpg'/>";
             $resultat .= $value['first_name'] ." " .$value['last_name'] ."</td>"
                             ."</tr>"
                         ."</table></td>";
@@ -103,26 +99,12 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
         $nombre=nombreUtilisateur($db);
     } else {
         $nombre=nombreUtilisateurRecherche($db, $recherche);
-    } 
+    }
     if ($nombre!= 0){
-        if ($valeur==0){
-            if($recherche==''){
-                $info=infoUtilisateur($db, $valeur);
-            } else {
-                $info=infoUtilisateurRecherche($db, $valeur, $recherche);
-            }
+        if($recherche==''){
+            $info=infoUtilisateur($db, $valeur);
         } else {
-            if($recherche==''){
-                $info=infoUtilisateur($db, $valeur);
-            } else {
-                $info=infoUtilisateurRecherche($db, $valeur, $recherche);
-            }
-        } elseif ($valeur==2){
-            if($recherche==''){
-                $info=infoUtilisateur($db, $valeur);
-            } else {
-                $info=infoUtilisateurRecherche($db, $valeur, $recherche);
-            }
+            $info=infoUtilisateurRecherche($db, $valeur, $recherche);
         }
         foreach ($info as $key => $value ){
             if ($key%12==0){
@@ -139,13 +121,8 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
 
             $resultat .= "<td><table class='utilisateur'>"
                             ."<tr>"
-                                ."<td rowspan='4' class='photoProfil' > ";
-            if ($value['picture']==NULL){
-                $resultat .=  "<img src='images/iconProfil.jpg'/>";
-            } else{
-                $resultat .=  "<img src='" .$value['picture'] ."'/>";
-            }
-            $resultat .="<td>" .$value['first_name'] ." " .$value['last_name'] ."</td>"
+                                ."<td rowspan='4' class='photoProfil' > <img src='images/iconProfil.jpg'/> </td>"
+                                ."<td>" .$value['first_name'] ." " .$value['last_name'] ."</td>"
                                 ."<td class='modifierSupprimer'>"
                                     ."<img src='images/iconModifier.png' />"
                                     ."<img src='images/iconCroix.png' onclick=\"rejeter('utilisateur', " .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"

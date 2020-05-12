@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include('../models/requeteProfil.php');
 
@@ -20,13 +20,13 @@ function listeInfoPatient(PDO $db, $valeur, $recherche){
                 $info=infoPatient($db, $_SESSION['user_id']);
             } else {
                 $info=infoPatientRecherche($db, $_SESSION['user_id'], $valeur, $recherche);
-            } 
+            }
         } elseif ($valeur == 2){
             if ($recherche==''){
                 $info=infoPatient($db, $_SESSION['user_id']);
             } else {
                 $info=infoPatientRecherche($db, $_SESSION['user_id'], $valeur, $recherche);
-            } 
+            }
         }
         foreach ($info as $key => $value ){
             if ($key==0){
@@ -38,13 +38,8 @@ function listeInfoPatient(PDO $db, $valeur, $recherche){
 
             $resultat .= "<td><table class='utilisateur'>"
                             ."<tr>"
-                                ."<td rowspan='4' class='photoProfil' > ";
-            if ($value['picture']==NULL){
-                $resultat .=  "<img src='images/iconProfil.jpg'/>";
-            } else{
-                $resultat .=  "<img src='" .$value['picture'] ."'/>";
-            }
-            $resultat .="<td>" .$value['first_name'] ." " .$value['last_name'] ."</td>"
+                                ."<td rowspan='4' class='photoProfil' ><img src='images/iconProfil.jpg'/></td>"
+                                ."<td>" .$value['first_name'] ." " .$value['last_name'] ."</td>"
                                 ."<td class='modifierSupprimer'>"
                                     ."<img src='images/iconCroix.png' onclick=\"rejeterPatient('utilisateur', " .$valeur ." , '" .$recherche ."' , " .$value['id'] .")\"/>"
                                 ."</td>"

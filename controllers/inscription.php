@@ -1,4 +1,4 @@
-<?php session_start(); 
+<?php session_start();
 require "../models/account_info.php";
 $type = $firstname = $lastname = $email = $password = $nss = $linked_manager = $address = "";
 function trim_input($data) {
@@ -14,7 +14,7 @@ $linked_manager = trim_input($_POST["manager"]);
 $address = trim_input($_POST["address"]);
 
 function error() {
-    echo "<script>alert('Une erreur est survenue.');</script>";
+    header("Location: inscription.php", true, 303);
     exit;
 }
 switch ($type) {

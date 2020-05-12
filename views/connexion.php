@@ -29,7 +29,7 @@
 		</div>
 	</main>
 	<footer>
-		<a href="">Conditions Générales d'Utilisation</a>
+		<a href="cgu.php">Conditions Générales d'Utilisation</a>
 	</footer>
 </body>
 </head>

@@ -53,7 +53,7 @@ include('../controllers/adminDonnees.php');
                 <input id="address" class="manager" name="address" type="text" required />
             </div>
             <input id="cgu" name="cgu" type="checkbox" required />
-            <label for="cgu">J'accepte les <a href="cgu.html" target="_blank">Conditions Générales d'Utilisation</a></label>
+            <label for="cgu">J'accepte les <a href="cgu.php" target="_blank">Conditions Générales d'Utilisation</a></label>
             <button type="submit" name='inscription'>Inscription</button>
         </form>
         <div>

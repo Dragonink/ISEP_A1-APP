@@ -9,7 +9,8 @@ $account = trim_input($_POST["account"]);
 $passwd = trim_input($_POST["password"]);
 
 function invalid_passwd() {
-    echo "<script>alert('Mot de passe invalide.');</script>";
+    header("Location: connexion.php", true, 303);
+    exit;
 }
 if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
     $user_info = fetchUser($db, $account);

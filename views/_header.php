@@ -1,7 +1,7 @@
 <header>
     <a href='index.php'><img src='images/infinite_measures.jpg' height='64'/></a>
     <?php
-        if ($_SERVER["REQUEST_URI"] === "/index.php") {
+        if (preg_match("/^(?:\/|\/index.php)?$/", $_SERVER["REQUEST_URI"]) === 1) {
             echo "<a href='#qsn'>Qui sommes-nous ?</a>",
                 "<a href='#ntp'>Notre projet</a>",
                 "<a href='#contact'>Contact</a>";

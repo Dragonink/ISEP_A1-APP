@@ -35,8 +35,7 @@ CREATE TABLE `manager` (
   `email` text NOT NULL,
   `password` text NOT NULL,
   `work_address` text NOT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `picture` mediumblob,
+  `phone` varchar(12) DEFAULT NULL,
   `is_active` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -53,8 +52,7 @@ CREATE TABLE `user` (
   `email` text NOT NULL,
   `password` text NOT NULL,
   `manager` int,
-  `phone` varchar(15) DEFAULT NULL,
-  `picture` mediumblob,
+  `phone` varchar(12) DEFAULT NULL,
   `ack_share` boolean NOT NULL DEFAULT TRUE,
   PRIMARY KEY (`nss`),
   KEY `manager` (`manager`),
@@ -127,7 +125,7 @@ DROP TABLE IF EXISTS `test`;
 CREATE TABLE `test` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exam` int NOT NULL,
-  `type` varchar(3) NOT NULL,
+  `type` varchar(4) NOT NULL,
   `start_time` timestamp NULL DEFAULT NULL,
   `result` float DEFAULT NULL,
   PRIMARY KEY (`id`),

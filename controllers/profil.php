@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include("../models/requeteProfil.php");
 
@@ -38,10 +38,6 @@ function medecin(PDO $db, $table){
 
 function telephone(PDO $db, $table){
     modifProfil($db, $table, 'phone', $_POST['telephone'], $_SESSION['user_id']);
-}
-
-function photo(PDO $db, $table){
-    modifProfil($db, $table, 'picture', $_POST['photo'], $_SESSION['user_id']);
 }
 
 function adresse(PDO $db, $table){
