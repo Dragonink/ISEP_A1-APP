@@ -88,9 +88,12 @@ require '../controllers/adminDonnees.php';
                             <tr>
                                 <td><a href='inscription.php' style="color: black;"><img src="images/iconAjouterUser.png" /> Ajouter un utilisateur </a> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="images/iconOuvrir.png"/></button> </td>
                                 <td> <select id="selectUtilisateur" size="1">
-                                    <option value="0"> Trier par: </option>
-                                    <option value="1"> Option 1 </option>
-                                    <option value="2"> Option 2 </option>
+                                    <option value="0"> ID</option>
+                                    <option value="1"> Origine</option>
+                                    <option value="2"> Adresse </option>
+                                    <option value="3"> Nom</option>
+                                    <option value="4"> Prenom</option>
+                                    <option value="5"> Âge</option>
                                 </select> </td>
                             </tr>
                         </table>
