@@ -126,6 +126,10 @@ require '../controllers/gestionnaire.php';
 </body>
 <script LANGUAGE="JavaScript">
 	graphe();
+	let value=/(?:^\?|&)tri=(\d+)/.exec(window.location.search);
+	if (value!==null){
+		document.querySelector('form.recherche select').selectedIndex = value[1]; 
+ 	}
 </script>
 
 </html>
