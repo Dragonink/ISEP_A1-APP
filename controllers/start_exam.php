@@ -1,5 +1,4 @@
 <?php
-session_start();
 require "../models/requeteTests.php";
 $tests = $console = "";
 function trim_input($data) {
