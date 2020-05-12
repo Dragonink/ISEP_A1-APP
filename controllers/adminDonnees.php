@@ -8,7 +8,7 @@ function listeManager(PDO $db){
         $info=infoManager($db);
         $resultat = "<option selected disabled> Nom médecin </option>";
         foreach ($info as $key => $value ){
-            $resultat .= "<option value='" .$value[id] ."'> " .$value[first_name] ." " .$value[last_name] ." </option>";
+            $resultat .= "<option value='" .$value['id'] ."'> " .$value['first_name'] ." " .$value['last_name'] ." </option>";
         }
     } else {
         $resultat = "<option selected disabled> Pas de médecin </option>";
@@ -17,16 +17,17 @@ function listeManager(PDO $db){
 }
 
 function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
-    if ($valeur==0){
-        if($recherche==''){
-            $nombre=nombreDispositif($db);
-        }
+    if($recherche==''){
+        $nombre=nombreDispositif($db);
+    } else {
+        $nombre=nombreDispositifRecherche($db, $recherche);
     }
+
     if ($nombre!= 0){
-        if ($valeur==0){
-            if($recherche==''){
-                $info=infoDispositif($db);
-            }
+        if($recherche==''){
+            $info=infoDispositif($db,$valeur);
+        } else {
+            $info=infoDispositifRecherche($db, $valeur, $recherche);
         }
         foreach ($info as $key => $value ){
             if ($key%12==0){
@@ -98,15 +99,23 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
 }
 
 function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
-    if ($valeur==0){
-        if($recherche==''){
-            $nombre=nombreUtilisateur($db);
-        }
-    }
+    if($recherche==''){
+        $nombre=nombreUtilisateur($db);
+    } else {
+        $nombre=nombreUtilisateurRecherche($db, $recherche);
+    } 
     if ($nombre!= 0){
         if ($valeur==0){
             if($recherche==''){
-                $info=infoUtilisateur($db);
+                $info=infoUtilisateur($db, $valeur);
+            } else {
+                $info=infoUtilisateurRecherche($db, $valeur, $recherche);
+            }
+        } else {
+            if($recherche==''){
+                $info=infoUtilisateur($db, $valeur);
+            } else {
+                $info=infoUtilisateurRecherche($db, $valeur, $recherche);
             }
         }
         foreach ($info as $key => $value ){
