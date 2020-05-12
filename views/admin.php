@@ -93,7 +93,7 @@ require '../controllers/adminDonnees.php';
                                     <option value="2"> Adresse </option>
                                     <option value="3"> Nom</option>
                                     <option value="4"> Prenom</option>
-                                    <option value="5"> Âge</option>
+                                    
                                 </select> </td>
                             </tr>
                         </table>
