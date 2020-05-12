@@ -40,6 +40,7 @@
 		</div>
 		<div>
 			<button class="connexion" type="mdp" onclick="selectType()">Mot de passe oublié</button>
+			<button class="forget" type="mdp" onclick="hideForget()">Connexion</button>
 		</div>
 	</main>
 	<footer>
