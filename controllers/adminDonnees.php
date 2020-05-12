@@ -8,7 +8,7 @@ function listeManager(PDO $db){
         $info=infoManager($db);
         $resultat = "<option selected disabled> Nom médecin </option>";
         foreach ($info as $key => $value ){
-            $resultat .= "<option value='" .$value[id] ."'> " .$value[first_name] ." " .$value[last_name] ." </option>";
+            $resultat .= "<option value='" .$value['id'] ."'> " .$value['first_name'] ." " .$value['last_name'] ." </option>";
         }
     } else {
         $resultat = "<option selected disabled> Pas de médecin </option>";
