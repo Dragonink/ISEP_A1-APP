@@ -24,18 +24,10 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
     }
 
     if ($nombre!= 0){
-        if ($valeur==0){
-            if($recherche==''){
-                $info=infoDispositif($db,$valeur);
-            } else {
-                $info=infoDispositifRecherche($db, $valeur, $recherche);
-            }
-        }   else {
-            if($recherche==''){
-                $info=infoDispositif($db, $valeur);
-            } else {
-                $info=infoDispositifRecherche($db, $valeur, $recherche);
-            }
+        if($recherche==''){
+            $info=infoDispositif($db,$valeur);
+        } else {
+            $info=infoDispositifRecherche($db, $valeur, $recherche);
         }
         foreach ($info as $key => $value ){
             if ($key%12==0){

@@ -97,8 +97,6 @@ function infoDispositif(PDO $db, $value) {
         case 3:
             $dispositif = 'SELECT console.id as code, first_name, last_name, work_address, picture from manager join console on (console.manager=manager.id) order by manager.work_address  ' ;
         break;
-
-        
     }
     $prepare = $db->prepare($dispositif);
     $prepare->execute();
@@ -132,17 +130,14 @@ function infoDispositifRecherche(PDO $db, $value, $recherche) {
 
 function infoUtilisateur(PDO $db, $value) {
     switch($value){
-        
         case 0:
             $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 order by id ";
             break;
-        
         case 1:
-            $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 order by origine";
+            $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 order by id desc";
             break;
-
         case 2:
-            $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 order by work_address";
+            $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 order by origine";
             break;
         case 3:
             $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 order by last_name";
@@ -150,8 +145,6 @@ function infoUtilisateur(PDO $db, $value) {
         case 4: 
             $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 order by first_name";
             break;
-        
-
     }
     $prepare = $db->prepare($utilisateur);
     $prepare->execute();
@@ -164,20 +157,17 @@ function infoUtilisateurRecherche(PDO $db, $value, $recherche) {
             $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by id";
              break;
         case 1;
-            $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by origine";
+            $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by id desc";
             break;
         case 2:
-            $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by work_address";
+            $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by origine";
         break;
-
         case 3:
             $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by last_name";
         break;
-
         case 4:
             $utilisateur = "SELECT id, first_name, last_name, email, NULL as picture, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, picture, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, picture, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by first_name";
         break;
-
     }
     $prepare = $db->prepare($utilisateur);
     $prepare->execute();

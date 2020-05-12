@@ -71,8 +71,8 @@ require '../controllers/adminDonnees.php';
                                 </td>
                                 <td> <select id="selectDispositif" size="1">
                                     <option value="0" > Croissant </option>
-                                    <option value="1"> Decroissant</option>
-                                    <option value="2"> Managers</option>
+                                    <option value="1"> Décroissant</option>
+                                    <option value="2"> Médecin</option>
                                     <option value="3"> Adresse </option>
                                 </select> </td>
                             </tr>
@@ -88,12 +88,11 @@ require '../controllers/adminDonnees.php';
                             <tr>
                                 <td><a href='inscription.php' style="color: black;"><img src="images/iconAjouterUser.png" /> Ajouter un utilisateur </a> &nbsp; <button class="openRequêtes" onclick="openRequetes()" style="display: inherit;"> Requêtes en attentes <img src="images/iconOuvrir.png"/></button> </td>
                                 <td> <select id="selectUtilisateur" size="1">
-                                    <option value="0"> ID</option>
-                                    <option value="1"> Origine</option>
-                                    <option value="2"> Adresse </option>
+                                    <option value="0"> Croissant </option>
+                                    <option value="1"> Décroissant </option>
+                                    <option value="2"> Type de compte</option>
                                     <option value="3"> Nom</option>
                                     <option value="4"> Prenom</option>
-                                    
                                 </select> </td>
                             </tr>
                         </table>
