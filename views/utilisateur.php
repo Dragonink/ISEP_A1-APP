@@ -70,9 +70,11 @@ if (count($exam) > 0) {
                 <?php if (sizeof($tests) > 0) {
                     echo "<form method='POST' action='".htmlspecialchars($_SERVER["PHP_SELF"])."'>",
                         "<header>Effectuer un test</header>",
+                        "<div>",
                         "<input type='text' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
                         "<input type='text' name='console' placeholder='ID console' required />",
                         "<button type='submit'>Démarrer</button>",
+                        "</div>",
                         "</form>";
                 } ?>
             </td>

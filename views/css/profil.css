@@ -65,8 +65,19 @@ table td {
     text-align: center;
 }
 
-.resultatDernierTest div{
+.resultatDernierTest > div{
     margin-top: 10px;
+}
+
+.resultatDernierTest form {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    background-color: var(--colorHeader);
+    color: white;
+    font-weight: bold;
+    padding: 10px 0;
+    border-radius: 5px;
 }
 
 .titre {
