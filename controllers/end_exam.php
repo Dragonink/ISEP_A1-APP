@@ -1,30 +1,23 @@
 <?php
-session_start();
 require "../models/requeteTests.php";
-$freq = $temp = $tona = $stim = $colo = "";
-$tests = [];
+$tests = array("freq" => null, "temp" => null, "tona" => null, "stim" => null, "colo" => null);
 function trim_input($data) {
 	return htmlspecialchars(stripslashes(trim($data)));
 }
 if (isset($_POST["freq"])) {
-    $freq = trim_input($_POST["freq"]);
-    array_merge($tests, ["freq" => $freq]);
+    $tests["freq"] = trim_input($_POST["freq"]);
 }
 if (isset($_POST["temp"])) {
-    $temp = trim_input($_POST["temp"]);
-    array_merge($tests, ["temp" => $temp]);
+    $tests["temp"] = trim_input($_POST["temp"]);
 }
 if (isset($_POST["tona"])) {
-    $tona = trim_input($_POST["tona"]);
-    array_merge($tests, ["tona" => $tona]);
+    $tests["tona"] = trim_input($_POST["tona"]);
 }
 if (isset($_POST["stim"])) {
-    $stim = trim_input($_POST["stim"]);
-    array_merge($tests, ["stim" => $stim]);
+    $tests["stim"] = trim_input($_POST["stim"]);
 }
 if (isset($_POST["colo"])) {
-    $colo = trim_input($_POST["colo"]);
-    array_merge($tests, ["colo" => $colo]);
+    $tests["colo"] = trim_input($_POST["colo"]);
 }
 
 saveTests($db, $_SESSION["exam_id"], $tests);

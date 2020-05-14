@@ -35,18 +35,24 @@ function updateDescription(test) {
 }
 
 let testLength = 0;
-function nextTest() {
+function nextTest(remove = true) {
     // Update description
     const test = document.body.classList.item(0);
-    document.body.classList.remove(test);
+    if (remove) document.body.classList.remove(test);
     updateDescription(test);
     // Update table
-    if (document.body.classList.length + 1 < testLength) for (const tr of document.querySelector("#results").querySelector("tbody").children) {
-        if (!tr.classList.contains("done")) {
-            tr.querySelector("td").innerHTML = manualValues[test];
-            tr.classList.add("done");
+    if (remove) for (const child of document.querySelector("table#results > tbody").children) {
+        if (child.tagName !== "TR") continue;
+        else if (!child.classList.contains("done")) {
+            child.querySelector("td").innerHTML = manualValues[test];
+            child.classList.add("done");
             break;
         }
+    }
+    // Update display
+    if (document.body.classList.length === 0) {
+        document.querySelector("form#input").setAttribute("hidden", "");
+        document.querySelector("form#submit").removeAttribute("hidden");
     }
     // Update margins
     updateMargins();
@@ -82,7 +88,7 @@ function initTests() {
         tbody.appendChild(clone);
     }
     // Continue
-    nextTest();
+    nextTest(false);
 }
 
 /** @type {{[test: string]: null | number}} */
