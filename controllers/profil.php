@@ -12,8 +12,9 @@ function prenom(PDO $db, $table) {
 
 function mdp(PDO $db, $table){
     $erreur = false;
+    $password = password_hash($_POST['mdp'], PASSWORD_DEFAULT);
     if ($_POST['mdp'] == $_POST['verifmdp']){
-        modifProfil($db, $table, 'password', $_POST['mdp'], $_SESSION['user_id']);
+        modifProfil($db, $table, 'password', $password, $_SESSION['user_id']);
     } else {
         echo "<script>alert(\"Le mot de passe ne correspond pas\")</script>";
         $erreur = true;
