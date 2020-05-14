@@ -9,24 +9,10 @@ function listeInfoPatient(PDO $db, $valeur, $recherche){
         $nombre=nombrePatientRecherche($db, $_SESSION['user_id'], $recherche);
     }
     if ($nombre!= 0){
-        if ($valeur==0){
-            if($recherche==''){
-                $info=infoPatient($db, $_SESSION['user_id']);
-            }else{
-                $info=infoPatientRecherche($db, $_SESSION['user_id'], $valeur, $recherche);
-            }
-        } elseif ($valeur == 1){
-            if ($recherche==''){
-                $info=infoPatient($db, $_SESSION['user_id']);
-            } else {
-                $info=infoPatientRecherche($db, $_SESSION['user_id'], $valeur, $recherche);
-            }
-        } elseif ($valeur == 2){
-            if ($recherche==''){
-                $info=infoPatient($db, $_SESSION['user_id']);
-            } else {
-                $info=infoPatientRecherche($db, $_SESSION['user_id'], $valeur, $recherche);
-            }
+        if($recherche==''){
+            $info=infoPatient($db, $_SESSION['user_id']);
+        }else{
+            $info=infoPatientRecherche($db, $_SESSION['user_id'], $valeur, $recherche);
         }
         foreach ($info as $key => $value ){
             if ($key==0){
