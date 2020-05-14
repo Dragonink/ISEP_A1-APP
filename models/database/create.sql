@@ -94,7 +94,7 @@ DROP TABLE IF EXISTS `exam`;
 CREATE TABLE `exam` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user` bigint NOT NULL,
-  `console` mediumint NOT NULL,
+  `console` mediumint DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   KEY `console` (`console`),
@@ -126,7 +126,7 @@ CREATE TABLE `test` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exam` int NOT NULL,
   `type` varchar(4) NOT NULL,
-  `start_time` timestamp NULL DEFAULT NULL,
+  `start_time` timestamp DEFAULT NULL,
   `result` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `exam` (`exam`),

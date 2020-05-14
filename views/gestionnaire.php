@@ -11,6 +11,9 @@ if (isset($_GET["fonction"])){
 		echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
 	}
 }
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	require "../controllers/declare_exam.php";
+}
 require '../controllers/gestionnaire.php';
 ?>
 <!DOCTYPE html>
@@ -39,35 +42,33 @@ require '../controllers/gestionnaire.php';
 			</div>
 			<hr>
 			<p>Liste des tests disponibles</p>
-			<div class="testChoix">
-				<div> Test 1 </div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test1" unchecked/>
-			</div>
-			<div class="testChoix">
-				<div> Test 2</div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test2" unchecked/>
-			</div>
-			<div class="testChoix">
-				<div> Test 3</div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test3" unchecked/>
-			</div>
-			<div class="testChoix">
-				<div> Test 4</div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test4" unchecked/>
-			</div>
-			<div class="testChoix">
-				<div> Test 5</div>
-				<div> Description</div>
-				<input type="checkbox" class="test" name="test5" unchecked/>
-			</div>
-			<div class="buttons">
-				<button id="valider"> Valider </button>
-				<button id="annuler" onclick="annulerExamen()"> Annuler </button>
-			</div>
+			<form method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+				<input type="text" name="user" hidden />
+				<div class="testChoix">
+					<div>Fréquence cardiaque</div>
+					<input type="checkbox" class="test" name="tests[]" value="freq" unchecked>
+				</div>
+				<div class="testChoix">
+					<div>Température</div>
+					<input type="checkbox" class="test" name="tests[]" value="temp" unchecked>
+				</div>
+				<div class="testChoix">
+					<div>Reconnaissance de tonalités</div>
+					<input type="checkbox" class="test" name="tests[]" value="tona" unchecked>
+				</div>
+				<div class="testChoix">
+					<div>Réaction à des stimuli visuels</div>
+					<input type="checkbox" class="test" name="tests[]" value="stim" unchecked>
+				</div>
+				<div class="testChoix">
+					<div>Mémorisation de couleurs</div>
+					<input type="checkbox" class="test" name="tests[]" value="colo" unchecked>
+				</div>
+				<div class="buttons">
+					<button type="submit" id="valider">Valider</button>
+					<button type="button" id="annuler" onclick="annulerExamen()">Annuler</button>
+				</div>
+			</form>
 		</div>
 	</div>
 	<table class="infoProfil">
@@ -121,7 +122,7 @@ require '../controllers/gestionnaire.php';
    				<input type="submit" value="Rechercher" />
  		</form>
 	</div>
-	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, $_GET['tri'], $_GET['q'])?></div>
+	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, 0, ''); ?></div>
 	<?php require "_footer.html"; ?>
 </body>
 <script LANGUAGE="JavaScript">

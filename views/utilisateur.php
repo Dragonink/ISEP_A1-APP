@@ -1,8 +1,17 @@
 <?php
 session_start();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	require "../controllers/start_exam.php";
+}
 require "../models/account_info.php";
 $manager_info = fetchManager2($db, $_SESSION["user_medecin"]);
 $manager_info = $manager_info[0];
+require "../models/requeteTests.php";
+$exam = getExamId($db, $_SESSION["user_id"]);
+if (count($exam) > 0) {
+    $_SESSION["exam_id"] = $exam[0]["id"];
+    $tests = getTests($db, $_SESSION["exam_id"]);
+}
 ?><!DOCTYPE html>
 <html>
 
@@ -58,12 +67,16 @@ $manager_info = $manager_info[0];
             </td>
             <td class="resultatDernierTest">
                 <canvas id="resultatDernierTestGraph"> </canvas>
-                <div class="démarrerTest" style="display: none;">
-                    <form>
-                        id passerelle &nbsp; <input type="text" name="idPasserelle" placeholder="idPasserelle" />
-                        <input type="button" value="Effetuer Test" onclick="demarrerTest()">
-                    </form>
-                </div>
+                <?php if (sizeof($tests) > 0) {
+                    echo "<form method='POST' action='".htmlspecialchars($_SERVER["PHP_SELF"])."'>",
+                        "<header>Effectuer un test</header>",
+                        "<div>",
+                        "<input type='text' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
+                        "<input type='text' name='console' placeholder='ID console' required />",
+                        "<button type='submit'>Démarrer</button>",
+                        "</div>",
+                        "</form>";
+                } ?>
             </td>
         </tr>
     </table>

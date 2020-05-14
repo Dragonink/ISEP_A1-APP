@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+session_start();
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+	require "../controllers/end_exam.php";
+}
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -8,8 +13,7 @@
     <script type="text/javascript" src="js/tests.js"></script>
 </head>
 
-<body onload="initTests();" class="freq temp tona stim colo">
-    <!-- Input body classes from PHP -->
+<body onload="initTests();" class="<?php echo $_SESSION["exam_tests"]; ?>">
     <main>
         <div>
             <img id="test-icon" />
@@ -29,12 +33,23 @@
                     <template id="template-result">
                         <tr>
                             <th scope="row">Test</th>
-                            <td></td>
+                            <td>&nbsp;</td>
                         </tr>
                     </template>
                 </tbody>
             </table>
+            <form id="input">
+                <input name="value" type="number" placeholder="Entrer une valeur manuelle" required />
+                <button type="submit" onclick="enterValue();">Enregistrer</button>
+            </form>
+            <form id="submit" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" hidden>
+                <template id="template-submit">
+                    <input type="number" hidden />
+                </template>
+                <button type="submit">Terminer</button>
+            </form>
         </div>
     </main>
 </body>
+
 </html>

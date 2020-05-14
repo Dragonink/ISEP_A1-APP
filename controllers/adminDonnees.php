@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('../models/requeteAdmin.php');
 
 function listeManager(PDO $db){
