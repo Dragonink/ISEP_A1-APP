@@ -34,7 +34,7 @@ function listeInfoPatient(PDO $db, $valeur, $recherche){
                             ."<tr> <td> Patient </td> </tr>"
                             ."<tr>"
                                 ."<td colspan='2' class='iconGerer'>"
-                                    ."<img src='images/iconCheck.png' onclick='openExamen(\"".$value['nss']."\")' />"
+                                    ."<img src='images/iconCheck.png' onclick='openExamen(\"".$value['nss']."\", \"".$value['first_name']."\",\"".$value['last_name']."\")' />"
 							        ."<img src='images/iconVoirProfil.png' />"
 							        ."<img src='images/iconContacter.png' />"
                                 ."</td>"

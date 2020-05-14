@@ -1,7 +1,9 @@
 var color = ['red', 'yellow', 'green', 'blue', 'purple'];
 
-function openExamen(userId) {
+function openExamen(userId, userFirst, userLast) {
     document.querySelector("div.examen form input[name='user']").value = userId;
+    document.querySelector("div.examen div.personne div:first-of-type").textContent = userFirst;
+    document.querySelector("div.examen div.personne div:last-of-type").textContent = userLast;
     document.getElementsByClassName("examen")[0].style.display = "block";
 }
 
