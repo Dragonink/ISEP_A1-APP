@@ -38,7 +38,7 @@ details > summary {
 details > p {
     padding: 0 10px;
 }
-main > footer {
+main > footer, main > p {
     text-align: center;
     margin: 5vh 0;
 }
