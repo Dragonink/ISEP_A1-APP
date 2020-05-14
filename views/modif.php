@@ -4,6 +4,8 @@ include("../controllers/profil.php");
 function trim_input($data) {
 	return htmlspecialchars(stripslashes(trim($data)));
 }
+$mdperreur=false;
+$emailerreur=false; 
 
 if (isset($_POST['modifUtilisateur'])){
     $nom = $prenom = $mdp = $email = $telephone = $medecin = "";
@@ -35,7 +37,7 @@ if (isset($_POST['modifUtilisateur'])){
     if (isset($medecin) && $medecin!=''){
         medecin($db, 'user');
     }   
-    if ($mdperreur=true || $emailerreur=true){
+    if ($mdperreur==true || $emailerreur==true){
         $url="modifUtilisateur";
     }
     checkbox($db, 'user');
@@ -61,16 +63,13 @@ if (isset($_POST['modifUtilisateur'])){
     if (isset ($email) && $email!=''){
         $emailerreur=email($db, 'manager');
     }
-    //if (isset ($_POST['photo']) && $_POST['photo']!=''){
-    //    photo('user');
-    //}
     if (isset($telephone) && $telephone!=''){
         telephone($db, 'manager');
     }
     if (isset($adresse) && $adresse!=''){
         telephone($db, 'manager');
     }
-    if ($mdperreur=true || $emailerreur=true){
+    if ($mdperreur==true || $emailerreur==true){
         $url="modifGestionnaire";
     }
 }elseif (isset($_POST['modifAdmin'])){
@@ -92,7 +91,7 @@ if (isset($_POST['modifUtilisateur'])){
     if (isset ($email) && $email!=''){
         $emailerreur=email($db, 'admin');
     }
-    if ($mdperreur=true || $emailerreur=true){
+    if ($mdperreur==true || $emailerreur==true){
         $url="modifAdmin";
     }
 }elseif (isset($_POST['annuler'])) {
