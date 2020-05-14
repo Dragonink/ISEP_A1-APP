@@ -54,21 +54,21 @@
 		for($i=0; $i < 8; $i++) { 
 			$recup_code .= mt_rand(0,9);
 		}
-		echo "<script>alert(".$recup_code .")</script>";
+		//echo "<script>alert(".$recup_code .")</script>";
 		if (compte($db, $recup_mail, $recup_code)){
 			$to = $recup_mail;
 			$from = 'infinite.measures@yopmail.com';
-			$subject = 'Réinitialisation mot de passe';
+			$subject = 'Reinitialisation mot de passe';
 			$message = '<html>'
 					.'<head>'
 						.'<title>Réinitialisation de votre mot de passe</title>'
 					.'</head>'
 					.'<body>'
-						.'<h1>Bonjour, voici votre nouveau mot de passe :' .$recup_code .'</h1>'
-						.'<h2>Ce mot de passe est strictement confidentielle.</h2>'
+						.'<h2>Bonjour, voici votre nouveau mot de passe : ' .$recup_code .'</h2>'
+						.'<p>Ce mot de passe est strictement confidentielle.</p>'
 					.'</body>'
 				.'</html>';
-			$headers = 'From:' .$from;
+			$headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";
 			
 			if (mail($to, $subject, $message, $headers))
 			{
