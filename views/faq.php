@@ -1,5 +1,6 @@
 <?php
 session_start();
+require "../controllers/faq.php";
 ?>
 <!DOCTYPE html>
 <html>
@@ -17,18 +18,7 @@ session_start();
         <header>
             <h1>Foire Aux Questions</h1>
         </header>
-        <details>
-            <summary>Pourquoi ?</summary>
-            <p>
-                Parce que.
-            </p>
-        </details>
-        <details>
-            <summary>Pourquoi ?</summary>
-            <p>
-                Parce que.
-            </p>
-        </details>
+        <?php echo $faq ?>
         <footer>
             Vous n'avez pas trouvé votre réponse ?
             <a href="mailto:administration@infinite-measures.com?subject=Question">Posez votre question ici</a>
