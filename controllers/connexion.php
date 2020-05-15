@@ -32,7 +32,7 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
     }
 } elseif (preg_match("/^[^@]+@\S+\.\S+$/", $account) === 1) {
     $user_info = fetchUser2($db, $account);
-    if (count($user_info) > 0 && count($user_info) > 0) {
+    if (count($user_info) > 0) {
         if (password_verify($passwd, $user_info[0]["password"])) {
             $_SESSION["user_type"] = "user";
             $_SESSION["user_id"] = $user_info[0]["nss"];
@@ -49,11 +49,11 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
         exit;
     }
     $user_info = fetchManager($db, $account);
-    if (count($user_info) > 0 && $user_info[0]["is_active"]===0){
+    if (count($user_info) > 0 && $user_info[0]["is_active"]==0){
         echo "<script>alert(\"Votre compte n'a pas encore été activé\")</script>";
     } elseif (count($user_info) > 0 && $user_info[0]["is_active"]==-1){
         echo "<script>alert(\"Votre compte a été supprimé\")</script>";
-    } elseif (count($user_info) > 0 && count($user_info) > 0) {
+    } elseif (count($user_info) > 0 ) {
         if (password_verify($passwd, $user_info[0]["password"])) {
             $_SESSION["user_type"] = "manager";
             $_SESSION["user_id"] = $user_info[0]["id"];
@@ -69,11 +69,11 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
         exit;
     }
     $user_info = fetchAdmin($db, $account);
-    if (count($user_info) > 0 && $user_info[0]["is_active"]===0){
+    if (count($user_info) > 0 && $user_info[0]["is_active"]==0){
         echo "<script>alert(\"Votre compte n'a pas encore été activé\")</script>";
     } elseif (count($user_info) > 0 && $user_info[0]["is_active"]==-1){
         echo "<script>alert(\"Votre compte a été supprimé\")</script>";
-    }elseif (count($user_info) > 0 && count($user_info) > 0) {
+    }elseif (count($user_info) > 0 ) {
         if (password_verify($passwd, $user_info[0]["password"])) {
             $_SESSION["user_type"] = "administrator";
             $_SESSION["user_id"] = $user_info[0]["id"];
@@ -86,5 +86,6 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
         }
         exit;
     }
+    echo "<script>alert(\"Votre compte n'existe pas.\");</script>";
 } else {echo "<script>alert('Identifiant invalide.');</script>";}
 ?>

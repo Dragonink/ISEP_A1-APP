@@ -66,11 +66,26 @@ switch ($type) {
         } else { error();}
         break;
     case "admin":
-        $status = insertAdmin($db, $firstname, $lastname, $email, $password);
-        if ($status) {
-            header("Location: index.php?validation=admin", true, 303);
-            exit;
-        } else {error();}
-        break;
+        if (nbAdmin($db) == 0) {
+            $status = insertAdmin($db, $firstname, $lastname, $email, $password, 1);
+            $id = idAdmin($db);
+            if ($status) {
+                $_SESSION["user_type"] = "administrator";
+                $_SESSION["user_id"] = $id;
+                $_SESSION["user_prenom"] = $firstname;
+                $_SESSION["user_nom"] = $lastname;
+                $_SESSION["user_email"] = $email;
+                header("Location: admin.php", true, 303);
+                exit;
+            } else {error();}
+            break;
+        } else {
+            $status = insertAdmin($db, $firstname, $lastname, $email, $password, 0);
+            if ($status) {
+                header("Location: index.php?validation=admin", true, 303);
+                exit;
+            } else {error();}
+            break;
+        }
 }
 ?>
