@@ -53,9 +53,8 @@ $manager_info = $manager_info[0];
 				<p>Médecin</p>
 				<input type="text" name="medecin" placeholder="<?php echo $manager_info['first_name'], " ", $manager_info['last_name']?>" />
 				<div>
-					<input type="checkbox" id="data" name="scales"
-						unchecked>
-					<label for="scales">J'accepte que mes données soient réutilisées à des fins statiques</label>
+					<input type="checkbox" id="data" name="checkbox" unchecked />
+					<label for="checkbox">J'accepte que mes données soient réutilisées à des fins statiques</label>
 				</div>
 			</div>
 		</div>

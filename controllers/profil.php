@@ -52,6 +52,11 @@ function adresse(PDO $db, $table){
 }
 
 function checkbox(PDO $db, $table){
-    modifProfil($db, $table, 'ack_share', $_POST['checkbox'], $_SESSION['user_id']);
-    $_SESSION["user_share"] = $_POST['checkbox'];
+    $ack_share = '0';
+    $_SESSION["user_share"] = FALSE;
+    if (isset($_POST["checkbox"])) {
+        $ack_share = '1';
+        $_SESSION["user_share"] = TRUE;
+    }
+    modifProfil($db, $table, 'ack_share', $ack_share, $_SESSION['user_id']);
 }

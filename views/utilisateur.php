@@ -54,7 +54,7 @@ if (count($exam) > 0) {
                     if ($_SESSION["user_tel"] === NULL){
                         echo "N/A";
                     } else {
-                        echo $_SESSION["user_prenom"] ;
+                        echo $_SESSION["user_tel"];
                     }
                 ?></div>
                 <div>Médecin: <?php
