@@ -19,7 +19,7 @@ function error() {
 }
 switch ($type) {
     case "user":
-        if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{10}$/", $nss) === 1) {
+        /*if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{10}$/", $nss) === 1) {
             $status = insertUser($db, $nss, $firstname, $lastname, $email, $password, $linked_manager);
             if ($status) {
                 $_SESSION["user_type"] = "user";
@@ -36,6 +36,24 @@ switch ($type) {
             }
         } else {
             echo "<script>alert('Le numéro de Sécurité Sociale est invalide.');</script>";
+        }*/
+        if (preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#i", $email) === 1) {
+            $status = insertUser($db, $nss, $firstname, $lastname, $email, $password, $linked_manager);
+            if ($status) {
+                $_SESSION["user_type"] = "user";
+                $_SESSION["user_id"] = $nss;
+                $_SESSION["user_prenom"] = $firstname;
+                $_SESSION["user_nom"] = $lastname;
+                $_SESSION["user_email"] = $email;
+                $_SESSION["user_medecin"] = $linked_manager;
+                $_SESSION["user_tel"] = NULL;
+                $_SESSION["user_share"] = TRUE;
+                header("Location: utilisateur.php", true, 303);
+            } else {
+                error();
+            }
+        } else {
+            echo "<script>alert('Ladresse mail est invalide.');</script>";
         }
         exit;
         break;
