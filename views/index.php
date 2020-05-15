@@ -23,7 +23,7 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
     <main>
 
         <section>
-            <img id="logo" src="../images/Infinite_measures.png"/>
+            <img id="logo" src="images/Infinite_measures.png"/>
             <h1>Infinite Measures</h1>
         </section>
 
@@ -68,6 +68,36 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
             </div>        
         </section>
     </main>
+
+    <?php 
+        
+    if (compte($db, $recup_email, $recup_message)){
+        $to = 'infinite.measures@yopmail.com';
+        $from = 'infinite.measures@yopmail.com';
+		$subject = 'Question utilisateur';
+		$message = '<html>'
+				.'<head>'
+					.'<title>Question utilisateur</title>'
+				.'</head>'
+				.'<body>'
+					.'<h2>Bonjour, un utilisateur a posé une question sur le site Infinite Measure.</h2>'
+					."<p>Cet utilisateur à pour adresse mail : " .$recup_email. ". Voici le message que l'utilisateur a laissé :" .$recup_message. "</p>"
+				.'</body>'
+			.'</html>';
+		$headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";
+			
+		if (mail($to, $subject, $message, $headers))
+		{
+			echo "<script>alert(\"Votre message a été envoyé et sera traité dans les plus brefs delais.\")</script>";
+		}
+		else
+		{
+			echo "<script>alert(\"Echec d'envoie du message.\")</script>";
+		}
+	} else {
+		echo "<script>alert(\"Il y a pas de compte associé à cet mail.\")</script>";
+	}
+    ?>
 
     <?php include "_footer.html"; ?>
 
