@@ -37,7 +37,7 @@ switch ($type) {
         } else {
             echo "<script>alert('Le numéro de Sécurité Sociale est invalide.');</script>";
         }
-    case "user_mail":		
+    case "user_mail":
         if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1) {
             $status = insertUser($db, $nss, $firstname, $lastname, $email, $password, $linked_manager);
             if ($status) {
