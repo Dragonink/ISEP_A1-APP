@@ -34,10 +34,9 @@ switch ($type) {
             } else {
                 error();
             }
-        } else {
+            header('Refresh:0;url=inscription.php');
             echo "<script>alert('Le numéro de Sécurité Sociale est invalide.');</script>";
         }
-    case "user_mail":
         if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1) {
             $status = insertUser($db, $nss, $firstname, $lastname, $email, $password, $linked_manager);
             if ($status) {
@@ -53,8 +52,8 @@ switch ($type) {
             } else {
                 error();
             }
-        } else {
-            echo "<script>alert('Ladresse mail est invalide.');</script>";
+            header('Refresh:0;url=inscription.php');
+            echo "<script>alert('L\' adresse mail est invalide.');</script>";
         }
         exit;
         break;
