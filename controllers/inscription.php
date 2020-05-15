@@ -34,6 +34,7 @@ switch ($type) {
             } else {
                 error();
             }
+        } else {
             header('Refresh:0;url=inscription.php');
             echo "<script>alert('Le numéro de Sécurité Sociale est invalide.');</script>";
         }
@@ -52,8 +53,9 @@ switch ($type) {
             } else {
                 error();
             }
+        } else {
             header('Refresh:0;url=inscription.php');
-            echo "<script>alert('L\' adresse mail est invalide.');</script>";
+            echo "<script>alert('L\'email est invalide.');</script>";
         }
         exit;
         break;
