@@ -220,15 +220,10 @@ function rejeter(PDO $db,int $id, $origine) {
     if ($origine =='user'){
         $nomid='nss';
     }
-    if ($origine!='administrator'){
-        $rejeter = "DELETE FROM " .$origine." WHERE " .$nomid ." = :id ";
-        $prepare = $db->prepare($rejeter);
-        $prepare->bindParam(':id', $id, PDO::PARAM_INT);
-        $prepare->execute();
-    } else {
-        $rejeter ="UPDATE " .$origine ." SET is_active=-1 WHERE id =" .$id;
-        $db->prepare($rejeter)->execute();
-    }
+    $rejeter = "DELETE FROM " .$origine." WHERE " .$nomid ." = :id ";
+    $prepare = $db->prepare($rejeter);
+    $prepare->bindParam(':id', $id, PDO::PARAM_INT);
+    $prepare->execute();
 }
 
 function ajoutQuestion(PDO $db, $question, $answer, $admin) {
@@ -273,13 +268,14 @@ function supDispositif(PDO $db,int $id){ //rajouter la vérification que le code
 
 function bannir(PDO $db,int $id, $origine){
     rejeter($db,$id, $origine);
-    if ($origin!='administrator'){
-        $nomid='id';
-        if ($origine =='user'){
-            $nomid='nss';
-        }
+    $nomid='id';
+    if ($origin=='user'){
+        $nomid='nss';
         $banni ="INSERT INTO banned( user) VALUES(" .$id .")";
         $db->prepare($banni)->execute();
+    } else {
+        $rejeter ="UPDATE " .$origine ." SET is_active=-1 WHERE id =" .$id;
+        $db->prepare($rejeter)->execute();
     }
 }
 

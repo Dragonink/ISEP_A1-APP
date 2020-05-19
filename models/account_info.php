@@ -6,11 +6,11 @@ function insertUser(PDO $db, $nss, $firstname, $lastname, $email, $password, $li
     $resultat = mysql_query ($email_verif) or die(mysql_error());;
     $nombre_adresse = mysql_num_rows($resultat);
     if($nombre_adresse < 1){
-    $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
-    if ($req !== FALSE) {
-        return $req->execute();
-    } else { echo "Email déjà utilisée";}
-}
+        $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
+        if ($req !== FALSE) {
+            return $req->execute();
+        } else { echo "Email déjà utilisée";}
+    }
 }
 function insertManager(PDO $db, $firstname, $lastname, $email, $password, $address) {
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -19,12 +19,26 @@ function insertManager(PDO $db, $firstname, $lastname, $email, $password, $addre
         return $req->execute();
     }
 }
-function insertAdmin(PDO $db, $firstname, $lastname, $email, $password) {
+function insertAdmin(PDO $db, $firstname, $lastname, $email, $password, $is_active) {
     $password = password_hash($password, PASSWORD_DEFAULT);
-    $req = $db->prepare("INSERT INTO administrator (first_name, last_name, email, password) VALUES ('$firstname', '$lastname', '$email', '$password')");
+    $req = $db->prepare("INSERT INTO administrator (first_name, last_name, email, password, is_active) VALUES ('$firstname', '$lastname', '$email', '$password', $is_active)");
     if ($req !== FALSE) {
         return $req->execute();
     }
+}
+
+function nbAdmin(PDO $db){
+    $queryAdmin = 'SELECT count(*) from administrator where administrator.is_active=1';
+    $prepareAdmin = $db->query($queryAdmin);
+    $nbAdmin = $prepareAdmin->fetchColumn();
+    return $nbAdmin;
+}
+
+function idAdmin(PDO $db){
+    $queryAdmin = 'SELECT id from administrator where administrator.is_active=1';
+    $prepareAdmin = $db->query($queryAdmin);
+    $nbAdmin = $prepareAdmin->fetchColumn();
+    return $nbAdmin;
 }
 
 function fetchUser(PDO $db, $nss) {
