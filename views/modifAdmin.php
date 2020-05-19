@@ -59,21 +59,19 @@ if (isset($_GET['email'])){
                     </td>
                     <td><input type="email" name="verifemail" /></td>
                 </tr>
-                <?php if (isset($_GET['email'])){
-                    if ($_SESSION["user_email"]==$_GET['email']){
-                        echo "<tr>",
-                                "<td>",
-                                    "<p>Mot de passe</p>",
-                                "</td>",
-                                "<td><input type=\"text\" name=\"mdp\" /></td>",
-                            "</tr>",
-                            "<tr>",
-                                "<td>",
-                                    "<p>Vérification mot de passe</p>",
-                                "</td>",
-                                "<td><input type=\"text\" name=\"verifmdp\" /></td>",
-                            "</tr>";
-                    }
+                <?php if (!isset($_GET['email'])){
+                    echo "<tr>",
+                            "<td>",
+                                "<p>Mot de passe</p>",
+                            "</td>",
+                            "<td><input type=\"text\" name=\"mdp\" /></td>",
+                        "</tr>",
+                        "<tr>",
+                            "<td>",
+                                "<p>Vérification mot de passe</p>",
+                            "</td>",
+                            "<td><input type=\"text\" name=\"verifmdp\" /></td>",
+                        "</tr>";
                 }?>
             </table>
             <div class="boutons">
