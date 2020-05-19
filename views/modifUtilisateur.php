@@ -1,10 +1,10 @@
 <?php
 session_start();
+if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/modif.php";
 require "../models/account_info.php";
 $manager_info = fetchManager2($db, $_SESSION["user_medecin"]);
 $manager_info = $manager_info[0];
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -22,7 +22,7 @@ $manager_info = $manager_info[0];
 <body>
 	<?php require "_header.php"; ?>
 	<main>
-	<form method="POST" action ="modif.php" >
+	<form method="POST" action ="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
 		<div id="text">
 			<div id="roundedImage">
 				<img src="../images/iconProfil.jpg" />

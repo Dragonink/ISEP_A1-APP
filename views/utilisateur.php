@@ -12,6 +12,10 @@ if (count($exam) > 0) {
     $_SESSION["exam_id"] = $exam[0]["id"];
     $tests = getTests($db, $_SESSION["exam_id"]);
 }
+if (isset($_COOKIE["modifState"])) {
+    setcookie("modifState");
+	echo "<script>alert('Vos modifications ont bien été enregistrées.')</script>";
+}
 ?><!DOCTYPE html>
 <html>
 

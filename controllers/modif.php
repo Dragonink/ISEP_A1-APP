@@ -28,9 +28,6 @@ if (isset($_POST['modifUtilisateur'])){
     if (isset ($email) && $email!=''){
         $emailerreur=email($db, 'user');
     }
-    //if (isset ($_POST['photo']) && $_POST['photo']!=''){
-    //    photo('user');
-    //}
     if (isset($telephone) && $telephone!=''){
         telephone($db, 'user');
     }
@@ -39,9 +36,10 @@ if (isset($_POST['modifUtilisateur'])){
     }
     if ($mdperreur==true || $emailerreur==true){
         $url="modifUtilisateur";
+    } else {
+        setcookie("modifState", "success");
     }
     checkbox($db, 'user');
-
 }elseif (isset($_POST['modifGestionnaire'])){
     $nom = $prenom = $mdp = $email = $telephone = $medecin = "";
     $nom=trim_input($_POST['nom']);
@@ -71,6 +69,8 @@ if (isset($_POST['modifUtilisateur'])){
     }
     if ($mdperreur==true || $emailerreur==true){
         $url="modifGestionnaire";
+    } else {
+        setcookie("modifState", "success");
     }
 }elseif (isset($_POST['modifAdmin'])){
     $nom = $prenom = $mdp = $email = $telephone = $medecin = "";
@@ -93,6 +93,8 @@ if (isset($_POST['modifUtilisateur'])){
     }
     if ($mdperreur==true || $emailerreur==true){
         $url="modifAdmin";
+    } else {
+        setcookie("modifState", "success");
     }
 }elseif (isset($_POST['annuler'])) {
     if ($_SESSION["user_type"]=="user"){

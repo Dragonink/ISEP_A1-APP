@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("../models/requeteModif.php");
 
 function nom(PDO $db, $table){
