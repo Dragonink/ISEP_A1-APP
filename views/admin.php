@@ -1,6 +1,10 @@
 <?php
 session_start();
 require '../controllers/adminDonnees.php';
+if (isset($_COOKIE["modifState"])) {
+    setcookie("modifState");
+	echo "<script>alert('Vos modifications ont bien été enregistrées.')</script>";
+}
 ?><!DOCTYPE html>
 <html>
     <head>

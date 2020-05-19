@@ -1,10 +1,10 @@
 <?php
 session_start();
+if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/modif.php";
 require "../models/account_info.php";
 $manager_info = fetchManager2($db, $_SESSION["user_medecin"]);
 $manager_info = $manager_info[0];
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -22,7 +22,7 @@ $manager_info = $manager_info[0];
 <body>
 	<?php require "_header.php"; ?>
 	<main>
-	<form method="POST" action ="modif.php" >
+	<form method="POST" action ="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" >
 		<div id="text">
 			<div id="roundedImage">
 				<img src="../images/iconProfil.jpg" />
@@ -53,9 +53,8 @@ $manager_info = $manager_info[0];
 				<p>Médecin</p>
 				<input type="text" name="medecin" placeholder="<?php echo $manager_info['first_name'], " ", $manager_info['last_name']?>" />
 				<div>
-					<input type="checkbox" id="data" name="scales"
-						unchecked>
-					<label for="scales">J'accepte que mes données soient réutilisées à des fins statiques</label>
+					<input type="checkbox" id="data" name="checkbox" unchecked />
+					<label for="checkbox">J'accepte que mes données soient réutilisées à des fins statiques</label>
 				</div>
 			</div>
 		</div>

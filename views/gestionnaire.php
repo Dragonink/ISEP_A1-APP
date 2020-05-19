@@ -15,8 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	require "../controllers/declare_exam.php";
 }
 require '../controllers/gestionnaire.php';
-?>
-<!DOCTYPE html>
+if (isset($_COOKIE["modifState"])) {
+	setcookie("modifState");
+	echo "<script>alert('Vos modifications ont bien été enregistrées.')</script>";
+}
+?><!DOCTYPE html>
 <meta charset="UTF-8">
 <html>
 

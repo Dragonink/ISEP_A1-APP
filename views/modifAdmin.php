@@ -1,7 +1,7 @@
 <?php
-session_start(); 
-?>
-<!DOCTYPE html>
+session_start();
+if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/modif.php";
+?><!DOCTYPE html>
 <html>
 
 <head>
@@ -19,7 +19,7 @@ session_start();
 <body>
     <?php require "_header.php"; ?>
     <section id="contenuAdmin">
-        <form class="modificationProfil" method="POST" action ="modif.php">
+        <form class="modificationProfil" method="POST" action ="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <h2>Modification profil</h2></br>
             <table>
                 <tr>
