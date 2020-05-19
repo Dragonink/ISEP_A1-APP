@@ -4,6 +4,14 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
 } elseif (isset($_GET['validation']) && $_GET['validation']=='admin') {
     echo "<script>alert(\"Votre demande a été prise en compte et sera traitée dans les meilleurs délais.\")</script>";
 }
+if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['email']) and $_POST['email']!='')){
+    $recup_email=$_POST['email'];
+    //require "../controllers/contact.php";
+}
+if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['content']) and $_POST['content']!='')){
+    $recup_message=$_POST['content'];
+    //require "../controllers/contact.php";
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -70,9 +78,8 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
     </main>
 
     <?php 
-        
-    if (compte($db, $recup_email, $recup_message)){
-        $to = 'infinite.measures@yopmail.com';
+
+        $to = $recup_email;
         $from = 'infinite.measures@yopmail.com';
 		$subject = 'Question utilisateur';
 		$message = '<html>'
@@ -94,9 +101,6 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
 		{
 			echo "<script>alert(\"Echec d'envoie du message.\")</script>";
 		}
-	} else {
-		echo "<script>alert(\"Il y a pas de compte associé à cet mail.\")</script>";
-	}
     ?>
 
     <?php include "_footer.html"; ?>
