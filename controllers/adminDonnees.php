@@ -74,7 +74,7 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
 
         if (count($info)>12){ //pagination
             $resultat .= "<div class='pagination'>";
-            for ($compteur=0; $compteur<(count($info)%12); $compteur++){
+            for ($compteur=0; $compteur<floor(count($info)/12); $compteur++){
                 if ($compteur==0){
                     $resultat .="<button class='pageDispo actif' onclick='openPage(0, \"dispositif\")'> 1 </button>";
                 } else {
@@ -162,7 +162,7 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
 
         if (count($info)>12){
             $resultat .= "<div class='pagination'>";
-            for ($compteur=0; $compteur<(count($info)%12); $compteur++){
+            for ($compteur=0; $compteur<floor(count($info)/12); $compteur++){
                 if ($compteur==0){
                     $resultat .="<button class='pageUtil actif' onclick='openPage(0, \"utilisateur\")'> 1 </button>";
                 } else {
