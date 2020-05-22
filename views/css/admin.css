@@ -249,8 +249,10 @@ textarea {
 #admin-search-dispositif {
     margin: auto 0px;
     font-size: 20px;
+    width: 100%;
+    
 }
-#adminSearchDispositif {
+.adminSearchDispositif {
     background-color: #18375E;  
     border-radius: 50px;
     color: white;
