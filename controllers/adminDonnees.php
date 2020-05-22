@@ -32,10 +32,10 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
         foreach ($info as $key => $value ){
             if ($key%12==0){
                 if ($key==0){
-                    $resultat = "<table class='affichageResultat' style='display: block;'>"
+                    $resultat = "<table class='affichageResultatDispo' style='display: block;'>"
                                     ."<tr>";
                 }else {
-                    $resultat .= "<table class='affichageResultat' style='display: none;'>"
+                    $resultat .= "<table class='affichageResultatDispo' style='display: none;'>"
                                     ."<tr>";
                 }
             } elseif ($key%4==0){
@@ -73,18 +73,16 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
             }
         }
 
-        if (count($info)>12){
-            $resultat .= "<div class='pagination'>"
-                            ."<button class='pageBefore' onclick='openBefore(dispositif)'> <img src='images/flecheGauche.png' /> </button>";
-            for ($compteur=0; $compteur<(count($info)%12); $compteur++){
+        if (count($info)>12){ //pagination
+            $resultat .= "<div class='pagination'>";
+            for ($compteur=0; $compteur<floor(count($info)/12); $compteur++){
                 if ($compteur==0){
-                    $resultat .="<button class='page actif' onclick='openPage(0, dispositif)'> 1 </button>";
+                    $resultat .="<button class='pageDispo actif' onclick='openPage(0, \"dispositif\")'> 1 </button>";
                 } else {
-                    $resultat .="<button class='page' onclick='openPage(".$compteur .", dispositif)'>".($compteur+1) ."</button>";
+                    $resultat .="<button class='pageDispo' onclick='openPage(".$compteur .", \"dispositif\")'>".($compteur+1) ."</button>";
                 }
             }
-            $resultat .= "<button class='pageAfter' onclick='openAfter(dispositif)'> <img src='images/flecheDroite.png'/> </button>"
-                        ."</div>";
+            $resultat .= "</div>";
         }
 
     } else {
@@ -109,10 +107,10 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
         foreach ($info as $key => $value ){
             if ($key%12==0){
                 if ($key==0){
-                    $resultat = "<table class='affichageResultat' style='display: block;'>"
+                    $resultat = "<table class='affichageResultatUtil' style='display: block;'>"
                                     ."<tr>";
                 }else {
-                    $resultat .= "<table class='affichageResultat' style='display: none;'>"
+                    $resultat .= "<table class='affichageResultatUtil' style='display: none;'>"
                                     ."<tr>";
                 }
             } elseif ($key%4==0){
@@ -168,17 +166,15 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
         }
 
         if (count($info)>12){
-            $resultat .= "<div class='pagination'>"
-                            ."<button class='pageBefore' onclick='openBefore(utilisateur)'> <img src='images/flecheGauche.png' /> </button>";
-            for ($compteur=0; $compteur<(count($info)%12); $compteur++){
+            $resultat .= "<div class='pagination'>";
+            for ($compteur=0; $compteur<floor(count($info)/12); $compteur++){
                 if ($compteur==0){
-                    $resultat .="<button class='page actif' onclick='openPage(0, utilisateur)'> 1 </button>";
+                    $resultat .="<button class='pageUtil actif' onclick='openPage(0, \"utilisateur\")'> 1 </button>";
                 } else {
-                    $resultat .="<button class='page' onclick='openPage(".$compteur .", utilisateur)'>".($compteur+1) ."</button>";
+                    $resultat .="<button class='pageUtil' onclick='openPage(".$compteur .", \"utilisateur\")'>".($compteur+1) ."</button>";
                 }
             }
-            $resultat .= "<button class='pageAfter' onclick='openAfter(utilisateur)'> <img src='images/flecheDroite.png'/> </button>"
-                        ."</div>";
+            $resultat .= "</div>";
         }
 
     } else {

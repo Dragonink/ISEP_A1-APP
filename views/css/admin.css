@@ -78,14 +78,14 @@ button {
     
 }
 
-.affichageResultat {
+.affichageResultat ,.affichageResultatDispo ,.affichageResultatUtil {
     width: 96%;
     padding: 2%;
     border-collapse : separate;
     border-spacing : 5px;
 }
 
-.affichageResultat td {
+.affichageResultat td, .affichageResultatDispo td, .affichageResultatUtil td{
     width: 25%;
 }
 

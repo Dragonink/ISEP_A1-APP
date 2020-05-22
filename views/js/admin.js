@@ -164,6 +164,25 @@ function validAjoutQuestion(id){
     document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=validAjoutQuestion&question=" + question + "&answer=" + answer +"&id=" + id);
 }
 
+function openPage(number, page){
+    var i, affichage, page;
+    if (page=="dispositif") {
+        affichage = document.getElementsByClassName("affichageResultatDispo");
+        page = document.getElementsByClassName("pageDispo");
+    } else if (page=="utilisateur"){
+        affichage = document.getElementsByClassName("affichageResultatUtil");
+        page = document.getElementsByClassName("pageUtil");
+    }
+    for (i=0; i<affichage.length;i++) {
+        affichage[i].style.display="none";
+    }
+    for (i = 0; i < page.length; i++) {
+        page[i].className = page[i].className.replace(" actif", "");
+    }
+    affichage[number].style.display = "block";
+    page[number].className += " actif";
+}
+
 function graphe(){
     let ctx= document.getElementById('graphStats').getContext('2d'); 
     let chart = new Chart(ctx, {
