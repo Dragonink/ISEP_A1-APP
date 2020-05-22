@@ -4,10 +4,17 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
 } elseif (isset($_GET['validation']) && $_GET['validation']=='admin') {
     echo "<script>alert(\"Votre demande a été prise en compte et sera traitée dans les meilleurs délais.\")</script>";
 }
+$recup_email="";
+$recup_message="";
+if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['email']) and $_POST['email']!='')){
+    $recup_email=$_POST['email'];
+}
+if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['content']) and $_POST['content']!='')){
+    $recup_message=$_POST['content'];
+}
 ?>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8"/>
     <title>Infinite Measures</title>
@@ -15,7 +22,6 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
     <link rel="stylesheet" href="css/index.css"/>
 
 </head>
-
 <body>
 
     <?php include "_header.php"; ?>
@@ -23,7 +29,7 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
     <main>
 
         <section>
-            <img id="logo" src="../images/Infinite_measures.png"/>
+            <img id="logo" src="images/Infinite_measures.png"/>
             <h1>Infinite Measures</h1>
         </section>
 
@@ -55,7 +61,7 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
             </div>
         </section>
         <section id="contact">
-            <form>
+            <form method="POST">
                 <h2>Contact</h2>
                 <input name="email" type="email" placeholder="Votre adresse Email" required />
                 <input name="subject" placeholder="Objet" required />
@@ -69,8 +75,34 @@ if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
         </section>
     </main>
 
+    <?php 
+    if ($recup_email!="" && $recup_message!=""){    
+        $to = 'admin.infinitymeasures@yopmail.com';
+        $from = 'infinite.measures@yopmail.com';
+		$subject = 'Question utilisateur';
+		$message = '<html>'
+				.'<head>'
+					.'<title>Question utilisateur</title>'
+				.'</head>'
+				.'<body>'
+					.'<h2>Bonjour, un utilisateur a une question sur le site Infinite Measure.</h2>'
+					."<p>L'adresse de cet utilisateur est : " .$recup_email. ". Voici son message : " .$recup_message. "</p>"
+				.'</body>'
+			.'</html>';
+		$headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";
+			
+		if (mail($to, $subject, $message, $headers))
+		{
+			echo "<script>alert(\"Votre message a été envoyé et sera traité dans les plus brefs delais.\")</script>";
+		}
+		else
+		{
+			echo "<script>alert(\"Echec d'envoie du message.\")</script>";
+        }
+    }    
+    ?>
+
     <?php include "_footer.html"; ?>
 
 </body>
-
 </html>
