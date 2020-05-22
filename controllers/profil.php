@@ -28,7 +28,7 @@ function email(PDO $db, $table){
     $erreur = false;
     if (trim_input($_POST['email']) == trim_input($_POST['verifmdp'])){
         modifProfil($db, $table, 'email', trim_input($_POST['email']), $_POST['id']);
-        $_SESSION["user_email"] = $_POST['email'];
+        $_SESSION["user_email"] = trim_input($_POST['email']);
     } else {
         echo "<script>alert(\"L'e-mail ne correspond pas\")</script>";
         $erreur = true;
@@ -38,17 +38,17 @@ function email(PDO $db, $table){
 
 function medecin(PDO $db, $table){
     modifProfil($db, $table, 'manager', trim_input($_POST['medecin']), $_POST['id']);
-    $_SESSION["user_medecin"] = $_POST['medecin'];
+    $_SESSION["user_medecin"] = trim_input($_POST['medecin']);
 }
 
 function telephone(PDO $db, $table){
     modifProfil($db, $table, 'phone', trim_input($_POST['telephone']), $_POST['id']);
-    $_SESSION["user_tel"] = $_POST['telephone'];
+    $_SESSION["user_tel"] = trim_input($_POST['telephone']);
 }
 
 function adresse(PDO $db, $table){
     modifProfil($db, $table, 'work_address', trim_input($_POST['adresse']), $_POST['id']);
-    $_SESSION["user_adresse"] = $_POST['adresse'];
+    $_SESSION["user_adresse"] = trim_input($_POST['adresse']);
 }
 
 function checkbox(PDO $db, $table){
