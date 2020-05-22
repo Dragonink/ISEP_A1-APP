@@ -249,6 +249,8 @@ textarea {
 #admin-search-dispositif {
     margin: auto 0px;
     font-size: 20px;
+    background-color: #18375E;  
+    border-radius: 10px;
 }
 
 .buttonAddDispositif img {
