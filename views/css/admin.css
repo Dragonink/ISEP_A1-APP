@@ -73,6 +73,7 @@ button {
 
 .recherche {
     width: 60%
+   
 }
 
 .affichageResultat {
@@ -249,7 +250,9 @@ textarea {
 #admin-search-dispositif {
     margin: auto 0px;
     font-size: 20px;
-    width: 100%;
+    width: 80%;
+    display: flex;
+    flex-direction: row;
     
 }
 .adminSearchDispositif {
@@ -307,8 +310,15 @@ textarea {
 
 #admin-search-utilisateur {
     margin: auto 0px;
-    width: 100%;
+    width: 80%;
     font-size: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.adminSearchUtilisateur {
+    background-color: #18375E;  
+    border-radius: 50px;
+    color: white;
 }
 
 .utilisateur {
