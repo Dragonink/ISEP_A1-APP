@@ -249,10 +249,12 @@ textarea {
 #admin-search-dispositif {
     margin: auto 0px;
     font-size: 20px;
-    background-color: #18375E;  
-    border-radius: 10px;
 }
-
+#adminSearchDispositif {
+    background-color: #18375E;  
+    border-radius: 50px;
+    color: white;
+}
 .buttonAddDispositif img {
     height: 19px;
 }
