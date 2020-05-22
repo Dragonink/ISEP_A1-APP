@@ -40,7 +40,7 @@ include('../controllers/adminDonnees.php');
                 <label for="email">Adresse mail</label>
                 <input id="email" name="email" type="email" required />
                 <label for="password">Mot de passe</label>
-                <input id="password" name="password" type="password" required />
+                <input id="password" name="password" type="password" pattern=".{8,}" required title="8 caractères minimum" />
                 <!-- User only -->
                 <label for="nss" class="user">N° Sécurité Sociale</label>
                 <input id="nss" class="user" name="nss" type="text" required />

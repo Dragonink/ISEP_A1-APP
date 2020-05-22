@@ -1,10 +1,21 @@
 <?php
 require "connexionSQL.php";
+function doublon (PDO $nss, $email) {
+	$query = $db -> prepare("SELECT 'nss','email' FROM 'user' WHERE 'nss'='$nss' AND 'email'='$email'");
+	if ($results =  $db -> query($query)) {
+		return $results -> fetchColumn($results);
+	}
+	else {
+		die('QUERY ERROR');
+	}
+}
 function insertUser(PDO $db, $nss, $firstname, $lastname, $email, $password, $linked_manager) {
     $password = password_hash($password, PASSWORD_DEFAULT);
     $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
-    if ($req !== FALSE) {
-        return $req->execute();
+    if(!doublon($nss,$email)){
+        if ($req !== FALSE) {
+            return $req->execute();
+        }
     }
 }
 function insertManager(PDO $db, $firstname, $lastname, $email, $password, $address) {
