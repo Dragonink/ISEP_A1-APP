@@ -1,6 +1,21 @@
 <?php
 session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/modif.php";
+require "../models/account_info.php";
+if (isset($_GET['email'])){
+    $user_info = fetchAdmin($db, $_GET['email']);
+    if ($_SESSION["user_email"]!=$user_info[0]["email"]){
+        $user["prenom"]=$user_info[0]["first_name"];
+        $user["nom"]=$user_info[0]["last_name"];
+        $user["email"]=$user_info[0]["email"];
+        $user["id"]=$user_info[0]["id"];
+    } else {
+        $user["prenom"]=$_SESSION["user_prenom"];
+        $user["nom"]=$_SESSION["user_nom"];
+        $user["email"]=$_SESSION["user_email"];
+        $user["id"]=$_SESSION["user_id"];
+    }
+}
 ?><!DOCTYPE html>
 <html>
 
@@ -26,19 +41,19 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/modif.php";
                     <td>
                         <p>Nom</p>
                     </td>
-                    <td><input type="text" name="nom" placeholder="<?php echo $_SESSION["user_nom"]?>" /></td>
+                    <td><input type="text" name="nom" placeholder="<?php echo $user["nom"]?>" /></td>
                 </tr>
                 <tr>
                     <td>
                         <p>Prénom</p>
                     </td>
-                    <td><input type="text" name="prenom" placeholder="<?php echo $_SESSION["user_prenom"]?>" /></td>
+                    <td><input type="text" name="prenom" placeholder="<?php echo $user["prenom"]?>" /></td>
                 </tr>
                 <tr>
                     <td>
                         <p>E-mail</p>
                     </td>
-                    <td><input type="email" name="email" placeholder="<?php echo $_SESSION["user_email"]?>" /></td>
+                    <td><input type="email" name="email" placeholder="<?php echo $user["email"]?>" /></td>
                 </tr>
                 <tr>
                     <td>
@@ -46,19 +61,22 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/modif.php";
                     </td>
                     <td><input type="email" name="verifemail" /></td>
                 </tr>
-                <tr>
-                    <td>
-                        <p>Mot de passe</p>
-                    </td>
-                    <td><input type="text" name="mdp" /></td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>Vérification mot de passe</p>
-                    </td>
-                    <td><input type="text" name="verifmdp" /></td>
-                </tr>
+                <?php if (!isset($_GET['email'])){
+                    echo "<tr>",
+                            "<td>",
+                                "<p>Mot de passe</p>",
+                            "</td>",
+                            "<td><input type=\"text\" name=\"mdp\" /></td>",
+                        "</tr>",
+                        "<tr>",
+                            "<td>",
+                                "<p>Vérification mot de passe</p>",
+                            "</td>",
+                            "<td><input type=\"text\" name=\"verifmdp\" /></td>",
+                        "</tr>";
+                }?>
             </table>
+            <input type="hidden" name="id" value="<?php echo $user["id"]?>"/>
             <div class="boutons">
                 <button type="submit" id="annuler" name="annuler"> Annuler </button>
                 <button type="submit" id="valider" name="modifAdmin"> Valider </button>

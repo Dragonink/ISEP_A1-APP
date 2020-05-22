@@ -123,8 +123,15 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
                             ."<tr>"
                                 ."<td rowspan='4' class='photoProfil' > <img src='images/iconProfil.jpg'/> </td>"
                                 ."<td>" .$value['first_name'] ." " .$value['last_name'] ."</td>"
-                                ."<td class='modifierSupprimer'>"
-                                    ."<img src='images/iconModifier.png' />"
+                                ."<td class='modifierSupprimer'>";
+            if ($value['origine']=='user' ){
+                $resultat .="<a href=\"modifUtilisateur.php?email=" .$value['email'] ."\">";
+            } elseif ($value['origine']=='manager' ){
+                $resultat .="<a href=\"modifGestionnaire.php?email=" .$value['email'] ."\">";
+            } elseif ($value['origine']=='administrator' ){
+                $resultat .="<a href=\"modifAdmin.php?email=" .$value['email'] ."\">";
+            }
+            $resultat .= "<img src='images/iconModifier.png' /></a>"
                                     ."<img src='images/iconCroix.png' onclick=\"rejeter('utilisateur', " .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"
                                 ."</td>"
                             ."</tr>"
@@ -139,11 +146,8 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
                 $resultat .="<tr> <td> Inconnu </td> </tr>";
             }
                 $resultat .="<tr>"
-                                ."<td colspan='2' class='iconGerer'>";
-            if ($value['origine']!='user' || ($value['origine']=='user' && $value['ack_share']==true)){
-                $resultat .="<img src='images/iconVoirProfil.png' />";
-            }
-            $resultat .="<a href='mailto:" .$value['email'] ."'><img src='images/iconContacter.png' /></a>"
+                                ."<td colspan='2' class='iconGerer'>"
+                                    ."<a href='mailto:" .$value['email'] ."'><img src='images/iconContacter.png' /></a>"
                                     ."<img src='images/iconBannir.png' onclick=\"bannir(" .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"
                                 ."</td>"
                             ."</tr>"
