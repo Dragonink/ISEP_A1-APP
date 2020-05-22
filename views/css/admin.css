@@ -72,7 +72,10 @@ button {
 }
 
 .recherche {
-    width: 60%
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    
 }
 
 .affichageResultat {
@@ -249,8 +252,14 @@ textarea {
 #admin-search-dispositif {
     margin: auto 0px;
     font-size: 20px;
+    width: 80%;
+    
 }
-
+.adminSearchDispositif {
+    background-color: #18375E;  
+    border-radius: 50px;
+    color: white;
+}
 .buttonAddDispositif img {
     height: 19px;
 }
@@ -301,8 +310,15 @@ textarea {
 
 #admin-search-utilisateur {
     margin: auto 0px;
-    width: 100%;
+    width: 80%;
     font-size: 20px;
+    display: flex;
+    flex-direction: row;
+}
+.adminSearchUtilisateur {
+    background-color: #18375E;  
+    border-radius: 50px;
+    color: white;
 }
 
 .utilisateur {
