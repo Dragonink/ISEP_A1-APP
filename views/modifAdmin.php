@@ -7,10 +7,12 @@ if (isset($_GET['email'])){
         $user["prenom"]=$user_info[0]["first_name"];
         $user["nom"]=$user_info[0]["last_name"];
         $user["email"]=$user_info[0]["email"];
+        $user["id"]=$user_info[0]["id"];
     } else {
         $user["prenom"]=$_SESSION["user_prenom"];
         $user["nom"]=$_SESSION["user_nom"];
         $user["email"]=$_SESSION["user_email"];
+        $user["id"]=$_SESSION["user_id"];
     }
 }
 ?>
@@ -74,6 +76,7 @@ if (isset($_GET['email'])){
                         "</tr>";
                 }?>
             </table>
+            <input type="hidden" name="id" value="<?php echo $user["id"]?>"/>
             <div class="boutons">
                 <button type="submit" id="annuler" name="annuler"> Annuler </button>
                 <button type="submit" id="valider" name="modifAdmin"> Valider </button>

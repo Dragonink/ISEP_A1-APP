@@ -8,12 +8,14 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="user"){
 	$user["medecin"]=$user_info[0]["manager"];
 	$user["tel"]=$user_info[0]["phone"];
 	$user["email"]=$user_info[0]["email"];
+	$user["id"]=$user_info[0]["nss"];
 } else {
 	$user["prenom"]=$_SESSION["user_prenom"];
 	$user["nom"]=$_SESSION["user_nom"];
 	$user["medecin"]=$_SESSION["user_medecin"];
 	$user["tel"]=$_SESSION["user_tel"];
 	$user["email"]=$_SESSION["user_email"];
+	$user["id"]=$_SESSION["user_id"];
 }
 $manager_info = fetchManager2($db, $user["medecin"]);
 $manager_info = $manager_info[0];
@@ -73,6 +75,7 @@ $manager_info = $manager_info[0];
 						unchecked>
 					<label for="scales">J'accepte que mes données soient réutilisées à des fins statiques</label>
 				</div>
+				<input type="hidden" name="id" value="<?php echo $user["id"]?>"/>
 			</div>
 		</div>
 	</form>

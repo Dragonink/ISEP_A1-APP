@@ -8,12 +8,14 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="manager"){
 	$user["adresse"]=$user_info[0]["work_address"];
 	$user["tel"]=$user_info[0]["phone"];
 	$user["email"]=$user_info[0]["email"];
+	$user["id"]=$user_info[0]["id"];
 } else {
 	$user["prenom"]=$_SESSION["user_prenom"];
 	$user["nom"]=$_SESSION["user_nom"];
 	$user["adresse"]=$_SESSION["user_adresse"];
 	$user["tel"]=$_SESSION["user_tel"];
 	$user["email"]=$_SESSION["user_email"];
+	$user["id"]=$_SESSION["user_id"];
 }
 ?>
 <!DOCTYPE html>
@@ -65,6 +67,7 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="manager"){
 				}?>
 				<p> Adresse de travail</p>
 				<input type="text" name="adresse" placeholder="<?php echo $user["adresse"] ?>" />
+				<input type="hidden" name="id" value="<?php echo $user["id"]?>"/>
 			</div>
 		</div>
 	</form>
