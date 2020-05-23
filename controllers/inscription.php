@@ -52,37 +52,53 @@ switch ($type) {
         break;
     case "manager":
         if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1) {
-            $status = insertManager($db, $firstname, $lastname, $email, $password, $address);
-            if ($status) {
-                header("Location: index.php?validation=medecin", true, 303);
-                exit;
-            } else { error();}
+            if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/", $password) === 1) {
+                $status = insertManager($db, $firstname, $lastname, $email, $password, $address);
+                if ($status) {
+                    header("Location: index.php?validation=medecin", true, 303);
+                    exit;
+                } else {
+                    error();
+                }
+            } else {
+                echo "<script>alert('Le mot de passe n\'est pas conforme.');</script>";
+                header('refresh: 0; url = inscription.php');
+            }
         } else {
             header('refresh: 0; url = inscription.php');
             echo "<script>alert('L\'adresse mail est invalide.');</script>";
         }
         break;
     case "admin":
-        if (nbAdmin($db) == 0) {
-            $status = insertAdmin($db, $firstname, $lastname, $email, $password, 1);
-            $id = idAdmin($db);
-            if ($status) {
-                $_SESSION["user_type"] = "administrator";
-                $_SESSION["user_id"] = $id;
-                $_SESSION["user_prenom"] = $firstname;
-                $_SESSION["user_nom"] = $lastname;
-                $_SESSION["user_email"] = $email;
-                header("Location: admin.php", true, 303);
-                exit;
-            } else {error();}
-            break;
+        if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1) {
+            if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/", $password) === 1) {
+                if (nbAdmin($db) == 0) {
+                    $status = insertAdmin($db, $firstname, $lastname, $email, $password, 1);
+                    $id = idAdmin($db);
+                    if ($status) {
+                        $_SESSION["user_type"] = "administrator";
+                        $_SESSION["user_id"] = $id;
+                        $_SESSION["user_prenom"] = $firstname;
+                        $_SESSION["user_nom"] = $lastname;
+                        $_SESSION["user_email"] = $email;
+                        header("Location: admin.php", true, 303);
+                        exit;
+                    } else {error();}
+                } else {
+                    $status = insertAdmin($db, $firstname, $lastname, $email, $password, 0);
+                    if ($status) {
+                        header("Location: index.php?validation=admin", true, 303);
+                        exit;
+                    } else {error();}
+                }
+            } else {
+                echo "<script>alert('Le mot de passe n\'est pas conforme.');</script>";
+                header('refresh: 0; url = inscription.php');
+            }
         } else {
-            $status = insertAdmin($db, $firstname, $lastname, $email, $password, 0);
-            if ($status) {
-                header("Location: index.php?validation=admin", true, 303);
-                exit;
-            } else {error();}
-            break;
+            header('refresh: 0; url = inscription.php');
+            echo "<script>alert('L\'adresse mail est invalide.');</script>";
         }
+        break;
 }
 ?>
