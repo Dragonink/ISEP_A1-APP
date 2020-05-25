@@ -55,6 +55,12 @@ switch ($type) {
             if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/", $password) === 1) {
                 $status = insertManager($db, $firstname, $lastname, $email, $password, $address);
                 if ($status) {
+                    $_SESSION["user_type"] = "manager";
+                    $_SESSION["user_id"] = $id;
+                    $_SESSION["user_prenom"] = $firstname;
+                    $_SESSION["user_nom"] = $lastname;
+                    $_SESSION["user_email"] = $email;
+                    $_SESSION["adress"] = $address;
                     header("Location: index.php?validation=medecin", true, 303);
                     exit;
                 } else {
