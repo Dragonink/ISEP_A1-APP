@@ -293,7 +293,7 @@ function validerRequete(PDO $db, int $id, $origine){
 }
 
 function testInfo(PDO $db){
-    $test = "SELECT count(*) as nb,type from test where type='freq' union all SELECT count(*) as nb,type from test where type='temp' union all SELECT count(*) as nb,type from test where type='tona' union all SELECT count(*) as nb,type from test where type='stim' union all SELECT count(*) as nb,type from test where type='colo'" ;
+    $test = "SELECT count(*) as nb,type from test where type='freq' and result!=NUll union all SELECT count(*) as nb,type from test where type='temp' and result!=NUll union all SELECT count(*) as nb,type from test where type='tona' and result!=NUll union all SELECT count(*) as nb,type from test where type='stim' and result!=NUll union all SELECT count(*) as nb,type from test where type='colo' and result!=NUll" ;
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();
