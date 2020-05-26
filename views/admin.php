@@ -11,9 +11,9 @@ if (isset($_COOKIE["modifState"])) {
         <meta charset="UTF-8">
         <!-- JS -->
         <script src="js/admin.js"></script>
-        <script type="text/javascript" src="RGraph/libraries/RGraph.common.core.js" ></script>
-        <script type="text/javascript" src="RGraph/libraries/RGraph.common.key.js"></script>
-        <script type="text/javascript" src="RGraph/libraries/RGraph.hbar.js" ></script>
+        <script type="text/javascript" src="RGraph/RGraph.common.core.js" ></script>
+        <script type="text/javascript" src="RGraph/RGraph.common.key.js"></script>
+        <script type="text/javascript" src="RGraph/RGraph.hbar.js" ></script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/header-footer.css"/>
@@ -117,30 +117,26 @@ if (isset($_COOKIE["modifState"])) {
     </body>
 </html>
 <?php 
-$datas='[';
-$labels='[';
+$freq=0; 
+$temp=0;
+$tone=0;
+$stim=0;
+$colo=0;
 for ($i=0; $i<5; $i++){
-    if (testInfo($db)[$i]['type']!=NULL){
-        $datas.="'" .testInfo($db)[$i]['nb'] ."'";
-        if (testInfo($db)[$i]['type']=='freq'){
-            $labels.="'Fréquence cardiaque'";
-        }elseif (testInfo($db)[$i]['type']=='temp'){
-            $labels.="'Température'";
-        }elseif (testInfo($db)[$i]['type']=='tone'){
-            $labels.="'Reconnaissance de tonalités'";
-        }elseif (testInfo($db)[$i]['type']=='stim'){
-            $labels.="'Réaction à des stimuli visuels'";
-        }elseif (testInfo($db)[$i]['type']=='colo'){
-            $labels.="'Mémorisation de couleurs'";
-        }
-        if ($i!=4){
-            $datas.=",";
-            $labels.=",";
-        }
+    if (testInfo($db)[$i]['type']=='freq'){
+        $freq=testInfo($db)[$i]['nb'];
+    }elseif (testInfo($db)[$i]['type']=='temp'){
+        $temp=testInfo($db)[$i]['nb'];
+    }elseif (testInfo($db)[$i]['type']=='tone'){
+        $tone=testInfo($db)[$i]['nb'];
+    }elseif (testInfo($db)[$i]['type']=='stim'){
+        $stim=testInfo($db)[$i]['nb'];
+    }elseif (testInfo($db)[$i]['type']=='colo'){
+        $colo=testInfo($db)[$i]['nb'];
     }
 }
-$datas.="]";
-$labels.="]";
+$datas.="[" .$freq ."," .$temp ."," .$tone ."," .$stim ."," .$colo ."]";
+$labels.="['Fréquence cardiaque','Température','Reconnaissance de tonalités', 'Réaction à des stimuli visuels','Mémorisation de couleurs']";
 ?>
 <script LANGUAGE='JavaScript'>
     graphe(<?php echo $datas; ?>,<?php echo $labels; ?>);
