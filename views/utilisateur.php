@@ -76,7 +76,7 @@ if (isset($_COOKIE["modifState"])) {
                         "<header>Effectuer un test</header>",
                         "<div>",
                         "<input type='text' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
-                        "<input type='text' name='console' placeholder='ID console' required />",
+                        "<input type='number' name='console' placeholder='ID console' required />",
                         "<button type='submit'>Démarrer</button>",
                         "</div>",
                         "</form>";
