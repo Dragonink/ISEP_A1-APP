@@ -293,7 +293,7 @@ function validerRequete(PDO $db, int $id, $origine){
 }
 
 function testInfo(PDO $db){
-    $test = "SELECT type, COUNT(type) as nb , result FROM test where result IS NOT NULL GROUP BY type";
+    $test = "SELECT type, COUNT(type) as nb FROM test where result IS NOT NULL GROUP BY type";
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();

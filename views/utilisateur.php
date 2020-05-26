@@ -118,108 +118,79 @@ if (!isset($_GET['choix'])){
     </table>
     <?php require "_footer.html"; ?>
 </body>
-</html>
 <?php
 $sfreq=0;
 $stemp=0;
 $stona=0;
 $sstim=0;
 $scolo=0;
+$utilisateurTest=utilisateurTest($db);
 
-for ($i=0; $i<count(utilisateurTest($db)); $i++){
-    if (utilisateurTest($db)[$i]['type']=='freq'){
-        $sfreq = utilisateurTest($db)[$i]['result'];
-    }elseif (utilisateurTest($db)[$i]['type']=='temp'){
-        $stemp = utilisateurTest($db)[$i]['result'];
-    }elseif (utilisateurTest($db)[$i]['type']=='tona'){
-        $stona = utilisateurTest($db)[$i]['result'];
-    }elseif (utilisateurTest($db)[$i]['type']=='stim'){
-        $sstim= utilisateurTest($db)[$i]['result'];
-    }elseif (utilisateurTest($db)['type']=='colo'){
-        $scolo = utilisateurTest($db)[$i]['result'];
+for ($i=0; $i<count($utilisateurTest); $i++){
+    if ($utilisateurTest[$i]['type']=='freq'){
+        $sfreq = $utilisateurTest[$i]['result'];
+    }elseif ($utilisateurTest[$i]['type']=='temp'){
+        $stemp = $utilisateurTest[$i]['result'];
+    }elseif ($utilisateurTest[$i]['type']=='tona'){
+        $stona = $utilisateurTest[$i]['result'];
+    }elseif ($utilisateurTest[$i]['type']=='stim'){
+        $sstim= $utilisateurTest[$i]['result'];
+    }elseif ($utilisateurTest[$i]['type']=='colo'){
+        $scolo = $utilisateurTest[$i]['result'];
     }
 }
 $datas="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
 $labels="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
 
 $choix=$_GET['choix'];
-$lfreq='[';
-$ltemp='[';
-$ltona='[';
-$lstim='[';
-$lcolo='[';
 $label='[';
-$data='[';
 $key='';
+$nbExam=count(nbExam($db)[0]);
+$utilisateurTest2=utilisateurTest2($db);
 if ($choix==0){
-    if (count(nbExam($db))==0){
+    if ($nbExam==0){
         $data.="[0]";
         $label.="'Aucun test a été réalisé'";
     }else {
-        for ($i=0; $i<count(nbExam($db)); $i++){
-            $Exam[$i]= '[';
-            for ($j=0; $j<count(utilisateurTest2($db));$j++){
-                $lfreqExam = 0;
-                $ltempExam = 0;
-                $ltonaExam = 0;
-                $lstimExam = 0;
-                $lcoloEXam = 0;
-                if ($j==0){
-                    if (utilisateurTest($db)[$i]['type']=='freq'){
-                        $lfreqExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)[$i]['type']=='temp'){
-                        $ltempExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)[$i]['type']=='tona'){
-                        $ltonaExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)[$i]['type']=='stim'){
-                        $lstimExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)['type']=='colo'){
-                        $lcoloEXam = utilisateurTest2($db)[$i]['result'];
+        $var=0;
+        for ($i=0; $i<$nbExam; $i++){
+            $lfreq[$i]=0;
+            $ltemp[$i]=0;
+            $ltona[$i]=0;
+            $lstim[$i]=0;
+            $lcolo[$i]=0;
+            for ($j=$var; $j<count($utilisateurTest2);$j++){
+                if (($j==$var) || ($utilisateurTest2[$j]['exam']==$utilisateurTest2[$j-1]['exam'])){
+                    if ($utilisateurTest2[$j]['type']=='freq'){
+                        $lfreq[$i] = $utilisateurTest2[$j]['result'];
+                    }elseif ($utilisateurTest2[$j]['type']=='temp'){
+                        $ltemp[$i] = $utilisateurTest2[$j]['result'];
+                    }elseif ($utilisateurTest2[$j]['type']=='tona'){
+                        $ltona[$i] = $utilisateurTest2[$j]['result'];
+                    }elseif ($utilisateurTest2[$j]['type']=='stim'){
+                        $lstim[$i] = $utilisateurTest2[$j]['result'];
+                    }elseif ($utilisateurTest[$j]['type']=='colo'){
+                        $lcolo[$i] = $utilisateurTest2[$j]['result'];
                     }
-                }elseif(utilisateurTest2($db)[$j]['exam.id']==utilisateurTest2($db)[$j-1]['exam.id']){
-                    if (utilisateurTest2($db)[$i]['type']=='freq'){
-                        $lfreqExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)[$i]['type']=='temp'){
-                        $ltempExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)[$i]['type']=='tona'){
-                        $ltonaExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest($db)[$i]['type']=='stim'){
-                        $lstimExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)['type']=='colo'){
-                        $lcoloEXam = utilisateurTest2($db)[$i]['result'];
-                    }
+                } else {
+                    $var=$j;
                 }
             }
-            $lfreq.=$lfreqExam;
-            $ltemp.=$ltempExam;
-            $ltona.=$ltonaExam;
-            $lstim.=$lstimExam;
-            $lcolo.=$lcoloExam;
-            $Exam[$i]= "[".$lfreqExam ."," .$ltempExam ."," .$ltonaExam ."," .$lstimExam ."," .$lcoloExam ."]";
-            $key="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
-            $data.=$Exam[$i];
-            $label .= "Exam.strval( $i+1)";;
-
-            if ($i<(count(nbExam($db)-1))){
-                $lfreq.=",";
-                $ltemp.=",";
-                $ltona.=",";
-                $lstim.=",";
-                $lcolo.=",";
+            $nb=$i+1;
+            $label .= "'Exam " .$nb ."'";
+            if ($i<($nbExam-1)){
+                $label.=",";
             }
         }
-        $lfreq.="]";
-        $ltemp.="]";
-        $ltona.="]";
-        $lstim.="]";
-        $lcolo.="]";
-        if ($i<(count(nbExam($db)-1))){
-            $label.=",";
-            $data.=",";
-        }
     }
+    $key="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
     $label.="]";
-    $data.="]";
+    $data[0]="[" .implode(',',$lfreq) ."]";
+    $data[1]="[" .implode(',',$ltemp) ."]";
+    $data[2]="[" .implode(',',$ltona) ."]";
+    $data[3]="[" .implode(',',$lstim) ."]";
+    $data[4]="[" .implode(',',$lcolo) ."]";
+    
 }else{
     $data = "[";
     if ($choix==1){
@@ -233,23 +204,24 @@ if ($choix==0){
     }else if ($choix==5){
         $nom='colo';
     }
-    if (count(graphesChoix($db,$nom))==0){
+    $graphesChoix=graphesChoix($db,$nom);
+    if (count($graphesChoix)==0){
         $data .= 0;
         $label .= 0;
     }else{
-        for ($i=0;$i<count(graphesChoix($db,$nom));$i++){
-            $data .= graphesChoix($db,$nom)[$i]['result'].",";
-            $label .= "Test.strval( $i+1)";
+        for ($i=0;$i<count($graphesChoix);$i++){
+            $data .= $graphesChoix[$i]['result'].",";
+            $label .= "Test" .$i+1;
         }
     }
     $data.="]";
     $label.="]";
 }
- ?>   
-
+?>   
+</html>
 <script LANGUAGE='JavaScript'>
     dernierTest(<?php echo $datas; ?>,<?php echo $labels; ?>);
-    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>);
+    resultatTest(<?php echo $choix; ?>,<?php echo "[" .implode(',',$data) ."]"; ?>,<?php echo $label; ?>,<?php echo $key; ?>);
     let value=/(?:^\?|&)choix=(\d+)/.exec(window.location.search);
 	if (value!==null){
 		document.querySelector('form.graphe select').selectedIndex = value[1];

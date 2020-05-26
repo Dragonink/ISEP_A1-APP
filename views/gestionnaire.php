@@ -147,18 +147,19 @@ if (isset($_COOKIE["modifState"])) {
 	$labels="[";
 	if ($_GET['criteres']==0){
 		if ($_GET['typedetest']==0){
-			for ($i=0; $i<5; $i++){
-				if (nbTestReal($db)[$i]['type']!=NULL){
-					$datas.="'" .nbTestReal($db)[$i]['nb'] ."'";
-					if (nbTestReal($db)[$i]['type']=='freq'){
+			$nb=nbTestReal($db);
+			for ($i=0; $i<count($nb); $i++){
+				if ($nb[$i]['type']!=NULL){
+					$datas.="'" .$nb[$i]['nb'] ."'";
+					if ($nb[$i]['type']=='freq'){
 						$labels.="'Fréquence cardiaque'";
-					}elseif (nbTestReal($db)[$i]['type']=='temp'){
+					}elseif ($nb[$i]['type']=='temp'){
 						$labels.="'Température'";
-					}elseif (nbTestReal($db)[$i]['type']=='tona'){
+					}elseif ($nb[$i]['type']=='tona'){
 						$labels.="'Reconnaissance de tonalités'";
-					}elseif (nbTestReal($db)[$i]['type']=='stim'){
+					}elseif ($nb[$i]['type']=='stim'){
 						$labels.="'Réaction à des stimuli visuels'";
-					}elseif (nbTestReal($db)[$i]['type']=='colo'){
+					}elseif ($nb[$i]['type']=='colo'){
 						$labels.="'Mémorisation de couleurs'";
 					}
 					if ($i!=4){
@@ -172,6 +173,7 @@ if (isset($_COOKIE["modifState"])) {
 				$labels.="'Aucun test a été réalisé'";
 			}
 		} else {
+			$resulTest=resulTest($db, $nom);
 			if ($_GET['criteres']==1){
 				$nom="freq";
 			}elseif ($_GET['criteres']==2){
@@ -183,15 +185,15 @@ if (isset($_COOKIE["modifState"])) {
 			}elseif ($_GET['criteres']==5){
 				$nom="colo";
 			}
-			for ($i=0; $i<count(resulTest($db, $nom)); $i++){
-				$datas .= "'" .resulTest($db, $nom)[$i]["result"]  ."'";
-				$labels .= "'" .resulTest($db, $nom)[$i]["prenom"] ." " .resulTest($db, $nom)[$i]["nom"] ."'";
+			for ($i=0; $i<count($resulTest); $i++){
+				$datas .= "'" .$resulTest[$i]["result"]  ."'";
+				$labels .= "'" .$resulTest[$i]["prenom"] ." " .$resulTest[$i]["nom"] ."'";
 			}
-			if ($i<count(resulTest($db, $nom))-1){
+			if ($i<count($resulTest)-1){
 				$datas.=",";
 				$labels.=",";
 			}
-			if (count(resulTest($db, $nom))==0){
+			if (count($resulTest)==0){
 				$datas.=0;
 				$labels.="'Aucun test a été réalisé'";
 			}
@@ -204,18 +206,19 @@ if (isset($_COOKIE["modifState"])) {
 				$tonaExam = 0;
 				$stimExam = 0;
 				$coloExam = 0;
+				$nbTestRealSpec=nbTestRealSpec($db,$_GET['criteres'],$j);
 				for ($i=0; $i<5; $i++){
-					if (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']!=NULL){
-						if (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='freq'){
-							$freqExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='temp'){
-							$tempExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='tona'){
-							$tonaExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='stim'){
-							$stimExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='colo'){
-							$coloExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
+					if ($nbTestRealSpec[$i]['type']!=NULL){
+						if ($nbTestRealSpec[$i]['type']=='freq'){
+							$freqExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='temp'){
+							$tempExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='tona'){
+							$tonaExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='stim'){
+							$stimExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='colo'){
+							$coloExam= $nbTestRealSpec[$i]['nb'];
 						}
 					}
 				}
@@ -238,12 +241,13 @@ if (isset($_COOKIE["modifState"])) {
 			}elseif ($_GET['criteres']==5){
 				$nom="colo";
 			}
+			$mTestRealSpec=mTestRealSpec($db,$_GET['criteres'],$nom,$j);
 			for ($j=1; $j<=2 ;$j++){
-				if (count(mTestRealSpec($db,$_GET['criteres'],$nom,$j))==0){
+				if (count($mTestRealSpec)==0){
 					$liste[0]= 0;
 				} else {
-					for($i=0;$i<count(mTestRealSpec($db,$_GET['criteres'],$nom,$j));$i++){
-						$liste[$i]=mTestRealSpec($db,$_GET['criteres'],$nom,$j)[$i]['result'];
+					for($i=0;$i<count($mTestRealSpec);$i++){
+						$liste[$i]=$mTestRealSpec[$i]['result'];
 					}
 				}
 				if (count($liste)!=1){
@@ -265,18 +269,19 @@ if (isset($_COOKIE["modifState"])) {
 				$tonaExam = 0;
 				$stimExam = 0;
 				$coloExam = 0;
+				$nbTestRealSpec=nbTestRealSpec($db,$_GET['criteres'],$j);
 				for ($i=0; $i<5; $i++){
-					if (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']!=NULL){
-						if (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='freq'){
-							$freqExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='temp'){
-							$tempExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='tona'){
-							$tonaExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='stim'){
-							$stimExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='colo'){
-							$coloExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
+					if ($nbTestRealSpec[$i]['type']!=NULL){
+						if ($nbTestRealSpec[$i]['type']=='freq'){
+							$freqExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='temp'){
+							$tempExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='tona'){
+							$tonaExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='stim'){
+							$stimExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='colo'){
+							$coloExam= $nbTestRealSpec[$i]['nb'];
 						}
 					}
 				}
@@ -290,17 +295,18 @@ if (isset($_COOKIE["modifState"])) {
 					$tonaExam = 0;
 					$stimExam = 0;
 					$coloEXam = 0;
-					if (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']!=NULL){
-						if (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='freq'){
-							$freqExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='temp'){
-							$tempExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='tona'){
-							$tonaExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='stim'){
-							$stimExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
-						}elseif (nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['type']=='colo'){
-							$coloExam= nbTestRealSpec($db,$_GET['criteres'],$j)[$i]['nb'];
+					$nbTestRealSpec=nbTestRealSpec($db,$_GET['criteres'],$j);
+					if ($nbTestRealSpec[$i]['type']!=NULL){
+						if ($nbTestRealSpec[$i]['type']=='freq'){
+							$freqExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='temp'){
+							$tempExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='tona'){
+							$tonaExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='stim'){
+							$stimExam= $nbTestRealSpec[$i]['nb'];
+						}elseif ($nbTestRealSpec[$i]['type']=='colo'){
+							$coloExam= $nbTestRealSpec[$i]['nb'];
 						}
 					}
 				}
@@ -323,12 +329,13 @@ if (isset($_COOKIE["modifState"])) {
 			}elseif ($_GET['criteres']==5){
 				$nom="colo";
 			}
+			$mTestRealSpec=mTestRealSpec($db,$_GET['criteres'],$nom,$j);
 			for ($j=2; $j<=9 ;$j++){
-				if (count(mTestRealSpec($db,$_GET['criteres'],$nom,$j))==0){
+				if (count($mTestRealSpec)==0){
 					$liste[0]= 0;
 				} else {
-					for($i=0;$i<count(mTestRealSpec($db,$_GET['criteres'],$nom,$j));$i++){
-						$liste[$i]=mTestRealSpec($db,$_GET['criteres'],$nom,$j)[$i]['result'];
+					for($i=0;$i<count($mTestRealSpec);$i++){
+						$liste[$i]=$mTestRealSpec[$i]['result'];
 					}
 				}
 				if (count($liste)!=1){
@@ -339,11 +346,11 @@ if (isset($_COOKIE["modifState"])) {
 				$datas.=",";
 			}
 			for ($j=0; $j<=1 ;$j++){
-				if (count(mTestRealSpec($db,$_GET['criteres'],$nom,$j))==0){
+				if (count($mTestRealSpec)==0){
 					$liste[0]= 0;
 				} else {
-					for($i=0;$i<count(mTestRealSpec($db,$_GET['criteres'],$nom,$j));$i++){
-						$liste[$i]=mTestRealSpec($db,$_GET['criteres'],$nom,$j)[$i]['result'];
+					for($i=0;$i<count($mTestRealSpec);$i++){
+						$liste[$i]=$mTestRealSpec[$i]['result'];
 					}
 				}
 				if (count($liste)!=1){
