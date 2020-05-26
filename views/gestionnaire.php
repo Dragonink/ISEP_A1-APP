@@ -101,7 +101,7 @@ if (isset($_COOKIE["modifState"])) {
 			</td>
 			<td id="stats">
 				<div class="statistiques">
-					<div class="resultatsTests">
+					<div class="resultatsTests" style="display: block;">
 						<canvas id="grapheResultat" width='1000' height='400'></canvas>
 					</div>
 					<form class="affichage" action = "gestionnaire.php" method = "get">
