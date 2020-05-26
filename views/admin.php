@@ -119,24 +119,25 @@ if (isset($_COOKIE["modifState"])) {
 <?php 
 $freq=0; 
 $temp=0;
-$tone=0;
+$tona=0;
 $stim=0;
 $colo=0;
-for ($i=0; $i<5; $i++){
-    if (testInfo($db)[$i]['type']=='freq'){
-        $freq=testInfo($db)[$i]['nb'];
-    }elseif (testInfo($db)[$i]['type']=='temp'){
-        $temp=testInfo($db)[$i]['nb'];
-    }elseif (testInfo($db)[$i]['type']=='tone'){
-        $tone=testInfo($db)[$i]['nb'];
-    }elseif (testInfo($db)[$i]['type']=='stim'){
-        $stim=testInfo($db)[$i]['nb'];
-    }elseif (testInfo($db)[$i]['type']=='colo'){
-        $colo=testInfo($db)[$i]['nb'];
+$test=testInfo($db);
+for ($i=0; $i<count($test); $i++){
+    if ($test[$i]['type']=='freq'){
+        $freq=$test[$i]['nb'];
+    }elseif ($test[$i]['type']=='temp'){
+        $temp=$test[$i]['nb'];
+    }elseif ($test[$i]['type']=='tona'){
+        $tona=$test[$i]['nb'];
+    }elseif ($test[$i]['type']=='stim'){
+        $stim=$test[$i]['nb'];
+    }elseif ($test[$i]['type']=='colo'){
+        $colo=$test[$i]['nb'];
     }
 }
-$datas.="[" .$freq ."," .$temp ."," .$tone ."," .$stim ."," .$colo ."]";
-$labels.="['Fréquence cardiaque','Température','Reconnaissance de tonalités', 'Réaction à des stimuli visuels','Mémorisation de couleurs']";
+$datas="[" .$freq ."," .$temp ."," .$tona ."," .$stim ."," .$colo ."]";
+$labels="['Fréquence cardiaque','Température','Reconnaissance de tonalités', 'Réaction à des stimuli visuels','Mémorisation de couleurs']";
 ?>
 <script LANGUAGE='JavaScript'>
     graphe(<?php echo $datas; ?>,<?php echo $labels; ?>);

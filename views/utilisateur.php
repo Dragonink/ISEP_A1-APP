@@ -122,7 +122,7 @@ if (!isset($_GET['choix'])){
 <?php
 $sfreq=0;
 $stemp=0;
-$stone=0;
+$stona=0;
 $sstim=0;
 $scolo=0;
 
@@ -131,21 +131,21 @@ for ($i=0; $i<count(utilisateurTest($db)); $i++){
         $sfreq = utilisateurTest($db)[$i]['result'];
     }elseif (utilisateurTest($db)[$i]['type']=='temp'){
         $stemp = utilisateurTest($db)[$i]['result'];
-    }elseif (utilisateurTest($db)[$i]['type']=='tone'){
-        $stone = utilisateurTest($db)[$i]['result'];
+    }elseif (utilisateurTest($db)[$i]['type']=='tona'){
+        $stona = utilisateurTest($db)[$i]['result'];
     }elseif (utilisateurTest($db)[$i]['type']=='stim'){
         $sstim= utilisateurTest($db)[$i]['result'];
     }elseif (utilisateurTest($db)['type']=='colo'){
         $scolo = utilisateurTest($db)[$i]['result'];
     }
 }
-$datas="[" .$sfreq ."," .$stemp ."," .$stone ."," .$sstim ."," .$scolo ."]";
+$datas="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
 $labels="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
 
 $choix=$_GET['choix'];
 $lfreq='[';
 $ltemp='[';
-$ltone='[';
+$ltona='[';
 $lstim='[';
 $lcolo='[';
 $label='[';
@@ -161,7 +161,7 @@ if ($choix==0){
             for ($j=0; $j<count(utilisateurTest2($db));$j++){
                 $lfreqExam = 0;
                 $ltempExam = 0;
-                $ltoneExam = 0;
+                $ltonaExam = 0;
                 $lstimExam = 0;
                 $lcoloEXam = 0;
                 if ($j==0){
@@ -169,8 +169,8 @@ if ($choix==0){
                         $lfreqExam = utilisateurTest2($db)[$i]['result'];
                     }elseif (utilisateurTest2($db)[$i]['type']=='temp'){
                         $ltempExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)[$i]['type']=='tone'){
-                        $ltoneExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)[$i]['type']=='tona'){
+                        $ltonaExam = utilisateurTest2($db)[$i]['result'];
                     }elseif (utilisateurTest2($db)[$i]['type']=='stim'){
                         $lstimExam = utilisateurTest2($db)[$i]['result'];
                     }elseif (utilisateurTest2($db)['type']=='colo'){
@@ -181,8 +181,8 @@ if ($choix==0){
                         $lfreqExam = utilisateurTest2($db)[$i]['result'];
                     }elseif (utilisateurTest2($db)[$i]['type']=='temp'){
                         $ltempExam = utilisateurTest2($db)[$i]['result'];
-                    }elseif (utilisateurTest2($db)[$i]['type']=='tone'){
-                        $ltoneExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)[$i]['type']=='tona'){
+                        $ltonaExam = utilisateurTest2($db)[$i]['result'];
                     }elseif (utilisateurTest($db)[$i]['type']=='stim'){
                         $lstimExam = utilisateurTest2($db)[$i]['result'];
                     }elseif (utilisateurTest2($db)['type']=='colo'){
@@ -192,10 +192,10 @@ if ($choix==0){
             }
             $lfreq.=$lfreqExam;
             $ltemp.=$ltempExam;
-            $ltone.=$ltoneExam;
+            $ltona.=$ltonaExam;
             $lstim.=$lstimExam;
             $lcolo.=$lcoloExam;
-            $Exam[$i]= "[".$lfreqExam ."," .$ltempExam ."," .$ltoneExam ."," .$lstimExam ."," .$lcoloExam ."]";
+            $Exam[$i]= "[".$lfreqExam ."," .$ltempExam ."," .$ltonaExam ."," .$lstimExam ."," .$lcoloExam ."]";
             $key="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
             $data.=$Exam[$i];
             $label .= "Exam.strval( $i+1)";;
@@ -203,14 +203,14 @@ if ($choix==0){
             if ($i<(count(nbExam($db)-1))){
                 $lfreq.=",";
                 $ltemp.=",";
-                $ltone.=",";
+                $ltona.=",";
                 $lstim.=",";
                 $lcolo.=",";
             }
         }
         $lfreq.="]";
         $ltemp.="]";
-        $ltone.="]";
+        $ltona.="]";
         $lstim.="]";
         $lcolo.="]";
         if ($i<(count(nbExam($db)-1))){
@@ -227,7 +227,7 @@ if ($choix==0){
     }else if ($choix==2){
         $nom='temp';
     }else if ($choix==3){
-        $nom='tone';
+        $nom='tona';
     }else if ($choix==4){
         $nom='stim';
     }else if ($choix==5){

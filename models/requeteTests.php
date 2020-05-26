@@ -41,32 +41,29 @@ function saveTests(PDO $db, $exam, $tests) {
 }
 
 function utilisateurTest(PDO $db){
-    $test="SELECT  type,result from test where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result IS NOT NULL";
+    $test="SELECT  type,result from test full join exam on test.exam=exam.id where exam.user=" .$_SESSION['user_id'] ." and result IS NOT NULL";
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function utilisateurTest2(PDO $db){
-    $test="SELECT  type, result, exam from test where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result IS NOT NULL"  ;
+    $test="SELECT  type, result, exam from test full join exam on test.exam=exam.id where exam.user=" .$_SESSION['user_id'] ." and result IS NOT NULL"  ;
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function nbExam(PDO $db){
-    $nb = "SELECT count(DISTINCT exam.id) from test  where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result IS NOT NULL order by exam.id";
+    $nb = "SELECT count(DISTINCT exam.id) from test full join exam on test.exam=exam.id where exam.user==" .$_SESSION['user_id'] ." and result IS NOT NULL order by exam.id";
     $prepare = $db->prepare($nb);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function graphesChoix(PDO $db,$type){
-    $nb = "SELECT type,result from test  where ((test.type ==$type ) && (test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result IS NOT NULL order by exam.id";
+    $nb = "SELECT type,result from test where type=" .$type ." full join exam on test.exam=exam.id where exam.user=" .$_SESSION['user_id'] ." and result IS NOT NULL order by exam.id";
     $prepare = $db->prepare($nb);
     $prepare->execute();
     return $prepare->fetchAll();
-
 }
-
-
