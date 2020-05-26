@@ -129,7 +129,7 @@ function infoDispositifRecherche(PDO $db, $value, $recherche) {
 }
 
 function infoUtilisateur(PDO $db, $value) {
-    $utilisateur = "SELECT id, first_name, last_name, email, null as ack_share, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, ack_share, 'user' as origine from user union SELECT id, first_name, last_name, email, null as ack_share, 'manager' as origine from manager  where is_active=1 order by ";
+    $utilisateur = "SELECT id, first_name, last_name, email, 'administrator' as origine from administrator where is_active=1 UNION SELECT nss as id, first_name, last_name, email, 'user' as origine from user union SELECT id, first_name, last_name, email, 'manager' as origine from manager  where is_active=1 order by ";
     switch($value){
         case 0:
             $utilisateur .= "id";
@@ -153,7 +153,7 @@ function infoUtilisateur(PDO $db, $value) {
 }
 
 function infoUtilisateurRecherche(PDO $db, $value, $recherche) {
-    $utilisateur = "SELECT id, first_name, last_name, email, null as ack_share, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, ack_share, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, null as ack_share, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by ";
+    $utilisateur = "SELECT id, first_name, last_name, email, 'administrator' as origine from administrator where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') UNION SELECT nss as id, first_name, last_name, email, 'user' as origine from user where first_name like '%".$recherche."%' or last_name like '%".$recherche."%' or nss like '%".$recherche."%' union SELECT id, first_name, last_name, email, 'manager' as origine from manager  where is_active=1 and (first_name like '%".$recherche."%' or last_name like '%".$recherche."%') order by ";
     switch ($value){
         case 0:
             $utilisateur .= "id";

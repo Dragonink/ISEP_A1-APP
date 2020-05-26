@@ -23,7 +23,6 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
             $_SESSION["user_email"] = $user_info[0]["email"];
             $_SESSION["user_medecin"] = $user_info[0]["manager"];
             $_SESSION["user_tel"] = $user_info[0]["phone"];
-            $_SESSION["user_share"] = $user_info[0]["ack_share"];
             header("Location: utilisateur.php", true, 303);
         } else {
             invalid_passwd();
@@ -41,7 +40,6 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
             $_SESSION["user_email"] = $user_info[0]["email"];
             $_SESSION["user_medecin"] = $user_info[0]["manager"];
             $_SESSION["user_tel"] = $user_info[0]["phone"];
-            $_SESSION["user_share"] = $user_info[0]["ack_share"];
             header("Location: utilisateur.php", true, 303);
         } else {
             invalid_passwd();
