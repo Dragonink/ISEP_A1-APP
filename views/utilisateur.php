@@ -147,81 +147,68 @@ $label='[';
 $key='';
 $nbExam=count(nbExam($db)[0]);
 $utilisateurTest2=utilisateurTest2($db);
-if ($choix==0){
-    if ($nbExam==0){
-        $data.="[0]";
-        $label.="'Aucun test a été réalisé'";
-    }else {
-        $var=0;
-        for ($i=0; $i<$nbExam; $i++){
-            $lfreq[$i]=0;
-            $ltemp[$i]=0;
-            $ltona[$i]=0;
-            $lstim[$i]=0;
-            $lcolo[$i]=0;
-            for ($j=$var; $j<count($utilisateurTest2);$j++){
-                if (($j==$var) || ($utilisateurTest2[$j]['exam']==$utilisateurTest2[$j-1]['exam'])){
-                    if ($utilisateurTest2[$j]['type']=='freq'){
-                        $lfreq[$i] = $utilisateurTest2[$j]['result'];
-                    }elseif ($utilisateurTest2[$j]['type']=='temp'){
-                        $ltemp[$i] = $utilisateurTest2[$j]['result'];
-                    }elseif ($utilisateurTest2[$j]['type']=='tona'){
-                        $ltona[$i] = $utilisateurTest2[$j]['result'];
-                    }elseif ($utilisateurTest2[$j]['type']=='stim'){
-                        $lstim[$i] = $utilisateurTest2[$j]['result'];
-                    }elseif ($utilisateurTest[$j]['type']=='colo'){
-                        $lcolo[$i] = $utilisateurTest2[$j]['result'];
-                    }
-                } else {
-                    $var=$j;
+if ($nbExam==0){
+    $data.="[0]";
+    $label.="'Aucun test a été réalisé'";
+}else {
+    $var=0;
+    for ($i=0; $i<$nbExam; $i++){
+        $lfreq[$i]=0;
+        $ltemp[$i]=0;
+        $ltona[$i]=0;
+        $lstim[$i]=0;
+        $lcolo[$i]=0;
+        for ($j=$var; $j<count($utilisateurTest2);$j++){
+            if (($j==$var) || ($utilisateurTest2[$j]['exam']==$utilisateurTest2[$j-1]['exam'])){
+                if ($utilisateurTest2[$j]['type']=='freq'){
+                    $lfreq[$i] = $utilisateurTest2[$j]['result'];
+                }elseif ($utilisateurTest2[$j]['type']=='temp'){
+                    $ltemp[$i] = $utilisateurTest2[$j]['result'];
+                }elseif ($utilisateurTest2[$j]['type']=='tona'){
+                    $ltona[$i] = $utilisateurTest2[$j]['result'];
+                }elseif ($utilisateurTest2[$j]['type']=='stim'){
+                    $lstim[$i] = $utilisateurTest2[$j]['result'];
+                }elseif ($utilisateurTest[$j]['type']=='colo'){
+                    $lcolo[$i] = $utilisateurTest2[$j]['result'];
                 }
-            }
-            $nb=$i+1;
-            $label .= "'Exam " .$nb ."'";
-            if ($i<($nbExam-1)){
-                $label.=",";
+            } else {
+                $var=$j;
             }
         }
+        $nb=$i+1;
+        $label .= "'Exam " .$nb ."'";
+        if ($i<($nbExam-1)){
+            $label.=",";
+        }
     }
+}
+if ($choix==0){
     $key="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
-    $label.="]";
     $data[0]="[" .implode(',',$lfreq) ."]";
     $data[1]="[" .implode(',',$ltemp) ."]";
     $data[2]="[" .implode(',',$ltona) ."]";
     $data[3]="[" .implode(',',$lstim) ."]";
     $data[4]="[" .implode(',',$lcolo) ."]";
-    
+    $data="[" .implode(',',$data) ."]";
 }else{
-    $data = "[";
     if ($choix==1){
-        $nom='freq';
+        $data="[" .implode(',',$lfreq) ."]";
     }else if ($choix==2){
-        $nom='temp';
+        $data="[" .implode(',',$ltemp) ."]";
     }else if ($choix==3){
-        $nom='tona';
+        $data="[" .implode(',',$ltona) ."]";
     }else if ($choix==4){
-        $nom='stim';
+        $data="[" .implode(',',$lstim) ."]";
     }else if ($choix==5){
-        $nom='colo';
+        $data="[" .implode(',',$lcolo) ."]";
     }
-    $graphesChoix=graphesChoix($db,$nom);
-    if (count($graphesChoix)==0){
-        $data .= 0;
-        $label .= 0;
-    }else{
-        for ($i=0;$i<count($graphesChoix);$i++){
-            $data .= $graphesChoix[$i]['result'].",";
-            $label .= "Test" .$i+1;
-        }
-    }
-    $data.="]";
-    $label.="]";
 }
+$label.="]";
 ?>   
 </html>
 <script LANGUAGE='JavaScript'>
     dernierTest(<?php echo $datas; ?>,<?php echo $labels; ?>);
-    resultatTest(<?php echo $choix; ?>,<?php echo "[" .implode(',',$data) ."]"; ?>,<?php echo $label; ?>,<?php echo $key; ?>);
+    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>);
     let value=/(?:^\?|&)choix=(\d+)/.exec(window.location.search);
 	if (value!==null){
 		document.querySelector('form.graphe select').selectedIndex = value[1];

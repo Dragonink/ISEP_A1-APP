@@ -21,7 +21,7 @@ function dernierTest(datas,labels){
         options: {
             xaxisLabels:labels,
             marginLeft: 25,
-            colors: color,
+            colors: ['#18375e'],
         }
     }).draw();
 }
@@ -38,7 +38,6 @@ function resultatTest(choix, data, label, key) {
                 key: key,
             }
         }).draw();
-
     } else {
         new RGraph.Bar({
             id: 'resultatTestGraph',
@@ -46,7 +45,7 @@ function resultatTest(choix, data, label, key) {
             options: {
                 xaxisLabels:label,
                 marginLeft: 25,
-                colors: color,
+                colors: ['#18375e'],
             }
         }).draw();
     }

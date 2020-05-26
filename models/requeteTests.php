@@ -60,10 +60,3 @@ function nbExam(PDO $db){
     $prepare->execute();
     return $prepare->fetchAll();
 }
-
-function graphesChoix(PDO $db,$type){
-    $nb = "SELECT type,result from test where type=" .$type ." join exam on test.exam=exam.id where exam.user=" .$_SESSION['user_id'] ." and result IS NOT NULL order by exam.id";
-    $prepare = $db->prepare($nb);
-    $prepare->execute();
-    return $prepare->fetchAll();
-}
