@@ -10,6 +10,7 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="manager"){
 	$user["tel"]=$user_info[0]["phone"];
 	$user["email"]=$user_info[0]["email"];
 	$user["id"]=$user_info[0]["id"];
+	setcookie("modifAdmin", "true");
 } else {
 	$user["prenom"]=$_SESSION["user_prenom"];
 	$user["nom"]=$_SESSION["user_nom"];
@@ -17,6 +18,20 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="manager"){
 	$user["tel"]=$_SESSION["user_tel"];
 	$user["email"]=$_SESSION["user_email"];
 	$user["id"]=$_SESSION["user_id"];
+}
+if (isset($_COOKIE["modifError"])) {
+	switch ($_COOKIE["modifError"]) {
+		case "mdp":
+			echo "<script>alert('Les mots de passe ne correspondent pas.');</script>";
+			break;
+		case "email":
+			echo "<script>alert('Les adresses Email ne correspondent pas.');</script>";
+			break;
+		default:
+			echo "<script>alert(\"Une erreur est survenue lors de l'enregistrement de vos données.\")</script>";
+			break;
+	}
+	setcookie("modifError");
 }
 ?><!DOCTYPE html>
 <html>

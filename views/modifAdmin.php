@@ -2,19 +2,32 @@
 session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/modif.php";
 require "../models/account_info.php";
-if (isset($_GET['email'])){
+if (isset($_GET['email']) && $_SESSION["user_email"]!=$user_info[0]["email"]){
     $user_info = fetchAdmin($db, $_GET['email']);
-    if ($_SESSION["user_email"]!=$user_info[0]["email"]){
-        $user["prenom"]=$user_info[0]["first_name"];
-        $user["nom"]=$user_info[0]["last_name"];
-        $user["email"]=$user_info[0]["email"];
-        $user["id"]=$user_info[0]["id"];
-    } else {
-        $user["prenom"]=$_SESSION["user_prenom"];
-        $user["nom"]=$_SESSION["user_nom"];
-        $user["email"]=$_SESSION["user_email"];
-        $user["id"]=$_SESSION["user_id"];
-    }
+    $user["prenom"]=$user_info[0]["first_name"];
+    $user["nom"]=$user_info[0]["last_name"];
+    $user["email"]=$user_info[0]["email"];
+    $user["id"]=$user_info[0]["id"];
+    setcookie("modifAdmin", "true");
+} else {
+    $user["prenom"]=$_SESSION["user_prenom"];
+    $user["nom"]=$_SESSION["user_nom"];
+    $user["email"]=$_SESSION["user_email"];
+    $user["id"]=$_SESSION["user_id"];
+}
+if (isset($_COOKIE["modifError"])) {
+	switch ($_COOKIE["modifError"]) {
+		case "mdp":
+			echo "<script>alert('Les mots de passe ne correspondent pas.');</script>";
+			break;
+		case "email":
+			echo "<script>alert('Les adresses Email ne correspondent pas.');</script>";
+            break;
+        default:
+			echo "<script>alert(\"Une erreur est survenue lors de l'enregistrement de vos données.\")</script>";
+			break;
+	}
+	setcookie("modifError");
 }
 ?><!DOCTYPE html>
 <html>

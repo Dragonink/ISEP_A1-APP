@@ -10,6 +10,7 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="user"){
 	$user["tel"]=$user_info[0]["phone"];
 	$user["email"]=$user_info[0]["email"];
 	$user["id"]=$user_info[0]["nss"];
+	setcookie("modifAdmin", "true");
 } else {
 	$user["prenom"]=$_SESSION["user_prenom"];
 	$user["nom"]=$_SESSION["user_nom"];
@@ -20,6 +21,20 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="user"){
 }
 $manager_info = fetchManager2($db, $user["medecin"]);
 $manager_info = $manager_info[0];
+if (isset($_COOKIE["modifError"])) {
+	switch ($_COOKIE["modifError"]) {
+		case "mdp":
+			echo "<script>alert('Les mots de passe ne correspondent pas.');</script>";
+			break;
+		case "email":
+			echo "<script>alert('Les adresses Email ne correspondent pas.');</script>";
+			break;
+		default:
+			echo "<script>alert(\"Une erreur est survenue lors de l'enregistrement de vos données.\")</script>";
+			break;
+	}
+	setcookie("modifError");
+}
 ?><!DOCTYPE html>
 <html>
 
@@ -70,10 +85,6 @@ $manager_info = $manager_info[0];
 				}?>
 				<p>Médecin</p>
 				<input type="text" name="medecin" placeholder="<?php echo $manager_info['first_name'], " ", $manager_info['last_name']?>" />
-				<div>
-					<input type="checkbox" id="data" name="checkbox" unchecked />
-					<label for="checkbox">J'accepte que mes données soient réutilisées à des fins statiques</label>
-				</div>
 				<input type="hidden" name="id" value="<?php echo $user["id"]?>"/>
 			</div>
 		</div>
