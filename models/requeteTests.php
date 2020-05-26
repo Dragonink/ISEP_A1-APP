@@ -31,7 +31,7 @@ function saveConsole(PDO $db, $exam, $console) {
 
 function saveTests(PDO $db, $exam, $tests) {
     foreach ($tests as $test => $value) {
-        if ($value != null) {
+        if ($value  !=  null) {
             $req = $db->prepare("UPDATE test SET result = '$value' WHERE exam = '$exam' AND type = '$test'");
             if ($req !== FALSE) {
                 $req->execute();
@@ -41,28 +41,28 @@ function saveTests(PDO $db, $exam, $tests) {
 }
 
 function utilisateurTest(PDO $db){
-    $test="SELECT  type,result from test where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result!=NULL";
+    $test="SELECT  type,result from test where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result IS NOT NULL";
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function utilisateurTest2(PDO $db){
-    $test="SELECT  type, result, exam from test where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result!=NULL"  ;
+    $test="SELECT  type, result, exam from test where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result IS NOT NULL"  ;
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function nbExam(PDO $db){
-    $nb = "SELECT count(DISTINCT exam.id) from test  where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result!=NULL order by exam.id";
+    $nb = "SELECT count(DISTINCT exam.id) from test  where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result IS NOT NULL order by exam.id";
     $prepare = $db->prepare($nb);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function graphesChoix(PDO $db,$type){
-    $nb = "SELECT type,result from test  where ((test.type ==$type ) && (test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result!=NULL order by exam.id";
+    $nb = "SELECT type,result from test  where ((test.type ==$type ) && (test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result IS NOT NULL order by exam.id";
     $prepare = $db->prepare($nb);
     $prepare->execute();
     return $prepare->fetchAll();

@@ -29,7 +29,7 @@ function nombreUtilisateurRecherche(PDO $db, $recherche) {
 }
 
 function nombreTestsRealises(PDO $db):int {
-    $query = 'SELECT count(*) from test';
+    $query = 'SELECT count(*) from test where result IS NOT NULL';
     $prepare = $db->query($query);
     return $prepare->fetchColumn();
 }
@@ -293,7 +293,7 @@ function validerRequete(PDO $db, int $id, $origine){
 }
 
 function testInfo(PDO $db){
-    $test = "SELECT count(*) as nb,type from test where type='freq' and result!=NUll union all SELECT count(*) as nb,type from test where type='temp' and result!=NUll union all SELECT count(*) as nb,type from test where type='tona' and result!=NUll union all SELECT count(*) as nb,type from test where type='stim' and result!=NUll union all SELECT count(*) as nb,type from test where type='colo' and result!=NUll" ;
+    $test = "SELECT count(*) as nb,type from test where type='freq' and result IS NOT NUll union all SELECT count(*) as nb,type from test where type='temp' and result IS NOT NUll union all SELECT count(*) as nb,type from test where type='tona' and result IS NOT NUll union all SELECT count(*) as nb,type from test where type='stim' and result IS NOT NUll union all SELECT count(*) as nb,type from test where type='colo' and result IS NOT NUll" ;
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();
