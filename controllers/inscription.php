@@ -9,9 +9,9 @@ $firstname = trim_input($_POST["firstname"]);
 $lastname = trim_input($_POST["lastname"]);
 $password = trim_input($_POST["password"]);
 $email = trim_input($_POST["email"]);
-$nss = trim_input($_POST["nss"]);
-$linked_manager = trim_input($_POST["manager"]);
-$address = trim_input($_POST["address"]);
+if (isset($_POST["nss"])) {$nss = trim_input($_POST["nss"]);}
+if (isset($_POST["manager"])) {$linked_manager = trim_input($_POST["manager"]);}
+if (isset($_POST["address"])) {$address = trim_input($_POST["address"]);}
 
 function error() {
     header("Location: inscription.php", true, 303);
@@ -37,7 +37,7 @@ switch ($type) {
         } else {
             echo "<script>alert('Le numéro de Sécurité Sociale est invalide.');</script>";
         }
-    case "user_mail":		
+    case "user_mail":
         if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1) {
             $status = insertUser($db, $nss, $firstname, $lastname, $email, $password, $linked_manager);
             if ($status) {

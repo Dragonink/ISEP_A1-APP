@@ -1,5 +1,4 @@
 <?php
-session_start();
 include('../models/requeteProfil.php');
 
 function listeInfoPatient(PDO $db, $valeur, $recherche){

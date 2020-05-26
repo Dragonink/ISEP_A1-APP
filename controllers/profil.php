@@ -1,61 +1,51 @@
 <?php
 include("../models/requeteModif.php");
 
-function nom(PDO $db, $table){
-    modifProfil($db, $table, 'last_name', trim_input($_POST['nom']), $_POST['id']);
-    $_SESSION["user_nom"] = trim_input($_POST['nom']);
+function nom(PDO $db, $table, $value){
+    modifProfil($db, $table, 'last_name', $value, $_POST['id']);
+    if (!isset($_COOKIE["modifAdmin"])) {$_SESSION["user_nom"] = $value;}
 }
 
-function prenom(PDO $db, $table) {
-    modifProfil($db, $table, 'first_name', $_POST['prenom'], $_POST['id']);
-    $_SESSION["user_prenom"] = trim_input($_POST['prenom']);
+function prenom(PDO $db, $table, $value) {
+    modifProfil($db, $table, 'first_name', $value, $_POST['id']);
+    if (!isset($_COOKIE["modifAdmin"])) {$_SESSION["user_prenom"] = $value;}
 }
 
-function mdp(PDO $db, $table){
+function mdp(PDO $db, $table, $value){
     $erreur = false;
-    $password = password_hash(trim_input($_POST['mdp']), PASSWORD_DEFAULT);
-    if (trim_input($_POST['mdp']) == trim_input($_POST['verifmdp'])){
+    $password = password_hash($value, PASSWORD_DEFAULT);
+    if ($value == trim_input($_POST['verifmdp'])){
         modifProfil($db, $table, 'password', $password, $_POST['id']);
     } else {
-        echo "<script>alert(\"Le mot de passe ne correspond pas\")</script>";
+        setcookie("modifError", "mdp");
         $erreur = true;
     }
     return $erreur;
 }
 
-function email(PDO $db, $table){
+function email(PDO $db, $table, $value){
     $erreur = false;
-    if (trim_input($_POST['email']) == trim_input($_POST['verifmdp'])){
-        modifProfil($db, $table, 'email', trim_input($_POST['email']), $_POST['id']);
-        $_SESSION["user_email"] = trim_input($_POST['email']);
+    if ($value == trim_input($_POST['verifemail'])){
+        modifProfil($db, $table, 'email', $value, $_POST['id']);
+        if (!isset($_COOKIE["modifAdmin"])) {$_SESSION["user_email"] = $value;}
     } else {
-        echo "<script>alert(\"L'e-mail ne correspond pas\")</script>";
+        setcookie("modifError", "email");
         $erreur = true;
     }
     return $erreur;
 }
 
-function medecin(PDO $db, $table){
-    modifProfil($db, $table, 'manager', trim_input($_POST['medecin']), $_POST['id']);
-    $_SESSION["user_medecin"] = trim_input($_POST['medecin']);
+function medecin(PDO $db, $table, $value){
+    modifProfil($db, $table, 'manager', $value, $_POST['id']);
+    if (!isset($_COOKIE["modifAdmin"])) {$_SESSION["user_medecin"] = $value;}
 }
 
-function telephone(PDO $db, $table){
-    modifProfil($db, $table, 'phone', trim_input($_POST['telephone']), $_POST['id']);
-    $_SESSION["user_tel"] = trim_input($_POST['telephone']);
+function telephone(PDO $db, $table, $value){
+    modifProfil($db, $table, 'phone', $value, $_POST['id']);
+    if (!isset($_COOKIE["modifAdmin"])) {$_SESSION["user_tel"] = $value;}
 }
 
-function adresse(PDO $db, $table){
-    modifProfil($db, $table, 'work_address', trim_input($_POST['adresse']), $_POST['id']);
-    $_SESSION["user_adresse"] = trim_input($_POST['adresse']);
-}
-
-function checkbox(PDO $db, $table){
-    $ack_share = '0';
-    $_SESSION["user_share"] = FALSE;
-    if (isset($_POST["checkbox"])) {
-        $ack_share = '1';
-        $_SESSION["user_share"] = TRUE;
-    }
-    modifProfil($db, $table, 'ack_share', $ack_share, $_SESSION['user_id']);
+function adresse(PDO $db, $table, $value){
+    modifProfil($db, $table, 'work_address', $value, $_POST['id']);
+    if (!isset($_COOKIE["modifAdmin"])) {$_SESSION["user_adresse"] = $value;}
 }

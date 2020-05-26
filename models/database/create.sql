@@ -53,7 +53,6 @@ CREATE TABLE `user` (
   `password` text NOT NULL,
   `manager` int,
   `phone` varchar(12) DEFAULT NULL,
-  `ack_share` boolean NOT NULL DEFAULT TRUE,
   PRIMARY KEY (`nss`),
   KEY `manager` (`manager`),
   CONSTRAINT `user_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`)
