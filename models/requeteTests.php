@@ -39,3 +39,34 @@ function saveTests(PDO $db, $exam, $tests) {
         }
     }
 }
+
+function utilisateurTest(PDO $db){
+    $test="SELECT  type,result from test where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result!=NULL";
+    $prepare = $db->prepare($test);
+    $prepare->execute();
+    return $prepare->fetchAll();
+}
+
+function utilisateurTest2(PDO $db){
+    $test="SELECT  type, result, exam from test where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result!=NULL"  ;
+    $prepare = $db->prepare($test);
+    $prepare->execute();
+    return $prepare->fetchAll();
+}
+
+function nbExam(PDO $db){
+    $nb = "SELECT count(DISTINCT exam.id) from test  where ((test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result!=NULL order by exam.id";
+    $prepare = $db->prepare($nb);
+    $prepare->execute();
+    return $prepare->fetchAll();
+}
+
+function graphesChoix(PDO $db,$type){
+    $nb = "SELECT type,result from test  where ((test.type ==$type ) && (test.exam==exam.id) && (exam.user==" .$_SESSION['user_id'] .")) && result!=NULL order by exam.id";
+    $prepare = $db->prepare($nb);
+    $prepare->execute();
+    return $prepare->fetchAll();
+
+}
+
+

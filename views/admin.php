@@ -11,7 +11,9 @@ if (isset($_COOKIE["modifState"])) {
         <meta charset="UTF-8">
         <!-- JS -->
         <script src="js/admin.js"></script>
-        <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script type="text/javascript" src="RGraph/libraries/RGraph.common.core.js" ></script>
+        <script type="text/javascript" src="RGraph/libraries/RGraph.common.key.js"></script>
+        <script type="text/javascript" src="RGraph/libraries/RGraph.hbar.js" ></script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/header-footer.css"/>
@@ -50,7 +52,7 @@ if (isset($_COOKIE["modifState"])) {
                                 <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2 id='nbUtilisateur'><?php echo nombreTestsRealises($db)?></h2></div>
                             </div>
                             <div class="statistiques"><h3>Statistiques</h3>
-                                <canvas id="graphStats" width="400" height="90"> </canvas>
+                                <canvas id="graphStats" width="1300" height="300"> </canvas>
                             </div>
                         </div>
                     </div>
@@ -113,7 +115,33 @@ if (isset($_COOKIE["modifState"])) {
             </section>
         </main>
     </body>
-    <script LANGUAGE='JavaScript'>
-        graphe();
-    </script>
 </html>
+<?php 
+$datas='[';
+$labels='[';
+for ($i=0; $i<5; $i++){
+    if (testInfo($db)[$i]['type']!=NULL){
+        $datas.="'" .testInfo($db)[$i]['nb'] ."'";
+        if (testInfo($db)[$i]['type']=='freq'){
+            $labels.="'Fréquence cardiaque'";
+        }elseif (testInfo($db)[$i]['type']=='temp'){
+            $labels.="'Température'";
+        }elseif (testInfo($db)[$i]['type']=='tone'){
+            $labels.="'Reconnaissance de tonalités'";
+        }elseif (testInfo($db)[$i]['type']=='stim'){
+            $labels.="'Réaction à des stimuli visuels'";
+        }elseif (testInfo($db)[$i]['type']=='colo'){
+            $labels.="'Mémorisation de couleurs'";
+        }
+        if ($i!=4){
+            $datas.=",";
+            $labels.=",";
+        }
+    }
+}
+$datas.="]";
+$labels.="]";
+?>
+<script LANGUAGE='JavaScript'>
+    graphe(<?php echo $datas; ?>,<?php echo $labels; ?>);
+</script>

@@ -16,6 +16,9 @@ if (isset($_COOKIE["modifState"])) {
     setcookie("modifState");
 	echo "<script>alert('Vos modifications ont bien été enregistrées.')</script>";
 }
+if (!isset($_GET['choix'])){
+	htmlspecialchars($_GET['choix']=0);
+}
 ?><!DOCTYPE html>
 <html>
 
@@ -23,7 +26,11 @@ if (isset($_COOKIE["modifState"])) {
     <meta charset="UTF-8" />
     <!-- JS -->
     <script src="js/profil.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+    <script type="text/javascript" src="RGraph/RGraph.common.core.js"></script>
+    <script type="text/javascript" src="RGraph/RGraph.common.dynamic.js"></script>
+    <script type="text/javascript" src="RGraph/RGraph.bar.js"></script>
+    <script type="text/javascript" src="RGraph/RGraph.line.js"></script>
+    <script type="text/javascript" src="RGraph/RGraph.common.key.js"></script>
 
     <!-- CSS -->
     <link href="css/profil.css" rel="stylesheet" type="text/css">
@@ -70,7 +77,8 @@ if (isset($_COOKIE["modifState"])) {
                 ?></div>
             </td>
             <td class="resultatDernierTest">
-                <canvas id="resultatDernierTestGraph"> </canvas>
+                <canvas id="resultatDernierTestGraph" width="800" height="300"> </canvas>
+
                 <?php if (sizeof($tests) > 0) {
                     echo "<form method='POST' action='".htmlspecialchars($_SERVER["PHP_SELF"])."'>",
                         "<header>Effectuer un test</header>",
@@ -89,28 +97,167 @@ if (isset($_COOKIE["modifState"])) {
         <tr>
             <td class="titre"> Résultats des tests </td>
             <td class="choix">
-                <select id="choix" size="1" onchange="resultatTest()">
-                    <option value="0" selected> Tout les test </option>
-                    <option value="1"> Test 1 </option>
-                    <option value="2"> Test 2 </option>
-                    <option value="3"> Test 3 </option>
-                    <option value="4"> Test 4 </option>
-                    <option value="5"> Test 5 </option>
+            <form method ="GET" action="utilisateur.php" class="graphe">
+                <select id="choix" size="1" name="choix">
+                    <option value="0"> Tout les test </option>
+                    <option value="1"> Fréquence </option>
+                    <option value="2"> Température </option>
+                    <option value="3"> Tonalités</option>
+                    <option value="4"> Stimuli </option>
+                    <option value="5"> Simon </option>
                 </select>
+                <input type="submit" value="voir graphe">
+                </form>
             </td>
         </tr>
         <tr>
             <td colspan="2" class="test">
-                <canvas id="resultatTestGraph" width="400" height="180"></canvas>
+                <canvas id="resultatTestGraph" width="1300" height="500"></canvas>
             </td>
         </tr>
     </table>
-
     <?php require "_footer.html"; ?>
 </body>
-<script type='text/javascript'>
-    dernierTest();
-    resultatTest();
+</html>
+<?php
+$sfreq=0;
+$stemp=0;
+$stone=0;
+$sstim=0;
+$scolo=0;
+
+for ($i=0; $i<count(utilisateurTest($db)); $i++){
+    if (utilisateurTest($db)[$i]['type']=='freq'){
+        $sfreq = utilisateurTest($db)[$i]['result'];
+    }elseif (utilisateurTest($db)[$i]['type']=='temp'){
+        $stemp = utilisateurTest($db)[$i]['result'];
+    }elseif (utilisateurTest($db)[$i]['type']=='tone'){
+        $stone = utilisateurTest($db)[$i]['result'];
+    }elseif (utilisateurTest($db)[$i]['type']=='stim'){
+        $sstim= utilisateurTest($db)[$i]['result'];
+    }elseif (utilisateurTest($db)['type']=='colo'){
+        $scolo = utilisateurTest($db)[$i]['result'];
+    }
+}
+$datas="[" .$sfreq ."," .$stemp ."," .$stone ."," .$sstim ."," .$scolo ."]";
+$labels="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
+
+$choix=$_GET['choix'];
+$lfreq='[';
+$ltemp='[';
+$ltone='[';
+$lstim='[';
+$lcolo='[';
+$label='[';
+$data='[';
+$key='';
+if ($choix==0){
+    if (count(nbExam($db))==0){
+        $data.="[0]";
+        $label.="'Aucun test a été réalisé'";
+    }else {
+        for ($i=0; $i<count(nbExam($db)); $i++){
+            $Exam[$i]= '[';
+            for ($j=0; $j<count(utilisateurTest2($db));$j++){
+                $lfreqExam = 0;
+                $ltempExam = 0;
+                $ltoneExam = 0;
+                $lstimExam = 0;
+                $lcoloEXam = 0;
+                if ($j==0){
+                    if (utilisateurTest($db)[$i]['type']=='freq'){
+                        $lfreqExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)[$i]['type']=='temp'){
+                        $ltempExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)[$i]['type']=='tone'){
+                        $ltoneExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)[$i]['type']=='stim'){
+                        $lstimExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)['type']=='colo'){
+                        $lcoloEXam = utilisateurTest2($db)[$i]['result'];
+                    }
+                }elseif(utilisateurTest2($db)[$j]['exam.id']==utilisateurTest2($db)[$j-1]['exam.id']){
+                    if (utilisateurTest2($db)[$i]['type']=='freq'){
+                        $lfreqExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)[$i]['type']=='temp'){
+                        $ltempExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)[$i]['type']=='tone'){
+                        $ltoneExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest($db)[$i]['type']=='stim'){
+                        $lstimExam = utilisateurTest2($db)[$i]['result'];
+                    }elseif (utilisateurTest2($db)['type']=='colo'){
+                        $lcoloEXam = utilisateurTest2($db)[$i]['result'];
+                    }
+                }
+            }
+            $lfreq.=$lfreqExam;
+            $ltemp.=$ltempExam;
+            $ltone.=$ltoneExam;
+            $lstim.=$lstimExam;
+            $lcolo.=$lcoloExam;
+            $Exam[$i]= "[".$lfreqExam ."," .$ltempExam ."," .$ltoneExam ."," .$lstimExam ."," .$lcoloExam ."]";
+            $key="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
+            $data.=$Exam[$i];
+            $label .= "Exam.strval( $i+1)";;
+
+            if ($i<(count(nbExam($db)-1))){
+                $lfreq.=",";
+                $ltemp.=",";
+                $ltone.=",";
+                $lstim.=",";
+                $lcolo.=",";
+            }
+        }
+        $lfreq.="]";
+        $ltemp.="]";
+        $ltone.="]";
+        $lstim.="]";
+        $lcolo.="]";
+        if ($i<(count(nbExam($db)-1))){
+            $label.=",";
+            $data.=",";
+        }
+    }
+    $label.="]";
+    $data.="]";
+}else{
+    $data = "[";
+    if ($choix==1){
+        $nom='freq';
+    }else if ($choix==2){
+        $nom='temp';
+    }else if ($choix==3){
+        $nom='tone';
+    }else if ($choix==4){
+        $nom='stim';
+    }else if ($choix==5){
+        $nom='colo';
+    }
+    if (count(graphesChoix($db,$nom))==0){
+        $data .= 0;
+        $label .= 0;
+    }else{
+        for ($i=0;$i<count(graphesChoix($db,$nom));$i++){
+            $data .= graphesChoix($db,$nom)[$i]['result'].",";
+            $label .= "Test.strval( $i+1)";
+        }
+    }
+    $data.="]";
+    $label.="]";
+}
+ ?>   
+
+<script LANGUAGE='JavaScript'>
+    dernierTest(<?php echo $datas; ?>,<?php echo $labels; ?>);
+    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>);
+    let value=/(?:^\?|&)choix=(\d+)/.exec(window.location.search);
+	if (value!==null){
+		document.querySelector('form.graphe select').selectedIndex = value[1];
+	}
 </script>
 
-</html>
+
+
+
+
+

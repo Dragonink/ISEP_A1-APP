@@ -291,3 +291,10 @@ function validerRequete(PDO $db, int $id, $origine){
     $prepare = $db->prepare($valider);
     $prepare->execute();
 }
+
+function testInfo(PDO $db){
+    $test = "SELECT count(*) as nb,type from test where type='freq' union all SELECT count(*) as nb,type from test where type='temp' union all SELECT count(*) as nb,type from test where type='tona' union all SELECT count(*) as nb,type from test where type='stim' union all SELECT count(*) as nb,type from test where type='colo'" ;
+    $prepare = $db->prepare($test);
+    $prepare->execute();
+    return $prepare->fetchAll();
+}
