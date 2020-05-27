@@ -33,14 +33,14 @@ function infoPatientRecherche(PDO $db, $id, $value, $recherche) {
 } 
 
 function nbTestReal(PDO $db){
-    $test = "SELECT count(type) as nb,type from test join exam on test.exam=exam.id join console on exam.console=console.id where console.manager=" .$_SESSION['user_id'] ." and result IS NOT NULL groub by type";
+    $test = "SELECT count(type) as nb, type from test join exam on test.exam=exam.id join user on exam.user=user.nss where user.manager=" .$_SESSION['user_id'] ." and result IS NOT NULL group by type";
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();
 }
 
 function resulTest(PDO $db, $nom){
-    $test ="SELECT result, user.first_name as prenom, user.last_name as nom from test join exam on test.exam=exam.id join console on exam.console=console.id where type='" .$nom ."' console.manager=" .$_SESSION['user_id'] ." and user.manager=" .$_SESSION['user_id'] ." and result IS NOT NULL";
+    $test ="SELECT result, user.first_name as prenom, user.last_name as nom from test join exam on test.exam=exam.id join user on exam.user=user.nss where type='" .$nom ."' and user.manager=" .$_SESSION['user_id'] ." and result IS NOT NULL";
     $prepare = $db->prepare($test);
     $prepare->execute();
     return $prepare->fetchAll();
@@ -48,9 +48,9 @@ function resulTest(PDO $db, $nom){
 
 function nbTestRealSpec(PDO $db,$choix,$j){
     if ($choix == 1){
-        $test = "SELECT count(type) as nb,type from test join exam on test.exam=exam.id join console on exam.console=console.id join user on exam.user=user.nss where console.manager=" .$_SESSION['user_id'] ." and result IS NOT NULL and user.manager=" .$_SESSION['user_id'] ." and user.nss like '".$j."%' ";
+        $test = "SELECT count(type) as nb,type from test join exam on test.exam=exam.id join user on exam.user=user.nss where result IS NOT NULL and user.manager=" .$_SESSION['user_id'] ." and user.nss like '".$j."%' group by type ";
     } elseif ($choix == 2){
-        $test = "SELECT count(type) as nb,type from test join exam on test.exam=exam.id join console on exam.console=console.id join user on exam.user=user.nss where console.manager=" .$_SESSION['user_id'] ." and result IS NOT NULL and user.manager=" .$_SESSION['user_id'] ." and user.nss like '_".$j."%'";
+        $test = "SELECT count(type) as nb,type from test join exam on test.exam=exam.id join user on exam.user=user.nss where result IS NOT NULL and user.manager=" .$_SESSION['user_id'] ." and user.nss like '_".$j."%'  group by type ";
     }
     $prepare = $db->prepare($test);
     $prepare->execute();
@@ -59,9 +59,9 @@ function nbTestRealSpec(PDO $db,$choix,$j){
 
 function mTestRealSpec( PDO $db,$choix,$nom,$j){
     if ($choix == 1){
-        $test = "SELECT result from test join exam on test.exam=exam.id join console on exam.console=console.id join user on exam.user=user.nss where type='" .$nom ."' and console.manager=" .$_SESSION['user_id'] ." and result IS NOT NULL and user.manager=" .$_SESSION['user_id'] ." and user.id like '".$j."%'";
+        $test = "SELECT result from test join exam on test.exam=exam.id join user on exam.user=user.nss where type='" .$nom ."' and result IS NOT NULL and user.manager=" .$_SESSION['user_id'] ." and user.nss like '".$j."%'";
     } elseif ($choix == 2){
-        $test = "SELECT result from test join exam on test.exam=exam.id join console on exam.console=console.id join user on exam.user=user.nss where type='" .$nom ."' and console.manager=" .$_SESSION['user_id'] ." and result IS NOT NULL and user.manager=" .$_SESSION['user_id'] ." and user.id like '_".$j."%'";
+        $test = "SELECT result from test join exam on test.exam=exam.id join user on exam.user=user.nss where type='" .$nom ."' and result IS NOT NULL and user.manager=" .$_SESSION['user_id'] ." and user.nss like '_".$j."%'";
     }
     $prepare = $db->prepare($test);
     $prepare->execute();

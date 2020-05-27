@@ -79,6 +79,7 @@ function graphe(critere, type, datas, labels, keys) {
                     marginLeft: 25,
                     marginInner: 10,
                     marginInnerGrouped: 1,
+                    colors: ['#18375e'],
                 }
             }).draw();
         }
@@ -115,7 +116,8 @@ function graphe(critere, type, datas, labels, keys) {
                     marginInner: 10,
                     marginInnerGrouped: 1,
                     xaxisLabelsOffsety: 10,
-                    xaxisLabelsAngle: 25
+                    xaxisLabelsAngle: 25,
+                    colors: ['#18375e'],
                 }
             }).draw();
         }

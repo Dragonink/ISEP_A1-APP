@@ -140,41 +140,51 @@ for ($i=0; $i<count($utilisateurTest); $i++){
     }
 }
 $datas="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
-$labels="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
+$labels="['Fréquence(" .$sfreq .")','Température(" .$stemp .")', 'Tonalités(" .$stona .")', 'Stimuli(" .$sstim .")', 'Simon(" .$scolo .")']";
 
 $choix=$_GET['choix'];
 $label='[';
 $key='';
-$nbExam=count(nbExam($db)[0]);
+$nbExam=nbExam($db)[0][0];
 $utilisateurTest2=utilisateurTest2($db);
 if ($nbExam==0){
     $data.="[0]";
     $label.="'Aucun test a été réalisé'";
 }else {
     $var=0;
+    $num=0;
+    $num1=0;
     for ($i=0; $i<$nbExam; $i++){
         $lfreq[$i]=0;
         $ltemp[$i]=0;
         $ltona[$i]=0;
         $lstim[$i]=0;
         $lcolo[$i]=0;
-        for ($j=$var; $j<count($utilisateurTest2);$j++){
-            if (($j==$var) || ($utilisateurTest2[$j]['exam']==$utilisateurTest2[$j-1]['exam'])){
+        for ($j=$num; $j<count($utilisateurTest2);$j++){
+            if ((($j==$num) || ($utilisateurTest2[$j]['exam']==$var)) && $utilisateurTest2[$j]!=null){
                 if ($utilisateurTest2[$j]['type']=='freq'){
                     $lfreq[$i] = $utilisateurTest2[$j]['result'];
                 }elseif ($utilisateurTest2[$j]['type']=='temp'){
                     $ltemp[$i] = $utilisateurTest2[$j]['result'];
+                    $var=$utilisateurTest2[$j]['exam'];
+                    $utilisateurTest2[$j]=null;
                 }elseif ($utilisateurTest2[$j]['type']=='tona'){
                     $ltona[$i] = $utilisateurTest2[$j]['result'];
+                    $var=$utilisateurTest2[$j]['exam'];
+                    $utilisateurTest2[$j]=null;
                 }elseif ($utilisateurTest2[$j]['type']=='stim'){
                     $lstim[$i] = $utilisateurTest2[$j]['result'];
+                    $var=$utilisateurTest2[$j]['exam'];
+                    $utilisateurTest2[$j]=null;
                 }elseif ($utilisateurTest[$j]['type']=='colo'){
                     $lcolo[$i] = $utilisateurTest2[$j]['result'];
+                    $var=$utilisateurTest2[$j]['exam'];
+                    $utilisateurTest2[$j]=null;
                 }
-            } else {
-                $var=$j;
-            }
+                $num1=$j+1;
+            } 
         }
+        $num=$num1;
         $nb=$i+1;
         $label .= "'Exam " .$nb ."'";
         if ($i<($nbExam-1)){
@@ -183,12 +193,12 @@ if ($nbExam==0){
     }
 }
 if ($choix==0){
-    $key="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
     $data[0]="[" .implode(',',$lfreq) ."]";
     $data[1]="[" .implode(',',$ltemp) ."]";
     $data[2]="[" .implode(',',$ltona) ."]";
     $data[3]="[" .implode(',',$lstim) ."]";
     $data[4]="[" .implode(',',$lcolo) ."]";
+    $key="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
     $data="[" .implode(',',$data) ."]";
 }else{
     if ($choix==1){
