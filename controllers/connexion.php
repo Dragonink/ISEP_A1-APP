@@ -9,6 +9,7 @@ $account = trim_input($_POST["account"]);
 $passwd = trim_input($_POST["password"]);
 
 function invalid_passwd() {
+    setcookie ("invalidpass, true");
     header("Location: connexion.php", true, 303);
     exit;
 }

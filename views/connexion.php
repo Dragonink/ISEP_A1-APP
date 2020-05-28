@@ -3,6 +3,9 @@
 		$recup_mail=$_POST['email'];
 		require "../controllers/forget.php";
 	} elseif ($_SERVER["REQUEST_METHOD"] === "POST" ) require "../controllers/connexion.php";
+	if (isset($_COOKIE['setcookie'])){
+		echo "<script>alert(\"Mot de passe invalide\")</script>";
+	}
 ?><!DOCTYPE html>
 <html>
 
