@@ -145,6 +145,7 @@ if (isset($_COOKIE["modifState"])) {
 	$keys="[";
 	$datas="[";
 	$labels="[";
+	$unit="";
 	if ($_GET['criteres']==0){
 		if ($_GET['typedetest']==0){
 			$nb=nbTestReal($db);
@@ -175,14 +176,19 @@ if (isset($_COOKIE["modifState"])) {
 		} else {
 			if ($_GET['typedetest']==1){
 				$nom="freq";
+				$unit="'bpm'";
 			}elseif ($_GET['typedetest']==2){
 				$nom="temp";
+				$unit="'°C'";
 			}elseif ($_GET['typedetest']==3){
 				$nom="tona";
+				$unit="'Hz'";
 			}elseif ($_GET['typedetest']==4){
 				$nom="stim";
+				$unit="'s'";
 			}elseif ($_GET['typedetest']==5){
 				$nom="colo";
+				$unit="'/20'";
 			}
 			$resulTest=resulTest($db, $nom);
 			if (count($resulTest)==0){
@@ -373,7 +379,7 @@ if (isset($_COOKIE["modifState"])) {
 	$labels.="]";
 ?>
 <script>
-	graphe(<?php echo $_GET['criteres']?>, <?php echo $_GET['typedetest'] ?>, <?php echo $datas?>, <?php echo $labels ?>, <?php echo $keys ?>);
+	graphe(<?php echo $_GET['criteres']?>, <?php echo $_GET['typedetest'] ?>, <?php echo $datas?>, <?php echo $labels ?>, <?php echo $keys ?>, <?php echo $unit ?>);
 	let value=/(?:^\?|&)tri=(\d+)/.exec(window.location.search);
 	if (value!==null){
 		document.querySelector('form.recherche select').selectedIndex = value[1];

@@ -30,7 +30,9 @@ if (!isset($_GET['choix'])){
     <script type="text/javascript" src="RGraph/RGraph.common.dynamic.js"></script>
     <script type="text/javascript" src="RGraph/RGraph.bar.js"></script>
     <script type="text/javascript" src="RGraph/RGraph.line.js"></script>
+    <script type="text/javascript" src="RGraph/RGraph.common.tooltips.js"></script>
     <script type="text/javascript" src="RGraph/RGraph.common.key.js"></script>
+    <script type="text/javascript" src="RGraph/RGraph.drawing.yaxis.js"></script>
 
     <!-- CSS -->
     <link href="css/profil.css" rel="stylesheet" type="text/css">
@@ -139,12 +141,15 @@ for ($i=0; $i<count($utilisateurTest); $i++){
         $scolo = $utilisateurTest[$i]['result'];
     }
 }
-$datas="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
-$labels="['Fréquence(" .$sfreq .")','Température(" .$stemp .")', 'Tonalités(" .$stona .")', 'Stimuli(" .$sstim .")', 'Simon(" .$scolo .")']";
+$max1=max($sfreq,$stona) + 100;
+$max2=max($stemp,$sstim,$scolo) + 10;
+$value="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
+$datas="[" .$sfreq/$max1 ."," .$stemp/$max2 ."," .$stona/$max1 ."," .$sstim/$max2 ."," .$scolo/$max2 ."]";
+$labels="['Fréquence(bpm)','Température(°C)', 'Tonalité(Hz)', 'Stimuli(s)', 'Simon(/20)']";
 
 $choix=$_GET['choix'];
 $label='[';
-$key='';
+$key="''";
 $nbExam=nbExam($db)[0][0];
 $utilisateurTest2=utilisateurTest2($db);
 if ($nbExam==0){
@@ -186,44 +191,59 @@ if ($nbExam==0){
         }
         $num=$num1;
         $nb=$i+1;
-        $label .= "'Exam " .$nb ."'";
+        $label .= "'Examen n°" .$nb ."'";
         if ($i<($nbExam-1)){
             $label.=",";
         }
     }
 }
 if ($choix==0){
+    $max1=max(max($lfreq),max($ltona)) + 100;
+    $max2=max(max($ltemp),max($lstim),max($lcolo)) + 10;
+    for ($div=0;$div<count($lfreq);$div++){
+        $lfreq[$div]=$lfreq[$div]/$max1;
+        $ltemp[$div]=$ltemp[$div]/$max2;
+        $ltona[$div]=$ltona[$div]/$max1;
+        $lstim[$div]=$lstim[$div]/$max2;
+        $lcolo[$div]=$lcolo[$div]/$max2;
+    }
     $data[0]="[" .implode(',',$lfreq) ."]";
     $data[1]="[" .implode(',',$ltemp) ."]";
     $data[2]="[" .implode(',',$ltona) ."]";
     $data[3]="[" .implode(',',$lstim) ."]";
     $data[4]="[" .implode(',',$lcolo) ."]";
-    $key="['Fréquence','Température', 'Tonalités', 'Stimuli' , 'Simon' ]";
+    $key="['Fréquence(bpm)','Température(°C)', 'Tonalité(Hz)', 'Stimuli(s)', 'Simon(/20)']";
     $data="[" .implode(',',$data) ."]";
+    $unit="['bpm','°C', 'Hz', 's', '/20']";
 }else{
     if ($choix==1){
         $data="[" .implode(',',$lfreq) ."]";
+        $unit="'bpm'";
     }else if ($choix==2){
         $data="[" .implode(',',$ltemp) ."]";
+        $unit="'°C'";
     }else if ($choix==3){
         $data="[" .implode(',',$ltona) ."]";
+        $unit="'Hz'";
     }else if ($choix==4){
         $data="[" .implode(',',$lstim) ."]";
+        $unit="'s'";
     }else if ($choix==5){
         $data="[" .implode(',',$lcolo) ."]";
+        $unit="'/20'";
     }
 }
 $label.="]";
 ?>   
-</html>
 <script LANGUAGE='JavaScript'>
-    dernierTest(<?php echo $datas; ?>,<?php echo $labels; ?>);
-    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>);
+    dernierTest(<?php echo $datas; ?>,<?php echo $labels; ?>, <?php echo $max1; ?>, <?php echo $max2; ?>);
+    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>,<?php echo $unit; ?>,<?php echo $max1; ?>, <?php echo $max2; ?>);
     let value=/(?:^\?|&)choix=(\d+)/.exec(window.location.search);
 	if (value!==null){
 		document.querySelector('form.graphe select').selectedIndex = value[1];
 	}
 </script>
+</html>
 
 
 
