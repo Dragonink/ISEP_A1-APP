@@ -1,14 +1,14 @@
-function PHPCall(url){
+function PHPCall(url) {
     var request;
-    if (window.XMLHttpRequest){
-        request = new XMLHttpRequest();         
+    if (window.XMLHttpRequest) {
+        request = new XMLHttpRequest();
     } else if (window.ActiveXObject) {
         request = new ActiveXObject("Msxml2.XMLHTTP");
-        if (!request){
+        if (!request) {
             request = new ActiveXObject("Microsoft.XMLHTTP");
         }
     }
-    if (request){
+    if (request) {
         try {
             var tmpURL = url;
             request.open("post", tmpURL, false);
@@ -24,8 +24,8 @@ function PHPCall(url){
 function openChapitre(number) {
     var i, chapitre, choix;
     choix = document.getElementsByClassName("choix");
-    for (i=0; i<choix.length;i++) {
-        choix[i].style.display="none";
+    for (i = 0; i < choix.length; i++) {
+        choix[i].style.display = "none";
     }
     chapitre = document.getElementsByClassName("chapitre");
     for (i = 0; i < chapitre.length; i++) {
@@ -35,65 +35,65 @@ function openChapitre(number) {
     chapitre[number].className += " actif";
 }
 function openReponse(number) {
-    document.getElementsByClassName("affichageQuestion")[number-1].style.display="none";
-    document.getElementsByClassName("affichageQuestionReponse")[number-1].style.display="block";
-    document.getElementsByClassName("affichageModifier")[number-1].style.display="none";
+    document.getElementsByClassName("affichageQuestion")[number - 1].style.display = "none";
+    document.getElementsByClassName("affichageQuestionReponse")[number - 1].style.display = "block";
+    document.getElementsByClassName("affichageModifier")[number - 1].style.display = "none";
 }
 
 function openModification(number) {
-    document.getElementsByClassName("affichageQuestion")[number-1].style.display="none";
-    document.getElementsByClassName("affichageQuestionReponse")[number-1].style.display="none";
-    document.getElementsByClassName("affichageModifier")[number-1].style.display="block";
+    document.getElementsByClassName("affichageQuestion")[number - 1].style.display = "none";
+    document.getElementsByClassName("affichageQuestionReponse")[number - 1].style.display = "none";
+    document.getElementsByClassName("affichageModifier")[number - 1].style.display = "block";
 }
 
 function closeReponse(number) {
-    document.getElementsByClassName("affichageQuestion")[number-1].style.display="block";
-    document.getElementsByClassName("affichageQuestionReponse")[number-1].style.display="none";
-    document.getElementsByClassName("affichageModifier")[number-1].style.display="none";
+    document.getElementsByClassName("affichageQuestion")[number - 1].style.display = "block";
+    document.getElementsByClassName("affichageQuestionReponse")[number - 1].style.display = "none";
+    document.getElementsByClassName("affichageModifier")[number - 1].style.display = "none";
 }
 
 function openAddDispositif() {
-    document.getElementsByClassName("buttonAddDispositif")[0].style.display="none";
-    document.getElementsByClassName("addDispositif")[0].style.display="block";
+    document.getElementsByClassName("buttonAddDispositif")[0].style.display = "none";
+    document.getElementsByClassName("addDispositif")[0].style.display = "block";
 }
 
 function validateAddDispositif(value, recherche) {
-    var code=document.getElementById('addCode').value;
-    var manager=document.getElementById('addDispositif').value;
-    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=addDispositif&value=" + value + "&recherche" + recherche + "&code=" + code +"&manager=" + manager);
+    var code = document.getElementById('addCode').value;
+    var manager = document.getElementById('addDispositif').value;
+    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=addDispositif&value=" + value + "&recherche" + recherche + "&code=" + code + "&manager=" + manager);
     closeAddDispositif();
 }
 
 function closeAddDispositif() {
-    document.getElementsByClassName("buttonAddDispositif")[0].style.display="block";
-    document.getElementById("addCode").value="";
-    document.getElementsByClassName("addDispositif")[0].style.display="none";
+    document.getElementsByClassName("buttonAddDispositif")[0].style.display = "block";
+    document.getElementById("addCode").value = "";
+    document.getElementsByClassName("addDispositif")[0].style.display = "none";
 }
 
-function supDispositif(id, value, recherche){
-    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=supDispositif&value=" + value + "&recherche" + recherche + "&id=" + id );
+function supDispositif(id, value, recherche) {
+    document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=supDispositif&value=" + value + "&recherche" + recherche + "&id=" + id);
 }
 
-function rechercheDispositif(){
-    var value=document.getElementById('selectDispositif').value;
-    var recherche=document.getElementById('admin-search-dispositif').value;
+function rechercheDispositif() {
+    var value = document.getElementById('selectDispositif').value;
+    var recherche = document.getElementById('admin-search-dispositif').value;
     document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=dispositif&value=" + value + "&recherche=" + recherche);
 }
 
 
 function openRequetes() {
-    document.getElementsByClassName("requetes")[0].style.display="block";
+    document.getElementsByClassName("requetes")[0].style.display = "block";
 }
 
 function supUtilisateur(id, origine) {
-    document.getElementById("listeInfoUtilisateur").inerrHTML = PHPCall("/adminRefresh.php?fonction=supUtilisateur&id=" + id +"&origine=" + origine);
+    document.getElementById("listeInfoUtilisateur").inerrHTML = PHPCall("/adminRefresh.php?fonction=supUtilisateur&id=" + id + "&origine=" + origine);
     document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
     document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
 }
 
 function rechercheUtilisateur() {
-    var value=document.getElementById('selectUtilisateur').value;
-    var recherche=document.getElementById('admin-search-utilisateur').value;
+    var value = document.getElementById('selectUtilisateur').value;
+    var recherche = document.getElementById('admin-search-utilisateur').value;
     document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=utilisateur&value=" + value + "&recherche=" + recherche);
 }
 
@@ -108,7 +108,7 @@ function openRequete(number) {
 }
 
 function closeRequetes() {
-    document.getElementsByClassName("requetes")[0].style.display="none";
+    document.getElementsByClassName("requetes")[0].style.display = "none";
 }
 
 function ajouterQuestion() {
@@ -120,29 +120,29 @@ function supQuestion(id) {
 }
 
 function modifQuestion(id, number, admin) {
-    var question=document.getElementsByClassName('question')[number-1].value;
-    var answer=document.getElementsByClassName('answer')[number-1].value;
-    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=modifQuestion&id=" + id +"&question=" + question + "&answer=" + answer +"&admin=" + admin);
+    var question = document.getElementsByClassName('question')[number - 1].value;
+    var answer = document.getElementsByClassName('answer')[number - 1].value;
+    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=modifQuestion&id=" + id + "&question=" + question + "&answer=" + answer + "&admin=" + admin);
 }
 
 function closeAddQuestion() {
     document.getElementById("questionSup").innerHTML = "";
 }
 
-function rejeter(page, value, recherche, id, origine){
-    if (page=='requete'){
+function rejeter(page, value, recherche, id, origine) {
+    if (page == 'requete') {
         document.getElementById("requete").innerHTML = PHPCall("/adminRefresh.php?fonction=rejeter&page=" + page + "&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
         document.getElementById("nbRequete").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequete");
         document.getElementById("nbRequeteAdmin").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequeteAdmin");
         document.getElementById("nbRequeteManager").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequeteManager");
-    } else if (page=='utilisateur'){
+    } else if (page == 'utilisateur') {
         document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=rejeter&page=" + page + "&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
         document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
         document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
     }
 }
 
-function validerRequete(value, recherche, id, origine){
+function validerRequete(value, recherche, id, origine) {
     document.getElementById("requete").innerHTML = PHPCall("/adminRefresh.php?fonction=validerRequete&value=" + value + "&id=" + id + "&origine=" + origine);
     document.getElementById("nbRequete").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequete");
     document.getElementById("nbRequeteAdmin").innerHTML = PHPCall("/adminRefresh.php?fonction=nbRequeteAdmin");
@@ -152,29 +152,29 @@ function validerRequete(value, recherche, id, origine){
     document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
 }
 
-function bannir(value, recherche, id, origine){
+function bannir(value, recherche, id, origine) {
     document.getElementById("listeInfoUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=bannir&value=" + value + "&recherche=" + recherche + "&id=" + id + "&origine=" + origine);
     document.getElementById("nbUtilisateur").innerHTML = PHPCall("/adminRefresh.php?fonction=nbUtilisateur");
     document.getElementById("addDispositif").inerrHTML = PHPCall("/adminRefresh.php?fonction=listeManager");
 }
 
-function validAjoutQuestion(id){
-    var question=document.getElementById('newQuestion').value;
-    var answer=document.getElementById('newAnswer').value;
-    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=validAjoutQuestion&question=" + question + "&answer=" + answer +"&id=" + id);
+function validAjoutQuestion(id) {
+    var question = document.getElementById('newQuestion').value;
+    var answer = document.getElementById('newAnswer').value;
+    document.getElementsByClassName("listeQuestionsAdmin")[0].innerHTML = PHPCall("/adminRefresh.php?fonction=validAjoutQuestion&question=" + question + "&answer=" + answer + "&id=" + id);
 }
 
-function openPage(number, page){
+function openPage(number, page) {
     var i, affichage, page;
-    if (page=="dispositif") {
+    if (page == "dispositif") {
         affichage = document.getElementsByClassName("affichageResultatDispo");
         page = document.getElementsByClassName("pageDispo");
-    } else if (page=="utilisateur"){
+    } else if (page == "utilisateur") {
         affichage = document.getElementsByClassName("affichageResultatUtil");
         page = document.getElementsByClassName("pageUtil");
     }
-    for (i=0; i<affichage.length;i++) {
-        affichage[i].style.display="none";
+    for (i = 0; i < affichage.length; i++) {
+        affichage[i].style.display = "none";
     }
     for (i = 0; i < page.length; i++) {
         page[i].className = page[i].className.replace(" actif", "");
@@ -183,37 +183,14 @@ function openPage(number, page){
     page[number].className += " actif";
 }
 
-function graphe(){
-    let ctx= document.getElementById('graphStats').getContext('2d'); 
-    let chart = new Chart(ctx, {
-        type: 'horizontalBar',
-        data: {
-            labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
-            datasets: [{
-                label:'nombre de fois où le test a été réalisé',
-                backgroundColor: 'rgb(24, 55, 94, 0.86)',
-                borderColor: 'rgb(100, 162, 186)',
-                data: [10, 100, 507, 234, 267, ]
-            }]
-        },
-    });
-
-    var options = {
-        maintainAspectRatio: false,
-        responsive : false,
-        scales: {
-            yAxes: [{
-                stacked: true,
-                gridLines: {
-                    display: true,
-                    color: "white"
-                }
-            }],
-            xAxes: [{
-                gridLines: {
-                    display: false
-                }
-            }]
+function graphe(datas, labels) {
+    new RGraph.HBar({
+        id: 'graphStats',
+        data: datas,
+        options: {
+            yaxisLabels: labels,
+            marginLeft: 95,
+            colors: ['#18375e'],
         }
-    };
+    }).draw();
 }

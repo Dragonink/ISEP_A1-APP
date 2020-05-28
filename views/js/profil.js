@@ -5,173 +5,202 @@ function openExamen(userId, userFirst, userLast) {
     document.querySelector("div.examen div.personne div:first-of-type").textContent = userFirst;
     document.querySelector("div.examen div.personne div:last-of-type").textContent = userLast;
     document.getElementsByClassName("examen")[0].style.display = "block";
+    document.getElementsByClassName("resultatsTests")[0].style.display = "none";
 }
 
 function annulerExamen() {
     document.getElementsByClassName("examen")[0].style.display = "none";
+    document.getElementsByClassName("resultatsTests")[0].style.display = "block";
 }
 
-function dernierTest() {
-    let ctx = document.getElementById('resultatDernierTestGraph').getContext('2d');
-    let chart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Test 1', 'Test 2', 'Test 3', 'Test 4', 'Test 5'],
-            datasets: [{
-                label: 'Résultat lors du dernier test',
-                backgroundColor: color,
-                data: [20, 50, 75, 80, 10]
-            }]
-        },
+
+function dernierTest(datas,labels, max1, max2){
+    new RGraph.Bar({
+        id: 'resultatDernierTestGraph',
+        data: datas,
         options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
+            xaxisLabels:labels,
+            marginLeft: 35,
+            colors: ['#18375e'],
+            yaxisScale: false,
+            xaxis: false,
+            yaxis: false,
         }
-    });
+    }).draw();
+    new RGraph.Drawing.YAxis({
+        id: 'resultatDernierTestGraph',
+        x: 765,
+        options: {
+            textSize: 12,
+            yaxisScaleMax: max2,
+            yaxisPosition: 'right',
+            yaxisScaleUnitsPre: '',
+            yaxisColor: 'blue',
+        }
+    }).draw();
+    new RGraph.Drawing.YAxis({
+        id: 'resultatDernierTestGraph',
+        x: 35,
+        options: {
+            textSize: 12,
+            yaxisScaleMax: max1,
+            yaxisPosition: 'left',
+            yaxisScaleUnitsPre: ' ',
+            yaxisColor: 'red',
+        }
+    }).draw();
 }
 
-function resultatTest(select) {
-    var select = document.getElementById("choix").value;
-    let ctx = document.getElementById('resultatTestGraph').getContext('2d');
-    var color = ['red', 'yellow', 'green', 'blue', 'purple'];
-    var dateRealisation = [new Date(2020, 11, 01), new Date(2020, 11, 02), new Date(2020, 11, 03), new Date(2020, 11, 04), new Date(2020, 11, 07)];
-    if (select == '0') {
-        let chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dateRealisation,
-                datasets: [{
-                    label: 'Test 1',
-                    data: [20, 50, 75, 80, 10],
-                    backgroundColor: 'rgba(0, 0, 0, 0)',
-                    borderColor: color[0],
-                }, {
-                    label: 'Test 2',
-                    data: [30, 60, 65, 90, 0],
-                    backgroundColor: 'rgba(0, 0, 0, 0)',
-                    borderColor: color[1],
-                }, {
-                    label: 'Test 3',
-                    data: [30, 60, 65, 90, 0],
-                    backgroundColor: 'rgba(0, 0, 0, 0)',
-                    borderColor: color[2],
-                }, {
-                    label: 'Test 4',
-                    data: [30, 60, 65, 90, 0],
-                    backgroundColor: 'rgba(0, 0, 0, 0)',
-                    borderColor: color[3],
-                }, {
-                    label: 'Test 5',
-                    data: [30, 60, 65, 90, 0],
-                    backgroundColor: 'rgba(0, 0, 0, 0)',
-                    borderColor: color[4],
-                }],
-            },
-        });
-    } else {
-        let chart = new Chart(ctx, {
-            type: 'line',
-            data: {
-                labels: dateRealisation,
-                datasets: [{
-                    label: 'Test ' + select,
-                    data: [20, 50, 75, 80, 10],
-                    backgroundColor: 'rgba(0, 0, 0, 0)',
-                    borderColor: color[select - 1],
-                }]
-            },
+function resultatTest(choix, data, label, key, unit, max1, max2) {
+    if (choix == '0') {
+        new RGraph.Line({
+            id: 'resultatTestGraph',
+            data: data,
             options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-                }
+                xaxisLabels:label,
+                marginLeft: 35,
+                colors: color,
+                key: key,
+                yaxisScale: false,
+                xaxis: false,
+                yaxis: false,
             }
-        });
+        }).draw();
+        new RGraph.Drawing.YAxis({
+            id: 'resultatTestGraph',
+            x: 1265,
+            options: {
+                textSize: 12,
+                yaxisScaleMax: max2,
+                yaxisPosition: 'right',
+                yaxisScaleUnitsPre: '',
+                yaxisColor: 'blue',
+            }
+        }).draw();
+        new RGraph.Drawing.YAxis({
+            id: 'resultatTestGraph',
+            x: 35,
+            options: {
+                textSize: 12,
+                yaxisScaleMax: max1,
+                yaxisPosition: 'left',
+                yaxisScaleUnitsPre: ' ',
+                yaxisColor: 'red',
+            }
+        }).draw();
+    } else {
+        new RGraph.Bar({
+            id: 'resultatTestGraph',
+            data: data,
+            options: {
+                tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                tooltipsFormattedUnitsPost: unit,
+                tooltipsCss: {
+                    backgroundColor: 'white',
+                    border: '1px solid black'
+                },
+                shadow: false,
+                keyPositionGraphBoxed: false,
+                xaxisLabels:label,
+                marginLeft: 35,
+                colors: ['#18375e'],
+            }
+        }).draw();
     }
 }
 
-function graphe() {
-    var color = ['red', 'yellow', 'green', 'blue', 'purple'];
-    var ctx = document.getElementById('grapheResultat').getContext('2d');
-    var critere = document.getElementById('criteres').value;
-    var type = document.getElementById('type de test').value;
+function graphe(critere, type, datas, labels, keys, unit) {
     if (critere == '0') {
-        let chart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: [20, 40, 60, 80, 100],
-                    backgroundColor: color,
-                    label: 'Dataset 1'
-                }],
-                labels: color,
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+        if (type == '0'){
+            new RGraph.Pie({
+                id: 'grapheResultat',
+                data: datas,
+                options: {
+                    tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                    tooltipsCss: {
+                        backgroundColor: 'white',
+                        border: '1px solid black'
+                    },
+                    labels: labels,
+                    shadow: false,
+                    colors: color,
+                    keyPositionGraphBoxed: false,
+                }                
+            }).draw()
+        }else{
+            new RGraph.Bar({
+                id: 'grapheResultat',
+                data: datas,
+                options: {
+                    tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                    tooltipsFormattedUnitsPost: unit,
+                    tooltipsCss: {
+                        backgroundColor: 'white',
+                        border: '1px solid black'
+                    },
+                    shadow: false,
+                    keyPositionGraphBoxed: false,
+                    xaxisLabels:labels,
+                    marginLeft: 35,
+                    marginInner: 10,
+                    marginInnerGrouped: 1,
+                    colors: ['#18375e'],
                 }
-            }
-        });
-    } else if (critere == '1') {
-        let chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                datasets: [{
-                    data: [20, 40],
-                    backgroundColor: [color[0], color[1]],
-                    label: 'Dataset 1'
-                }],
-                labels: [
-                    'Red',
-                    'Orange',
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+            }).draw();
+        }
+    } else {
+        if (type == '0'){
+            new RGraph.Bar({
+                id: 'grapheResultat',
+                data: datas,
+                options: {
+                    tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                    tooltipsFormattedUnitsPost: unit,
+                    tooltipsCss: {
+                        backgroundColor: 'white',
+                        border: '1px solid black'
+                    },
+                    shadow: false,
+                    keyPositionGraphBoxed: false,
+                    key: keys,
+                    keyTextSize: 12,
+                    keyPosition: 'margin',
+                    backgroundGridVlines: false,
+                    backgroundGridBorder: false,
+                    shadow: false,
+                    xaxisLabels: labels,
+                    textSize:10,
+                    colorsStroke: 'rgba(0,0,0,0)',
+                    marginInner: 10,
+                    marginInnerGrouped: 1,
+                    yaxis: false,
+                    xaxisLabelsOffsety: 10,
+                    colors: color,
+                    xaxisLabelsAngle: 25
                 }
-            }
-        });
-    } else if (critere == '2') {
-        let chart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                datasets: [{
-                    data: [20, 40, 60],
-                    backgroundColor: [color[0], color[1], color[2]],
-                    label: ''
-                }],
-                labels: [
-                    '0-18 ans ',
-                    '18-35 ans',
-                    '+35 ans',
-                ]
-            },
-            options: {
-                scales: {
-                    yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
+            }).wave();
+        }else{
+            new RGraph.Bar({
+                id: 'grapheResultat',
+                data: datas,
+                options: {
+                    tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                    tooltipsFormattedUnitsPost: unit,
+                    tooltipsCss: {
+                        backgroundColor: 'white',
+                        border: '1px solid black'
+                    },
+                    shadow: false,
+                    keyPositionGraphBoxed: false,
+                    xaxisLabels:labels,
+                    marginLeft: 25,
+                    marginInner: 10,
+                    marginInnerGrouped: 1,
+                    xaxisLabelsOffsety: 10,
+                    xaxisLabelsAngle: 25,
+                    colors: ['#18375e'],
                 }
-            }
-        });
+            }).draw();
+        }
     }
 }

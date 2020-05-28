@@ -309,4 +309,12 @@ function ajouterQuestion(PDO $db){
             ." </div>";
     return $resultat;
 }
+
+function moyenne(PDO $db){
+
+}
+
+function nomTest(PDO $db){
+
+}
 ?>

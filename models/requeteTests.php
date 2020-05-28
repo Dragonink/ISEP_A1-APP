@@ -31,11 +31,32 @@ function saveConsole(PDO $db, $exam, $console) {
 
 function saveTests(PDO $db, $exam, $tests) {
     foreach ($tests as $test => $value) {
-        if ($value != null) {
+        if ($value  !=  null) {
             $req = $db->prepare("UPDATE test SET result = '$value' WHERE exam = '$exam' AND type = '$test'");
             if ($req !== FALSE) {
                 $req->execute();
             }
         }
     }
+}
+
+function utilisateurTest(PDO $db){
+    $test="SELECT type,result from test join exam on test.exam=exam.id where exam.user=" .$_SESSION['user_id'] ." and result IS NOT NULL";
+    $prepare = $db->prepare($test);
+    $prepare->execute();
+    return $prepare->fetchAll();
+}
+
+function utilisateurTest2(PDO $db){
+    $test="SELECT type, result, exam from test join exam on test.exam=exam.id where exam.user=" .$_SESSION['user_id'] ." and result IS NOT NULL order by exam"  ;
+    $prepare = $db->prepare($test);
+    $prepare->execute();
+    return $prepare->fetchAll();
+}
+
+function nbExam(PDO $db){
+    $nb = "SELECT count(*) from exam join test on exam.id=test.exam where exam.user=" .$_SESSION['user_id'] ." and result IS NOT NULL";
+    $prepare = $db->prepare($nb);
+    $prepare->execute();
+    return $prepare->fetchAll();
 }
