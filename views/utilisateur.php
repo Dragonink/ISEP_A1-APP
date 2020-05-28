@@ -145,7 +145,7 @@ $max1=max($sfreq,$stona) + 100;
 $max2=max($stemp,$sstim,$scolo) + 10;
 $value="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
 $datas="[" .$sfreq/$max1 ."," .$stemp/$max2 ."," .$stona/$max1 ."," .$sstim/$max2 ."," .$scolo/$max2 ."]";
-$labels="['Fréquence(bpm)','Température(°C)', 'Tonalité(Hz)', 'Stimuli(s)', 'Simon(/20)']";
+$labels="['Fréquence (bpm)','Température (°C)', 'Tonalité (Hz)', 'Stimuli (s)', 'Simon (/20)']";
 
 $choix=$_GET['choix'];
 $label='[';
@@ -212,7 +212,7 @@ if ($choix==0){
     $data[2]="[" .implode(',',$ltona) ."]";
     $data[3]="[" .implode(',',$lstim) ."]";
     $data[4]="[" .implode(',',$lcolo) ."]";
-    $key="['Fréquence(bpm)','Température(°C)', 'Tonalité(Hz)', 'Stimuli(s)', 'Simon(/20)']";
+    $key="['Fréquence (bpm)','Température (°C)', 'Tonalité (Hz)', 'Stimuli (s)', 'Simon (/20)']";
     $data="[" .implode(',',$data) ."]";
     $unit="['bpm','°C', 'Hz', 's', '/20']";
 }else{

@@ -93,7 +93,7 @@ function resultatTest(choix, data, label, key, unit, max1, max2) {
             id: 'resultatTestGraph',
             data: data,
             options: {
-                tooltips: '%{property:myDaynames[%{index}]}<br /><span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
                 tooltipsFormattedUnitsPost: unit,
                 tooltipsCss: {
                     backgroundColor: 'white',
@@ -116,7 +116,7 @@ function graphe(critere, type, datas, labels, keys, unit) {
                 id: 'grapheResultat',
                 data: datas,
                 options: {
-                    tooltips: '%{property:myDaynames[%{index}]}<br /><span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                    tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
                     tooltipsCss: {
                         backgroundColor: 'white',
                         border: '1px solid black'
@@ -132,7 +132,7 @@ function graphe(critere, type, datas, labels, keys, unit) {
                 id: 'grapheResultat',
                 data: datas,
                 options: {
-                    tooltips: '%{property:myDaynames[%{index}]}<br /><span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                    tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
                     tooltipsFormattedUnitsPost: unit,
                     tooltipsCss: {
                         backgroundColor: 'white',
@@ -154,7 +154,7 @@ function graphe(critere, type, datas, labels, keys, unit) {
                 id: 'grapheResultat',
                 data: datas,
                 options: {
-                    tooltips: '%{property:myDaynames[%{index}]}<br /><span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                    tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
                     tooltipsFormattedUnitsPost: unit,
                     tooltipsCss: {
                         backgroundColor: 'white',
@@ -184,7 +184,7 @@ function graphe(critere, type, datas, labels, keys, unit) {
                 id: 'grapheResultat',
                 data: datas,
                 options: {
-                    tooltips: '%{property:myDaynames[%{index}]}<br /><span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
+                    tooltips: '%{property:myDaynames[%{index}]}<span style="font-weight: bold; font-size:26pt">%{value_formatted}</span>',
                     tooltipsFormattedUnitsPost: unit,
                     tooltipsCss: {
                         backgroundColor: 'white',
