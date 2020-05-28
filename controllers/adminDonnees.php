@@ -183,7 +183,7 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
     return $resultat;
 }
 
-function listeInfoRequete(PDO $db, $valeur){
+function listeInfoRequete(PDO $db, $valeur, $envoi){
     if ($valeur==0){
         $nombre=nombreRequete($db);
     } elseif ($valeur==1){
@@ -215,8 +215,8 @@ function listeInfoRequete(PDO $db, $valeur){
                                     ."<td>" .$value['email'] ."</td>"
                                 ."</tr>"
                                 ."<tr>"
-                                    ."<td class='valider'><button onclick=\"validerRequete(" .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."')\"=> Valider </button></td>"
-                                    ."<td class='rejeter'><button onclick=\"rejeter('requete', " .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."')\"> Rejeter </button></td>"
+                                    ."<td class='valider'><button onclick=\"validerRequete(" .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."');envoieMailAnnulation('" .$envoi."' , '" .$value['email'] ."')\"=> Valider </button></td>"
+                                    ."<td class='rejeter'><button onclick=\"rejeter('requete', " .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."');envoieMailAnnulation('" .$envoi." , " .$value['email'] ."')\"> Rejeter </button></td>"
                                 ."</tr>"
                             ."</table>";
         }
@@ -308,5 +308,41 @@ function ajouterQuestion(PDO $db){
                     ."</div>"
             ." </div>";
     return $resultat;
+}
+
+function envoieMailValidation($envoi,$recep){   
+    $to = $recep;
+    $from = $envoi;
+    $subject = 'Validation de votre compte';
+    $message = '<html>'
+            .'<head>'
+                .'<title>Validation de votre compte</title>'
+            .'</head>'
+            .'<body>'
+                .'<h2>Bonjour madame, monsieur,</h2>'
+                ."<p>Votre compte vient d'être créer. Vous pouvez dorénavant vous connectez à votre page</p><br/>"
+                ."<p>Cordialement,</p>"
+                ."<p>L'équipe Infinite Measures</p>"
+            .'</body>'
+        .'</html>';
+    $headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";   
+}
+
+function envoieMailAnnulation($envoi,$recep){   
+    $to = $recep;
+    $from = $envoi;
+    $subject = 'Rejet de votre compte';
+    $message = '<html>'
+            .'<head>'
+                .'<title>Rejet de votre compte</title>'
+            .'</head>'
+            .'<body>'
+                .'<h2>Bonjour madame, monsieur,</h2>'
+                ."<p>Nous vous annonçons que votre compte n'a pas pu être activé.</p><br/>"
+                ."<p>Cordialement,</p>"
+                ."<p>L'équipe Infinite Measures</p>"
+            .'</body>'
+        .'</html>';
+    $headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";   
 }
 ?>

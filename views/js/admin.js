@@ -183,6 +183,14 @@ function openPage(number, page){
     page[number].className += " actif";
 }
 
+function envoieMailValidation(envoi , recev){
+    PHPCall("/adminRefresh.php?fonction=envoieMailValidation&envoi=" + envoi + "&recev=" + recev);
+}
+
+function envoieMailAnnulation(envoi , recev){
+    PHPCall("/adminRefresh.php?fonction=envoieMailAnnulation&envoi=" + envoi + "&recev=" + recev);
+}
+
 function graphe(){
     let ctx= document.getElementById('graphStats').getContext('2d'); 
     let chart = new Chart(ctx, {
