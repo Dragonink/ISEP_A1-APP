@@ -69,3 +69,8 @@ function fetchAdmin(PDO $db, $email) {
     $req = $db->query("SELECT * FROM administrator WHERE email = '$email' ");
     return $req->fetchAll();
 }
+
+function getConsolesByManager(PDO $db, $id) {
+    $req = $db->query("SELECT id FROM console WHERE manager = '$id'");
+    return $req->fetchAll(PDO::FETCH_COLUMN, 0);
+}
