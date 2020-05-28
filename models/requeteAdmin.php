@@ -29,7 +29,7 @@ function nombreUtilisateurRecherche(PDO $db, $recherche) {
 }
 
 function nombreTestsRealises(PDO $db):int {
-    $query = 'SELECT count(*) from test';
+    $query = 'SELECT count(*) from test where result IS NOT NULL';
     $prepare = $db->query($query);
     return $prepare->fetchColumn();
 }
@@ -290,4 +290,11 @@ function validerRequete(PDO $db, int $id, $origine){
     $valider = "UPDATE " .$origine ." SET is_active=1 WHERE id =" .$id;
     $prepare = $db->prepare($valider);
     $prepare->execute();
+}
+
+function testInfo(PDO $db){
+    $test = "SELECT type, COUNT(type) as nb FROM test where result IS NOT NULL GROUP BY type";
+    $prepare = $db->prepare($test);
+    $prepare->execute();
+    return $prepare->fetchAll();
 }

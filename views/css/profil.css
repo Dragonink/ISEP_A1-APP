@@ -174,14 +174,15 @@ h2 {
 /* gestionnaire */
 
 .statistiques {
+    margin-top: 1%;
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
 }
 
-.legende{
+.affichage{
+    margin: 0% auto;
     display: flex;
     flex-direction: row;
-    height:10%
 }
 
 #patient {

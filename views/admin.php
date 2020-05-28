@@ -11,7 +11,9 @@ if (isset($_COOKIE["modifState"])) {
         <meta charset="UTF-8">
         <!-- JS -->
         <script src="js/admin.js"></script>
-        <script src ="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+        <script type="text/javascript" src="js/lib/RGraph.common.core.js" ></script>
+        <script type="text/javascript" src="js/lib/RGraph.common.key.js"></script>
+        <script type="text/javascript" src="js/lib/RGraph.hbar.js" ></script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="css/header-footer.css"/>
@@ -50,7 +52,7 @@ if (isset($_COOKIE["modifState"])) {
                                 <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2 id='nbUtilisateur'><?php echo nombreTestsRealises($db)?></h2></div>
                             </div>
                             <div class="statistiques"><h3>Statistiques</h3>
-                                <canvas id="graphStats" width="400" height="90"> </canvas>
+                                <canvas id="graphStats" width="1300" height="300"> </canvas>
                             </div>
                         </div>
                     </div>
@@ -113,7 +115,30 @@ if (isset($_COOKIE["modifState"])) {
             </section>
         </main>
     </body>
-    <script LANGUAGE='JavaScript'>
-        graphe();
-    </script>
 </html>
+<?php
+$freq=0;
+$temp=0;
+$tona=0;
+$stim=0;
+$colo=0;
+$test=testInfo($db);
+for ($i=0; $i<count($test); $i++){
+    if ($test[$i]['type']=='freq'){
+        $freq=$test[$i]['nb'];
+    }elseif ($test[$i]['type']=='temp'){
+        $temp=$test[$i]['nb'];
+    }elseif ($test[$i]['type']=='tona'){
+        $tona=$test[$i]['nb'];
+    }elseif ($test[$i]['type']=='stim'){
+        $stim=$test[$i]['nb'];
+    }elseif ($test[$i]['type']=='colo'){
+        $colo=$test[$i]['nb'];
+    }
+}
+$datas="[" .$freq ."," .$temp ."," .$tona ."," .$stim ."," .$colo ."]";
+$labels="['Fréquence cardiaque','Température','Reconnaissance de tonalités', 'Réaction à des stimuli visuels','Mémorisation de couleurs']";
+?>
+<script LANGUAGE='JavaScript'>
+    graphe(<?php echo $datas; ?>,<?php echo $labels; ?>);
+</script>
