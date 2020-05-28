@@ -101,6 +101,38 @@ const manualValues = {
 };
 function enterValue() {
     const value = Number(document.querySelector("form#input > input[name='value']").value);
+    switch (document.body.classList.item(0)) {
+        case "freq":
+            if (value < 40 || value > 140) {
+                alert("Valeur incohérente !");
+                return;
+            }
+            break;
+        case "temp":
+            if (value < 20 || value > 40) {
+                alert("Valeur incohérente !");
+                return;
+            }
+            break;
+        case "tona":
+            if (value < 130 || value > 4000) {
+                alert("Valeur incohérente !");
+                return;
+            }
+            break;
+        case "stim":
+            if (value < 0 || value > 5) {
+                alert("Valeur incohérente !");
+                return;
+            }
+            break;
+        case "colo":
+            if (value < 0 || value > 20) {
+                alert("Valeur incohérente !");
+                return;
+            }
+            break;
+    }
     manualValues[document.body.classList.item(0)] = value;
     /** @type {HTMLFormElement} */
     const form = document.querySelector("form#submit");
