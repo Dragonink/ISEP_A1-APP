@@ -141,8 +141,8 @@ for ($i=0; $i<count($utilisateurTest); $i++){
         $scolo = $utilisateurTest[$i]['result'];
     }
 }
-$max1=max($sfreq,$stona) + 100;
-$max2=max($stemp,$sstim,$scolo) + 10;
+$max1=max($sfreq,$stona);
+$max2=max($stemp,$sstim,$scolo);
 $value="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
 $datas="[" .$sfreq/$max1 ."," .$stemp/$max2 ."," .$stona/$max1 ."," .$sstim/$max2 ."," .$scolo/$max2 ."]";
 $labels="['Fréquence (bpm)','Température (°C)', 'Tonalité (Hz)', 'Stimuli (s)', 'Simon (/20)']";
@@ -198,14 +198,14 @@ if ($nbExam==0){
     }
 }
 if ($choix==0){
-    $max1=max(max($lfreq),max($ltona)) + 100;
-    $max2=max(max($ltemp),max($lstim),max($lcolo)) + 10;
+    $maxi1=max(max($lfreq),max($ltona));
+    $maxi2=max(max($ltemp),max($lstim),max($lcolo));
     for ($div=0;$div<count($lfreq);$div++){
-        $lfreq[$div]=$lfreq[$div]/$max1;
-        $ltemp[$div]=$ltemp[$div]/$max2;
-        $ltona[$div]=$ltona[$div]/$max1;
-        $lstim[$div]=$lstim[$div]/$max2;
-        $lcolo[$div]=$lcolo[$div]/$max2;
+        $lfreq[$div]=$lfreq[$div]/$maxi1;
+        $ltemp[$div]=$ltemp[$div]/$maxi2;
+        $ltona[$div]=$ltona[$div]/$maxi1;
+        $lstim[$div]=$lstim[$div]/$maxi2;
+        $lcolo[$div]=$lcolo[$div]/$maxi2;
     }
     $data[0]="[" .implode(',',$lfreq) ."]";
     $data[1]="[" .implode(',',$ltemp) ."]";
@@ -237,7 +237,7 @@ $label.="]";
 ?>
 <script LANGUAGE='JavaScript'>
     dernierTest(<?php echo $datas; ?>,<?php echo $labels; ?>, <?php echo $max1; ?>, <?php echo $max2; ?>);
-    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>,<?php echo $unit; ?>,<?php echo $max1; ?>, <?php echo $max2; ?>);
+    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>,<?php echo $unit; ?>,<?php echo $maxi1; ?>, <?php echo $maxi2; ?>);
     let value=/(?:^\?|&)choix=(\d+)/.exec(window.location.search);
 	if (value!==null){
 		document.querySelector('form.graphe select').selectedIndex = value[1];
