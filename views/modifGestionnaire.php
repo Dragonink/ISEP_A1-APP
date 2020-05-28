@@ -67,9 +67,9 @@ if (isset($_COOKIE["modifError"])) {
 				<p>Prénom</p>
 				<input type="text" name="prenom" placeholder="<?php echo $user["prenom"] ?>"  />
 				<p>Email</p>
-				<input type="text" name="email" placeholder="<?php echo $user["email"] ?>" />
+				<input type="email" name="email" placeholder="<?php echo $user["email"] ?>" />
 				<p>Vérifier Email</p>
-				<input type="text" name="verifemail" />
+				<input type="email" name="verifemail" />
 			</div>
 			<div id="infos">
 				<p>Numéro de téléphone</p>
