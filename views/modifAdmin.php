@@ -79,13 +79,13 @@ if (isset($_COOKIE["modifError"])) {
                             "<td>",
                                 "<p>Mot de passe</p>",
                             "</td>",
-                            "<td><input type=\"text\" name=\"mdp\" /></td>",
+                            "<td><input type=\"password\" name=\"mdp\" /></td>",
                         "</tr>",
                         "<tr>",
                             "<td>",
                                 "<p>Vérification mot de passe</p>",
                             "</td>",
-                            "<td><input type=\"text\" name=\"verifmdp\" /></td>",
+                            "<td><input type=\"password\" name=\"verifmdp\" /></td>",
                         "</tr>";
                 }?>
             </table>
