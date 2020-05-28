@@ -131,8 +131,12 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
             $resultat .= "<img src='images/iconModifier.png' /></a>"
                                     ."<img src='images/iconCroix.png' onclick=\"rejeter('utilisateur', " .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"
                                 ."</td>"
-                            ."</tr>"
-                            ."<tr> <td>" .$value['email'] ."</td> </tr>";
+                            ."</tr>";
+            if (strlen($value['email'])>25){
+                $resultat .="<tr> <td>" .substr ( $value['email'] , 0 , 24 ) ."...</td> </tr>";
+            } else {
+                $resultat .="<tr> <td>" .$value['email'] ."</td> </tr>";
+            }
             if ($value['origine']=='user' ){
                 $resultat .="<tr> <td> Patient </td> </tr>";
             } elseif ($value['origine']=='manager' ){
