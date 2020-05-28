@@ -42,7 +42,7 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="manager"){
 			</div>
 			<div id="nom"><?php echo $user["prenom"] ?> &nbsp; <?php echo $user["nom"] ?> </div>
 			<button type="submit" id="Validation" name="modifGestionnaire">Valider les modifications</button>
-			<button type="submit" id="Annulation" name="annuler">Annuler</button>
+			<button type="reset" id="Annulation" name="annuler">Annuler</button>
 		</div>
 		<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Informations personnelles </h2>
 		<div id="infors">
@@ -52,9 +52,9 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="manager"){
 				<p>Prénom</p>
 				<input type="text" name="prenom" placeholder="<?php echo $user["prenom"] ?>"  />
 				<p>Email</p>
-				<input type="text" name="email" placeholder="<?php echo $user["email"] ?>" />
+				<input type="email" name="email" placeholder="<?php echo $user["email"] ?>" />
 				<p>Vérifier Email</p>
-				<input type="text" name="verifemail" />
+				<input type="email" name="verifemail" />
 			</div>
 			<div id="infos">
 				<p>Numéro de téléphone</p>
@@ -63,7 +63,7 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="manager"){
 					echo "<p>Mot de passe</p>",
 						"<input type=\"password\" name=\"mdp\" placeholder=\"Mot de passe\" />",
 						"<p>Confirmation de mot de passe</p>",
-						"<input type=\"password\" name=\"verifmdp\">";
+						"<input type=\"password\" name=\"verifmdp\"\">";
 				}?>
 				<p> Adresse de travail</p>
 				<input type="text" name="adresse" placeholder="<?php echo $user["adresse"] ?>" />

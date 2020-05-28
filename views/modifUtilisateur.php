@@ -45,7 +45,7 @@ $manager_info = $manager_info[0];
 			</div>
 			<div id="nom"><?php echo $user["prenom"]?> &nbsp; <?php echo $user["nom"]?></div>
 			<button type="submit" id="Validation" name="modifUtilisateur">Valider les modifications</button>
-			<button type="submit" id="Annulation" name="annuler">Annuler</button>
+			<button type="reset" id="Annulation" name="annuler">Annuler</button>
 		</div>
 		<h2>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Informations personnelles </h2>
 		<div id="infors">
@@ -55,18 +55,26 @@ $manager_info = $manager_info[0];
 				<p>Prénom</p>
 				<input type="text" name="prenom" placeholder="<?php echo $user["prenom"]?>" />
 				<p>Email</p>
-				<input type="text" name="email" placeholder="<?php echo $user["email"]?>" />
+				<input type="email" name="email" placeholder="<?php echo $user["email"]?>" />
 				<p>Vérifier Email</p>
-				<input type="text" name="verifemail" />
+				<input type="email" name="verifemail" />
 			</div>
 			<div id="infos">
 				<p>Numéro de téléphone</p>
 				<input type="tel" name="telephone" placeholder="<?php echo $user["tel"]?>" />
 				<?php if ($_SESSION["user_type"]=="user"){
 					echo "<p>Mot de passe</p>",
-						"<input type=\"password\" name=\"mdp\" placeholder=\"Mot de passe\" />",
+						"<input type=\"password\" name=\"mdp\" placeholder=\"Mot de passe\" pattern=\".{8,}\" required title=\"8 caractères minimum, dont : 
+		- 1 majuscule, 
+		- 1 minuscule,
+		- 1 chiffre, 
+		- 1 caractère spécial\"/>",
 						"<p>Confirmation de mot de passe</p>",
-						"<input type=\"password\" name=\"verifmdp\">";
+						"<input type=\"password\" name=\"verifmdp\" pattern=\".{8,}\" required title=\"8 caractères minimum, dont : 
+		- 1 majuscule, 
+		- 1 minuscule,
+		- 1 chiffre, 
+		- 1 caractère spécial\">";
 				}?>
 				<p>Médecin</p>
 				<input type="text" name="medecin" placeholder="<?php echo $manager_info['first_name'], " ", $manager_info['last_name']?>" />
