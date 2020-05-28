@@ -1,19 +1,30 @@
-<?php session_start(); 
+<?php session_start();
 if (isset($_GET['validation']) && $_GET['validation']=='medecin'){
     echo "<script>alert(\"Votre demande a été prise en compte et sera traitée dans les meilleurs délais.\")</script>";
 } elseif (isset($_GET['validation']) && $_GET['validation']=='admin') {
     echo "<script>alert(\"Votre demande a été prise en compte et sera traitée dans les meilleurs délais.\")</script>";
 }
-$recup_email="";
-$recup_message="";
-if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['email']) and $_POST['email']!='')){
-    $recup_email=$_POST['email'];
+if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["email"]) && isset($_POST["subject"]) && isset($_POST["content"])) {
+    $email = htmlspecialchars(stripslashes(trim($_POST["email"])));
+    $subject = htmlspecialchars(stripslashes(trim($_POST["subject"])));
+    $message = htmlspecialchars(stripslashes(trim($_POST["content"])));
+    $headers = array(
+        "Content-Type" => "text/plain;charset=utf-8",
+        "From" => $email,
+        "Reply-To" => $email,
+        "X-Mailer" => "PHP/".phpversion()
+    );
+    if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1){
+        if (mail(get_cfg_var("RECIPIENT_EMAIL"), $subject, $message, $headers)) {
+            echo "<script>alert('Votre message a bien été envoyé.');</script>";
+        } else {
+            echo "<script>alert(\"Une erreur est survenue lors de l'envoi du message.\");</script>";
+        }
+    } else {
+        echo "<script>alert(\"L'adresse Email renseignée n'est pas valide.\");</script>";
+    }
 }
-if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['content']) and $_POST['content']!='')){
-    $recup_message=$_POST['content'];
-}
-?>
-<!DOCTYPE html>
+?><!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8"/>
@@ -71,36 +82,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['content']) and $_PO
             <div>
                 <h2>Nous trouver</h2>
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2546.0976138211868!2d2.2799196659319434!3d48.82452595810421!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e670797ea4730d%3A0xe0d3eb2ad501cb27!2sISEP!5e0!3m2!1sfr!2sfr!4v1588842549578!5m2!1sfr!2sfr" width="400" height="300" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-            </div>        
+            </div>
         </section>
     </main>
-
-    <?php 
-    if ($recup_email!="" && $recup_message!=""){    
-        $to = 'admin.infinitymeasures@yopmail.com';
-        $from = 'infinite.measures@yopmail.com';
-		$subject = 'Question utilisateur';
-		$message = '<html>'
-				.'<head>'
-					.'<title>Question utilisateur</title>'
-				.'</head>'
-				.'<body>'
-					.'<h2>Bonjour, un utilisateur a une question sur le site Infinite Measure.</h2>'
-					."<p>L'adresse de cet utilisateur est : " .$recup_email. ". Voici son message : " .$recup_message. "</p>"
-				.'</body>'
-			.'</html>';
-		$headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";
-			
-		if (mail($to, $subject, $message, $headers))
-		{
-			echo "<script>alert(\"Votre message a été envoyé et sera traité dans les plus brefs delais.\")</script>";
-		}
-		else
-		{
-			echo "<script>alert(\"Echec d'envoie du message.\")</script>";
-        }
-    }    
-    ?>
 
     <?php include "_footer.html"; ?>
 
