@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 include('../controllers/adminDonnees.php');
 if (isset($_GET["fonction"])){
     if (($_GET["fonction"]=='dispositif') && (isset($_GET["value"]) && isset($_GET["recherche"]))){

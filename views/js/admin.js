@@ -192,7 +192,7 @@ function graphe(datas, labels) {
             marginLeft: 95,
             colors: ['#18375e']
         }
-    });
+    }).draw();
 }
 
 function envoieMailValidation(envoi, recev) {

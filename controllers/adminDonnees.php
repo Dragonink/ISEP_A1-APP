@@ -219,7 +219,7 @@ function listeInfoRequete(PDO $db, $valeur, $envoi){
                                     ."<td>" .$value['email'] ."</td>"
                                 ."</tr>"
                                 ."<tr>"
-                                    ."<td class='valider'><button onclick=\"validerRequete(" .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."');envoieMailAnnulation('" .$envoi."' , '" .$value['email'] ."')\"=> Valider </button></td>"
+                                    ."<td class='valider'><button onclick=\"validerRequete(" .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."');envoieMailValidation('" .$envoi."' , '" .$value['email'] ."')\"=> Valider </button></td>"
                                     ."<td class='rejeter'><button onclick=\"rejeter('requete', " .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."');envoieMailAnnulation('" .$envoi." , " .$value['email'] ."')\"> Rejeter </button></td>"
                                 ."</tr>"
                             ."</table>";
@@ -314,39 +314,29 @@ function ajouterQuestion(PDO $db){
     return $resultat;
 }
 
-function envoieMailValidation($envoi,$recep){
-    $to = $recep;
-    $from = $envoi;
-    $subject = 'Validation de votre compte';
-    $message = '<html>'
-            .'<head>'
-                .'<title>Validation de votre compte</title>'
-            .'</head>'
-            .'<body>'
-                .'<h2>Bonjour madame, monsieur,</h2>'
-                ."<p>Votre compte vient d'être créer. Vous pouvez dorénavant vous connectez à votre page</p><br/>"
-                ."<p>Cordialement,</p>"
-                ."<p>L'équipe Infinite Measures</p>"
-            .'</body>'
-        .'</html>';
-    $headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";
+function envoieMailValidation($from,$to){
+    $message = "Bonjour.\r\nVotre compte vient d'etre accepte.\r\n\r\nCordialement,\r\nl'equipe Infinite Measures";
+    $headers = array(
+        "Content-Type" => "text/plain;charset=utf-8",
+        "From" => $from,
+        "Reply-To" => $from,
+        "X-Mailer" => "PHP/".phpversion()
+    );
+    if (!mail($to, "Acceptation de votre compte", $message, $headers)) {
+        echo "<script>alert(\"Une erreur est survenue lors de l'envoi du message.\");</script>";
+    }
 }
 
-function envoieMailAnnulation($envoi,$recep){
-    $to = $recep;
-    $from = $envoi;
-    $subject = 'Rejet de votre compte';
-    $message = '<html>'
-            .'<head>'
-                .'<title>Rejet de votre compte</title>'
-            .'</head>'
-            .'<body>'
-                .'<h2>Bonjour madame, monsieur,</h2>'
-                ."<p>Nous vous annonçons que votre compte n'a pas pu être activé.</p><br/>"
-                ."<p>Cordialement,</p>"
-                ."<p>L'équipe Infinite Measures</p>"
-            .'</body>'
-        .'</html>';
-    $headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";
+function envoieMailAnnulation($from,$to){
+    $message = "Bonjour.\r\nVotre compte vient d'etre refuse.\r\n\r\nCordialement,\r\nl'equipe Infinite Measures";
+    $headers = array(
+        "Content-Type" => "text/plain;charset=utf-8",
+        "From" => $from,
+        "Reply-To" => $from,
+        "X-Mailer" => "PHP/".phpversion()
+    );
+    if (!mail($to, "Refus de votre compte", $message, $headers)) {
+        echo "<script>alert(\"Une erreur est survenue lors de l'envoi du message.\");</script>";
+    }
 }
 ?>
