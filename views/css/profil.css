@@ -151,7 +151,7 @@ h2 {
 	text-align: left;
 }
 
-#infos input , #info input {
+#infos input , #info input, #infos select {
 	width: 80%;
 }
 
