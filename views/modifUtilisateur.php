@@ -92,7 +92,18 @@ if (isset($_COOKIE["modifError"])) {
 	</form>
 	</main>
 </body>
+<?php 
+$listeMedecin="[";
+foreach(infoManager($db)  as $key => $value){
+	$listeMedecin .= $value['id'] .","; 
+}
+$listeMedecin.="]";
+?>
 <script LANGUAGE='JavaScript'>
-	document.querySelector('form select').selectedIndex = <?php echo $user["medecin"] ?>;
+	listeMedecin=<?php echo $listeMedecin?>;
+	idMedecin=<?php echo $user["medecin"] ?>;
+	if (listeMedecin.includes(idMedecin)){
+		document.querySelector('form select').selectedIndex = idMedecin;
+	}
 </script>
 </html>
