@@ -174,6 +174,8 @@ if ($nbExam==0){
             if ((($j==$num) || ($utilisateurTest2[$j]['exam']==$var)) && $utilisateurTest2[$j]!=null){
                 if ($utilisateurTest2[$j]['type']=='freq'){
                     $lfreq[$i] = $utilisateurTest2[$j]['result'];
+                    $var=$utilisateurTest2[$j]['exam'];
+                    $utilisateurTest2[$j]=null;
                 }elseif ($utilisateurTest2[$j]['type']=='temp'){
                     $ltemp[$i] = $utilisateurTest2[$j]['result'];
                     $var=$utilisateurTest2[$j]['exam'];
