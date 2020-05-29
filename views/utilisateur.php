@@ -141,8 +141,8 @@ for ($i=0; $i<count($utilisateurTest); $i++){
         $scolo = $utilisateurTest[$i]['result'];
     }
 }
-$max1=max($sfreq,$stona);
-$max2=max($stemp,$sstim,$scolo);
+$max1=max($sfreq,$stona)+1;
+$max2=max($stemp,$sstim,$scolo)+1;
 $value="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
 $datas="[" .$sfreq/$max1 ."," .$stemp/$max2 ."," .$stona/$max1 ."," .$sstim/$max2 ."," .$scolo/$max2 ."]";
 $labels="['Fréquence (bpm)','Température (°C)', 'Tonalité (Hz)', 'Stimuli (s)', 'Simon (/20)']";
@@ -197,9 +197,11 @@ if ($nbExam==0){
         }
     }
 }
+$maxi1=1;
+$maxi2=1;
 if ($choix==0){
-    $maxi1=max(max($lfreq),max($ltona));
-    $maxi2=max(max($ltemp),max($lstim),max($lcolo));
+    $maxi1=max(max($lfreq),max($ltona))+1;
+    $maxi2=max(max($ltemp),max($lstim),max($lcolo))+1;
     for ($div=0;$div<count($lfreq);$div++){
         $lfreq[$div]=$lfreq[$div]/$maxi1;
         $ltemp[$div]=$ltemp[$div]/$maxi2;
