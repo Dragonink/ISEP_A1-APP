@@ -4,6 +4,7 @@
 		require "../controllers/forget.php";
 	} elseif ($_SERVER["REQUEST_METHOD"] === "POST" ) require "../controllers/connexion.php";
 	if (isset($_COOKIE['invalidpass'])){
+		setcookie ("invalidpass");
 		echo "<script>alert(\"Mot de passe invalide\")</script>";
 	}
 ?><!DOCTYPE html>
