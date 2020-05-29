@@ -190,7 +190,15 @@ function graphe(datas, labels) {
         options: {
             yaxisLabels: labels,
             marginLeft: 95,
-            colors: ['#18375e'],
+            colors: ['#18375e']
         }
-    }).draw();
+    });
+}
+
+function envoieMailValidation(envoi, recev) {
+    PHPCall("/adminRefresh.php?fonction=envoieMailValidation&envoi=" + envoi + "&recev=" + recev);
+}
+
+function envoieMailAnnulation(envoi, recev) {
+    PHPCall("/adminRefresh.php?fonction=envoieMailAnnulation&envoi=" + envoi + "&recev=" + recev);
 }

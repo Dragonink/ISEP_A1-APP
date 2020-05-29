@@ -33,7 +33,7 @@ if (isset($_COOKIE["modifState"])) {
                         </div>
                         <div id="affichageRequetes">
                             <button class="close" onclick="closeRequetes()"><img src="images/iconCroix.png"></button>
-                            <div id="requete" class="requete"><?php echo listeInfoRequete($db, 0) ?></div>
+                            <div id="requete" class="requete"><?php echo listeInfoRequete($db, 0, $_SESSION["user_email"]) ?></div>
                         </div>
                     </div>
                 </div>
