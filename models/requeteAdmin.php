@@ -69,7 +69,7 @@ function nombreDispositif(PDO $db):int {
 }
 
 function nombreDispositifRecherche(PDO $db, $recherche){
-    $query = "SELECT count(*) from console where id like '%".$recherche."%'";
+    $query = "SELECT count(*) from console join manager on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%'";
     $prepare = $db->query($query);
     return $prepare->fetchColumn();
 }
@@ -106,20 +106,19 @@ function infoDispositif(PDO $db, $value) {
 function infoDispositifRecherche(PDO $db, $value, $recherche) {
     switch ($value){
         case 0:
-            $dispositif = "SELECT console.id as code, first_name, last_name, work_address,  from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by console.id " ;
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address  from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by console.id " ;
         break;
 
         case 1:
-            $dispositif = "SELECT console.id as code, first_name, last_name, work_address,  from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by console.id desc ";
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by console.id desc ";
         break;
 
         case 2:
-            $dispositif = "SELECT console.id as code, first_name, last_name, work_address,  from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by manager.last_name " ;
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by manager.last_name " ;
 
         break;
-
         case 3:
-            $dispositif = "SELECT console.id as code, first_name, last_name, work_address,  from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by manager.work_address " ;
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by manager.work_address " ;
         break;
     }
     $prepare = $db->prepare($dispositif);
