@@ -198,6 +198,9 @@ if ($nbExam==0){
         }
         $num=$num1;
         $nb=$i+1;
+        if ($num==count($utilisateurTest2)){
+            $i=$num;
+        }
         $label .= "'Examen n°" .$nb ."'";
         if ($i<($nbExam-1)){
             $label.=",";
