@@ -155,6 +155,11 @@ $utilisateurTest2=utilisateurTest2($db);
 if ($nbExam==0){
     $data.="[0]";
     $label.="'Aucun test a été réalisé'";
+    $lfreq[0]=0;
+    $ltemp[0]=0;
+    $ltona[0]=0;
+    $lstim[0]=0;
+    $lcolo[0]=0;
 }else {
     $var=0;
     $num=0;
@@ -215,7 +220,11 @@ if ($choix==0){
     $data[3]="[" .implode(',',$lstim) ."]";
     $data[4]="[" .implode(',',$lcolo) ."]";
     $key="['Fréquence (bpm)','Température (°C)', 'Tonalité (Hz)', 'Stimuli (s)', 'Simon (/20)']";
-    $data="[" .implode(',',$data) ."]";
+    if ($data=="[[[[["){
+        $data="[[0],[0],[0],[0],[0]]";
+    }else{
+        $data="[" .implode(',',$data) ."]";
+    }
     $unit="['bpm','°C', 'Hz', 's', '/20']";
 }else{
     if ($choix==1){

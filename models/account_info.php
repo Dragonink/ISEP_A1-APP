@@ -2,15 +2,15 @@
 require "connexionSQL.php";
 function insertUser(PDO $db, $nss, $firstname, $lastname, $email, $password, $linked_manager) {
     $password = password_hash($password, PASSWORD_DEFAULT);
-    $email_verif = "SELECT email FROM user WHERE email='".$email."'";
-    $resultat = mysql_query ($email_verif) or die(mysql_error());;
-    $nombre_adresse = mysql_num_rows($resultat);
-    if($nombre_adresse < 1){
+    //$email_verif = "SELECT email FROM user WHERE email='".$email."'";
+    //$resultat = mysql_query ($email_verif) or die(mysql_error());;
+    //$nombre_adresse = mysql_num_rows($resultat);
+    //if($nombre_adresse < 1){
         $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
         if ($req !== FALSE) {
             return $req->execute();
         } else { echo "Email déjà utilisée";}
-    }
+    //}
 }
 function insertManager(PDO $db, $firstname, $lastname, $email, $password, $address) {
     $password = password_hash($password, PASSWORD_DEFAULT);
