@@ -125,7 +125,6 @@ CREATE TABLE `test` (
   `id` int NOT NULL AUTO_INCREMENT,
   `exam` int NOT NULL,
   `type` varchar(4) NOT NULL,
-  `start_time` timestamp DEFAULT NULL,
   `result` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `exam` (`exam`),
