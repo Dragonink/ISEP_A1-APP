@@ -24,7 +24,7 @@ function updateDescription(test) {
         case "stim":
             document.querySelector("#test-icon").src = "images/test_visuel.png";
             document.querySelector("#test-title").innerHTML = "Réaction à des stimuli visuels";
-            document.querySelector("#test-desc").innerHTML = "Ce test consiste à déterminer votre temps de réaction à un stimulus visuel.<br/>Pour ce faire, veuillez suivre les étapes suivantes :<ol></li>Appuyer sur le bouton rouge le plus proche des potentiomètres quand vous êtes prêt</li><li>Attendre que la led s’allume, et quand elle s'allume, appuyer le plus rapidement possible sur un bouton</li><li>L’afficheur renvoie le temps entre le moment où la led s’est allumée et le moment où vous avez appuyé sur le bouton</li></ol>";
+            document.querySelector("#test-desc").innerHTML = "Ce test consiste à déterminer votre temps de réaction à un stimulus visuel.<br/>Pour ce faire, veuillez suivre les étapes suivantes :<ol><li>Appuyer sur le bouton rouge le plus proche des potentiomètres quand vous êtes prêt</li><li>Attendre que la led s’allume, et quand elle s'allume, appuyer le plus rapidement possible sur un bouton</li><li>L’afficheur renvoie le temps entre le moment où la led s’est allumée et le moment où vous avez appuyé sur le bouton</li></ol>";
             break;
         case "colo":
             document.querySelector("#test-icon").src = "images/test_visuel.png";
@@ -39,7 +39,8 @@ function nextTest(remove = true) {
     // Update description
     const test = document.body.classList.item(0);
     if (remove) document.body.classList.remove(test);
-    updateDescription(test);
+    const nexttest = document.body.classList.item(0);
+    updateDescription(nexttest);
     // Update table
     if (remove) for (const child of document.querySelector("table#results > tbody").children) {
         if (child.tagName !== "TR") continue;
