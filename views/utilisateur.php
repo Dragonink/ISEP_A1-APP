@@ -141,8 +141,8 @@ for ($i=0; $i<count($utilisateurTest); $i++){
         $scolo = $utilisateurTest[$i]['result'];
     }
 }
-$max1=max($sfreq,$stona);
-$max2=max($stemp,$sstim,$scolo);
+$max1=max($sfreq,$stona)+1;
+$max2=max($stemp,$sstim,$scolo)+1;
 $value="[" .$sfreq ."," .$stemp ."," .$stona ."," .$sstim ."," .$scolo ."]";
 $datas="[" .$sfreq/$max1 ."," .$stemp/$max2 ."," .$stona/$max1 ."," .$sstim/$max2 ."," .$scolo/$max2 ."]";
 $labels="['Fréquence (bpm)','Température (°C)', 'Tonalité (Hz)', 'Stimuli (s)', 'Simon (/20)']";
@@ -155,6 +155,11 @@ $utilisateurTest2=utilisateurTest2($db);
 if ($nbExam==0){
     $data.="[0]";
     $label.="'Aucun test a été réalisé'";
+    $lfreq[0]=0;
+    $ltemp[0]=0;
+    $ltona[0]=0;
+    $lstim[0]=0;
+    $lcolo[0]=0;
 }else {
     $var=0;
     $num=0;
@@ -169,6 +174,8 @@ if ($nbExam==0){
             if ((($j==$num) || ($utilisateurTest2[$j]['exam']==$var)) && $utilisateurTest2[$j]!=null){
                 if ($utilisateurTest2[$j]['type']=='freq'){
                     $lfreq[$i] = $utilisateurTest2[$j]['result'];
+                    $var=$utilisateurTest2[$j]['exam'];
+                    $utilisateurTest2[$j]=null;
                 }elseif ($utilisateurTest2[$j]['type']=='temp'){
                     $ltemp[$i] = $utilisateurTest2[$j]['result'];
                     $var=$utilisateurTest2[$j]['exam'];
@@ -197,9 +204,11 @@ if ($nbExam==0){
         }
     }
 }
+$maxi1=1;
+$maxi2=1;
 if ($choix==0){
-    $maxi1=max(max($lfreq),max($ltona));
-    $maxi2=max(max($ltemp),max($lstim),max($lcolo));
+    $maxi1=max(max($lfreq),max($ltona))+1;
+    $maxi2=max(max($ltemp),max($lstim),max($lcolo))+1;
     for ($div=0;$div<count($lfreq);$div++){
         $lfreq[$div]=$lfreq[$div]/$maxi1;
         $ltemp[$div]=$ltemp[$div]/$maxi2;
@@ -213,7 +222,11 @@ if ($choix==0){
     $data[3]="[" .implode(',',$lstim) ."]";
     $data[4]="[" .implode(',',$lcolo) ."]";
     $key="['Fréquence (bpm)','Température (°C)', 'Tonalité (Hz)', 'Stimuli (s)', 'Simon (/20)']";
-    $data="[" .implode(',',$data) ."]";
+    if ($data=="[[[[["){
+        $data="[[0],[0],[0],[0],[0]]";
+    }else{
+        $data="[" .implode(',',$data) ."]";
+    }
     $unit="['bpm','°C', 'Hz', 's', '/20']";
 }else{
     if ($choix==1){

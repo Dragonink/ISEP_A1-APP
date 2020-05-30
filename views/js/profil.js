@@ -57,6 +57,8 @@ function resultatTest(choix, data, label, key, unit, max1, max2) {
             id: 'resultatTestGraph',
             data: data,
             options: {
+                tickmarksStyle: 'filledcircle',
+                tickmarksSize: 5,
                 xaxisLabels:label,
                 marginLeft: 35,
                 colors: color,

@@ -187,7 +187,7 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
     return $resultat;
 }
 
-function listeInfoRequete(PDO $db, $valeur){
+function listeInfoRequete(PDO $db, $valeur, $envoi){
     if ($valeur==0){
         $nombre=nombreRequete($db);
     } elseif ($valeur==1){
@@ -219,8 +219,8 @@ function listeInfoRequete(PDO $db, $valeur){
                                     ."<td>" .$value['email'] ."</td>"
                                 ."</tr>"
                                 ."<tr>"
-                                    ."<td class='valider'><button onclick=\"validerRequete(" .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."')\"=> Valider </button></td>"
-                                    ."<td class='rejeter'><button onclick=\"rejeter('requete', " .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."')\"> Rejeter </button></td>"
+                                    ."<td class='valider'><button onclick=\"validerRequete(" .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."');envoieMailValidation('" .$envoi."' , '" .$value['email'] ."')\"=> Valider </button></td>"
+                                    ."<td class='rejeter'><button onclick=\"rejeter('requete', " .$valeur .", ''," .$value['id'] ." , '" .$value['origine'] ."');envoieMailAnnulation('" .$envoi." , " .$value['email'] ."')\"> Rejeter </button></td>"
                                 ."</tr>"
                             ."</table>";
         }
@@ -314,11 +314,29 @@ function ajouterQuestion(PDO $db){
     return $resultat;
 }
 
-function moyenne(PDO $db){
-
+function envoieMailValidation($from,$to){
+    $message = "Bonjour.\r\nVotre compte vient d'etre accepte.\r\n\r\nCordialement,\r\nl'equipe Infinite Measures";
+    $headers = array(
+        "Content-Type" => "text/plain;charset=utf-8",
+        "From" => $from,
+        "Reply-To" => $from,
+        "X-Mailer" => "PHP/".phpversion()
+    );
+    if (!mail($to, "Acceptation de votre compte", $message, $headers)) {
+        echo "<script>alert(\"Une erreur est survenue lors de l'envoi du message.\");</script>";
+    }
 }
 
-function nomTest(PDO $db){
-
+function envoieMailAnnulation($from,$to){
+    $message = "Bonjour.\r\nVotre compte vient d'etre refuse.\r\n\r\nCordialement,\r\nl'equipe Infinite Measures";
+    $headers = array(
+        "Content-Type" => "text/plain;charset=utf-8",
+        "From" => $from,
+        "Reply-To" => $from,
+        "X-Mailer" => "PHP/".phpversion()
+    );
+    if (!mail($to, "Refus de votre compte", $message, $headers)) {
+        echo "<script>alert(\"Une erreur est survenue lors de l'envoi du message.\");</script>";
+    }
 }
 ?>

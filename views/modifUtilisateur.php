@@ -2,6 +2,7 @@
 session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/modif.php";
 require "../models/account_info.php";
+include('../controllers/adminDonnees.php');
 if (isset($_GET['email']) && $_SESSION["user_type"]!="user"){
 	$user_info = fetchUser2($db, $_GET['email']);
 	$user["prenom"]=$user_info[0]["first_name"];
@@ -19,8 +20,6 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="user"){
 	$user["email"]=$_SESSION["user_email"];
 	$user["id"]=$_SESSION["user_id"];
 }
-$manager_info = fetchManager2($db, $user["medecin"]);
-$manager_info = $manager_info[0];
 if (isset($_COOKIE["modifError"])) {
 	switch ($_COOKIE["modifError"]) {
 		case "mdp":
@@ -84,12 +83,27 @@ if (isset($_COOKIE["modifError"])) {
 						"<input type=\"password\" name=\"verifmdp\">";
 				}?>
 				<p>Médecin</p>
-				<input type="text" name="medecin" placeholder="<?php echo $manager_info['first_name'], " ", $manager_info['last_name']?>" />
+				<select id="manager" class="user" name="manager" required>
+                    <?php echo listeManager($db); ?>
+                </select>
 				<input type="hidden" name="id" value="<?php echo $user["id"]?>"/>
 			</div>
 		</div>
 	</form>
 	</main>
 </body>
-
+<?php 
+$listeMedecin="[";
+foreach(infoManager($db)  as $key => $value){
+	$listeMedecin .= $value['id'] .","; 
+}
+$listeMedecin.="]";
+?>
+<script LANGUAGE='JavaScript'>
+	listeMedecin=<?php echo $listeMedecin?>;
+	idMedecin=<?php echo $user["medecin"] ?>;
+	if (listeMedecin.includes(idMedecin)){
+		document.querySelector('form select').selectedIndex = idMedecin;
+	}
+</script>
 </html>

@@ -9,6 +9,7 @@ $account = trim_input($_POST["account"]);
 $passwd = trim_input($_POST["password"]);
 
 function invalid_passwd() {
+    setcookie ("invalidpass", "true");
     header("Location: connexion.php", true, 303);
     exit;
 }
@@ -83,7 +84,8 @@ if (preg_match("/^[1-2]\d{2}(?:0[1-9]|1[0-2])\d{8}$/", $account) === 1) {
             invalid_passwd();
         }
         exit;
+    } else {
+        echo "<script>alert(\"Votre compte n'existe pas.\");</script>";
     }
-    echo "<script>alert(\"Votre compte n'existe pas.\");</script>";
 } else {echo "<script>alert('Identifiant invalide.');</script>";}
 ?>

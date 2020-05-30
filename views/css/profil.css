@@ -151,7 +151,7 @@ h2 {
 	text-align: left;
 }
 
-#infos input , #info input {
+#infos input , #info input, #infos select {
 	width: 80%;
 }
 
@@ -299,7 +299,6 @@ p {
     margin-top: 5%;
     display: flex;
     flex-direction: row;
-    background-color: #18375E;  
     border-radius: 15px;
 }
 
@@ -309,5 +308,4 @@ p {
     width: 40%;
     border: 1px solid var(--colorFooter);
     border-radius: 15px;
-    background-color: #18375E;  
 }
