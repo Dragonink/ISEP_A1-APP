@@ -102,11 +102,16 @@ textarea {
 .pagination button {
     display: table-column;
     background-color: white;
+    width: 35px;
+    height: 35px;
+    margin: 5px;
+    border-radius: 50%;
+    color: var(--colorFooter);
 }
 
-.pagination button img {
-    width: 10px;
-    height: 10px;
+.pagination button.actif {
+    background-color: var(--colorFooter);
+    color: white;
 }
 
 .modifierSupprimer {
