@@ -46,7 +46,6 @@ function listeInfoDispositif(PDO $db, int $valeur, string $recherche){
                                 ."<td rowspan='3' class='imageDispositif' > <img src='images/iconDispositif.png'/></td>"
                                 ."<td>" .$value['code'] ."</td>"
                                 ."<td class='modifierSupprimer'>"
-                                    ."<img src='images/iconModifier.png' />"
                                     ."<img src='images/iconCroix.png' onclick=\"supDispositif(".$value['code'] ." , " .$valeur ." , '" .$recherche ."')\"/>"
                                 ."</td>"
                             ."</tr>"
