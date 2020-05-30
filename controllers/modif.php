@@ -1,5 +1,5 @@
 <?php
-
+require "../models/account_info.php";
 include("../controllers/profil.php");
 function trim_input($data) {
 	return htmlspecialchars(stripslashes(trim($data)));
@@ -95,15 +95,35 @@ if (isset($_POST['modifUtilisateur'])){
     } else {
         setcookie("modifState", "success");
     }
+
 }
 if (isset($_POST['annuler']) || isset($_COOKIE["modifAdmin"])) {
     setcookie("modifAdmin");
     if ($_SESSION["user_type"]=="user"){
         $url='utilisateur';
+        $user_info = fetchUser($db, $account);
+        $_SESSION["user_prenom"] = $user_info[0]["first_name"];
+        $_SESSION["user_nom"] = $user_info[0]["last_name"];
+        $_SESSION["user_email"] = $user_info[0]["email"];
+        $_SESSION["user_medecin"] = $user_info[0]["manager"];
+        $_SESSION["user_tel"] = $user_info[0]["phone"];
     } elseif ($_SESSION["user_type"]=="manager"){
         $url='gestionnaire';
+        $user_info = fetchManager($db, $account);
+        $_SESSION["user_id"] = $user_info[0]["id"];
+        $_SESSION["user_prenom"] = $user_info[0]["first_name"];
+        $_SESSION["user_nom"] = $user_info[0]["last_name"];
+        $_SESSION["user_email"] = $user_info[0]["email"];
+        $_SESSION["user_tel"] = $user_info[0]["phone"];
+        $_SESSION["user_adresse"] = $user_info[0]["work_address"];
     } elseif($_SESSION["user_type"]=="administrator"){
         $url='admin';
+        if ($_SESSION["user_id"]==$_POST['id']){
+            $_SESSION["user_id"] = $user_info[0]["id"];
+            $_SESSION["user_prenom"] = $user_info[0]["first_name"];
+            $_SESSION["user_nom"] = $user_info[0]["last_name"];
+            $_SESSION["user_email"] = $user_info[0]["email"];
+        }
     }
 }
 

@@ -83,7 +83,7 @@ if (isset($_COOKIE["modifError"])) {
 						"<input type=\"password\" name=\"verifmdp\">";
 				}?>
 				<p>Médecin</p>
-				<select id="manager" class="user" name="manager" required>
+				<select id="manager" class="user" name="medecin" required>
                     <?php echo listeManager($db); ?>
                 </select>
 				<input type="hidden" name="id" value="<?php echo $user["id"]?>"/>
