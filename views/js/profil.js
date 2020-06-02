@@ -70,7 +70,7 @@ function resultatTest(choix, data, label, key, unit, max1, max2) {
         }).draw();
         new RGraph.Drawing.YAxis({
             id: 'resultatTestGraph',
-            x: 1265,
+            x: 1165,
             options: {
                 textSize: 12,
                 yaxisScaleMax: max2,
