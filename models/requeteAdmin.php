@@ -63,13 +63,13 @@ function nombreRequeteManager(PDO $db):int {
 }
 
 function nombreDispositif(PDO $db):int {
-    $query = 'SELECT count(*) from console';
+    $query = 'SELECT count(*) from console where is_active=1';
     $prepare = $db->query($query);
     return $prepare->fetchColumn();
 }
 
 function nombreDispositifRecherche(PDO $db, $recherche){
-    $query = "SELECT count(*) from console join manager on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%'";
+    $query = "SELECT count(*) from console join manager on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' and console.is_active=1";
     $prepare = $db->query($query);
     return $prepare->fetchColumn();
 }
@@ -83,19 +83,19 @@ function nombreQuestion(PDO $db):int {
 function infoDispositif(PDO $db, $value) {
     switch ($value){
         case 0:
-            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) order by console.id ';
+            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.is_active=1 order by console.id ';
         break;
 
         case 1:
-            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) order by console.id desc' ;
+            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.is_active=1 order by console.id desc' ;
         break;
 
         case 2:
-            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) order by manager.last_name  ' ;
+            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.is_active=1 order by manager.last_name  ' ;
         break;
 
         case 3:
-            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) order by manager.work_address  ' ;
+            $dispositif = 'SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.is_active=1 order by manager.work_address  ' ;
         break;
     }
     $prepare = $db->prepare($dispositif);
@@ -106,19 +106,19 @@ function infoDispositif(PDO $db, $value) {
 function infoDispositifRecherche(PDO $db, $value, $recherche) {
     switch ($value){
         case 0:
-            $dispositif = "SELECT console.id as code, first_name, last_name, work_address  from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by console.id " ;
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address  from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' and console.is_active=1 order by console.id " ;
         break;
 
         case 1:
-            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by console.id desc ";
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' and console.is_active=1 order by console.id desc ";
         break;
 
         case 2:
-            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by manager.last_name " ;
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' and console.is_active=1 order by manager.last_name " ;
 
         break;
         case 3:
-            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' order by manager.work_address " ;
+            $dispositif = "SELECT console.id as code, first_name, last_name, work_address from manager join console on (console.manager=manager.id) where console.id like '%".$recherche."%' or manager.last_name like '%".$recherche."%' and console.is_active=1 order by manager.work_address " ;
         break;
     }
     $prepare = $db->prepare($dispositif);
@@ -255,13 +255,32 @@ function modifQuestion(PDO $db, $id, $question, $answer, $admin) {
     ));
 }
 
-function ajoutDispositif(PDO $db,int $id, $manager){ //rajouter la vérification que le code n'est pas déjà utilisé
-    $ajout ="INSERT INTO console( id, manager) VALUES(" .$id .", " .$manager .")";
+function nbIdDispositif(PDO $db){
+    $query = 'SELECT count(*) from console where is_active=0';
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
+}
+
+function idDispositif(PDO $db) {
+    $query = 'SELECT id from console where is_active=0';
+    $prepare = $db->query($query);
+    return $prepare->fetchColumn();
+}
+
+function ajoutDispositif(PDO $db,int $id, $manager){
+    if (preg_match("/^\d{6}$/", $id) === 1) {
+        $ajout ="INSERT INTO console( id, manager) VALUES(" .$id .", " .$manager .")";
+        $db->prepare($ajout)->execute();
+    }
+}
+
+function ajoutDispositif1(PDO $db,int $id, $manager){
+    $ajout ="UPDATE console set is_active=1, manager=" .$manager." WHERE id=" .$id;
     $db->prepare($ajout)->execute();
 }
 
-function supDispositif(PDO $db,int $id){ //rajouter la vérification que le code n'est pas déjà utilisé
-    $sup = "DELETE FROM console  WHERE id= :id";
+function supDispositif(PDO $db,int $id){
+    $sup = "UPDATE console set is_active=0 WHERE id= :id ";
     $prepare = $db->prepare($sup);
     $prepare->bindParam(':id', $id, PDO::PARAM_INT);
     $prepare->execute();

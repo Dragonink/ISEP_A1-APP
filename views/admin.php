@@ -49,7 +49,8 @@ if (isset($_COOKIE["modifState"])) {
                             <h1> Dashboard </h1>
                             <div class="chiffreCle">
                                 <div class = "visites"><h3>Total des utilisateurs:</h3> &nbsp; <h2 id='nbUtilisateur'><?php echo nombreUtilisateur($db) ?></h2></div>
-                                <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2 id='nbUtilisateur'><?php echo nombreTestsRealises($db)?></h2></div>
+                                <div class = "consoles"><h3> Total des dispositifs:</h3> &nbsp; <h2 id='nbConsoles'><?php echo nombreDispositif($db)?></h2></div>
+                                <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2 id='nbTests'><?php echo nombreTestsRealises($db)?></h2></div>
                             </div>
                             <div class="statistiques"><h3>Statistiques</h3>
                                 <canvas id="graphStats" width="1300" height="300"> </canvas>
@@ -67,7 +68,7 @@ if (isset($_COOKIE["modifState"])) {
                                     <button class="buttonAddDispositif" onclick="openAddDispositif()"> <img src="images/iconAddDispositif.png"/> Ajouter un dispositif </button>
                                     <div class="addDispositif">
                                         <img src="images/iconAddDispositif.png" style="height: 16.5pt;"/>
-                                        <textarea id="addCode" name="code" cols="15" rows="1" placeholder="Code"></textarea>
+                                        <textarea id="addCode" name="code" cols="17" rows="1" placeholder="Code (6 chiffres)"></textarea>
                                         <select id="addDispositif" size="1">
                                             <?php echo listeManager($db) ?>
                                         </select>

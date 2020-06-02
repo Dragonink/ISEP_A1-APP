@@ -80,6 +80,7 @@ DROP TABLE IF EXISTS `console`;
 CREATE TABLE `console` (
   `id` mediumint NOT NULL,
   `manager` int NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `manager` (`manager`),
   CONSTRAINT `console_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`) ON DELETE CASCADE
@@ -97,7 +98,7 @@ CREATE TABLE `exam` (
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   KEY `console` (`console`),
-  CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`nss`),
+  CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`nss`) ON DELETE CASCADE,
   CONSTRAINT `exam_ibfk_2` FOREIGN KEY (`console`) REFERENCES `console` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -128,5 +129,5 @@ CREATE TABLE `test` (
   `result` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `exam` (`exam`),
-  CONSTRAINT `test_ibfk_1` FOREIGN KEY (`exam`) REFERENCES `exam` (`id`)
+  CONSTRAINT `test_ibfk_1` FOREIGN KEY (`exam`) REFERENCES `exam` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;

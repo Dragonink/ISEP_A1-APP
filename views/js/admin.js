@@ -61,6 +61,7 @@ function validateAddDispositif(value, recherche) {
     var code = document.getElementById('addCode').value;
     var manager = document.getElementById('addDispositif').value;
     document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=addDispositif&value=" + value + "&recherche" + recherche + "&code=" + code + "&manager=" + manager);
+    document.getElementById("nbConsoles").innerHTML = PHPCall("/adminRefresh.php?fonction=nbConsoles");
     closeAddDispositif();
 }
 
@@ -72,6 +73,7 @@ function closeAddDispositif() {
 
 function supDispositif(id, value, recherche) {
     document.getElementById("listeInfoDispositif").innerHTML = PHPCall("/adminRefresh.php?fonction=supDispositif&value=" + value + "&recherche" + recherche + "&id=" + id);
+    document.getElementById("nbConsoles").innerHTML = PHPCall("/adminRefresh.php?fonction=nbConsoles");
 }
 
 function rechercheDispositif() {

@@ -35,7 +35,19 @@ if (isset($_GET["fonction"])){
         supQuestion($db, $_GET["id"]);
         echo listeFAQ($db);
     } elseif (($_GET["fonction"]=='addDispositif') && (isset($_GET["value"]) && isset($_GET["recherche"]) && isset($_GET["code"]) && isset($_GET["manager"]))){
-        ajoutDispositif($db, $_GET["code"], $_GET["manager"]);
+        if (nbIdDispositif($db)<2){
+            if (idDispositif($db)== false || $_GET["code"]!=idDispositif($db)){
+                ajoutDispositif($db, $_GET["code"], $_GET["manager"]);
+            }else{
+                ajoutDispositif1($db, $_GET["code"], $_GET["manager"]);
+            }
+        }else{
+            if (!in_array($_GET["code"],idDispositif($db))){
+                ajoutDispositif($db, $_GET["code"], $_GET["manager"]);
+            }else{
+                ajoutDispositif1($db, $_GET["code"], $_GET["manager"]);
+            }
+        }
         echo listeInfoDispositif($db, $_GET["value"], $_GET["recherche"]);
     } elseif (($_GET["fonction"]=='supDispositif') && (isset($_GET["value"]) && isset($_GET["recherche"]) && isset($_GET["id"]))){
         supDispositif($db, $_GET["id"]);
@@ -48,6 +60,8 @@ if (isset($_GET["fonction"])){
         echo nombreRequeteManager($db);
     } elseif ($_GET["fonction"]=='nbUtilisateur'){
         echo nombreUtilisateur($db);
+    } elseif ($_GET["fonction"]=='nbConsoles'){
+        echo nombreDispositif($db);
     } elseif ($_GET["fonction"]=='nbTest'){
         echo nombreTestsRealises($db);
     }elseif (($_GET["fonction"]=='envoieMailValidation')&& (isset($_GET["envoi"]) && isset($_GET["recev"]))){
