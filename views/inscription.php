@@ -1,5 +1,9 @@
 <?php if ($_SERVER["REQUEST_METHOD"] === "POST") require "../controllers/inscription.php";
 include('../controllers/adminDonnees.php');
+if (isset($_COOKIE["takenEmail"])) {
+    setcookie("takenEmail");
+    echo "<script>alert('Cette adresse Email est déjà prise.');</script>";
+}
 ?><!DOCTYPE html>
 <html>
 

@@ -1,19 +1,16 @@
 <?php
 require "connexionSQL.php";
-/*function doublon (PDO $nss, $email) {
-    $query = $db -> prepare("SELECT 'nss','email' FROM 'user' WHERE 'nss'='$nss' AND 'email'='$email'");
-    $query->execute(array('email' => $email));
-    if ($query->fetchColumn() > 0) {
-
-        } else {
-            insertUser();
-        }
-}*/
-function insertUser(PDO $db, $nss, $firstname, $lastname, $email, $password, $linked_manager) {
+function insertUser (PDO $db, $nss, $firstname, $lastname, $email, $password, $linked_manager) {
     $password = password_hash($password, PASSWORD_DEFAULT);
-    $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
-    if ($req !== FALSE) {
-        return $req->execute();
+    $count = $db->query("SELECT COUNT(email) FROM user WHERE email = '$email'")->fetchColumn();
+    if ($count < 1){
+        $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
+        if ($req !== FALSE) {
+            return $req->execute();
+        }
+    } else {
+        setcookie("takenEmail", "true");
+        return FALSE;
     }
 }
 function insertManager(PDO $db, $firstname, $lastname, $email, $password, $address) {
