@@ -79,19 +79,23 @@ if (isset($_COOKIE["modifError"])) {
                             "<td>",
                                 "<p>Mot de passe</p>",
                             "</td>",
-                            "<td><input type=\"password\" name=\"mdp\" /></td>",
+                            "<td><input type=\"text\" name=\"mdp\" pattern=\".{8,}\" required title=\"8 caractères minimum, dont :
+		- 1 majuscule,
+		- 1 minuscule,
+		- 1 chiffre,
+                - 1 caractère spécial\"/></td>",
                         "</tr>",
                         "<tr>",
                             "<td>",
                                 "<p>Vérification mot de passe</p>",
                             "</td>",
-                            "<td><input type=\"password\" name=\"verifmdp\" /></td>",
+                            "<td><input type=\"password\" name=\"verifmdp\" required /></td>",
                         "</tr>";
                 }?>
             </table>
             <input type="hidden" name="id" value="<?php echo $user["id"]?>"/>
             <div class="boutons">
-                <button type="submit" id="annuler" name="annuler"> Annuler </button>
+                <button type="reset" id="annuler" name="annuler"> Annuler </button>
                 <button type="submit" id="valider" name="modifAdmin"> Valider </button>
             </div>
         </form>

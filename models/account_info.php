@@ -1,16 +1,20 @@
 <?php
 require "connexionSQL.php";
+/*function doublon (PDO $nss, $email) {
+    $query = $db -> prepare("SELECT 'nss','email' FROM 'user' WHERE 'nss'='$nss' AND 'email'='$email'");
+    $query->execute(array('email' => $email));
+    if ($query->fetchColumn() > 0) {
+
+        } else {
+            insertUser();
+        }
+}*/
 function insertUser(PDO $db, $nss, $firstname, $lastname, $email, $password, $linked_manager) {
     $password = password_hash($password, PASSWORD_DEFAULT);
-    //$email_verif = "SELECT email FROM user WHERE email='".$email."'";
-    //$resultat = mysql_query ($email_verif) or die(mysql_error());;
-    //$nombre_adresse = mysql_num_rows($resultat);
-    //if($nombre_adresse < 1){
-        $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
-        if ($req !== FALSE) {
-            return $req->execute();
-        } else { echo "Email déjà utilisée";}
-    //}
+    $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
+    if ($req !== FALSE) {
+        return $req->execute();
+    }
 }
 function insertManager(PDO $db, $firstname, $lastname, $email, $password, $address) {
     $password = password_hash($password, PASSWORD_DEFAULT);
@@ -60,4 +64,9 @@ function fetchManager2(PDO $db, $id) {
 function fetchAdmin(PDO $db, $email) {
     $req = $db->query("SELECT * FROM administrator WHERE email = '$email' ");
     return $req->fetchAll();
+}
+
+function getConsolesByManager(PDO $db, $id) {
+    $req = $db->query("SELECT id FROM console WHERE manager = '$id'");
+    return $req->fetchAll(PDO::FETCH_COLUMN, 0);
 }

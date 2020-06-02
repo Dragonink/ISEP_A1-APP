@@ -57,7 +57,7 @@ if (isset($_COOKIE["modifError"])) {
 			</div>
 			<div id="nom"><?php echo $user["prenom"] ?> &nbsp; <?php echo $user["nom"] ?> </div>
 			<button type="submit" id="Validation" name="modifGestionnaire">Valider les modifications</button>
-			<button type="submit" id="Annulation" name="annuler">Annuler</button>
+			<button type="reset" id="Annulation" name="annuler">Annuler</button>
 		</div>
 		<h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Informations personnelles </h2>
 		<div id="infors">
@@ -78,7 +78,7 @@ if (isset($_COOKIE["modifError"])) {
 					echo "<p>Mot de passe</p>",
 						"<input type=\"password\" name=\"mdp\" placeholder=\"Mot de passe\" />",
 						"<p>Confirmation de mot de passe</p>",
-						"<input type=\"password\" name=\"verifmdp\">";
+						"<input type=\"password\" name=\"verifmdp\"\">";
 				}?>
 				<p> Adresse de travail</p>
 				<input type="text" name="adresse" placeholder="<?php echo $user["adresse"] ?>" />

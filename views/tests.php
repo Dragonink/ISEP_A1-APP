@@ -3,6 +3,11 @@ session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	require "../controllers/end_exam.php";
 }
+if (isset($_COOKIE["testError"])) {
+    $test = $_COOKIE["testError"];
+    setcookie("testError");
+    echo "<script>alert('Une valeur incohérente a été rentrée pour le test : ".$test."');</script>";
+}
 ?><!DOCTYPE html>
 <html>
 

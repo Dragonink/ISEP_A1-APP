@@ -86,7 +86,12 @@ if (!isset($_GET['choix'])){
                         "<header>Effectuer un test</header>",
                         "<div>",
                         "<input type='text' name='tests' value='" . implode(" ", $tests) . "' hidden required />",
-                        "<input type='number' name='console' placeholder='ID console' required />",
+                        "<select name='console' required>",
+                        "<option selected disabled>ID console</option>";
+                    foreach (getConsolesByManager($db, $_SESSION["user_medecin"]) as $console) {
+                        echo "<option value='$console'>$console</option>";
+                    }
+                    echo "</select>",
                         "<button type='submit'>Démarrer</button>",
                         "</div>",
                         "</form>";

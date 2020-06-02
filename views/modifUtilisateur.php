@@ -59,7 +59,7 @@ if (isset($_COOKIE["modifError"])) {
 			</div>
 			<div id="nom"><?php echo $user["prenom"]?> &nbsp; <?php echo $user["nom"]?></div>
 			<button type="submit" id="Validation" name="modifUtilisateur">Valider les modifications</button>
-			<button type="submit" id="Annulation" name="annuler">Annuler</button>
+			<button type="reset" id="Annulation" name="annuler">Annuler</button>
 		</div>
 		<h2>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;Informations personnelles </h2>
 		<div id="infors">
@@ -78,9 +78,17 @@ if (isset($_COOKIE["modifError"])) {
 				<input type="tel" name="telephone" placeholder="<?php echo $user["tel"]?>" />
 				<?php if ($_SESSION["user_type"]=="user"){
 					echo "<p>Mot de passe</p>",
-						"<input type=\"password\" name=\"mdp\" placeholder=\"Mot de passe\" />",
+						"<input type=\"password\" name=\"mdp\" placeholder=\"Mot de passe\" pattern=\".{8,}\" required title=\"8 caractères minimum, dont : 
+		- 1 majuscule, 
+		- 1 minuscule,
+		- 1 chiffre, 
+		- 1 caractère spécial\"/>",
 						"<p>Confirmation de mot de passe</p>",
-						"<input type=\"password\" name=\"verifmdp\">";
+						"<input type=\"password\" name=\"verifmdp\" pattern=\".{8,}\" required title=\"8 caractères minimum, dont : 
+		- 1 majuscule, 
+		- 1 minuscule,
+		- 1 chiffre, 
+		- 1 caractère spécial\">";
 				}?>
 				<p>Médecin</p>
 				<select id="manager" class="user" name="medecin" required>
