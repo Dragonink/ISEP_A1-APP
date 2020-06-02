@@ -16,14 +16,11 @@ function verifMail(PDO $db, $mail){
 
 function origineMail(PDO $db, $mail){
     $utilisateur = "SELECT 'administrator' as origine from administrator where email='" .$mail ."' UNION SELECT 'user' as origine from user where email='" .$mail ."' UNION SELECT 'manager' as origine from manager where email='" .$mail ."'";
-    $prepare = $db->prepare($utilisateur);
-    $prepare->execute();
-    return $prepare->fetchAll();
+    return $db->query($utilisateur)->fetchColumn();
 }
 
 function modifmdp(PDO $db, $table, $mail, $mdp){
     $mdp = password_hash($mdp, PASSWORD_DEFAULT);
-    $modif = "UPDATE " .$table ." SET password=" .$mdp ." WHERE email =" .$mail;
-    $prepare = $db->prepare($modif);
-    $prepare->execute();
+    $modif = "UPDATE " .$table ." SET password='" .$mdp ."' WHERE email ='" .$mail."'";
+    $db->prepare($modif)->execute();
 }

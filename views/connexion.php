@@ -1,6 +1,6 @@
-<?php 
+<?php
 	if ($_SERVER["REQUEST_METHOD"] === "POST" and (isset($_POST['email']) and $_POST['email']!='')){
-		$recup_mail=$_POST['email'];
+		$recup_mail=htmlspecialchars(stripslashes(trim($_POST["email"])));
 		require "../controllers/forget.php";
 	} elseif ($_SERVER["REQUEST_METHOD"] === "POST" ) require "../controllers/connexion.php";
 	if (isset($_COOKIE['invalidpass'])){
@@ -52,35 +52,24 @@
 	</footer>
 </body>
 
-<?php 
+<?php
 	if (isset($recup_mail)){
 		$recup_code = "";
-		for($i=0; $i < 8; $i++) { 
+		for($i=0; $i < 8; $i++) {
 			$recup_code .= mt_rand(0,9);
 		}
-		//echo "<script>alert(".$recup_code .")</script>";
 		if (compte($db, $recup_mail, $recup_code)){
-			$to = $recup_mail;
-			$from = 'infinite.measures@yopmail.com';
-			$subject = 'Reinitialisation mot de passe';
-			$message = '<html>'
-					.'<head>'
-						.'<title>Réinitialisation de votre mot de passe</title>'
-					.'</head>'
-					.'<body>'
-						.'<h2>Bonjour, voici votre nouveau mot de passe : ' .$recup_code .'</h2>'
-						.'<p>Ce mot de passe est strictement confidentielle.</p>'
-					.'</body>'
-				.'</html>';
-			$headers = 'From:' .$from ."\r\nContent-type:text/html;charset=utf-8";
-			
-			if (mail($to, $subject, $message, $headers))
-			{
+			$message = "Bonjour\r\nVotre mot de passe a ete reinitialise.\r\n\r\nVoici votre mot de passe temporaire : $recup_code.\r\n\r\nNous vous conseillons de le changer au plus vite.\r\nCordialement,\r\nl'equipe Infinite Measures";
+			$headers = array(
+				"Content-Type" => "text/plain;charset=utf-8",
+				"From" => get_cfg_var("RECIPIENT_EMAIL"),
+				"Reply-To" => get_cfg_var("RECIPIENT_EMAIL"),
+				"X-Mailer" => "PHP/".phpversion()
+			);
+			if (mail($recup_mail, "Votre mot de passe temporaire", $message, $headers)){
 				echo "<script>alert(\"Un mail vous a été envoyé.\")</script>";
-			}
-			else
-			{
-				echo "<script>alert(\"Echec d'envoie du mail.\")</script>";
+			} else {
+				echo "<script>alert(\"Une erreur est survenue lors de l'envoi du mail.\")</script>";
 			}
 		} else {
 			echo "<script>alert(\"Il y a pas de compte associé à cet mail.\")</script>";
