@@ -28,6 +28,9 @@ if (isset($_COOKIE["modifError"])) {
 		case "email":
 			echo "<script>alert('Les adresses Email ne correspondent pas.');</script>";
 			break;
+		case "tel":
+			echo "<script>alert('Le numéro de téléphone est invalide.');</script>";
+			break;
 		default:
 			echo "<script>alert(\"Une erreur est survenue lors de l'enregistrement de vos données.\")</script>";
 			break;

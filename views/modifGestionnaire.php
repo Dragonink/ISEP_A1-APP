@@ -22,10 +22,19 @@ if (isset($_GET['email']) && $_SESSION["user_type"]!="manager"){
 if (isset($_COOKIE["modifError"])) {
 	switch ($_COOKIE["modifError"]) {
 		case "mdp":
+			echo "<script>alert('Le mot de passe n\'est pas conforme.');</script>";
+			break;
+		case "verif_mdp":
 			echo "<script>alert('Les mots de passe ne correspondent pas.');</script>";
 			break;
 		case "email":
+			echo "<script>alert('L\'adresse mail est invalide.');</script>";
+			break;
+		case "verif_email":
 			echo "<script>alert('Les adresses Email ne correspondent pas.');</script>";
+			break;
+		case "tel":
+			echo "<script>alert('Le numéro de téléphone est invalide.');</script>";
 			break;
 		default:
 			echo "<script>alert(\"Une erreur est survenue lors de l'enregistrement de vos données.\")</script>";

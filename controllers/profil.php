@@ -17,7 +17,7 @@ function mdp(PDO $db, $table, $value){
     if ($value == trim_input($_POST['verifmdp'])){
         modifProfil($db, $table, 'password', $password, $_POST['id']);
     } else {
-        setcookie("modifError", "mdp");
+        setcookie("modifError", "verif_mdp");
         $erreur = true;
     }
     return $erreur;
@@ -29,7 +29,7 @@ function email(PDO $db, $table, $value){
         modifProfil($db, $table, 'email', $value, $_POST['id']);
         if (!isset($_COOKIE["modifAdmin"])) {$_SESSION["user_email"] = $value;}
     } else {
-        setcookie("modifError", "email");
+        setcookie("modifError", "verif_email");
         $erreur = true;
     }
     return $erreur;
