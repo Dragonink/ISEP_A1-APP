@@ -249,8 +249,12 @@ if ($choix==0){
 $label.="]";
 ?>
 <script LANGUAGE='JavaScript'>
-    dernierTest(<?php echo $datas; ?>,<?php echo $labels; ?>, <?php echo $max1; ?>, <?php echo $max2; ?>);
-    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>,<?php echo $unit; ?>,<?php echo $maxi1; ?>, <?php echo $maxi2; ?>);
+    var hauteur=document.getElementsByClassName("test")[0].offsetWidth;
+    hauteur=0.9*hauteur;
+    var hauteur2=document.getElementsByClassName("infoProfil")[0].offsetWidth;
+    hauteur2=0.6*hauteur;
+    dernierTest(<?php echo $datas; ?>,<?php echo $labels; ?>, <?php echo $max1; ?>, <?php echo $max2; ?>, hauteur2);
+    resultatTest(<?php echo $choix; ?>,<?php echo $data; ?>,<?php echo $label; ?>,<?php echo $key; ?>,<?php echo $unit; ?>,<?php echo $maxi1; ?>, <?php echo $maxi2; ?>, hauteur);
     let value=/(?:^\?|&)choix=(\d+)/.exec(window.location.search);
 	if (value!==null){
 		document.querySelector('form.graphe select').selectedIndex = value[1];

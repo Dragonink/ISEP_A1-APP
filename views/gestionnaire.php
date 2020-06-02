@@ -379,7 +379,9 @@ if (isset($_COOKIE["modifState"])) {
 	$labels.="]";
 ?>
 <script>
-	graphe(<?php echo $_GET['criteres']?>, <?php echo $_GET['typedetest'] ?>, <?php echo $datas?>, <?php echo $labels ?>, <?php echo $keys ?>, <?php echo $unit ?>);
+	var hauteur=document.getElementsByClassName("infoProfil")[0].offsetWidth;
+    hauteur=0.6*hauteur;
+	graphe(hauteur, <?php echo $_GET['criteres']?>, <?php echo $_GET['typedetest'] ?>, <?php echo $datas?>, <?php echo $labels ?>, <?php echo $keys ?>, <?php echo $unit ?>);
 	let value=/(?:^\?|&)tri=(\d+)/.exec(window.location.search);
 	if (value!==null){
 		document.querySelector('form.recherche select').selectedIndex = value[1];

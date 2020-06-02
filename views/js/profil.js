@@ -14,7 +14,7 @@ function annulerExamen() {
 }
 
 
-function dernierTest(datas,labels, max1, max2){
+function dernierTest(datas,labels, max1, max2, hauteur){
     new RGraph.Bar({
         id: 'resultatDernierTestGraph',
         data: datas,
@@ -26,10 +26,12 @@ function dernierTest(datas,labels, max1, max2){
             xaxis: false,
             yaxis: false,
         }
-    }).draw();
+    }).draw().responsive([
+        {maxWidth: null, width: hauteur}
+    ]);
     new RGraph.Drawing.YAxis({
         id: 'resultatDernierTestGraph',
-        x: 765,
+        x: hauteur-35,
         options: {
             textSize: 12,
             yaxisScaleMax: max2,
@@ -67,10 +69,12 @@ function resultatTest(choix, data, label, key, unit, max1, max2) {
                 xaxis: false,
                 yaxis: false,
             }
-        }).draw();
+        }).draw().responsive([
+            {maxWidth: null, width: hauteur}
+        ]);
         new RGraph.Drawing.YAxis({
             id: 'resultatTestGraph',
-            x: 1165,
+            x: hauteur-35,
             options: {
                 textSize: 12,
                 yaxisScaleMax: max2,
@@ -107,11 +111,13 @@ function resultatTest(choix, data, label, key, unit, max1, max2) {
                 marginLeft: 35,
                 colors: ['#18375e'],
             }
-        }).draw();
+        }).draw().responsive([
+            {maxWidth: null, width: hauteur}
+        ]);
     }
 }
 
-function graphe(critere, type, datas, labels, keys, unit) {
+function graphe(hauteur, critere, type, datas, labels, keys, unit) {
     if (critere == '0') {
         if (type == '0'){
             new RGraph.Pie({
@@ -128,7 +134,7 @@ function graphe(critere, type, datas, labels, keys, unit) {
                     colors: color,
                     keyPositionGraphBoxed: false,
                 }                
-            }).draw()
+            }).draw();
         }else{
             new RGraph.Bar({
                 id: 'grapheResultat',
@@ -148,7 +154,9 @@ function graphe(critere, type, datas, labels, keys, unit) {
                     marginInnerGrouped: 1,
                     colors: ['#18375e'],
                 }
-            }).draw();
+            }).draw().responsive([
+                {maxWidth: null, width: hauteur}
+            ]);
         }
     } else {
         if (type == '0'){
@@ -180,7 +188,9 @@ function graphe(critere, type, datas, labels, keys, unit) {
                     colors: color,
                     xaxisLabelsAngle: 25
                 }
-            }).wave();
+            }).draw().responsive([
+                {maxWidth: null, width: hauteur}
+            ]);
         }else{
             new RGraph.Bar({
                 id: 'grapheResultat',
@@ -202,7 +212,9 @@ function graphe(critere, type, datas, labels, keys, unit) {
                     xaxisLabelsAngle: 25,
                     colors: ['#18375e'],
                 }
-            }).draw();
+            }).draw().responsive([
+                {maxWidth: null, width: hauteur}
+            ]);
         }
     }
 }

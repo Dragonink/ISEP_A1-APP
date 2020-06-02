@@ -183,7 +183,7 @@ function openPage(number, page) {
     page[number].className += " actif";
 }
 
-function graphe(datas, labels) {
+function graphe(datas, labels, hauteur) {
     new RGraph.HBar({
         id: 'graphStats',
         data: datas,
@@ -192,7 +192,9 @@ function graphe(datas, labels) {
             marginLeft: 95,
             colors: ['#18375e']
         }
-    }).draw();
+    }).draw().responsive([
+        {maxWidth: null, width: hauteur}
+    ]);
 }
 
 function envoieMailValidation(envoi, recev) {
