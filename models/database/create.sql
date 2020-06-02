@@ -80,6 +80,7 @@ DROP TABLE IF EXISTS `console`;
 CREATE TABLE `console` (
   `id` mediumint NOT NULL,
   `manager` int NOT NULL,
+  `is_active` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
   KEY `manager` (`manager`),
   CONSTRAINT `console_ibfk_1` FOREIGN KEY (`manager`) REFERENCES `manager` (`id`) ON DELETE CASCADE
