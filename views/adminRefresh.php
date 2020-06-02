@@ -40,7 +40,7 @@ if (isset($_GET["fonction"])){
                 ajoutDispositif($db, $_GET["code"], $_GET["manager"]);
             }else{
                 ajoutDispositif1($db, $_GET["code"], $_GET["manager"]);
-            } 
+            }
         }else{
             if (!in_array($_GET["code"],idDispositif($db))){
                 ajoutDispositif($db, $_GET["code"], $_GET["manager"]);

@@ -68,7 +68,7 @@ if (isset($_COOKIE["modifState"])) {
                                     <button class="buttonAddDispositif" onclick="openAddDispositif()"> <img src="images/iconAddDispositif.png"/> Ajouter un dispositif </button>
                                     <div class="addDispositif">
                                         <img src="images/iconAddDispositif.png" style="height: 16.5pt;"/>
-                                        <textarea id="addCode" name="code" cols="15" rows="1" placeholder="Code"></textarea>
+                                        <textarea id="addCode" name="code" cols="17" rows="1" placeholder="Code (6 chiffres)"></textarea>
                                         <select id="addDispositif" size="1">
                                             <?php echo listeManager($db) ?>
                                         </select>

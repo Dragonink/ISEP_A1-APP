@@ -267,17 +267,19 @@ function idDispositif(PDO $db) {
     return $prepare->fetchColumn();
 }
 
-function ajoutDispositif(PDO $db,int $id, $manager){ //rajouter la vérification que le code n'est pas déjà utilisé
-    $ajout ="INSERT INTO console( id, manager) VALUES(" .$id .", " .$manager .")";
-    $db->prepare($ajout)->execute();
+function ajoutDispositif(PDO $db,int $id, $manager){
+    if (preg_match("/^\d{6}$/", $id) === 1) {
+        $ajout ="INSERT INTO console( id, manager) VALUES(" .$id .", " .$manager .")";
+        $db->prepare($ajout)->execute();
+    }
 }
 
-function ajoutDispositif1(PDO $db,int $id, $manager){ //rajouter la vérification que le code n'est pas déjà utilisé
+function ajoutDispositif1(PDO $db,int $id, $manager){
     $ajout ="UPDATE console set is_active=1, manager=" .$manager." WHERE id=" .$id;
     $db->prepare($ajout)->execute();
 }
 
-function supDispositif(PDO $db,int $id){ //rajouter la vérification que le code n'est pas déjà utilisé
+function supDispositif(PDO $db,int $id){
     $sup = "UPDATE console set is_active=0 WHERE id= :id ";
     $prepare = $db->prepare($sup);
     $prepare->bindParam(':id', $id, PDO::PARAM_INT);
