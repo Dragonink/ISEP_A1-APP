@@ -215,13 +215,14 @@ function rejeter(PDO $db,int $id, $origine) {
     $nomid='id';
     if ($origine =='Administrateur') {
         $origine='administrator';
+        $rejeter = "UPDATE " .$origine." set is_active=-2 WHERE " .$nomid ." = :id ";
     } elseif ($origine =='Médecin') {
         $origine='manager';
-    }
-    if ($origine =='user'){
+        $rejeter = "UPDATE " .$origine." set is_active=-2 WHERE " .$nomid ." = :id ";
+    } elseif ($origine =='user'){
         $nomid='nss';
+        $rejeter = "DELETE FROM " .$origine." WHERE " .$nomid ." = :id ";
     }
-    $rejeter = "DELETE FROM " .$origine." WHERE " .$nomid ." = :id ";
     $prepare = $db->prepare($rejeter);
     $prepare->bindParam(':id', $id, PDO::PARAM_INT);
     $prepare->execute();
