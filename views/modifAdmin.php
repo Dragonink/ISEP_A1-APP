@@ -79,7 +79,7 @@ if (isset($_COOKIE["modifError"])) {
                             "<td>",
                                 "<p>Mot de passe</p>",
                             "</td>",
-                            "<td><input type=\"text\" name=\"mdp\" pattern=\".{8,}\" required title=\"8 caractères minimum, dont :
+                            "<td><input type=\"text\" name=\"mdp\" pattern=\".{8,}\" title=\"8 caractères minimum, dont :
 		- 1 majuscule,
 		- 1 minuscule,
 		- 1 chiffre,

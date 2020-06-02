@@ -85,9 +85,17 @@ if (isset($_COOKIE["modifError"])) {
 				<input type="tel" name="telephone" placeholder="<?php echo $user["tel"] ?>" />
 				<?php if ($_SESSION["user_type"]=="manager"){
 					echo "<p>Mot de passe</p>",
-						"<input type=\"password\" name=\"mdp\" placeholder=\"Mot de passe\" />",
-						"<p>Confirmation de mot de passe</p>",
-						"<input type=\"password\" name=\"verifmdp\"\">";
+					"<input type=\"password\" name=\"mdp\" placeholder=\"Mot de passe\" pattern=\".{8,}\" title=\"8 caractères minimum, dont : 
+					- 1 majuscule, 
+					- 1 minuscule,
+					- 1 chiffre, 
+					- 1 caractère spécial\"/>",
+									"<p>Confirmation de mot de passe</p>",
+									"<input type=\"password\" name=\"verifmdp\" pattern=\".{8,}\" title=\"8 caractères minimum, dont : 
+					- 1 majuscule, 
+					- 1 minuscule,
+					- 1 chiffre, 
+					- 1 caractère spécial\">";
 				}?>
 				<p> Adresse de travail</p>
 				<input type="text" name="adresse" placeholder="<?php echo $user["adresse"] ?>" />
