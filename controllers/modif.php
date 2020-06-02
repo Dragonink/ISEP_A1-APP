@@ -6,6 +6,7 @@ function trim_input($data) {
 }
 $mdperreur=false;
 $emailerreur=false;
+$telerreur=false;
 
 if (isset($_POST['modifUtilisateur'])){
     $nom = $prenom = $mdp = $email = $telephone = $medecin = "";
@@ -23,18 +24,33 @@ if (isset($_POST['modifUtilisateur'])){
         prenom($db, 'user', $prenom);
     }
     if (!empty($mdp)){
-        $mdperreur=mdp($db, 'user', $mdp);
+        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/", $password) === 1) {
+            $mdperreur=mdp($db, 'user', $mdp);
+        } else {
+            $mdperreur = true;
+            setcookie("modifError", "mdp");
+        }
     }
-    if (!empty($email)){
-        $emailerreur=email($db, 'user', $email);
-    }
+    if (!empty($email)) {
+        if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1) {
+            $emailerreur=email($db, 'user', $email);
+        } else {
+            $emailerreur = true;
+            setcookie("modifError", "email");
+        }
+    } 
     if (!empty($telephone)){
-        telephone($db, 'user', $telephone);
+        if (preg_match("/^0\d{9}$/", $telephone) === 1) {
+            telephone($db, 'user', $telephone);
+        } else {
+            $telerreur = true;
+            setcookie("modifError", "tel");
+        }
     }
     if (!empty($medecin)){
         medecin($db, 'user', $medecin);
     }
-    if ($mdperreur==true || $emailerreur==true){
+    if ($mdperreur || $emailerreur || $telerreur){
         $url="modifUtilisateur";
     } else {
         setcookie("modifState", "success");
@@ -55,18 +71,33 @@ if (isset($_POST['modifUtilisateur'])){
         prenom($db,'manager', $prenom);
     }
     if (!empty($mdp)){
-        $mdperreur=mdp($db, 'manager', $mdp);
+        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/", $password) === 1) {
+            $mdperreur=mdp($db, 'manager', $mdp);
+        } else {
+            $mdperreur=true;
+            setcookie("modifError", "mdp");
+        }
     }
     if (!empty($email)){
-        $emailerreur=email($db, 'manager', $email);
+        if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1) {
+            $emailerreur=email($db, 'manager', $email);
+        } else {
+            $emailerreur=true;
+            setcookie("modifError", "email");
+        }
     }
     if (!empty($telephone)){
-        telephone($db, 'manager', $telephone);
+        if (preg_match("/^0\d{9}$/", $telephone) === 1) {
+            telephone($db, 'manager', $telephone);
+        } else {
+            $telerreur = true;
+            setcookie("modifError", "tel");
+        }
     }
     if (!empty($adresse)){
         adresse($db, 'manager', $adresse);
     }
-    if ($mdperreur==true || $emailerreur==true){
+    if ($mdperreur || $emailerreur || $telerreur){
         $url="modifGestionnaire";
     } else {
         setcookie("modifState", "success");
@@ -85,12 +116,20 @@ if (isset($_POST['modifUtilisateur'])){
         prenom($db,'administrator', $prenom);
     }
     if (!empty($mdp)){
-        $mdperreur=mdp($db, 'administrator', $mdp);
+        if (preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).{8,}$/", $password) === 1) {
+            $mdperreur=mdp($db, 'administrator', $mdp);
+        } else {
+            $mdperreur=true;
+        }
     }
     if (!empty($email)){
-        $emailerreur=email($db, 'administrator', $email);
+        if (preg_match("/^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/", $email) === 1) {
+            $emailerreur=email($db, 'administrator', $email);
+        } else {
+            $emailerreur=true;
+        }
     }
-    if ($mdperreur==true || $emailerreur==true){
+    if ($mdperreur || $emailerreur){
         $url="modifAdmin";
     } else {
         setcookie("modifState", "success");
