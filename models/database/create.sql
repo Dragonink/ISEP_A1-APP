@@ -98,7 +98,7 @@ CREATE TABLE `exam` (
   PRIMARY KEY (`id`),
   KEY `user` (`user`),
   KEY `console` (`console`),
-  CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`nss`),
+  CONSTRAINT `exam_ibfk_1` FOREIGN KEY (`user`) REFERENCES `user` (`nss`) ON DELETE CASCADE,
   CONSTRAINT `exam_ibfk_2` FOREIGN KEY (`console`) REFERENCES `console` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -129,5 +129,5 @@ CREATE TABLE `test` (
   `result` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `exam` (`exam`),
-  CONSTRAINT `test_ibfk_1` FOREIGN KEY (`exam`) REFERENCES `exam` (`id`)
+  CONSTRAINT `test_ibfk_1` FOREIGN KEY (`exam`) REFERENCES `exam` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
