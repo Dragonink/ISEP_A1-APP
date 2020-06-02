@@ -1,9 +1,11 @@
 <?php
 require "connexionSQL.php";
 function insertUser (PDO $db, $nss, $firstname, $lastname, $email, $password, $linked_manager) {
-    $password = password_hash($password, PASSWORD_DEFAULT);
     $count = $db->query("SELECT COUNT(email) FROM user WHERE email = '$email'")->fetchColumn();
+    $count += $db->query("SELECT COUNT(email) FROM manager WHERE email = '$email' AND is_active != -2")->fetchColumn();
+    $count += $db->query("SELECT COUNT(email) FROM administrator WHERE email = '$email' AND is_active != -2")->fetchColumn();
     if ($count < 1){
+        $password = password_hash($password, PASSWORD_DEFAULT);
         $req = $db->prepare("INSERT INTO user (nss, first_name, last_name, email, password, manager) VALUES ('$nss', '$firstname', '$lastname', '$email', '$password', '$linked_manager')");
         if ($req !== FALSE) {
             return $req->execute();
@@ -14,17 +16,33 @@ function insertUser (PDO $db, $nss, $firstname, $lastname, $email, $password, $l
     }
 }
 function insertManager(PDO $db, $firstname, $lastname, $email, $password, $address) {
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    $req = $db->prepare("INSERT INTO manager (first_name, last_name, email, password, work_address) VALUES ('$firstname', '$lastname', '$email', '$password', '$address')");
-    if ($req !== FALSE) {
-        return $req->execute();
+    $count = $db->query("SELECT COUNT(email) FROM user WHERE email = '$email'")->fetchColumn();
+    $count += $db->query("SELECT COUNT(email) FROM manager WHERE email = '$email' AND is_active != -2")->fetchColumn();
+    $count += $db->query("SELECT COUNT(email) FROM administrator WHERE email = '$email' AND is_active != -2")->fetchColumn();
+    if ($count < 1) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $req = $db->prepare("INSERT INTO manager (first_name, last_name, email, password, work_address) VALUES ('$firstname', '$lastname', '$email', '$password', '$address')");
+        if ($req !== FALSE) {
+            return $req->execute();
+        }
+    } else {
+        setcookie("takenEmail", "true");
+        return FALSE;
     }
 }
 function insertAdmin(PDO $db, $firstname, $lastname, $email, $password, $is_active) {
-    $password = password_hash($password, PASSWORD_DEFAULT);
-    $req = $db->prepare("INSERT INTO administrator (first_name, last_name, email, password, is_active) VALUES ('$firstname', '$lastname', '$email', '$password', $is_active)");
-    if ($req !== FALSE) {
-        return $req->execute();
+    $count = $db->query("SELECT COUNT(email) FROM user WHERE email = '$email'")->fetchColumn();
+    $count += $db->query("SELECT COUNT(email) FROM manager WHERE email = '$email' AND is_active != -2")->fetchColumn();
+    $count += $db->query("SELECT COUNT(email) FROM administrator WHERE email = '$email' AND is_active != -2")->fetchColumn();
+    if ($count < 1) {
+        $password = password_hash($password, PASSWORD_DEFAULT);
+        $req = $db->prepare("INSERT INTO administrator (first_name, last_name, email, password, is_active) VALUES ('$firstname', '$lastname', '$email', '$password', $is_active)");
+        if ($req !== FALSE) {
+            return $req->execute();
+        }
+    } else {
+        setcookie("takenEmail", "true");
+        return FALSE;
     }
 }
 
