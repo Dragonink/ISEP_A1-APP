@@ -114,7 +114,7 @@ if (!isset($_GET['choix'])){
         </tr>
         <tr>
             <td colspan="2" class="test">
-                <canvas id="resultatTestGraph" width="1300" height="500"></canvas>
+                <canvas id="resultatTestGraph" width="1200" height="500"></canvas>
             </td>
         </tr>
     </table>
