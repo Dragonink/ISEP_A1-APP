@@ -26,8 +26,8 @@ function listeInfoPatient(PDO $db, $valeur, $recherche){
                                 ."<td rowspan='4' class='photoProfil' ><img src='images/iconProfil.jpg'/></td>"
                                 ."<td>" .$value['first_name'] ." " .$value['last_name'] ."</td>"
                             ."</tr>";
-            if (strlen($value['email'])>18){
-                $resultat .="<tr> <td>" .substr ( $value['email'] , 0 , 14 ) ."...</td> </tr>";
+            if (strlen($value['email'])>23){
+                $resultat .="<tr> <td>" .substr ( $value['email'] , 0 , 19 ) ."...</td> </tr>";
             } else {
                 $resultat .="<tr> <td>" .$value['email'] ."</td> </tr>";
             }
