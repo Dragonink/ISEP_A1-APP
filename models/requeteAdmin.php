@@ -290,7 +290,7 @@ function supDispositif(PDO $db,int $id){
 function bannir(PDO $db,int $id, $origine){
     rejeter($db,$id, $origine);
     $nomid='id';
-    if ($origin=='user'){
+    if ($origine=='user'){
         $nomid='nss';
         $banni ="INSERT INTO banned( user) VALUES(" .$id .")";
         $db->prepare($banni)->execute();
