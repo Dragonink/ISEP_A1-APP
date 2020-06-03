@@ -12,11 +12,6 @@ if (!isset($_GET['criteres'])){
 if (!isset($_GET['typedetest'])){
 	htmlspecialchars($_GET['typedetest']=0);
 }
-if (isset($_GET["fonction"])){
-    if (($_GET["fonction"]=='utilisateur') && (isset($_GET["value"]) && isset($_GET["recherche"]))){
-		echo listeInfoUtilisateur($db, $_GET["value"], $_GET["recherche"]);
-	}
-}
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 	require "../controllers/declare_exam.php";
 }
@@ -137,7 +132,7 @@ if (isset($_COOKIE["modifState"])) {
    				<input type="submit" value="Rechercher" />
  		</form>
 	</div>
-	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, 0, ''); ?></div>
+	<div id="listeInfoPatient"><?php echo listeInfoPatient($db, $_GET['tri'], $_GET['q']); ?></div>
 	<?php require "_footer.html"; ?>
 </body>
 </html>
