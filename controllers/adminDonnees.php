@@ -132,7 +132,7 @@ function listeInfoUtilisateur(PDO $db, $valeur, $recherche){
                                     ."<img src='images/iconCroix.png' onclick=\"rejeter('utilisateur', " .$valeur ." , '" .$recherche ."' , " .$value['id'] ." , '" .$value['origine'] ."')\"/>"
                                 ."</td>"
                             ."</tr>";
-            if (strlen($value['email'])>15){
+            if (strlen($value['email'])>18){
                 $resultat .="<tr> <td>" .substr ( $value['email'] , 0 , 14 ) ."...</td> </tr>";
             } else {
                 $resultat .="<tr> <td>" .$value['email'] ."</td> </tr>";
