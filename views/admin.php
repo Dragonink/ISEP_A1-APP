@@ -53,7 +53,7 @@ if (isset($_COOKIE["modifState"])) {
                                 <div class = "testsRealises"><h3> Total des tests réalisés:</h3> &nbsp; <h2 id='nbTests'><?php echo nombreTestsRealises($db)?></h2></div>
                             </div>
                             <div class="statistiques"><h3>Statistiques</h3>
-                                <canvas id="graphStats" width="1300" height="300"> </canvas>
+                                <canvas id="graphStats" width="1000" height="250"> </canvas>
                             </div>
                         </div>
                     </div>
@@ -141,5 +141,7 @@ $datas="[" .$freq ."," .$temp ."," .$tona ."," .$stim ."," .$colo ."]";
 $labels="['Fréquence cardiaque','Température','Reconnaissance de tonalités', 'Réaction à des stimuli visuels','Mémorisation de couleurs']";
 ?>
 <script LANGUAGE='JavaScript'>
-    graphe(<?php echo $datas; ?>,<?php echo $labels; ?>);
+    var hauteur=document.getElementsByClassName("statistiques")[0].offsetWidth;
+    hauteur=0.95*hauteur
+    graphe(<?php echo $datas; ?>,<?php echo $labels; ?>, hauteur);
 </script>

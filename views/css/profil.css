@@ -63,6 +63,7 @@ table td {
 
 .resultatDernierTest {
     text-align: center;
+    max-width: 50%;
 }
 
 .resultatDernierTest > div{
@@ -80,12 +81,17 @@ table td {
     border-radius: 5px;
 }
 
+.resultatTest{
+    width: 90%;
+}
+
 .titre {
     font-size: 30px;
 }
 
 .choix {
     text-align: right;
+    margin-right: 5%;
 }
 
 /* modif */
